@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from "next/link";
 import {
   LineChart,
@@ -12,29 +12,191 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
+ 
 
-const data = [
-  { name: 'Mar 1 - Mar 7', gemini: 30, searchGPT: 15, claude: 25, chatGPT: 40, perplexity: 20, copilot: 10 },
-  { name: 'Apr 5 - Apr 11', gemini: 40, searchGPT: 25, claude: 30, chatGPT: 20, perplexity: 35, copilot: 15 },
-  { name: 'May 3 - May 9', gemini: 20, searchGPT: 30, claude: 40, chatGPT: 35, perplexity: 25, copilot: 30 },
-  { name: 'May 24 - May 30', gemini: 30, searchGPT: 15, claude: 45, chatGPT: 25, perplexity: 35, copilot: 20 },
-  { name: 'Jun 7 - Jun 13', gemini: 35, searchGPT: 20, claude: 30, chatGPT: 40, perplexity: 15, copilot: 25 },
-  { name: 'Jun 21 - Jun 27', gemini: 25, searchGPT: 35, claude: 20, chatGPT: 30, perplexity: 40, copilot: 15 },
+// Define the Prompt type based on prompts.json structure
+type Prompt = {
+  query_text: string;
+  response_text: string;
+  buyer_persona?: string;
+  buying_journey_stage?: string;
+  solution_analysis?: any;
+  ranking_position?: number | null;
+  sentiment_score?: number | null;
+  recommended?: boolean;
+  rank_list?: string;
+  answer_engine?: string;
+  company_mentioned?: boolean;
+  mentioned_companies?: string[];
+  competitors_list?: string[];
+};
+
+// LLMs to show in the chart and metrics
+const LLM_ENGINES = [
+  { key: 'searchgpt', label: 'SearchGPT', color: '#673AB7' },
+  { key: 'claude', label: 'Claude', color: '#2196F3' },
+  { key: 'gemini', label: 'Gemini', color: '#E91E63' },
+  { key: 'chatgpt', label: 'ChatGPT', color: '#4CAF50' },
+  { key: 'perplexity', label: 'Perplexity', color: '#FF9800' },
 ];
 
-const competitors = [
-  { name: 'Orca Security', visibility: 28.6, change: 2.8, position: 2.4, sentiment: 4.2, feature: 3.8 },
-  { name: 'Wiz', visibility: 32.1, change: -1.2, position: 1.8, sentiment: 4.5, feature: 4.0 },
-  { name: 'Palo Alto Networks', visibility: 24.3, change: 1.5, position: 2.7, sentiment: 3.9, feature: 3.5 },
-  { name: 'Check Point', visibility: 18.7, change: -0.8, position: 3.2, sentiment: 3.6, feature: 3.2 },
-  { name: 'CrowdStrike', visibility: 22.5, change: 2.1, position: 2.5, sentiment: 4.1, feature: 3.7 },
+// Hardcoded competitor names for the table
+const COMPETITOR_NAMES = [ 
+  'Wiz',
+  'Palo Alto Networks Prisma Cloud',
+  'CheckPoint CloudGuard',
+  'Aqua Security',
+  'Lacework',
+  'Ermetic',
+  'Tufin',
 ];
+
+// Stop words to exclude from word analysis
+const STOP_WORDS = new Set([
+  'the', 'and', 'or', 'not', 'but', 'if', 'then', 'else', 'when', 'where', 'what', 'which', 'who', 'whom', 'this', 'that', 'these', 'those',
+  'a', 'an', 'in', 'on', 'at', 'by', 'for', 'with', 'about', 'against', 'between', 'into', 'through', 'during', 'before', 'after', 'above', 'below',
+  'to', 'from', 'up', 'down', 'out', 'off', 'over', 'under', 'again', 'further', 'once', 'here', 'there', 'all', 'any', 'both', 'each', 'few', 'more', 'most', 'other', 'some', 'such',
+  'no', 'nor', 'only', 'own', 'same', 'so', 'than', 'too', 'very', 'can', 'will', 'just', 'don', 'should', 'now',
+  'i', 'me', 'my', 'myself', 'we', 'our', 'ours', 'ourselves', 'you', 'your', 'yours', 'yourself', 'yourselves',
+  'he', 'him', 'his', 'himself', 'she', 'her', 'hers', 'herself', 'it', 'its', 'itself', 'they', 'them', 'their', 'theirs', 'themselves',
+  'am', 'is', 'are', 'was', 'were', 'be', 'been', 'being', 'have', 'has', 'had', 'having', 'do', 'does', 'did', 'doing',
+]);
 
 export default function Dashboard() {
   const [timeRange, setTimeRange] = useState('Weekly');
   const [chartMode, setChartMode] = useState('Brand Visibility');
   const [autoScale, setAutoScale] = useState(true);
-  const [activeTab, setActiveTab] = useState('share');
+
+  const [prompts, setPrompts] = useState<Prompt[]>([]);
+  const [chartData, setChartData] = useState<any[]>([]);
+  const [words, setWords] = useState<any[]>([]);
+  const [competitorStats, setCompetitorStats] = useState<any[]>([]);
+
+  const fetchDashboardData = async () => {
+    const response = await fetch('/api/dashboard', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({}),
+    });
+    setPrompts(await response.json());
+  }
+
+  useEffect(() => {
+    fetchDashboardData();
+  }, []);
+
+  useEffect(() => {
+    if (prompts.length === 0) return;
+    // For each LLM, calculate percent of total responses
+    const total = prompts.length;
+    const entry: any = { name: 'All Data' };
+    LLM_ENGINES.forEach(({ key }) => { 
+      const llmPrompts = prompts.filter((p) => (p.answer_engine || '').toLowerCase() === key);
+      const visible = llmPrompts.filter((p) => p.company_mentioned).length;
+      entry[key] = llmPrompts.length > 0 ? (visible / llmPrompts.length) * 100 : 0;
+    });
+    setChartData([entry]);
+
+    // --- Words Analysis ---
+    const wordMap: Record<string, { freq: number; sentiment: number[] }> = {};
+    prompts.forEach((p) => {
+      const allText = `${p.query_text || ''} ${p.response_text || ''}`;
+      allText.split(/\W+/).forEach((word) => {
+        const w = word.trim().toLowerCase();
+        if (!w || w.length < 3) return;
+        if (STOP_WORDS.has(w)) return;
+        if (!wordMap[w]) wordMap[w] = { freq: 0, sentiment: [] };
+        wordMap[w].freq += 1;
+        if (typeof p.sentiment_score === 'number') wordMap[w].sentiment.push(p.sentiment_score);
+      });
+    });
+    const wordArr = Object.entries(wordMap)
+      .map(([word, { freq, sentiment }]) => ({
+        word,
+        freq,
+        sentiment: sentiment.length > 0 ? (sentiment.reduce((a, b) => a + b, 0) / sentiment.length).toFixed(2) : 'N/A',
+      }))
+      .sort((a, b) => b.freq - a.freq)
+      .slice(0, 20);
+    setWords(wordArr);
+
+    // --- Competitor Stats ---
+    const compStatsArr = COMPETITOR_NAMES.map((comp) => {
+      const compPrompts = prompts.filter((p) => {
+        // Check if competitor is mentioned in any relevant field
+        const inMentioned = (p.mentioned_companies || []).includes(comp);
+        const inList = (p.competitors_list || []).includes(comp);
+        const inRank = p.rank_list && p.rank_list.toLowerCase().includes(comp.toLowerCase());
+        return inMentioned || inList || inRank;
+      });
+      const visibility = compPrompts.length > 0 ?
+        (compPrompts.filter((p) => p.ranking_position !== null && p.ranking_position !== undefined).length / compPrompts.length) * 100 : 0;
+      const avgPosition = compPrompts.length > 0 ?
+        (compPrompts.reduce((sum, p) => sum + (p.ranking_position || 0), 0) / compPrompts.length).toFixed(2) : 'N/A';
+      const avgSentiment = compPrompts.length > 0 ?
+        (compPrompts.reduce((sum, p) => sum + (typeof p.sentiment_score === 'number' ? p.sentiment_score : 0), 0) / compPrompts.length).toFixed(2) : 'N/A';
+      const featureScore = compPrompts.length > 0 ?
+        (compPrompts.filter((p) => p.recommended).length / compPrompts.length * 5).toFixed(2) : 'N/A';
+      // Change: not applicable without time, set to 0
+      const change = 0;
+      return {
+        name: comp,
+        visibility: visibility.toFixed(1),
+        change,
+        position: avgPosition,
+        sentiment: avgSentiment,
+        feature: featureScore,
+      };
+    });
+    setCompetitorStats(compStatsArr);
+  }, [prompts]);
+
+  // Helper functions to compute metrics from prompts
+  function getMetricsByStage(stageKeywords: string[]) {
+    if(!prompts || prompts.length === 0 || !stageKeywords || stageKeywords.length === 0) return {
+      questions: 0,
+      responses: 0,
+      visibility: '0.0',
+      visibilityChange: '0.0',
+    };  
+    const filtered = prompts.filter((p: Prompt) =>
+      stageKeywords.some((keyword: string) =>
+        {
+          const isInclude = (p.buying_journey_stage || '').toLowerCase().includes(keyword); 
+          return isInclude;
+        }
+      )
+    );
+    
+    return {
+      questions: filtered.length,
+      responses: filtered.filter((p: Prompt) => p.response_text && p.response_text.trim() !== '').length,
+      visibility: filtered.length > 0
+        ? (filtered.filter((p: Prompt) => p.ranking_position !== null && p.ranking_position !== undefined).length / filtered.length * 100).toFixed(1)
+        : '0.0',
+      visibilityChange: '0.0', // Placeholder, as change is not in data
+    };
+  }
+
+  // Buying Journey: stages with 'buying' or 'solution'
+  const buyingJourneyMetrics = getMetricsByStage(['buying', 'solution']);
+  // Topic Analysis: stages with 'topic' or 'problem'
+  const topicAnalysisMetrics = getMetricsByStage(['topic', 'problem']);
+  // Key Insights: use all prompts for now
+  const keyInsightsMetrics = {
+    terms: Array.from(new Set(prompts.flatMap((p: Prompt) => (p.query_text || '').split(' ')))).length,
+    responses: prompts.filter((p: Prompt) => p.response_text && p.response_text.trim() !== '').length,
+    visibility: prompts.length > 0
+      ? (prompts.filter((p: Prompt) => p.ranking_position !== null && p.ranking_position !== undefined).length / prompts.length * 100).toFixed(1)
+      : '0.0',
+    visibilityChange: '0.0', // Placeholder
+  };
+
+  // --- Company Mention Percentage ---
+  const companyMentionedCount = prompts.filter((p: any) => p.company_mentioned).length;
+  const companyMentionedPercent = prompts.length > 0 ? ((companyMentionedCount / prompts.length) * 100).toFixed(1) : '0.0';
 
   return (
     <div className="min-h-screen">
@@ -89,21 +251,21 @@ export default function Dashboard() {
                       <div className="grid grid-cols-3 divide-x divide-gray-200">
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Questions</div>
-                          <div className="text-2xl font-bold">75</div>
+                          <div className="text-2xl font-bold">{buyingJourneyMetrics.questions}</div>
                         </div>
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Responses</div>
-                          <div className="text-2xl font-bold">6,364</div>
+                          <div className="text-2xl font-bold">{buyingJourneyMetrics.responses}</div>
                         </div>
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Visibility</div>
                           <div className="flex items-center">
-                            <div className="text-2xl font-bold text-red-500">28.6%</div>
+                            <div className="text-2xl font-bold text-red-500">{buyingJourneyMetrics.visibility}%</div>
                             <div className="ml-2 flex items-center text-green-500 text-sm">
                               <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
                               </svg>
-                              2.8%
+                              {buyingJourneyMetrics.visibilityChange}%
                             </div>
                           </div>
                         </div>
@@ -120,21 +282,21 @@ export default function Dashboard() {
                       <div className="grid grid-cols-3 divide-x divide-gray-200">
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Questions</div>
-                          <div className="text-2xl font-bold">30</div>
+                          <div className="text-2xl font-bold">{topicAnalysisMetrics.questions}</div>
                         </div>
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Responses</div>
-                          <div className="text-2xl font-bold">1,650</div>
+                          <div className="text-2xl font-bold">{topicAnalysisMetrics.responses}</div>
                         </div>
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Visibility</div>
                           <div className="flex items-center">
-                            <div className="text-2xl font-bold text-red-500">6.1%</div>
+                            <div className="text-2xl font-bold text-red-500">{topicAnalysisMetrics.visibility}%</div>
                             <div className="ml-2 flex items-center text-red-500 text-sm">
                               <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd"></path>
                               </svg>
-                              2.2%
+                              {topicAnalysisMetrics.visibilityChange}%
                             </div>
                           </div>
                         </div>
@@ -151,21 +313,21 @@ export default function Dashboard() {
                       <div className="grid grid-cols-3 divide-x divide-gray-200">
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Terms</div>
-                          <div className="text-2xl font-bold">111</div>
+                          <div className="text-2xl font-bold">{keyInsightsMetrics.terms}</div>
                         </div>
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Responses</div>
-                          <div className="text-2xl font-bold">463</div>
+                          <div className="text-2xl font-bold">{keyInsightsMetrics.responses}</div>
                         </div>
                         <div className="p-4">
                           <div className="text-sm text-gray-500">Visibility</div>
                           <div className="flex items-center">
-                            <div className="text-2xl font-bold text-red-500">15.4%</div>
+                            <div className="text-2xl font-bold text-red-500">{keyInsightsMetrics.visibility}%</div>
                             <div className="ml-2 flex items-center text-red-500 text-sm">
                               <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
                                 <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd"></path>
                               </svg>
-                              21.5%
+                              {keyInsightsMetrics.visibilityChange}%
                             </div>
                           </div>
                         </div>
@@ -233,7 +395,7 @@ export default function Dashboard() {
                     <div className="h-64">
                       <ResponsiveContainer width="100%" height="100%">
                         <LineChart
-                          data={data}
+                          data={chartData}
                           margin={{
                             top: 5,
                             right: 30,
@@ -244,16 +406,21 @@ export default function Dashboard() {
                           <CartesianGrid strokeDasharray="3 3" />
                           <XAxis dataKey="name" tick={{ fontSize: 10 }} />
                           <YAxis
-                            domain={autoScale ? ['auto', 'auto'] : [0, 65]}
+                            domain={autoScale ? ['auto', 'auto'] : [0, 100]}
                             tickFormatter={(tick) => `${tick}%`}
                           />
-                          <Tooltip formatter={(value) => [`${value}%`, 'Visibility']} />
-                          <Line type="monotone" dataKey="gemini" stroke="#E91E63" strokeWidth={2} dot={{ r: 4 }} />
-                          <Line type="monotone" dataKey="searchGPT" stroke="#673AB7" strokeWidth={2} dot={{ r: 4 }} />
-                          <Line type="monotone" dataKey="claude" stroke="#2196F3" strokeWidth={2} dot={{ r: 4 }} />
-                          <Line type="monotone" dataKey="chatGPT" stroke="#4CAF50" strokeWidth={2} dot={{ r: 4 }} />
-                          <Line type="monotone" dataKey="perplexity" stroke="#FF9800" strokeWidth={2} dot={{ r: 4 }} />
-                          <Line type="monotone" dataKey="copilot" stroke="#9C27B0" strokeWidth={2} dot={{ r: 4 }} />
+                          <Tooltip formatter={(value: any) => [`${value}%`, 'Visibility']} />
+                          {LLM_ENGINES.map(({ key, label, color }) => (
+                            <Line
+                              key={key}
+                              type="monotone"
+                              dataKey={key}
+                              name={label}
+                              stroke={color}
+                              strokeWidth={2}
+                              dot={{ r: 4 }}
+                            />
+                          ))}
                           <Legend />
                         </LineChart>
                       </ResponsiveContainer>
@@ -291,14 +458,14 @@ export default function Dashboard() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {['security', 'cloud', 'visibility', 'AI', 'detection'].map((word, index) => (
+                    {words.map((word, index) => (
                       <tr key={index}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{word}</td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{Math.floor(Math.random() * 500) + 100}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{word.word}</td>
+                        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{word.freq}</td>
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className={`h-2 w-16 rounded-full ${index % 3 === 0 ? 'bg-green-500' : index % 3 === 1 ? 'bg-yellow-500' : 'bg-red-500'}`}></div>
-                            <span className="ml-2 text-sm text-gray-500">{(Math.random() * 5).toFixed(1)}</span>
+                            <span className="ml-2 text-sm text-gray-500">{word.sentiment}</span>
                           </div>
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
@@ -308,7 +475,7 @@ export default function Dashboard() {
                                 d={index % 2 === 0 ? "M5 10l7-7m0 0l7 7m-7-7v18" : "M19 14l-7 7m0 0l-7-7m7 7V3"} 
                               />
                             </svg>
-                            <span>{(Math.random() * 10).toFixed(1)}%</span>
+                            <span>{}%</span>
                           </div>
                         </td>
                       </tr>
@@ -349,7 +516,7 @@ export default function Dashboard() {
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
-                    {competitors.map((competitor, index) => (
+                    {competitorStats.map((competitor, index) => (
                       <tr key={index}>
                         <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{competitor.name}</td>
                         <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{competitor.visibility}%</td>

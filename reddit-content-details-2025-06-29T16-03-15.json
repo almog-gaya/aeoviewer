@@ -1,0 +1,2462 @@
+[
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/cybersecurity/comments/1koz9gj/netskope_vs_zscaler_vs_palo_alto_vs_cato",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 134,
+      "Company Mentioned": "No",
+      "Answer Engines": "perplexity",
+      "Subreddit": "https://www.reddit.com/r/cybersecurity"
+    },
+    "content": null,
+    "analysis": null,
+    "error": "Scraping failed: fetch failed",
+    "timestamp": "2025-06-29T16:02:27.441Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/networking/comments/1i3qrr8",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 56,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/networking"
+    },
+    "content": {
+      "title": "Zscaler experiences?",
+      "selftext": "Anyone with real life experiences of ZIA or ZPA?\n\nTrying it out and so far it looks like hot garbage, everything is it's own portal, they have nothing in common between them and even the client application and how it works doesn't make sense to me.\n\n",
+      "commentCount": 30,
+      "totalScore": 43,
+      "subreddit": "networking",
+      "wordCount": 1750
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 87,
+        "comparative": 0.05040556199304751,
+        "label": "very_positive",
+        "confidence": 5.040556199304751,
+        "positive": [
+          "good",
+          "solid",
+          "solutions",
+          "like",
+          "like",
+          "easy",
+          "clear",
+          "won",
+          "cool",
+          "better"
+        ],
+        "negative": [
+          "terrible",
+          "mess",
+          "bad",
+          "headache",
+          "sucks",
+          "no",
+          "no",
+          "no",
+          "no",
+          "awaited"
+        ],
+        "wordCount": 128
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "they",
+            "count": 12
+          },
+          {
+            "keyword": "you",
+            "count": 7
+          },
+          {
+            "keyword": "zscaler",
+            "count": 5
+          },
+          {
+            "keyword": "it's",
+            "count": 5
+          },
+          {
+            "keyword": "support",
+            "count": 5
+          },
+          {
+            "keyword": "them",
+            "count": 4
+          },
+          {
+            "keyword": "zpa",
+            "count": 4
+          },
+          {
+            "keyword": "traffic",
+            "count": 4
+          },
+          {
+            "keyword": "netskope",
+            "count": 4
+          },
+          {
+            "keyword": "i've",
+            "count": 4
+          },
+          {
+            "keyword": "we're",
+            "count": 4
+          },
+          {
+            "keyword": "zia",
+            "count": 4
+          },
+          {
+            "keyword": "me.",
+            "count": 2
+          },
+          {
+            "keyword": "policy",
+            "count": 2
+          },
+          {
+            "keyword": "the portal",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "DLP",
+          "VPN",
+          "FIREWALL",
+          "SSL"
+        ],
+        "totalUniqueTerms": 324
+      },
+      "brandMentions": {
+        "palo alto": {
+          "count": 6,
+          "contexts": [
+            "titor I was putting them against, but it was actually 20% more expensive.. (And Palo Alto stuff is not known being cheap) Thanks, currently comparing against PA PA 100%!",
+            "to the end resources is very easy.\n\nIf you're already a shop that is leveraging Palo Alto or Cisco, for example, then those are probably going to be better options. If n",
+            "een a good and reliable solution. Sucks. Save yourself a headache and look into Palo Alto or Cloudflare Bad with their support and pricing. Netskope or PAN are better al",
+            "ok into Palo Alto or Cloudflare Bad with their support and pricing. Netskope or PAN are better alternatives. I wanted to go PAN and our internal teams experience w",
+            "ir support and pricing. Netskope or PAN are better alternatives. I wanted to go PAN and our internal teams experience was all with PAN. InfoSec drank the zscaler c",
+            "alternatives. I wanted to go PAN and our internal teams experience was all with PAN. InfoSec drank the zscaler cool aide so now we have to learn a whole new platfo"
+          ],
+          "sentiment": "very_positive"
+        },
+        "fortinet": {
+          "count": 2,
+          "contexts": [
+            "w solution, but from what I seen it looks promising and is priced insanely low. Fortinet is absolute garbage and is priced low for a reason absolutely true - I bet they",
+            ".   We're going to leave them.\n\nWould love to get some examples of the problems Fortinet has because that is one candidate under consideration. I did a PoC with ZScaler"
+          ],
+          "sentiment": "positive"
+        },
+        "cisco": {
+          "count": 1,
+          "contexts": [
+            "sources is very easy.\n\nIf you're already a shop that is leveraging Palo Alto or Cisco, for example, then those are probably going to be better options. If not, I'd s"
+          ],
+          "sentiment": "very_positive"
+        },
+        "zscaler": {
+          "count": 17,
+          "contexts": [
+            "Zscaler experiences? Anyone with real life experiences of ZIA or ZPA?\n\nTrying it out an",
+            "ese have all been worked around by creating a portal to source them internally. Zscaler may have popularised the tech, but they've lost their way and are horrendously",
+            "ortinet has because that is one candidate under consideration. I did a PoC with ZScaler a year ago and while it is on technical level sound the multitude of management"
+          ],
+          "sentiment": "very_negative"
+        },
+        "netskope": {
+          "count": 8,
+          "contexts": [
+            "and are horrendously expensive.\n\nIn my experience, Palto Alto Prisma Access and Netskope offer the best solutions. Am yet to work with Fortinets new solution, but from",
+            "$$ for their gartner ranking. Palo is great, iboss is a pretty good challenger, Netskope is good but policy can be a bit complex. &gt; Palo is great\n\nWouldn't call it \"",
+            "ind of higher level approval. \n\nSo if you're running zscaler for some stuff and netskope for other stuff and there's an issue getting the agents to work together Z will"
+          ],
+          "sentiment": "very_positive"
+        },
+        "cloudflare": {
+          "count": 1,
+          "contexts": [
+            "d reliable solution. Sucks. Save yourself a headache and look into Palo Alto or Cloudflare Bad with their support and pricing. Netskope or PAN are better alternatives. I"
+          ],
+          "sentiment": "positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          " deploy it.  ZIA has been SOLID.  The hardest part is dealing with the exceptions or working with devs to make sure that all of the applications use the root certificate.  ZDX is ok, but it had some int",
+          "Support is terrible as well with Zscaler, Google search helped better compared to Mr. Satish who goes in circles all day. 🤣 so yeah, I think you get the gist now. That was my exper"
+        ],
+        "sentiment": "very_positive"
+      },
+      "topics": {
+        "categories": {
+          "security": 4,
+          "networking": 4,
+          "cloud": 9,
+          "performance": 1,
+          "management": 3,
+          "pricing": 10
+        },
+        "dominantCategory": "pricing"
+      },
+      "textStats": {
+        "totalWords": 1750,
+        "totalCharacters": 9437,
+        "averageCommentLength": 305
+      }
+    },
+    "timestamp": "2025-06-29T16:02:38.081Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/paloaltonetworks/comments/103917p",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 56,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/paloaltonetworks"
+    },
+    "content": {
+      "title": "Top complaint regarding Palo Alto Networks on the Gartner report (or what a lot of us have been saying)",
+      "selftext": "Technical support: Gartner has received consistent feedback from Palo Alto Networks customers indicating a decline in the quality of its technical support, with especially long escalation cycles being associated with Level 1 support.",
+      "commentCount": 30,
+      "totalScore": 58,
+      "subreddit": "paloaltonetworks",
+      "wordCount": 1275
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 62,
+        "comparative": 0.049679487179487176,
+        "label": "very_positive",
+        "confidence": 4.967948717948718,
+        "positive": [
+          "love",
+          "support",
+          "support",
+          "help",
+          "support",
+          "wish",
+          "support",
+          "like",
+          "support",
+          "good"
+        ],
+        "negative": [
+          "dread",
+          "worried",
+          "broke",
+          "shit",
+          "terrible",
+          "terrible",
+          "pay",
+          "bad",
+          "pay",
+          "awful"
+        ],
+        "wordCount": 98
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 13
+          },
+          {
+            "keyword": "it's",
+            "count": 6
+          },
+          {
+            "keyword": "them",
+            "count": 6
+          },
+          {
+            "keyword": "they",
+            "count": 6
+          },
+          {
+            "keyword": "it’s",
+            "count": 4
+          },
+          {
+            "keyword": "anything",
+            "count": 3
+          },
+          {
+            "keyword": "support",
+            "count": 3
+          },
+          {
+            "keyword": "level 1",
+            "count": 2
+          },
+          {
+            "keyword": "palo",
+            "count": 2
+          },
+          {
+            "keyword": "i’ve",
+            "count": 2
+          },
+          {
+            "keyword": "layers",
+            "count": 2
+          },
+          {
+            "keyword": "google.",
+            "count": 2
+          },
+          {
+            "keyword": "much effort",
+            "count": 2
+          },
+          {
+            "keyword": "the point",
+            "count": 2
+          },
+          {
+            "keyword": "google",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "FIREWALL"
+        ],
+        "totalUniqueTerms": 229
+      },
+      "brandMentions": {
+        "palo alto": {
+          "count": 8,
+          "contexts": [
+            "Top complaint regarding Palo Alto Networks on the Gartner report (or what a lot of us have been saying) Technical support:",
+            "e been saying) Technical support: Gartner has received consistent feedback from Palo Alto Networks customers indicating a decline in the quality of its technical support, with es",
+            "Top complaint regarding Palo Alto Networks on the Gartner report (or what a lot of us have been saying) Technical",
+            "e been saying) Technical support: Gartner has received consistent feedback from Palo Alto Networks customers indicating a decline in the quality of its technical support",
+            ", deregister and register them again from FMC and if does not work its a bug . Palo Alto is similar , they have dropped the employee cost and they hire people with no e",
+            "nd Palo support has been awful the last two years. My current job ponied up for PAN \"Focused Support Services\" where we receive a dedicated TAC engineer and it's g",
+            "ve. Fortinet too? Curious if you can share what you pay for those services from PAN? A dedicated COMPETENT TAC engineer? Do you have a link to the report? I linked"
+          ],
+          "sentiment": "very_positive"
+        },
+        "fortinet": {
+          "count": 4,
+          "contexts": [
+            "cal case and get the same support I have, my management will start switching to Fortinet. You will likely get same experience with Fortinet. Grass is not necessarily gr",
+            "ment will start switching to Fortinet. You will likely get same experience with Fortinet. Grass is not necessarily greener on the other side. Jumping on this bandwagon",
+            "e employee cost and they hire people with no experience . Totally agree. Cisco, Fortinet and Palo support has been awful the last two years. My current job ponied up fo"
+          ],
+          "sentiment": "positive"
+        },
+        "cisco": {
+          "count": 2,
+          "contexts": [
+            "if that will change anything but other vendors are no different . Solution from Cisco on a current case , reload the firewalls , deregister and register them again f",
+            "pped the employee cost and they hire people with no experience . Totally agree. Cisco, Fortinet and Palo support has been awful the last two years. My current job po"
+          ],
+          "sentiment": "negative"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "security": 4,
+          "networking": 4,
+          "management": 4,
+          "pricing": 6
+        },
+        "dominantCategory": "pricing"
+      },
+      "textStats": {
+        "totalWords": 1275,
+        "totalCharacters": 7021,
+        "averageCommentLength": 222
+      }
+    },
+    "timestamp": "2025-06-29T16:02:41.574Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/networking/comments/mqzrb4",
+      "Type": "SOCIAL",
+      "Source": "UNKNOWN",
+      "Citations": 55,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/networking"
+    },
+    "content": {
+      "title": "Cato Networks",
+      "selftext": "just curious about your or their experiences with the sase provider?worked with Cato Networks?\n\njust curious about your or their experences with the sase provider?",
+      "commentCount": 18,
+      "totalScore": 11,
+      "subreddit": "networking",
+      "wordCount": 989
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 46,
+        "comparative": 0.04703476482617587,
+        "label": "very_positive",
+        "confidence": 4.703476482617587,
+        "positive": [
+          "like",
+          "thanks",
+          "ability",
+          "help",
+          "huge",
+          "better",
+          "better",
+          "better",
+          "support",
+          "important"
+        ],
+        "negative": [
+          "limited",
+          "drop",
+          "lame",
+          "sucks",
+          "regretted",
+          "loss",
+          "loss",
+          "inefficient",
+          "noisy",
+          "impatient"
+        ],
+        "wordCount": 50
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 10
+          },
+          {
+            "keyword": "them",
+            "count": 7
+          },
+          {
+            "keyword": "cato",
+            "count": 7
+          },
+          {
+            "keyword": "they",
+            "count": 7
+          },
+          {
+            "keyword": "a poc",
+            "count": 3
+          },
+          {
+            "keyword": "your",
+            "count": 2
+          },
+          {
+            "keyword": "issues",
+            "count": 2
+          },
+          {
+            "keyword": "you're",
+            "count": 2
+          },
+          {
+            "keyword": "gen site",
+            "count": 2
+          },
+          {
+            "keyword": "the us",
+            "count": 2
+          },
+          {
+            "keyword": "germany.",
+            "count": 2
+          },
+          {
+            "keyword": "we've",
+            "count": 2
+          },
+          {
+            "keyword": "customers",
+            "count": 2
+          },
+          {
+            "keyword": "hugh concentration.",
+            "count": 2
+          },
+          {
+            "keyword": "germany",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "SASE",
+          "VPN",
+          "FIREWALL",
+          "BANDWIDTH",
+          "THROUGHPUT",
+          "SSL"
+        ],
+        "totalUniqueTerms": 196
+      },
+      "brandMentions": {
+        "cato": {
+          "count": 19,
+          "contexts": [
+            "Cato Networks just curious about your or their experiences with the sase provider?worked with",
+            "just curious about your or their experiences with the sase provider?worked with Cato Networks?\n\njust curious about your or their experences with the sase provider? We have h",
+            "on and retransmissions time reduction when there is last mile loss. Worked with Cato networks for several customers. Product performs excellent. Was one of the better propos",
+            "Cato Networks just curious about your or their experiences with the sase provider?wo",
+            "just curious about your or their experiences with the sase provider?worked with Cato Networks?\n\njust curious about your or their experences with the sase provider?",
+            "rences with the sase provider? We have had mostly an unpleasant experience with CATO, specifically their support and sales/account people. If you can look past that"
+          ],
+          "sentiment": "very_positive"
+        },
+        "fortinet": {
+          "count": 1,
+          "contexts": [
+            "traversing their own POPs. We evaluated other sdwan solutions like velocloud or fortinet but i just feel the solutions are just next gen site to site vpn connections wi"
+          ],
+          "sentiment": "very_positive"
+        },
+        "vmware": {
+          "count": 1,
+          "contexts": [
+            "d analytics) are suffering from growing pains.  \n\n\nWe wanted to test VeloCloud (VMware) and Aryaka but C-suite got impatient. If you can wait and shop elsewhere, do i"
+          ],
+          "sentiment": "very_negative"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "security": 1,
+          "networking": 15,
+          "cloud": 5,
+          "performance": 15,
+          "management": 2
+        },
+        "dominantCategory": "performance"
+      },
+      "textStats": {
+        "totalWords": 989,
+        "totalCharacters": 5578,
+        "averageCommentLength": 299
+      }
+    },
+    "timestamp": "2025-06-29T16:02:44.008Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/Zscaler/comments/1jm084e",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 33,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/Zscaler"
+    },
+    "content": {
+      "title": "Am I the only network engineer who thinks Zscaler sucks BAD for network performance?",
+      "selftext": "I work for a large known corporation in the US and our security team is currently deploying Zscaler and I am seeing serious internet speed degradation issue with Zscaler running.  The upload speed especially SUFFERS sometimes reducing down to 10 to 15% of the original internet circuit speed.  Is there not any solution to solving this shitty issue with endpoints hitting zscaler's FAST data center then egressing out to the internet?  For the sake of security, great!  For the sake of network perfor...",
+      "commentCount": 26,
+      "totalScore": 45,
+      "subreddit": "Zscaler",
+      "wordCount": 1750
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 27,
+        "comparative": 0.015976331360946745,
+        "label": "very_positive",
+        "confidence": 1.5976331360946745,
+        "positive": [
+          "agree",
+          "feeling",
+          "pretty",
+          "thanks",
+          "help",
+          "good",
+          "help",
+          "huge",
+          "good",
+          "solved"
+        ],
+        "negative": [
+          "no",
+          "exposing",
+          "exclude",
+          "no",
+          "awful",
+          "odd",
+          "confused",
+          "complain",
+          "exclude",
+          "care"
+        ],
+        "wordCount": 80
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 30
+          },
+          {
+            "keyword": "zscaler",
+            "count": 12
+          },
+          {
+            "keyword": "i've",
+            "count": 4
+          },
+          {
+            "keyword": "it's",
+            "count": 4
+          },
+          {
+            "keyword": "they",
+            "count": 4
+          },
+          {
+            "keyword": "our security team",
+            "count": 3
+          },
+          {
+            "keyword": "users",
+            "count": 3
+          },
+          {
+            "keyword": "you're",
+            "count": 3
+          },
+          {
+            "keyword": "traffic",
+            "count": 3
+          },
+          {
+            "keyword": "i'm",
+            "count": 3
+          },
+          {
+            "keyword": "anyconnect",
+            "count": 3
+          },
+          {
+            "keyword": "way",
+            "count": 2
+          },
+          {
+            "keyword": "a speedtest",
+            "count": 2
+          },
+          {
+            "keyword": "the effort",
+            "count": 2
+          },
+          {
+            "keyword": "popular speedtest websites",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "SD-WAN",
+          "SASE",
+          "VPN",
+          "BANDWIDTH",
+          "LATENCY",
+          "THROUGHPUT",
+          "SSL"
+        ],
+        "totalUniqueTerms": 293
+      },
+      "brandMentions": {
+        "cisco": {
+          "count": 2,
+          "contexts": [
+            "chings continue from end users.  Sometimes zscaler functions so spotty that our Cisco anyconnect client also disconnects sporadically.  People joke about getting \"ZS",
+            "ience this. It’s not normal. I’m confused, are you running both Zscaler ZPA and Cisco anyconnect at the same time? YES.  That is a must for the current configuration"
+          ],
+          "sentiment": "positive"
+        },
+        "zscaler": {
+          "count": 27,
+          "contexts": [
+            "Am I the only network engineer who thinks Zscaler sucks BAD for network performance? I work for a large known corporation in the",
+            "large known corporation in the US and our security team is currently deploying Zscaler and I am seeing serious internet speed degradation issue with Zscaler running.",
+            "deploying Zscaler and I am seeing serious internet speed degradation issue with Zscaler running.  The upload speed especially SUFFERS sometimes reducing down to 10 to"
+          ],
+          "sentiment": "very_negative"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "security": 7,
+          "networking": 15,
+          "cloud": 2,
+          "performance": 38,
+          "management": 10
+        },
+        "dominantCategory": "performance"
+      },
+      "textStats": {
+        "totalWords": 1750,
+        "totalCharacters": 9866,
+        "averageCommentLength": 353
+      }
+    },
+    "timestamp": "2025-06-29T16:02:46.627Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/CloudFlare/comments/1gissir",
+      "Type": "SOCIAL",
+      "Source": "UNKNOWN",
+      "Citations": 32,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/CloudFlare"
+    },
+    "content": {
+      "title": "Why does cloudflare have such bad reviews on trust pilot?",
+      "selftext": "Can anyone explain to me why cloudflare has horrible trustpilot reviews? And also your experience with cloudflare good or bad.",
+      "commentCount": 30,
+      "totalScore": 24,
+      "subreddit": "CloudFlare",
+      "wordCount": 926
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 70,
+        "comparative": 0.0772626931567329,
+        "label": "very_positive",
+        "confidence": 7.72626931567329,
+        "positive": [
+          "thanks",
+          "help",
+          "love",
+          "support",
+          "improve",
+          "better",
+          "support",
+          "support",
+          "good",
+          "great"
+        ],
+        "negative": [
+          "bad",
+          "complaints",
+          "abuse",
+          "complaints",
+          "leave",
+          "bad",
+          "lack",
+          "unable",
+          "terrible",
+          "terrible"
+        ],
+        "wordCount": 120
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "cloudflare",
+            "count": 14
+          },
+          {
+            "keyword": "you",
+            "count": 8
+          },
+          {
+            "keyword": "it’s",
+            "count": 7
+          },
+          {
+            "keyword": "they",
+            "count": 6
+          },
+          {
+            "keyword": "them",
+            "count": 5
+          },
+          {
+            "keyword": "people",
+            "count": 5
+          },
+          {
+            "keyword": "bad reviews",
+            "count": 3
+          },
+          {
+            "keyword": "support",
+            "count": 3
+          },
+          {
+            "keyword": "the support",
+            "count": 3
+          },
+          {
+            "keyword": "their support.",
+            "count": 3
+          },
+          {
+            "keyword": "anyone",
+            "count": 2
+          },
+          {
+            "keyword": "their support",
+            "count": 2
+          },
+          {
+            "keyword": "enterprise",
+            "count": 2
+          },
+          {
+            "keyword": "i've",
+            "count": 2
+          },
+          {
+            "keyword": "i'd",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [],
+        "totalUniqueTerms": 160
+      },
+      "brandMentions": {
+        "cloudflare": {
+          "count": 9,
+          "contexts": [
+            "Why does cloudflare have such bad reviews on trust pilot? Can anyone explain to me why cloudflare h",
+            "s cloudflare have such bad reviews on trust pilot? Can anyone explain to me why cloudflare has horrible trustpilot reviews? And also your experience with cloudflare good",
+            "e why cloudflare has horrible trustpilot reviews? And also your experience with cloudflare good or bad. Their support is just awful. Awful. Enterprise user here who spent"
+          ],
+          "sentiment": "very_negative"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          "n expensive addon or putting cache in front of a cloud service and getting banned for sharing files vs content "
+        ],
+        "sentiment": "negative"
+      },
+      "topics": {
+        "categories": {
+          "networking": 1,
+          "cloud": 11,
+          "performance": 2,
+          "pricing": 1
+        },
+        "dominantCategory": "cloud"
+      },
+      "textStats": {
+        "totalWords": 926,
+        "totalCharacters": 5233,
+        "averageCommentLength": 167
+      }
+    },
+    "timestamp": "2025-06-29T16:02:49.167Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/vmware/comments/1ieg0lm",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 32,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/vmware"
+    },
+    "content": {
+      "title": "Technical support effectiveness",
+      "selftext": "Just wondering what your evaluation of VMware technical support?\n\nMy experience has been problematic.\n\nIs solution provided in timely manner?\n\nDid they just google for the answer?\n\nWas the answer an acceptable solution?\n\nSince they are increasing cost of ownership and support 3 to 10x, has support quality improved to corresponding amount?\n\nIs technical support an important component of product value?\n\nIt would interesting to hear others thoughts on these points. \n\nThe VMware sales guys always pr...",
+      "commentCount": 17,
+      "totalScore": 4,
+      "subreddit": "vmware",
+      "wordCount": 1416
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 108,
+        "comparative": 0.07792207792207792,
+        "label": "very_positive",
+        "confidence": 7.792207792207792,
+        "positive": [
+          "excellent",
+          "waste",
+          "great",
+          "like",
+          "support",
+          "support",
+          "luck",
+          "good",
+          "support",
+          "big"
+        ],
+        "negative": [
+          "bad",
+          "hard",
+          "broken",
+          "obscene",
+          "sentences",
+          "worse",
+          "poor",
+          "piss",
+          "bad",
+          "no"
+        ],
+        "wordCount": 111
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 14
+          },
+          {
+            "keyword": "support",
+            "count": 7
+          },
+          {
+            "keyword": "it's",
+            "count": 7
+          },
+          {
+            "keyword": "they",
+            "count": 5
+          },
+          {
+            "keyword": "google",
+            "count": 4
+          },
+          {
+            "keyword": "vmware",
+            "count": 4
+          },
+          {
+            "keyword": "the answer",
+            "count": 3
+          },
+          {
+            "keyword": "i've",
+            "count": 3
+          },
+          {
+            "keyword": "an issue",
+            "count": 3
+          },
+          {
+            "keyword": "them",
+            "count": 3
+          },
+          {
+            "keyword": "my experience",
+            "count": 2
+          },
+          {
+            "keyword": "direct support",
+            "count": 2
+          },
+          {
+            "keyword": "vcf",
+            "count": 2
+          },
+          {
+            "keyword": "the person",
+            "count": 2
+          },
+          {
+            "keyword": "the vcf,",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "FIREWALL",
+          "SSL"
+        ],
+        "totalUniqueTerms": 286
+      },
+      "brandMentions": {
+        "vmware": {
+          "count": 14,
+          "contexts": [
+            "Technical support effectiveness Just wondering what your evaluation of VMware technical support?\n\nMy experience has been problematic.\n\nIs solution provided i",
+            "uct value?\n\nIt would interesting to hear others thoughts on these points. \n\nThe VMware sales guys always present each as better than sex and now tell you can live wit",
+            "nd a resolution the morning after \n\nNo complaints. *&gt;what your evaluation of VMware technical support?*\n\nOne thing to consider is who's supporting it because there"
+          ],
+          "sentiment": "very_positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          "5. Hyperscaler support - AVS, Oracle VMware Cloud, IBM Cloud Support, OVH etc.",
+          " gotten a response several hours later. I have had a few cases where I had to provide various logs (vSphere, ESX, NSX managers, etc). In some cases, the case may be worked over several days. I really ha",
+          "The VMware sales guys always present each as better than sex and now tell you can live without it for three years.... Opened my first case since the swap th"
+        ],
+        "sentiment": "very_positive"
+      },
+      "topics": {
+        "categories": {
+          "security": 4,
+          "networking": 3,
+          "cloud": 3,
+          "management": 1,
+          "pricing": 6
+        },
+        "dominantCategory": "pricing"
+      },
+      "textStats": {
+        "totalWords": 1416,
+        "totalCharacters": 7892,
+        "averageCommentLength": 427
+      }
+    },
+    "timestamp": "2025-06-29T16:02:51.611Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/cybersecurity/comments/1icikwy",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 32,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/cybersecurity"
+    },
+    "content": {
+      "title": "What do you hate about Netskope tools?",
+      "selftext": "[deleted]",
+      "commentCount": 8,
+      "totalScore": 0,
+      "subreddit": "cybersecurity",
+      "wordCount": 611
+    },
+    "analysis": {
+      "sentiment": {
+        "score": -26,
+        "comparative": -0.045454545454545456,
+        "label": "very_negative",
+        "confidence": 4.545454545454546,
+        "positive": [
+          "honest",
+          "like",
+          "solutions",
+          "best",
+          "support",
+          "like",
+          "ensure",
+          "ensuring",
+          "good",
+          "super"
+        ],
+        "negative": [
+          "broken",
+          "poor",
+          "fail",
+          "denied",
+          "die",
+          "fails",
+          "die",
+          "miss",
+          "blocked",
+          "block"
+        ],
+        "wordCount": 56
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 10
+          },
+          {
+            "keyword": "they",
+            "count": 6
+          },
+          {
+            "keyword": "quic",
+            "count": 3
+          },
+          {
+            "keyword": "google",
+            "count": 3
+          },
+          {
+            "keyword": "npa",
+            "count": 2
+          },
+          {
+            "keyword": "netskope",
+            "count": 2
+          },
+          {
+            "keyword": "all",
+            "count": 2
+          },
+          {
+            "keyword": "it's",
+            "count": 2
+          },
+          {
+            "keyword": "its",
+            "count": 2
+          },
+          {
+            "keyword": "netskope tools?",
+            "count": 1
+          },
+          {
+            "keyword": "they’re",
+            "count": 1
+          },
+          {
+            "keyword": "skopeit.",
+            "count": 1
+          },
+          {
+            "keyword": "four different places",
+            "count": 1
+          },
+          {
+            "keyword": "logs.",
+            "count": 1
+          },
+          {
+            "keyword": "one unified log interface.",
+            "count": 1
+          }
+        ],
+        "technicalTerms": [],
+        "totalUniqueTerms": 102
+      },
+      "brandMentions": {
+        "netskope": {
+          "count": 9,
+          "contexts": [
+            "What do you hate about Netskope tools? [deleted] They’re logging in SkopeIT. I don’t need four different places",
+            "mented. I ended up quitting my last job because of how many problems it caused, Netskope also has some of the worst support you will ever encounter. Its obvious to me i",
+            ". NPA is fantastic if implemented correctly. I have about 8 years experience on Netskope, makes all the difference in the world. So far everyone's just talking about no"
+          ],
+          "sentiment": "very_negative"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          "as others have said, logging and UI aren’t the best compared to other solutions. 8 years and hundreds of Netskope deployments. You need to understand he logging an"
+        ],
+        "sentiment": "very_positive"
+      },
+      "topics": {
+        "categories": {
+          "management": 3
+        },
+        "dominantCategory": "management"
+      },
+      "textStats": {
+        "totalWords": 611,
+        "totalCharacters": 3446,
+        "averageCommentLength": 424
+      }
+    },
+    "timestamp": "2025-06-29T16:02:53.949Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/fortinet/comments/13vffon",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 28,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/fortinet"
+    },
+    "content": {
+      "title": "Fortinet support just helpless",
+      "selftext": "I like working with Fortinet products but their support is just awful. Every time that I need to reach out to them is a bloody nightmare and usually I end up getting no help at all.\n\nWonder if it is just me or other partners have the same issue.",
+      "commentCount": 30,
+      "totalScore": 11,
+      "subreddit": "fortinet",
+      "wordCount": 1285
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 81,
+        "comparative": 0.0643879173290938,
+        "label": "very_positive",
+        "confidence": 6.43879173290938,
+        "positive": [
+          "support",
+          "great",
+          "positive",
+          "improving",
+          "support",
+          "matter",
+          "great",
+          "support",
+          "chance",
+          "agree"
+        ],
+        "negative": [
+          "problems",
+          "problems",
+          "trouble",
+          "no",
+          "alert",
+          "fad",
+          "annoying",
+          "complaining",
+          "wasted",
+          "lack"
+        ],
+        "wordCount": 103
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "they",
+            "count": 14
+          },
+          {
+            "keyword": "them",
+            "count": 10
+          },
+          {
+            "keyword": "you",
+            "count": 10
+          },
+          {
+            "keyword": "i've",
+            "count": 7
+          },
+          {
+            "keyword": "fortinet",
+            "count": 6
+          },
+          {
+            "keyword": "their support",
+            "count": 4
+          },
+          {
+            "keyword": "i’ve",
+            "count": 4
+          },
+          {
+            "keyword": "support",
+            "count": 4
+          },
+          {
+            "keyword": "it’s",
+            "count": 3
+          },
+          {
+            "keyword": "fortinet support",
+            "count": 2
+          },
+          {
+            "keyword": "the vendors",
+            "count": 2
+          },
+          {
+            "keyword": "there",
+            "count": 2
+          },
+          {
+            "keyword": "me,",
+            "count": 2
+          },
+          {
+            "keyword": "fortinet.",
+            "count": 2
+          },
+          {
+            "keyword": "an issue,",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [],
+        "totalUniqueTerms": 205
+      },
+      "brandMentions": {
+        "fortinet": {
+          "count": 13,
+          "contexts": [
+            "Fortinet support just helpless I like working with Fortinet products but their support i",
+            "Fortinet support just helpless I like working with Fortinet products but their support is just awful. Every time that I need to reach out t",
+            "of my problems every time I’ve called in Same here. Of the vendors I deal with, Fortinet support staff have been very knowledgeable. They all seem to know the products"
+          ],
+          "sentiment": "very_positive"
+        },
+        "cisco": {
+          "count": 2,
+          "contexts": [
+            "ently, it adds up to a significant amount of time being wasted. Ever dealt with Cisco TAC? of course not, he would\\`nt be here complaining. lol\r  \n\r  \nI opened a few",
+            "I have opened 3 tickets in the last 12 months (FTG, FSW and FAD).\r  \nRegarding Cisco TAC, I have opened more than 5 in the last 12 months (WSA, ASA and CUCM). The b"
+          ],
+          "sentiment": "negative"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          "st vender support I have met so far was Bloomberg Enterprise support team. Fortinet is far and away better than any other networking vendor support I've had to deal with. Their support is only interested in push"
+        ],
+        "sentiment": "very_positive"
+      },
+      "topics": {
+        "categories": {
+          "security": 2,
+          "networking": 4,
+          "performance": 1,
+          "pricing": 1
+        },
+        "dominantCategory": "networking"
+      },
+      "textStats": {
+        "totalWords": 1285,
+        "totalCharacters": 6879,
+        "averageCommentLength": 219
+      }
+    },
+    "timestamp": "2025-06-29T16:02:56.586Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/fortinet/comments/1dz49h6",
+      "Type": "SOCIAL",
+      "Source": "UNKNOWN",
+      "Citations": 25,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/fortinet"
+    },
+    "content": {
+      "title": "Fortinet SD-WAN vs Cato Networks",
+      "selftext": "Anyone have experience with either/both? Would like to understand some of the pros and cons of each. ",
+      "commentCount": 25,
+      "totalScore": 9,
+      "subreddit": "fortinet",
+      "wordCount": 1542
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 67,
+        "comparative": 0.04460719041278296,
+        "label": "very_positive",
+        "confidence": 4.4607190412782955,
+        "positive": [
+          "care",
+          "care",
+          "opportunity",
+          "want",
+          "pretty",
+          "appreciated",
+          "interested",
+          "interested",
+          "solution",
+          "success"
+        ],
+        "negative": [
+          "hostile",
+          "threat",
+          "problems",
+          "no",
+          "pain",
+          "dislike",
+          "failure",
+          "no",
+          "support",
+          "limited"
+        ],
+        "wordCount": 76
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 31
+          },
+          {
+            "keyword": "sdwan",
+            "count": 8
+          },
+          {
+            "keyword": "cato",
+            "count": 7
+          },
+          {
+            "keyword": "they",
+            "count": 7
+          },
+          {
+            "keyword": "sd-wan",
+            "count": 6
+          },
+          {
+            "keyword": "it's",
+            "count": 5
+          },
+          {
+            "keyword": "sase",
+            "count": 4
+          },
+          {
+            "keyword": "advpn.",
+            "count": 3
+          },
+          {
+            "keyword": "traffic",
+            "count": 3
+          },
+          {
+            "keyword": "things",
+            "count": 3
+          },
+          {
+            "keyword": "fortinet sd-wan",
+            "count": 2
+          },
+          {
+            "keyword": "experience",
+            "count": 2
+          },
+          {
+            "keyword": "fortinet",
+            "count": 2
+          },
+          {
+            "keyword": "a leader",
+            "count": 2
+          },
+          {
+            "keyword": "they're",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "SD-WAN",
+          "SASE",
+          "SSE",
+          "CASB",
+          "DLP",
+          "VPN",
+          "FIREWALL"
+        ],
+        "totalUniqueTerms": 322
+      },
+      "brandMentions": {
+        "cato": {
+          "count": 18,
+          "contexts": [
+            "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to understand some of the p",
+            "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to understand some",
+            "Would like to understand some of the pros and cons of each.  No experience with Cato but Fortinet SD-WAN is free of charge, it is included in FortiGate by default w",
+            "of ALL other security functionality built in as well.  Not even a comparison to Cato. So what is Cato even offering? SDWAN, FWaaS (NGFW), SWG, NGAM, IPS, CASB, DLP,"
+          ],
+          "sentiment": "very_positive"
+        },
+        "fortinet": {
+          "count": 19,
+          "contexts": [
+            "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to",
+            "e to understand some of the pros and cons of each.  No experience with Cato but Fortinet SD-WAN is free of charge, it is included in FortiGate by default with no extra",
+            "ou can think of, you can create an SDWAN policy to make that routing decision.\n\nFortinet is the leader in SDWAN technology, period, and you get the benefit of ALL other",
+            "o experience with Cato but Fortinet SD-WAN is free of charge, it is included in FortiGate by default with no extra licensing.   \nAll SD-WAN config, routing policies, sha",
+            "sing.   \nAll SD-WAN config, routing policies, shaping, SLA etc is local to each FortiGate so there are no dependencies to any broker/cloud/gateway.   \nConfig is fairly s",
+            "s is from the perspective of just considering SDWAN and not other use cases. 1) FortiGate SD-WAN is baby town frolic to deply.\n2) FortiManager is not required for ADVPN."
+          ],
+          "sentiment": "positive"
+        },
+        "cisco": {
+          "count": 1,
+          "contexts": [
+            "are fundamentally different services offerings than what you'd get from a Palo/Cisco/Fortinet offering and yes there are pros/cons but Cato is a far cry from a lead"
+          ],
+          "sentiment": "neutral"
+        },
+        "zscaler": {
+          "count": 1,
+          "contexts": [
+            "s to application based rules, the native integrations to connect to things like zScaler (which I dislike that product personally, but that's another story), and the cl"
+          ],
+          "sentiment": "neutral"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to understand some of the pros an",
+          " bother. Only do I see like architects with a big focal in general systems pitching these solutions versus the forti sdwan or palo sdwan stuff. You have more context about your use case? What business objec",
+          "ou are already used to FortiGate management, and are accepting of the limitations (which are minor) compared to the SilverPeak gear, then definitely go with Fortinet. Is it as feature rich? No, but does that tru"
+        ],
+        "sentiment": "very_positive"
+      },
+      "topics": {
+        "categories": {
+          "security": 8,
+          "networking": 36,
+          "cloud": 5,
+          "performance": 1,
+          "management": 2
+        },
+        "dominantCategory": "networking"
+      },
+      "textStats": {
+        "totalWords": 1542,
+        "totalCharacters": 8739,
+        "averageCommentLength": 343
+      }
+    },
+    "timestamp": "2025-06-29T16:02:59.299Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/sysadmin/comments/1fuko12",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 25,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/sysadmin"
+    },
+    "content": {
+      "title": "Which zero trust vendor do you use and why?",
+      "selftext": "I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if so, why did you choose the one you did?",
+      "commentCount": 22,
+      "totalScore": 15,
+      "subreddit": "sysadmin",
+      "wordCount": 941
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 66,
+        "comparative": 0.07197382769901854,
+        "label": "very_positive",
+        "confidence": 7.197382769901854,
+        "positive": [
+          "support",
+          "ease",
+          "ease",
+          "free",
+          "appreciate",
+          "good",
+          "like",
+          "pretty",
+          "adopt",
+          "like"
+        ],
+        "negative": [
+          "risk",
+          "hate",
+          "limited",
+          "no",
+          "leave",
+          "hate",
+          "bad",
+          "garbage",
+          "stopped",
+          "lack"
+        ],
+        "wordCount": 62
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 17
+          },
+          {
+            "keyword": "them",
+            "count": 5
+          },
+          {
+            "keyword": "cato",
+            "count": 3
+          },
+          {
+            "keyword": "vendor",
+            "count": 2
+          },
+          {
+            "keyword": "i'm",
+            "count": 2
+          },
+          {
+            "keyword": "cloudflare,",
+            "count": 2
+          },
+          {
+            "keyword": "cloudflare”",
+            "count": 2
+          },
+          {
+            "keyword": "openziti",
+            "count": 2
+          },
+          {
+            "keyword": "it’s",
+            "count": 2
+          },
+          {
+            "keyword": "everything",
+            "count": 2
+          },
+          {
+            "keyword": "cost",
+            "count": 2
+          },
+          {
+            "keyword": "ztna",
+            "count": 2
+          },
+          {
+            "keyword": "zscaler",
+            "count": 2
+          },
+          {
+            "keyword": "they",
+            "count": 2
+          },
+          {
+            "keyword": "its",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "SASE",
+          "ZTNA",
+          "CASB",
+          "VPN"
+        ],
+        "totalUniqueTerms": 201
+      },
+      "brandMentions": {
+        "cato": {
+          "count": 8,
+          "contexts": [
+            "do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if so, why did you choose the",
+            "te and when in the office behind their SDWAN services. If anyone here works for Cato networks, your website literally turned me immediately off the idea of using your servic",
+            "do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if so, why did you c",
+            "ago but with different names” then you’re 100% correct. Demoed ZScaler/Netskope/Cato; rest weren't a consideration due to lack of equivalent features. ZScaler split",
+            "ost was $$$.\n\nNetskope had a much better UI, better logging but cost was $$$$.\n\nCato did everything that both of these guys did and for $$, with a good UI for manag"
+          ],
+          "sentiment": "very_positive"
+        },
+        "palo alto": {
+          "count": 1,
+          "contexts": [
+            "ed about cost Was only after ZTNA not SWG or CASB. Went with Zscaler. Looked at PAN Prima, Netskope, Fortinet, MS Global access, Aws verifed access.\nCriteria:\nComp"
+          ],
+          "sentiment": "neutral"
+        },
+        "fortinet": {
+          "count": 1,
+          "contexts": [
+            "y after ZTNA not SWG or CASB. Went with Zscaler. Looked at PAN Prima, Netskope, Fortinet, MS Global access, Aws verifed access.\nCriteria:\nCompatible with my orgs apps\nV"
+          ],
+          "sentiment": "neutral"
+        },
+        "zscaler": {
+          "count": 6,
+          "contexts": [
+            "Which zero trust vendor do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you impleme",
+            "of that 20 years ago but with different names” then you’re 100% correct. Demoed ZScaler/Netskope/Cato; rest weren't a consideration due to lack of equivalent features.",
+            "Netskope/Cato; rest weren't a consideration due to lack of equivalent features. ZScaler split our their Internet-bound and WAN-bound into two SKU's so double the cost."
+          ],
+          "sentiment": "very_negative"
+        },
+        "netskope": {
+          "count": 4,
+          "contexts": [
+            "? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if so, why did you choose the one you did?",
+            "20 years ago but with different names” then you’re 100% correct. Demoed ZScaler/Netskope/Cato; rest weren't a consideration due to lack of equivalent features. ZScaler",
+            "eemed mashed together from them trying to fix it over the years. Cost was $$$.\n\nNetskope had a much better UI, better logging but cost was $$$$.\n\nCato did everything th"
+          ],
+          "sentiment": "positive"
+        },
+        "checkpoint": {
+          "count": 1,
+          "contexts": [
+            "t. Loved their demo. +1 for P81, excellent support and easy to manage. You mean Checkpoint. Yes I do lol We elected to leave ZScaler when it came time for renewal and we"
+          ],
+          "sentiment": "very_positive"
+        },
+        "cloudflare": {
+          "count": 3,
+          "contexts": [
+            "Which zero trust vendor do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if",
+            "lement one of these and if so, why did you choose the one you did? I don’t like Cloudflare’s ZTNA approach as it isn’t a true “Zero Trust” model but rather a “you only ne",
+            "oach as it isn’t a true “Zero Trust” model but rather a “you only need to trust Cloudflare” approach, which defeats the purpose of minimizing trust in any one entity.\n\nOn"
+          ],
+          "sentiment": "very_positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "networking": 11,
+          "cloud": 5,
+          "management": 6,
+          "pricing": 10
+        },
+        "dominantCategory": "networking"
+      },
+      "textStats": {
+        "totalWords": 941,
+        "totalCharacters": 5342,
+        "averageCommentLength": 232
+      }
+    },
+    "timestamp": "2025-06-29T16:03:02.474Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/Cisco/comments/qohg4z",
+      "Type": "SOCIAL",
+      "Source": "UNKNOWN",
+      "Citations": 25,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/Cisco"
+    },
+    "content": {
+      "title": "Why is every single Cisco GUI so bad?",
+      "selftext": "Seriously ASDM, ISE, vManage, Firepower, they're all so bad, and I have no idea why. The product functionality is usually pretty great, but the GUI's just lack any sort of user friendliness.",
+      "commentCount": 30,
+      "totalScore": 76,
+      "subreddit": "Cisco",
+      "wordCount": 1478
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 20,
+        "comparative": 0.014104372355430184,
+        "label": "very_positive",
+        "confidence": 1.4104372355430184,
+        "positive": [
+          "unified",
+          "better",
+          "best",
+          "great",
+          "like",
+          "good",
+          "bad",
+          "talent",
+          "wonderful",
+          "easy"
+        ],
+        "negative": [
+          "no",
+          "ass",
+          "pain",
+          "no",
+          "no",
+          "no",
+          "no",
+          "poor",
+          "piss",
+          "lag"
+        ],
+        "wordCount": 87
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "cisco",
+            "count": 21
+          },
+          {
+            "keyword": "you",
+            "count": 13
+          },
+          {
+            "keyword": "they",
+            "count": 9
+          },
+          {
+            "keyword": "gui",
+            "count": 7
+          },
+          {
+            "keyword": "it's",
+            "count": 5
+          },
+          {
+            "keyword": "the gui",
+            "count": 5
+          },
+          {
+            "keyword": "something",
+            "count": 5
+          },
+          {
+            "keyword": "it’s",
+            "count": 5
+          },
+          {
+            "keyword": "asdm",
+            "count": 4
+          },
+          {
+            "keyword": "it,",
+            "count": 4
+          },
+          {
+            "keyword": "they're",
+            "count": 3
+          },
+          {
+            "keyword": "all",
+            "count": 3
+          },
+          {
+            "keyword": "it.",
+            "count": 3
+          },
+          {
+            "keyword": "i've",
+            "count": 3
+          },
+          {
+            "keyword": "firefox",
+            "count": 3
+          }
+        ],
+        "technicalTerms": [],
+        "totalUniqueTerms": 266
+      },
+      "brandMentions": {
+        "palo alto": {
+          "count": 3,
+          "contexts": [
+            "er. GUI is never as workable as the CLI. Because they're trying to compete with Palo Alto. That has nothing to do with it. Firepower management center existed long befor",
+            "t. Firepower management center existed long before Cisco tried to compete with \nPalo Alto. Cisco bought a great product and let it completely stagnate. The product has \"",
+            "ompany's product and they are notorious for letting acquired products stagnate. Palo Alto's interface is light years ahead of Cisco's Biggest thing I miss from ASDM goin"
+          ],
+          "sentiment": "negative"
+        },
+        "cisco": {
+          "count": 18,
+          "contexts": [
+            "Why is every single Cisco GUI so bad? Seriously ASDM, ISE, vManage, Firepower, they're all so bad, and I",
+            "That has nothing to do with it. Firepower management center existed long before Cisco tried to compete with \nPalo Alto. Cisco bought a great product and let it compl",
+            "r management center existed long before Cisco tried to compete with \nPalo Alto. Cisco bought a great product and let it completely stagnate. The product has \"improve"
+          ],
+          "sentiment": "positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "security": 1,
+          "networking": 3,
+          "cloud": 2,
+          "performance": 1,
+          "management": 3
+        },
+        "dominantCategory": "management"
+      },
+      "textStats": {
+        "totalWords": 1478,
+        "totalCharacters": 7642,
+        "averageCommentLength": 246
+      }
+    },
+    "timestamp": "2025-06-29T16:03:05.508Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/networking/comments/1hy8wb7",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 24,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/networking"
+    },
+    "content": {
+      "title": "My org wants to switch Firewalls and Aryaka is a contender. Thoughts?",
+      "selftext": "I posted on r/sysadmin but its probably more appropriate here.\n\nHello All,\n\nMy org currently uses SonicWALL and for the longest time we have been wanting to push away from SonicWALL to something else, our business has outgrown these products. For the past 8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates were right in budget range, even with the FortiSASE product.\n\nHowever, we have an Aryaka from our main DC to secondary DC...",
+      "commentCount": 22,
+      "totalScore": 2,
+      "subreddit": "networking",
+      "wordCount": 1903
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 121,
+        "comparative": 0.06522911051212937,
+        "label": "very_positive",
+        "confidence": 6.522911051212938,
+        "positive": [
+          "solid",
+          "certain",
+          "pretty",
+          "like",
+          "sophisticated",
+          "easy",
+          "solution",
+          "shared",
+          "solution",
+          "kind"
+        ],
+        "negative": [
+          "no",
+          "share",
+          "tout",
+          "frustrated",
+          "hate",
+          "risk",
+          "dump",
+          "no",
+          "limited",
+          "struggle"
+        ],
+        "wordCount": 108
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 35
+          },
+          {
+            "keyword": "they",
+            "count": 25
+          },
+          {
+            "keyword": "aryaka",
+            "count": 11
+          },
+          {
+            "keyword": "fortinet",
+            "count": 5
+          },
+          {
+            "keyword": "cato",
+            "count": 5
+          },
+          {
+            "keyword": "palo alto",
+            "count": 4
+          },
+          {
+            "keyword": "fortigate",
+            "count": 4
+          },
+          {
+            "keyword": "anything",
+            "count": 4
+          },
+          {
+            "keyword": "it's",
+            "count": 4
+          },
+          {
+            "keyword": "the solution",
+            "count": 4
+          },
+          {
+            "keyword": "cato,",
+            "count": 4
+          },
+          {
+            "keyword": "something",
+            "count": 3
+          },
+          {
+            "keyword": "palo",
+            "count": 3
+          },
+          {
+            "keyword": "my customers",
+            "count": 3
+          },
+          {
+            "keyword": "each client",
+            "count": 3
+          }
+        ],
+        "technicalTerms": [
+          "SD-WAN",
+          "SASE",
+          "ZTNA",
+          "SSE",
+          "CASB",
+          "DLP",
+          "FIREWALL"
+        ],
+        "totalUniqueTerms": 369
+      },
+      "brandMentions": {
+        "cato": {
+          "count": 15,
+          "contexts": [
+            "solution like SonicWALL. \n\nIn addition to Aryaka, I would recommend you explore Cato Networks too. They are the leader in the SASE space and have a mature FWaaS that can rep",
+            "y cannot be “attacked”. Compliance out of the box. Why don't you have a look at Cato Networks? I'll let other folks that love &amp; hate Fortinet take jabs. Lots of frustrat",
+            "solution like SonicWALL. \n\nIn addition to Aryaka, I would recommend you explore Cato Networks too. They are the leader in the SASE space and have a mature FWaaS tha",
+            "solidate that network/SDWAN piece in to them as well. My customers tend to find Cato is a much more complete solution and tend to go this way. \n\nBest of luck on you",
+            "complete solution and tend to go this way. \n\nBest of luck on your search! with cato, do you know if they  support multi tenancy/carrier type solutions?  were curre"
+          ],
+          "sentiment": "very_positive"
+        },
+        "palo alto": {
+          "count": 5,
+          "contexts": [
+            "ss has outgrown these products. For the past 8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates w",
+            "8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates were right in budget range, even with the For",
+            "till not good. Juniper isn't a contender.\n\nIn the firewall space it's basically Palo Alto or Fortinet at the moment. My experience with Aryaka is limited but I'll give m"
+          ],
+          "sentiment": "negative"
+        },
+        "fortinet": {
+          "count": 20,
+          "contexts": [
+            "these products. For the past 8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates were right in b",
+            ". Juniper isn't a contender.\n\nIn the firewall space it's basically Palo Alto or Fortinet at the moment. My experience with Aryaka is limited but I'll give my 2 cents. W",
+            "h - moving towards some sort of SASE solution. It's a must in this environment. Fortinet's is alright, though I struggle to call it true SASE as it is not a single mana",
+            "h their SDWAN capabilities in their firewalls, with FortiSASE. My thought is go fortigate. PA and Forti are the front runners in this space. If you want a full SASE solu",
+            "amble but if you are managing the firewalls yourself in any way I would opt for Fortigate or PA everytime.. I don't want to be a beta tester for anything in prod.. Check",
+            "ion to connect to one of our vendors. My gut reaction is to tell you to go with FortiGate if Palo is too expensive. Forti is second best.\n\nAryaka is best for people who"
+          ],
+          "sentiment": "very_positive"
+        },
+        "cisco": {
+          "count": 3,
+          "contexts": [
+            "verytime.. I don't want to be a beta tester for anything in prod.. Check Point? Cisco? Juniper? Cisco!! that is a good one I am crying over here.. They did a great j",
+            "'t want to be a beta tester for anything in prod.. Check Point? Cisco? Juniper? Cisco!! that is a good one I am crying over here.. They did a great job with Firepowe",
+            "loy it unless i had to. For firewalls? Checkpoint is going down rather than up. Cisco's FTD is still not good. Juniper isn't a contender.\n\nIn the firewall space it's"
+          ],
+          "sentiment": "very_positive"
+        },
+        "zscaler": {
+          "count": 1,
+          "contexts": [
+            "e. It used to be that Aryaka partnered with companies like PANW, Checkpoint and Zscaler to provide comprehensive coverage. I believe they have more recently developed"
+          ],
+          "sentiment": "very_positive"
+        },
+        "checkpoint": {
+          "count": 4,
+          "contexts": [
+            "solid. I love Juniper but would not deploy it for this use case over PA or FGT. Checkpoint is fine but i feel like its like a worse version of either PA or FGT and again",
+            "either PA or FGT and again would not deploy it unless i had to. For firewalls? Checkpoint is going down rather than up. Cisco's FTD is still not good. Juniper isn't a co",
+            "bet on fortigate. It used to be that Aryaka partnered with companies like PANW, Checkpoint and Zscaler to provide comprehensive coverage. I believe they have more recentl",
+            "igate or PA everytime.. I don't want to be a beta tester for anything in prod.. Check Point? Cisco? Juniper? Cisco!! that is a good one I am crying over here.. They did a"
+          ],
+          "sentiment": "very_positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "security": 20,
+          "networking": 28,
+          "cloud": 9,
+          "performance": 2,
+          "management": 2,
+          "pricing": 5
+        },
+        "dominantCategory": "networking"
+      },
+      "textStats": {
+        "totalWords": 1903,
+        "totalCharacters": 10637,
+        "averageCommentLength": 425
+      }
+    },
+    "timestamp": "2025-06-29T16:03:08.351Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/networking/comments/1jkfb0e",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 23,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/networking"
+    },
+    "content": {
+      "title": "SASE Vendor comparism",
+      "selftext": "Hi there,\n\nthanks for reading!\n\nWe are currently planning our transition from MPLS to SD-WAN / SASE. At the moment, we have Cato on the desk and also Meraki + Cisco Secure connect.\n\nIs anyone here who knows both solutions and can give me some pros/cons from a technical point of view?\n\nThanks again!\n\nEdit 1: more context: current setup is roughly:\n\n18 sites globally including external datacenter with a few VMS\nMPLS connected + a few site2site VPNs, e.g. to a a couple of VMs in Azure\nSSLVPN for re...",
+      "commentCount": 24,
+      "totalScore": 7,
+      "subreddit": "networking",
+      "wordCount": 1562
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 118,
+        "comparative": 0.07840531561461794,
+        "label": "very_positive",
+        "confidence": 7.840531561461795,
+        "positive": [
+          "best",
+          "solution",
+          "robust",
+          "pretty",
+          "unbiased",
+          "great",
+          "like",
+          "share",
+          "happy",
+          "clean"
+        ],
+        "negative": [
+          "limited",
+          "no",
+          "lack",
+          "missing",
+          "pain",
+          "hides",
+          "pain",
+          "hard",
+          "limited",
+          "limits"
+        ],
+        "wordCount": 88
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "you",
+            "count": 19
+          },
+          {
+            "keyword": "cato",
+            "count": 11
+          },
+          {
+            "keyword": "cisco",
+            "count": 8
+          },
+          {
+            "keyword": "mpls",
+            "count": 4
+          },
+          {
+            "keyword": "features",
+            "count": 4
+          },
+          {
+            "keyword": "they",
+            "count": 4
+          },
+          {
+            "keyword": "it's",
+            "count": 4
+          },
+          {
+            "keyword": "here",
+            "count": 3
+          },
+          {
+            "keyword": "dlp,",
+            "count": 3
+          },
+          {
+            "keyword": "casb,",
+            "count": 3
+          },
+          {
+            "keyword": "meraki",
+            "count": 3
+          },
+          {
+            "keyword": "cato,",
+            "count": 3
+          },
+          {
+            "keyword": "pros/cons",
+            "count": 2
+          },
+          {
+            "keyword": "18 sites",
+            "count": 2
+          },
+          {
+            "keyword": "external datacenter",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "SD-WAN",
+          "SASE",
+          "ZTNA",
+          "CASB",
+          "DLP",
+          "VPN",
+          "FIREWALL",
+          "BANDWIDTH",
+          "LATENCY"
+        ],
+        "totalUniqueTerms": 303
+      },
+      "brandMentions": {
+        "cato": {
+          "count": 29,
+          "contexts": [
+            "port.catonetworks.com/hc/en-us/articles/6075279966621-Bypassing-the-Cato-Cloud) Cato Networks depicts simple and sophisticated. It checks just about all the boxes and it's a",
+            "ntly planning our transition from MPLS to SD-WAN / SASE. At the moment, we have Cato on the desk and also Meraki + Cisco Secure connect.\n\nIs anyone here who knows b",
+            "ection to abroad sites, high MPLS costs, missing features like DLP, CASB, etc.  Cato customer here, will be 4 years soon.  Only positive things to say about Cato.",
+            ".  Cato customer here, will be 4 years soon.  Only positive things to say about Cato.\n\nOther vendors essentially bolt on an SD-WAN product with the SASE product, bu"
+          ],
+          "sentiment": "very_positive"
+        },
+        "fortinet": {
+          "count": 1,
+          "contexts": [
+            ", or site-to-site performance. He’s great and comes from Cato, unbiased Look at Fortinet, sdwan is an included feature, and the sase offering is pretty robust.\n\nBut, ul"
+          ],
+          "sentiment": "very_positive"
+        },
+        "cisco": {
+          "count": 7,
+          "contexts": [
+            "PLS to SD-WAN / SASE. At the moment, we have Cato on the desk and also Meraki + Cisco Secure connect.\n\nIs anyone here who knows both solutions and can give me some p",
+            "aving a fully unified codebase and being cloud native. No limits. \n\nI feel like Cisco could be characterized as almost the complete opposite thing. Meraki hardware b",
+            "omes to network management and network policies. It's not to say that Meraki or Cisco Viptela isn't a great SD-WAN solution or good enough for your needs, but when y"
+          ],
+          "sentiment": "very_positive"
+        },
+        "netskope": {
+          "count": 1,
+          "contexts": [
+            "and prove).\n\nWhilst Cato approach from a great SDWAN proposition into security, Netskope are a security SASE provider that can do SDWAN. Am I the only one who thinks “s"
+          ],
+          "sentiment": "very_positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": true,
+        "competitiveContexts": [
+          "eer if necessary, we've had that happen within hours of opening a ticket if the issue warrants it.  Compared to Cisco support it's a completely different world. How and why have you narrowed it down to these two"
+        ],
+        "sentiment": "positive"
+      },
+      "topics": {
+        "categories": {
+          "security": 8,
+          "networking": 27,
+          "cloud": 9,
+          "performance": 11,
+          "management": 7,
+          "pricing": 3
+        },
+        "dominantCategory": "networking"
+      },
+      "textStats": {
+        "totalWords": 1562,
+        "totalCharacters": 8970,
+        "averageCommentLength": 342
+      }
+    },
+    "timestamp": "2025-06-29T16:03:10.824Z"
+  },
+  {
+    "threadInfo": {
+      "Domain": "reddit.com",
+      "URL": "https://www.reddit.com/r/sysadmin/comments/13269sy",
+      "Type": "SOCIAL",
+      "Source": "SOCIAL",
+      "Citations": 22,
+      "Company Mentioned": "No",
+      "Answer Engines": "openai, searchgpt",
+      "Subreddit": "https://www.reddit.com/r/sysadmin"
+    },
+    "content": {
+      "title": "Anyone else notice Cloudflare's Enterprise Support has turned into Enterprise Pressure Sales?",
+      "selftext": "I manage a service that uses Cloudflare to protect services for about 300 customers.  Not a big fish, but big enough to spend a few thousand $ per month and have a dedicated customer success rep.  I'm pretty disappointed in the new team that was assigned to me, and I wonder if it's a widespread issue, or just the luck of the draw.\n\nRecently, a lot has changed at Cloudflare:\n\n  - They reorganized things to downgrade their baseline enterprise support, and make you pay for the \"premium\" level that ...",
+      "commentCount": 30,
+      "totalScore": 207,
+      "subreddit": "sysadmin",
+      "wordCount": 2082
+    },
+    "analysis": {
+      "sentiment": {
+        "score": 33,
+        "comparative": 0.016129032258064516,
+        "label": "very_positive",
+        "confidence": 1.6129032258064515,
+        "positive": [
+          "like",
+          "support",
+          "worth",
+          "better",
+          "want",
+          "help",
+          "support",
+          "friend",
+          "friend",
+          "free"
+        ],
+        "negative": [
+          "worth",
+          "pay",
+          "problem",
+          "pay",
+          "useless",
+          "harass",
+          "waste",
+          "heartless",
+          "hard",
+          "ruin"
+        ],
+        "wordCount": 137
+      },
+      "keywords": {
+        "topKeywords": [
+          {
+            "keyword": "they",
+            "count": 37
+          },
+          {
+            "keyword": "cloudflare",
+            "count": 25
+          },
+          {
+            "keyword": "you",
+            "count": 15
+          },
+          {
+            "keyword": "it's",
+            "count": 5
+          },
+          {
+            "keyword": "them",
+            "count": 5
+          },
+          {
+            "keyword": "you’re",
+            "count": 4
+          },
+          {
+            "keyword": "reps",
+            "count": 4
+          },
+          {
+            "keyword": "it.",
+            "count": 4
+          },
+          {
+            "keyword": "rep",
+            "count": 4
+          },
+          {
+            "keyword": "- she",
+            "count": 3
+          },
+          {
+            "keyword": "thing",
+            "count": 3
+          },
+          {
+            "keyword": "all",
+            "count": 3
+          },
+          {
+            "keyword": "him",
+            "count": 3
+          },
+          {
+            "keyword": "month",
+            "count": 2
+          },
+          {
+            "keyword": "cloudflare:",
+            "count": 2
+          }
+        ],
+        "technicalTerms": [
+          "BANDWIDTH",
+          "SSL"
+        ],
+        "totalUniqueTerms": 367
+      },
+      "brandMentions": {
+        "cloudflare": {
+          "count": 22,
+          "contexts": [
+            "Anyone else notice Cloudflare's Enterprise Support has turned into Enterprise Pressure Sales? I manage a serv",
+            "Support has turned into Enterprise Pressure Sales? I manage a service that uses Cloudflare to protect services for about 300 customers.  Not a big fish, but big enough to",
+            "widespread issue, or just the luck of the draw.\n\nRecently, a lot has changed at Cloudflare:\n\n  - They reorganized things to downgrade their baseline enterprise support, a"
+          ],
+          "sentiment": "very_positive"
+        }
+      },
+      "competitorMentions": {
+        "hasCompetitiveDiscussion": false,
+        "competitiveContexts": [],
+        "sentiment": "neutral"
+      },
+      "topics": {
+        "categories": {
+          "security": 3,
+          "networking": 9,
+          "cloud": 24,
+          "performance": 1,
+          "management": 3,
+          "pricing": 11
+        },
+        "dominantCategory": "cloud"
+      },
+      "textStats": {
+        "totalWords": 2082,
+        "totalCharacters": 11438,
+        "averageCommentLength": 310
+      }
+    },
+    "timestamp": "2025-06-29T16:03:13.775Z"
+  }
+]

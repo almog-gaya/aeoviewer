@@ -1,0 +1,6 @@
+# wrangler.toml
+name = "aeoviewer"
+compatibility_date = "2023-06-25"
+
+[site]
+bucket = "./out" 

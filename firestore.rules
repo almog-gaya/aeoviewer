@@ -1,0 +1,21 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Since we're not implementing auth right now, allow all read/write
+    // In a production environment, you would restrict access based on auth
+    match /{document=**} {
+      allow read, write: if true;
+    }
+    
+    // Later, we would implement proper rules like:
+    // match /users/{userId} {
+    //   allow read, write: if request.auth != null && request.auth.uid == userId;
+    // }
+    
+    // match /scans/{scanId} {
+    //   allow create: if request.auth != null;
+    //   allow read, update, delete: if request.auth != null && 
+    //                                 request.auth.uid == resource.data.userId;
+    // }
+  }
+} 

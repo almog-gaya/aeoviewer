@@ -1,0 +1,195 @@
+{
+  "summary": {
+    "timestamp": "2025-06-29T15:53:51.328Z",
+    "totalSheets": 3,
+    "totalThreads": 383,
+    "analysisComplete": true
+  },
+  "overallMetrics": {
+    "totalThreads": 383,
+    "averageLength": 0,
+    "sentimentDistribution": {
+      "positive": 0,
+      "neutral": 0,
+      "negative": 0
+    },
+    "topKeywords": {},
+    "engagementIndicators": {
+      "questions": 0,
+      "exclamations": 0,
+      "mentions": 0
+    }
+  },
+  "sentimentInsights": {
+    "averageSentimentScore": null,
+    "sentimentTrend": "neutral",
+    "mostPositive": [],
+    "mostNegative": []
+  },
+  "topicInsights": {
+    "dominantTopics": [],
+    "totalUniqueTopics": 0,
+    "topicDiversity": 0
+  },
+  "recommendations": [
+    {
+      "type": "content_quality",
+      "priority": "low",
+      "title": "Short Thread Content",
+      "description": "Average thread length is quite short",
+      "action": "Encourage more detailed discussions and engagement"
+    }
+  ],
+  "detailedResults": [
+    {
+      "id": 1,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/cybersecurity/comments/1koz9gj/netskope_vs_zscaler_vs_palo_alto_vs_cato",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 134,
+        "Company Mentioned": "No",
+        "Answer Engines": "perplexity",
+        "Subreddit": "https://www.reddit.com/r/cybersecurity"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 2,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/networking/comments/1i3qrr8",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 56,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/networking"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 3,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/paloaltonetworks/comments/103917p",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 56,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/paloaltonetworks"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 4,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/networking/comments/mqzrb4",
+        "Type": "SOCIAL",
+        "Source": "UNKNOWN",
+        "Citations": 55,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/networking"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 5,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/Zscaler/comments/1jm084e",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 33,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/Zscaler"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 6,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/CloudFlare/comments/1gissir",
+        "Type": "SOCIAL",
+        "Source": "UNKNOWN",
+        "Citations": 32,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/CloudFlare"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 7,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/vmware/comments/1ieg0lm",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 32,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/vmware"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 8,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/cybersecurity/comments/1icikwy",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 32,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/cybersecurity"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 9,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/fortinet/comments/13vffon",
+        "Type": "SOCIAL",
+        "Source": "SOCIAL",
+        "Citations": 28,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/fortinet"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    },
+    {
+      "id": 10,
+      "originalData": {
+        "Domain": "reddit.com",
+        "URL": "https://www.reddit.com/r/fortinet/comments/1dz49h6",
+        "Type": "SOCIAL",
+        "Source": "UNKNOWN",
+        "Citations": 25,
+        "Company Mentioned": "No",
+        "Answer Engines": "openai, searchgpt",
+        "Subreddit": "https://www.reddit.com/r/fortinet"
+      },
+      "analysis": null,
+      "error": "No text content found"
+    }
+  ]
+}

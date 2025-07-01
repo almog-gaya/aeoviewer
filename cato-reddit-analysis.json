@@ -1,0 +1,406 @@
+{
+  "threads": {
+    "total": 336,
+    "bySubreddit": {
+      "cybersecurity": 27,
+      "networking": 72,
+      "paloaltonetworks": 35,
+      "Zscaler": 13,
+      "CloudFlare": 19,
+      "vmware": 26,
+      "fortinet": 39,
+      "sysadmin": 38,
+      "Cisco": 13,
+      "checkpoint": 4,
+      "msp": 15,
+      "catonetworks": 1,
+      "salesengineers": 1,
+      "WGU": 1,
+      "ccna": 1,
+      "SysAdminBlogs": 1,
+      "devops": 2,
+      "AZURE": 2,
+      "cloudcomputing": 1,
+      "StockMarket": 1,
+      "Hacking_Tutorials": 1,
+      "it": 1,
+      "SolveForce": 1,
+      "CompTIA": 1,
+      "ITManagers": 2,
+      "wallstreetbets": 1,
+      "AskNetsec": 2,
+      "nutanix": 1,
+      "patentexaminer": 2,
+      "macsysadmin": 1,
+      "techsupport": 1,
+      "Cloud": 1,
+      "HomeNetworking": 1,
+      "VPN": 2,
+      "ccnp": 1,
+      "buildapc": 1,
+      "smallbusiness": 1,
+      "privacy": 1
+    },
+    "byAnswerEngine": {
+      "perplexity": 115,
+      "openai": 125,
+      "searchgpt": 178,
+      "copilot": 9,
+      "ai_overview": 17
+    },
+    "byCompanyMention": {
+      "mentioned": 0,
+      "notMentioned": 336
+    },
+    "topSubreddits": [
+      {
+        "subreddit": "networking",
+        "count": 72,
+        "category": "Networking",
+        "percentage": "21.4"
+      },
+      {
+        "subreddit": "fortinet",
+        "count": 39,
+        "category": "Vendor Community",
+        "percentage": "11.6"
+      },
+      {
+        "subreddit": "sysadmin",
+        "count": 38,
+        "category": "IT Administration",
+        "percentage": "11.3"
+      },
+      {
+        "subreddit": "paloaltonetworks",
+        "count": 35,
+        "category": "Vendor Community",
+        "percentage": "10.4"
+      },
+      {
+        "subreddit": "cybersecurity",
+        "count": 27,
+        "category": "Security",
+        "percentage": "8.0"
+      },
+      {
+        "subreddit": "vmware",
+        "count": 26,
+        "category": "Other",
+        "percentage": "7.7"
+      },
+      {
+        "subreddit": "CloudFlare",
+        "count": 19,
+        "category": "Other",
+        "percentage": "5.7"
+      },
+      {
+        "subreddit": "msp",
+        "count": 15,
+        "category": "Managed Services",
+        "percentage": "4.5"
+      },
+      {
+        "subreddit": "Zscaler",
+        "count": 13,
+        "category": "Other",
+        "percentage": "3.9"
+      },
+      {
+        "subreddit": "Cisco",
+        "count": 13,
+        "category": "Vendor Community",
+        "percentage": "3.9"
+      }
+    ],
+    "urlDomains": {
+      "www.reddit.com": 334,
+      "dn.org": 1,
+      "medium.com": 1
+    },
+    "citationStats": {
+      "total": 1693,
+      "average": 5.038690476190476,
+      "median": 2,
+      "max": 134,
+      "min": 1
+    }
+  },
+  "summary": {
+    "totalSubreddits": 38,
+    "totalThreadsFromSummary": 334,
+    "topSubredditsByThreadCount": [
+      {
+        "subreddit": "networking",
+        "threadCount": 72,
+        "primaryTitle": "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000",
+        "secondaryTitle": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t"
+      },
+      {
+        "subreddit": "fortinet",
+        "threadCount": 39,
+        "primaryTitle": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000",
+        "secondaryTitle": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r"
+      },
+      {
+        "subreddit": "sysadmin",
+        "threadCount": 38,
+        "primaryTitle": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000",
+        "secondaryTitle": "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r"
+      },
+      {
+        "subreddit": "paloaltonetworks",
+        "threadCount": 35,
+        "primaryTitle": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000",
+        "secondaryTitle": "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t"
+      },
+      {
+        "subreddit": "cybersecurity",
+        "threadCount": 27,
+        "primaryTitle": "\u0000C\u0000y\u0000b\u0000e\u0000r\u0000s\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t\u0000",
+        "secondaryTitle": "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r"
+      },
+      {
+        "subreddit": "vmware",
+        "threadCount": 26,
+        "primaryTitle": "\u0000V\u0000M\u0000w\u0000a\u0000r\u0000e\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000",
+        "secondaryTitle": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r"
+      },
+      {
+        "subreddit": "CloudFlare",
+        "threadCount": 19,
+        "primaryTitle": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000",
+        "secondaryTitle": "\u0000S\u0000i\u0000t\u0000e\u0000 \u0000R\u0000e\u0000l\u0000i\u0000a\u0000b\u0000i\u0000l\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000 \u0000(\u0000S\u0000R\u0000E\u0000)"
+      },
+      {
+        "subreddit": "msp",
+        "threadCount": 15,
+        "primaryTitle": "\u0000M\u0000S\u0000P\u0000 \u0000B\u0000u\u0000s\u0000i\u0000n\u0000e\u0000s\u0000s\u0000 \u0000O\u0000w\u0000n\u0000e\u0000r\u0000/\u0000C\u0000E\u0000O\u0000",
+        "secondaryTitle": "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000r\u0000v\u0000i\u0000c\u0000e\u0000s\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r"
+      },
+      {
+        "subreddit": "Cisco",
+        "threadCount": 13,
+        "primaryTitle": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000",
+        "secondaryTitle": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r"
+      },
+      {
+        "subreddit": "Zscaler",
+        "threadCount": 13,
+        "primaryTitle": "\u0000C\u0000l\u0000o\u0000u\u0000d\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000",
+        "secondaryTitle": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r"
+      }
+    ],
+    "jobTitles": {
+      "primary": {
+        "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000": 1,
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000": 4,
+        "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000": 3,
+        "\u0000C\u0000y\u0000b\u0000e\u0000r\u0000s\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t\u0000": 1,
+        "\u0000V\u0000M\u0000w\u0000a\u0000r\u0000e\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000": 1,
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000": 3,
+        "\u0000M\u0000S\u0000P\u0000 \u0000B\u0000u\u0000s\u0000i\u0000n\u0000e\u0000s\u0000s\u0000 \u0000O\u0000w\u0000n\u0000e\u0000r\u0000/\u0000C\u0000E\u0000O\u0000": 1,
+        "\u0000C\u0000l\u0000o\u0000u\u0000d\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000": 1,
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000": 1,
+        "\u0000C\u0000l\u0000o\u0000u\u0000d\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t\u0000": 1,
+        "\u0000D\u0000e\u0000v\u0000O\u0000p\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000": 1,
+        "\u0000I\u0000T\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r\u0000": 1,
+        "\u0000U\u0000S\u0000P\u0000T\u0000O\u0000 \u0000P\u0000a\u0000t\u0000e\u0000n\u0000t\u0000 \u0000E\u0000x\u0000a\u0000m\u0000i\u0000n\u0000e\u0000r\u0000": 1,
+        "\u0000C\u0000y\u0000b\u0000e\u0000r\u0000s\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t\u0000": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000u\u0000p\u0000p\u0000o\u0000r\u0000t\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t\u0000/\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000": 1,
+        "\u0000H\u0000e\u0000l\u0000p\u0000 \u0000D\u0000e\u0000s\u0000k\u0000 \u0000T\u0000e\u0000c\u0000h\u0000n\u0000i\u0000c\u0000i\u0000a\u0000n\u0000/\u0000I\u0000T\u0000 \u0000S\u0000u\u0000p\u0000p\u0000o\u0000r\u0000t\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t\u0000": 1,
+        "\u0000C\u0000l\u0000o\u0000u\u0000d\u0000 \u0000S\u0000o\u0000l\u0000u\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t\u0000": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000u\u0000p\u0000p\u0000o\u0000r\u0000t\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t\u0000": 2,
+        "\u0000P\u0000e\u0000n\u0000e\u0000t\u0000r\u0000a\u0000t\u0000i\u0000o\u0000n\u0000 \u0000T\u0000e\u0000s\u0000t\u0000e\u0000r\u0000": 1,
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000T\u0000e\u0000c\u0000h\u0000n\u0000i\u0000c\u0000i\u0000a\u0000n\u0000": 1,
+        "\u0000M\u0000a\u0000c\u0000 \u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000": 1,
+        "\u0000I\u0000n\u0000f\u0000r\u0000a\u0000s\u0000t\u0000r\u0000u\u0000c\u0000t\u0000u\u0000r\u0000e\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t\u0000": 1,
+        "\u0000P\u0000r\u0000i\u0000v\u0000a\u0000c\u0000y\u0000 \u0000O\u0000f\u0000f\u0000i\u0000c\u0000e\u0000r\u0000/\u0000D\u0000a\u0000t\u0000a\u0000 \u0000P\u0000r\u0000o\u0000t\u0000e\u0000c\u0000t\u0000i\u0000o\u0000n\u0000 \u0000O\u0000f\u0000f\u0000i\u0000c\u0000e\u0000r\u0000": 1,
+        "\u0000S\u0000a\u0000l\u0000e\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000/\u0000S\u0000o\u0000l\u0000u\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000": 1,
+        "\u0000S\u0000m\u0000a\u0000l\u0000l\u0000 \u0000B\u0000u\u0000s\u0000i\u0000n\u0000e\u0000s\u0000s\u0000 \u0000O\u0000w\u0000n\u0000e\u0000r\u0000/\u0000E\u0000n\u0000t\u0000r\u0000e\u0000p\u0000r\u0000e\u0000n\u0000e\u0000u\u0000r\u0000": 1,
+        "\u0000T\u0000e\u0000l\u0000e\u0000c\u0000o\u0000m\u0000 \u0000C\u0000o\u0000n\u0000s\u0000u\u0000l\u0000t\u0000a\u0000n\u0000t\u0000/\u0000B\u0000r\u0000o\u0000k\u0000e\u0000r\u0000": 1,
+        "\u0000F\u0000i\u0000n\u0000a\u0000n\u0000c\u0000i\u0000a\u0000l\u0000 \u0000S\u0000e\u0000r\u0000v\u0000i\u0000c\u0000e\u0000s\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l\u0000": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000u\u0000p\u0000p\u0000o\u0000r\u0000t\u0000 \u0000T\u0000e\u0000c\u0000h\u0000n\u0000i\u0000c\u0000i\u0000a\u0000n\u0000": 1,
+        "\u0000S\u0000t\u0000u\u0000d\u0000e\u0000n\u0000t\u0000/\u0000E\u0000n\u0000t\u0000r\u0000y\u0000-\u0000L\u0000e\u0000v\u0000e\u0000l\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l\u0000": 1,
+        "\u0000W\u0000o\u0000r\u0000k\u0000i\u0000n\u0000g\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l\u0000 \u0000i\u0000n\u0000 \u0000C\u0000a\u0000r\u0000e\u0000e\u0000r\u0000 \u0000T\u0000r\u0000a\u0000n\u0000s\u0000i\u0000t\u0000i\u0000o\u0000n\u0000": 1
+      },
+      "secondary": {
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t": 1,
+        "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r": 3,
+        "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r": 1,
+        "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r": 1,
+        "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000S\u0000i\u0000t\u0000e\u0000 \u0000R\u0000e\u0000l\u0000i\u0000a\u0000b\u0000i\u0000l\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000 \u0000(\u0000S\u0000R\u0000E\u0000)": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000r\u0000v\u0000i\u0000c\u0000e\u0000s\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r": 1,
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000C\u0000o\u0000n\u0000s\u0000u\u0000l\u0000t\u0000a\u0000n\u0000t": 1,
+        "\u0000I\u0000n\u0000f\u0000o\u0000r\u0000m\u0000a\u0000t\u0000i\u0000o\u0000n\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t": 1,
+        "\u0000D\u0000e\u0000v\u0000O\u0000p\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 2,
+        "\u0000P\u0000l\u0000a\u0000t\u0000f\u0000o\u0000r\u0000m\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000I\u0000T\u0000 \u0000D\u0000i\u0000r\u0000e\u0000c\u0000t\u0000o\u0000r": 1,
+        "\u0000P\u0000a\u0000t\u0000e\u0000n\u0000t\u0000 \u0000A\u0000t\u0000t\u0000o\u0000r\u0000n\u0000e\u0000y\u0000/\u0000A\u0000g\u0000e\u0000n\u0000t": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r": 1,
+        "\u0000S\u0000o\u0000f\u0000t\u0000w\u0000a\u0000r\u0000e\u0000 \u0000D\u0000e\u0000v\u0000e\u0000l\u0000o\u0000p\u0000e\u0000r\u0000/\u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000S\u0000o\u0000l\u0000u\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t": 1,
+        "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000 \u0000(\u0000J\u0000u\u0000n\u0000i\u0000o\u0000r\u0000)": 1,
+        "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r": 1,
+        "\u0000I\u0000T\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r\u0000/\u0000D\u0000i\u0000r\u0000e\u0000c\u0000t\u0000o\u0000r": 1,
+        "\u0000C\u0000l\u0000o\u0000u\u0000d\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000C\u0000y\u0000b\u0000e\u0000r\u0000s\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t": 2,
+        "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000R\u0000e\u0000s\u0000e\u0000a\u0000r\u0000c\u0000h\u0000e\u0000r": 1,
+        "\u0000I\u0000T\u0000 \u0000S\u0000u\u0000p\u0000p\u0000o\u0000r\u0000t\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t": 1,
+        "\u0000C\u0000l\u0000i\u0000e\u0000n\u0000t\u0000 \u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000V\u0000i\u0000r\u0000t\u0000u\u0000a\u0000l\u0000i\u0000z\u0000a\u0000t\u0000i\u0000o\u0000n\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000F\u0000i\u0000e\u0000l\u0000d\u0000 \u0000A\u0000p\u0000p\u0000l\u0000i\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r": 1,
+        "\u0000B\u0000u\u0000s\u0000i\u0000n\u0000e\u0000s\u0000s\u0000 \u0000C\u0000o\u0000n\u0000s\u0000u\u0000l\u0000t\u0000a\u0000n\u0000t\u0000/\u0000A\u0000d\u0000v\u0000i\u0000s\u0000o\u0000r": 1,
+        "\u0000I\u0000T\u0000 \u0000I\u0000n\u0000f\u0000r\u0000a\u0000s\u0000t\u0000r\u0000u\u0000c\u0000t\u0000u\u0000r\u0000e\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r": 1,
+        "\u0000S\u0000o\u0000f\u0000t\u0000w\u0000a\u0000r\u0000e\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000/\u0000Q\u0000u\u0000a\u0000n\u0000t\u0000i\u0000t\u0000a\u0000t\u0000i\u0000v\u0000e\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l": 1,
+        "\u0000H\u0000e\u0000l\u0000p\u0000 \u0000D\u0000e\u0000s\u0000k\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t": 1,
+        "\u0000T\u0000e\u0000c\u0000h\u0000n\u0000o\u0000l\u0000o\u0000g\u0000y\u0000/\u0000S\u0000o\u0000f\u0000t\u0000w\u0000a\u0000r\u0000e\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l": 1,
+        "\u0000H\u0000e\u0000a\u0000l\u0000t\u0000h\u0000c\u0000a\u0000r\u0000e\u0000/\u0000N\u0000u\u0000r\u0000s\u0000i\u0000n\u0000g\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l": 1
+      }
+    }
+  },
+  "competitors": {
+    "total": 9,
+    "companies": [
+      "palo alto networks",
+      "cisco",
+      "fortinet",
+      "vmware",
+      "check point",
+      "netskope",
+      "aryaka",
+      "cloudflare",
+      "zscaler"
+    ],
+    "byCategory": {
+      "Network Security": [
+        "palo alto networks",
+        "fortinet",
+        "zscaler"
+      ],
+      "Networking": [
+        "cisco"
+      ],
+      "Other": [
+        "vmware",
+        "check point",
+        "aryaka",
+        "cloudflare"
+      ],
+      "Cloud Security": [
+        "netskope",
+        "zscaler"
+      ]
+    }
+  },
+  "insights": [
+    {
+      "type": "audience_focus",
+      "title": "Strong Security Community Presence",
+      "description": "1 of top subreddits are security-focused, representing 8.0% of threads",
+      "priority": "high",
+      "data": [
+        {
+          "subreddit": "cybersecurity",
+          "count": 27,
+          "category": "Security",
+          "percentage": "8.0"
+        }
+      ]
+    },
+    {
+      "type": "ai_engine_coverage",
+      "title": "Answer Engine Distribution",
+      "description": "Top AI engines citing these threads: searchgpt (178), openai (125), perplexity (115)",
+      "priority": "medium",
+      "data": [
+        [
+          "searchgpt",
+          178
+        ],
+        [
+          "openai",
+          125
+        ],
+        [
+          "perplexity",
+          115
+        ]
+      ]
+    },
+    {
+      "type": "brand_visibility",
+      "title": "Company Mention Rate",
+      "description": "Cato is mentioned in 0.0% of relevant threads (0/336)",
+      "priority": "high",
+      "data": {
+        "mentioned": 0,
+        "notMentioned": 336
+      }
+    },
+    {
+      "type": "content_engagement",
+      "title": "Thread Engagement Level",
+      "description": "Average 5 citations per thread, with highest being 134",
+      "priority": "medium",
+      "data": {
+        "total": 1693,
+        "average": 5.038690476190476,
+        "median": 2,
+        "max": 134,
+        "min": 1
+      }
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "brand_awareness",
+      "priority": "high",
+      "title": "Increase Brand Visibility",
+      "description": "Only 0.0% of threads mention Cato",
+      "actions": [
+        "Engage more actively in high-traffic subreddits",
+        "Create valuable content for r/networking and r/cybersecurity",
+        "Participate in technical discussions with helpful insights"
+      ]
+    },
+    {
+      "type": "content_strategy",
+      "priority": "medium",
+      "title": "Focus on High-Impact Subreddits",
+      "description": "Target top communities: networking, fortinet, sysadmin",
+      "actions": [
+        "Create subreddit-specific content strategies",
+        "Monitor trending topics in these communities",
+        "Build relationships with community moderators"
+      ]
+    },
+    {
+      "type": "ai_optimization",
+      "priority": "medium",
+      "title": "Optimize for Top AI Engines",
+      "description": "Focus on searchgpt and openai optimization",
+      "actions": [
+        "Ensure content is well-structured for AI parsing",
+        "Include relevant technical keywords",
+        "Maintain active presence in cited discussions"
+      ]
+    },
+    {
+      "type": "content_creation",
+      "priority": "high",
+      "title": "Scrape and Analyze Thread Content",
+      "description": "Current analysis is limited to metadata - actual thread content needed for sentiment analysis",
+      "actions": [
+        "Use Reddit API to fetch thread content from provided URLs",
+        "Perform comprehensive sentiment analysis on actual discussions",
+        "Identify specific pain points and opportunities mentioned in threads",
+        "Track competitor mentions and sentiment in discussions"
+      ]
+    }
+  ]
+}

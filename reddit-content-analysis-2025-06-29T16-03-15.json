@@ -1,0 +1,314 @@
+{
+  "summary": {
+    "totalThreadsInDataset": 336,
+    "threadsAnalyzed": 15,
+    "successfulAnalyses": 14,
+    "failedAnalyses": 1,
+    "timestamp": "2025-06-29T16:03:15.777Z"
+  },
+  "sentimentOverview": {
+    "distribution": {
+      "very_positive": 13,
+      "very_negative": 1
+    },
+    "averageScore": 62.857142857142854
+  },
+  "brandMentions": {
+    "palo alto": {
+      "count": 23,
+      "sentiment": [
+        "very_positive",
+        "very_positive",
+        "neutral",
+        "negative",
+        "negative"
+      ],
+      "contexts": [
+        "titor I was putting them against, but it was actually 20% more expensive.. (And Palo Alto stuff is not known being cheap) Thanks, currently comparing against PA PA 100%!",
+        "to the end resources is very easy.\n\nIf you're already a shop that is leveraging Palo Alto or Cisco, for example, then those are probably going to be better options. If n",
+        "Top complaint regarding Palo Alto Networks on the Gartner report (or what a lot of us have been saying) Technical support:",
+        "e been saying) Technical support: Gartner has received consistent feedback from Palo Alto Networks customers indicating a decline in the quality of its technical support, with es",
+        "ed about cost Was only after ZTNA not SWG or CASB. Went with Zscaler. Looked at PAN Prima, Netskope, Fortinet, MS Global access, Aws verifed access.\nCriteria:\nComp",
+        "er. GUI is never as workable as the CLI. Because they're trying to compete with Palo Alto. That has nothing to do with it. Firepower management center existed long befor",
+        "t. Firepower management center existed long before Cisco tried to compete with \nPalo Alto. Cisco bought a great product and let it completely stagnate. The product has \"",
+        "ss has outgrown these products. For the past 8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates w",
+        "8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates were right in budget range, even with the For"
+      ]
+    },
+    "fortinet": {
+      "count": 61,
+      "sentiment": [
+        "positive",
+        "positive",
+        "very_positive",
+        "very_positive",
+        "positive",
+        "neutral",
+        "very_positive",
+        "very_positive"
+      ],
+      "contexts": [
+        "w solution, but from what I seen it looks promising and is priced insanely low. Fortinet is absolute garbage and is priced low for a reason absolutely true - I bet they",
+        ".   We're going to leave them.\n\nWould love to get some examples of the problems Fortinet has because that is one candidate under consideration. I did a PoC with ZScaler",
+        "cal case and get the same support I have, my management will start switching to Fortinet. You will likely get same experience with Fortinet. Grass is not necessarily gr",
+        "ment will start switching to Fortinet. You will likely get same experience with Fortinet. Grass is not necessarily greener on the other side. Jumping on this bandwagon",
+        "traversing their own POPs. We evaluated other sdwan solutions like velocloud or fortinet but i just feel the solutions are just next gen site to site vpn connections wi",
+        "Fortinet support just helpless I like working with Fortinet products but their support i",
+        "Fortinet support just helpless I like working with Fortinet products but their support is just awful. Every time that I need to reach out t",
+        "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to",
+        "e to understand some of the pros and cons of each.  No experience with Cato but Fortinet SD-WAN is free of charge, it is included in FortiGate by default with no extra",
+        "y after ZTNA not SWG or CASB. Went with Zscaler. Looked at PAN Prima, Netskope, Fortinet, MS Global access, Aws verifed access.\nCriteria:\nCompatible with my orgs apps\nV",
+        "these products. For the past 8-10 months i've been working with Palo Alto, and FortiNet team. We determined Palo Alto was too expensive, and FortiGates were right in b",
+        ". Juniper isn't a contender.\n\nIn the firewall space it's basically Palo Alto or Fortinet at the moment. My experience with Aryaka is limited but I'll give my 2 cents. W",
+        ", or site-to-site performance. He’s great and comes from Cato, unbiased Look at Fortinet, sdwan is an included feature, and the sase offering is pretty robust.\n\nBut, ul"
+      ]
+    },
+    "cisco": {
+      "count": 36,
+      "sentiment": [
+        "very_positive",
+        "negative",
+        "positive",
+        "negative",
+        "neutral",
+        "positive",
+        "very_positive",
+        "very_positive"
+      ],
+      "contexts": [
+        "sources is very easy.\n\nIf you're already a shop that is leveraging Palo Alto or Cisco, for example, then those are probably going to be better options. If not, I'd s",
+        "if that will change anything but other vendors are no different . Solution from Cisco on a current case , reload the firewalls , deregister and register them again f",
+        "pped the employee cost and they hire people with no experience . Totally agree. Cisco, Fortinet and Palo support has been awful the last two years. My current job po",
+        "chings continue from end users.  Sometimes zscaler functions so spotty that our Cisco anyconnect client also disconnects sporadically.  People joke about getting \"ZS",
+        "ience this. It’s not normal. I’m confused, are you running both Zscaler ZPA and Cisco anyconnect at the same time? YES.  That is a must for the current configuration",
+        "ently, it adds up to a significant amount of time being wasted. Ever dealt with Cisco TAC? of course not, he would\\`nt be here complaining. lol\r  \n\r  \nI opened a few",
+        "I have opened 3 tickets in the last 12 months (FTG, FSW and FAD).\r  \nRegarding Cisco TAC, I have opened more than 5 in the last 12 months (WSA, ASA and CUCM). The b",
+        "are fundamentally different services offerings than what you'd get from a Palo/Cisco/Fortinet offering and yes there are pros/cons but Cato is a far cry from a lead",
+        "Why is every single Cisco GUI so bad? Seriously ASDM, ISE, vManage, Firepower, they're all so bad, and I",
+        "That has nothing to do with it. Firepower management center existed long before Cisco tried to compete with \nPalo Alto. Cisco bought a great product and let it compl",
+        "verytime.. I don't want to be a beta tester for anything in prod.. Check Point? Cisco? Juniper? Cisco!! that is a good one I am crying over here.. They did a great j",
+        "'t want to be a beta tester for anything in prod.. Check Point? Cisco? Juniper? Cisco!! that is a good one I am crying over here.. They did a great job with Firepowe",
+        "PLS to SD-WAN / SASE. At the moment, we have Cato on the desk and also Meraki + Cisco Secure connect.\n\nIs anyone here who knows both solutions and can give me some p",
+        "aving a fully unified codebase and being cloud native. No limits. \n\nI feel like Cisco could be characterized as almost the complete opposite thing. Meraki hardware b"
+      ]
+    },
+    "zscaler": {
+      "count": 52,
+      "sentiment": [
+        "very_negative",
+        "very_negative",
+        "neutral",
+        "very_negative",
+        "very_positive"
+      ],
+      "contexts": [
+        "Zscaler experiences? Anyone with real life experiences of ZIA or ZPA?\n\nTrying it out an",
+        "ese have all been worked around by creating a portal to source them internally. Zscaler may have popularised the tech, but they've lost their way and are horrendously",
+        "Am I the only network engineer who thinks Zscaler sucks BAD for network performance? I work for a large known corporation in the",
+        "large known corporation in the US and our security team is currently deploying Zscaler and I am seeing serious internet speed degradation issue with Zscaler running.",
+        "s to application based rules, the native integrations to connect to things like zScaler (which I dislike that product personally, but that's another story), and the cl",
+        "Which zero trust vendor do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you impleme",
+        "of that 20 years ago but with different names” then you’re 100% correct. Demoed ZScaler/Netskope/Cato; rest weren't a consideration due to lack of equivalent features.",
+        "e. It used to be that Aryaka partnered with companies like PANW, Checkpoint and Zscaler to provide comprehensive coverage. I believe they have more recently developed"
+      ]
+    },
+    "netskope": {
+      "count": 22,
+      "sentiment": [
+        "very_positive",
+        "very_negative",
+        "positive",
+        "very_positive"
+      ],
+      "contexts": [
+        "and are horrendously expensive.\n\nIn my experience, Palto Alto Prisma Access and Netskope offer the best solutions. Am yet to work with Fortinets new solution, but from",
+        "$$ for their gartner ranking. Palo is great, iboss is a pretty good challenger, Netskope is good but policy can be a bit complex. &gt; Palo is great\n\nWouldn't call it \"",
+        "What do you hate about Netskope tools? [deleted] They’re logging in SkopeIT. I don’t need four different places",
+        "mented. I ended up quitting my last job because of how many problems it caused, Netskope also has some of the worst support you will ever encounter. Its obvious to me i",
+        "? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if so, why did you choose the one you did?",
+        "20 years ago but with different names” then you’re 100% correct. Demoed ZScaler/Netskope/Cato; rest weren't a consideration due to lack of equivalent features. ZScaler",
+        "and prove).\n\nWhilst Cato approach from a great SDWAN proposition into security, Netskope are a security SASE provider that can do SDWAN. Am I the only one who thinks “s"
+      ]
+    },
+    "cloudflare": {
+      "count": 35,
+      "sentiment": [
+        "positive",
+        "very_negative",
+        "very_positive",
+        "very_positive"
+      ],
+      "contexts": [
+        "d reliable solution. Sucks. Save yourself a headache and look into Palo Alto or Cloudflare Bad with their support and pricing. Netskope or PAN are better alternatives. I",
+        "Why does cloudflare have such bad reviews on trust pilot? Can anyone explain to me why cloudflare h",
+        "s cloudflare have such bad reviews on trust pilot? Can anyone explain to me why cloudflare has horrible trustpilot reviews? And also your experience with cloudflare good",
+        "Which zero trust vendor do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if",
+        "lement one of these and if so, why did you choose the one you did? I don’t like Cloudflare’s ZTNA approach as it isn’t a true “Zero Trust” model but rather a “you only ne",
+        "Anyone else notice Cloudflare's Enterprise Support has turned into Enterprise Pressure Sales? I manage a serv",
+        "Support has turned into Enterprise Pressure Sales? I manage a service that uses Cloudflare to protect services for about 300 customers.  Not a big fish, but big enough to"
+      ]
+    },
+    "cato": {
+      "count": 89,
+      "sentiment": [
+        "very_positive",
+        "very_positive",
+        "very_positive",
+        "very_positive",
+        "very_positive"
+      ],
+      "contexts": [
+        "Cato Networks just curious about your or their experiences with the sase provider?worked with",
+        "just curious about your or their experiences with the sase provider?worked with Cato Networks?\n\njust curious about your or their experences with the sase provider? We have h",
+        "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to understand some of the p",
+        "Fortinet SD-WAN vs Cato Networks Anyone have experience with either/both? Would like to understand some",
+        "do you use and why? I'm checking out ZScaler, Twingate, Cloudflare, Netfoundry, Cato Networks and Netskope.  Did you implement one of these and if so, why did you choose the",
+        "te and when in the office behind their SDWAN services. If anyone here works for Cato networks, your website literally turned me immediately off the idea of using your servic",
+        "solution like SonicWALL. \n\nIn addition to Aryaka, I would recommend you explore Cato Networks too. They are the leader in the SASE space and have a mature FWaaS that can rep",
+        "y cannot be “attacked”. Compliance out of the box. Why don't you have a look at Cato Networks? I'll let other folks that love &amp; hate Fortinet take jabs. Lots of frustrat",
+        "port.catonetworks.com/hc/en-us/articles/6075279966621-Bypassing-the-Cato-Cloud) Cato Networks depicts simple and sophisticated. It checks just about all the boxes and it's a",
+        "ntly planning our transition from MPLS to SD-WAN / SASE. At the moment, we have Cato on the desk and also Meraki + Cisco Secure connect.\n\nIs anyone here who knows b"
+      ]
+    },
+    "vmware": {
+      "count": 15,
+      "sentiment": [
+        "very_negative",
+        "very_positive"
+      ],
+      "contexts": [
+        "d analytics) are suffering from growing pains.  \n\n\nWe wanted to test VeloCloud (VMware) and Aryaka but C-suite got impatient. If you can wait and shop elsewhere, do i",
+        "Technical support effectiveness Just wondering what your evaluation of VMware technical support?\n\nMy experience has been problematic.\n\nIs solution provided i",
+        "uct value?\n\nIt would interesting to hear others thoughts on these points. \n\nThe VMware sales guys always present each as better than sex and now tell you can live wit"
+      ]
+    },
+    "checkpoint": {
+      "count": 5,
+      "sentiment": [
+        "very_positive",
+        "very_positive"
+      ],
+      "contexts": [
+        "t. Loved their demo. +1 for P81, excellent support and easy to manage. You mean Checkpoint. Yes I do lol We elected to leave ZScaler when it came time for renewal and we",
+        "solid. I love Juniper but would not deploy it for this use case over PA or FGT. Checkpoint is fine but i feel like its like a worse version of either PA or FGT and again",
+        "either PA or FGT and again would not deploy it unless i had to. For firewalls? Checkpoint is going down rather than up. Cisco's FTD is still not good. Juniper isn't a co"
+      ]
+    }
+  },
+  "topKeywords": [
+    {
+      "keyword": "you",
+      "count": 232
+    },
+    {
+      "keyword": "they",
+      "count": 144
+    },
+    {
+      "keyword": "it's",
+      "count": 47
+    },
+    {
+      "keyword": "them",
+      "count": 45
+    },
+    {
+      "keyword": "cloudflare",
+      "count": 39
+    },
+    {
+      "keyword": "cato",
+      "count": 33
+    },
+    {
+      "keyword": "cisco",
+      "count": 29
+    },
+    {
+      "keyword": "i've",
+      "count": 23
+    },
+    {
+      "keyword": "support",
+      "count": 22
+    },
+    {
+      "keyword": "it’s",
+      "count": 21
+    },
+    {
+      "keyword": "zscaler",
+      "count": 19
+    },
+    {
+      "keyword": "fortinet",
+      "count": 13
+    },
+    {
+      "keyword": "aryaka",
+      "count": 11
+    },
+    {
+      "keyword": "traffic",
+      "count": 10
+    },
+    {
+      "keyword": "google",
+      "count": 9
+    },
+    {
+      "keyword": "all",
+      "count": 8
+    },
+    {
+      "keyword": "sdwan",
+      "count": 8
+    },
+    {
+      "keyword": "something",
+      "count": 8
+    },
+    {
+      "keyword": "anything",
+      "count": 7
+    },
+    {
+      "keyword": "gui",
+      "count": 7
+    }
+  ],
+  "insights": [
+    {
+      "type": "brand_visibility",
+      "title": "Cato Brand Visibility in Actual Discussions",
+      "description": "Cato mentioned 89 times out of 338 total brand mentions (26.3%)",
+      "priority": "low"
+    },
+    {
+      "type": "sentiment_trend",
+      "title": "Discussion Sentiment Analysis",
+      "description": "Average sentiment: 62.86 (very_positive overall)",
+      "priority": "medium"
+    },
+    {
+      "type": "competitive_analysis",
+      "title": "Competitive Landscape in Discussions",
+      "description": "Most mentioned competitor: fortinet (61 mentions)",
+      "priority": "medium"
+    }
+  ],
+  "recommendations": [
+    {
+      "type": "competitive_positioning",
+      "priority": "medium",
+      "title": "Address Competitive Discussions",
+      "description": "fortinet leads mentions with 61 references",
+      "actions": [
+        "Monitor discussions where competitors are mentioned",
+        "Provide alternative perspectives in competitive threads",
+        "Share technical comparisons highlighting Cato advantages",
+        "Build relationships in communities where competitors are active"
+      ]
+    }
+  ]
+}

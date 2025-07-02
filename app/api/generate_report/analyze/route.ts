@@ -19,6 +19,7 @@ const YES_NO_REGEX = /^\s*(Yes|No)\s*$/i;
 const RANKING_REGEX = /(?:#+|\*\*)?\s*Forced Ranking.*?\n+([\s\S]*?)(?=(?:\n{1,}(?:#+|\*\*|$)|\n{2,}|$))/i; // Flexible header and end condition
 const RANK_ITEM_REGEX = /^\s*(?:\d+\.|##\s*\d+\.)\s*(?:\*\*(.*?)\*\*(?::|\s*-|\s|$)|(.+?)(?::|\s*-|\s|$))/gm; // Handle numbered or prose items
 const PROSE_COMPANY_REGEX = new RegExp(`\\b(${COMPETITORS.concat(MENTIONED_COMPANY).map(c => c.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')).join('|')})(?::|\\b)`, 'gi'); // Match company names in prose
+const SENTIMENTS_REGEX = /###SENTIMENTS:\s*([0-1](?:\.\d+)?)/i; // Match sentiment score
 
 export async function POST(req: Request) {
     try {
@@ -42,6 +43,21 @@ export async function POST(req: Request) {
                 competitors_list: COMPETITORS,
                 answer_engine: 'searchgpt',
             };
+
+            // Analyze sentiment score
+            const sentimentMatch = result.response_text.match(SENTIMENTS_REGEX);
+            if (sentimentMatch) {
+                const sentimentScore = parseFloat(sentimentMatch[1]);
+                if (!isNaN(sentimentScore) && sentimentScore >= 0 && sentimentScore <= 1) {
+                    result.sentiment_score = sentimentScore;
+                } else {
+                    console.warn(`Invalid sentiment score found: ${sentimentMatch[1]}`);
+                    result.sentiment_score = null; // Reset to null if invalid
+                }
+            } else {
+                console.warn('No sentiment score found in response_text');
+                result.sentiment_score = null; // Reset to null if not found
+            }
 
             // Analyze response_text for Yes/No answers
             const yesNoMatch = result.response_text.match(YES_NO_REGEX);

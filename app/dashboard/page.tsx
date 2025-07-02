@@ -109,7 +109,7 @@ export default function Dashboard() {
       .map(([word, { freq, sentiment }]) => ({
         word,
         freq,
-        sentiment: sentiment.length > 0 ? (sentiment.reduce((a, b) => a + b, 0) / sentiment.length).toFixed(2) : '',
+        sentiment: sentiment.length > 0 ? (sentiment.reduce((a, b) => a + b, 0) / sentiment.length).toFixed(2) : 'N/A',
       }))
       .sort((a, b) => b.freq - a.freq)
       .slice(0, 20);
@@ -445,9 +445,9 @@ export default function Dashboard() {
                       <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Sentiment
                       </th>
-                      {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                         Change
-                      </th> */}
+                      </th>
                     </tr>
                   </thead>
                   <tbody className="bg-white divide-y divide-gray-200">
@@ -458,10 +458,10 @@ export default function Dashboard() {
                         <td className="px-6 py-4 whitespace-nowrap">
                           <div className="flex items-center">
                             <div className={`h-2 w-16 rounded-full ${index % 3 === 0 ? 'bg-green-500' : index % 3 === 1 ? 'bg-yellow-500' : 'bg-red-500'}`}></div>
-                            <span className="ml-2 text-sm text-gray-500">{''}</span>
+                            <span className="ml-2 text-sm text-gray-500">{word.sentiment}</span>
                           </div>
                         </td>
-                        {/* <td className="px-6 py-4 whitespace-nowrap">
+                        <td className="px-6 py-4 whitespace-nowrap">
                           <div className={`flex items-center ${index % 2 === 0 ? 'text-green-600' : 'text-red-600'}`}>
                             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
@@ -470,7 +470,7 @@ export default function Dashboard() {
                             </svg>
                             <span>{}%</span>
                           </div>
-                        </td> */}
+                        </td>
                       </tr>
                     ))}
                   </tbody>

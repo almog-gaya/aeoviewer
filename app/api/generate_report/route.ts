@@ -1,9 +1,8 @@
-// ... existing code ...
 import { OpenAIProvider } from '@/lib/OpenAIProvider';
 import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import fs from 'fs/promises';
-import { NextResponse } from 'next/server'; 
+import { NextResponse } from 'next/server';
 
 export async function POST(req: Request) {
     try {
@@ -19,12 +18,10 @@ export async function POST(req: Request) {
 
         const llmProvider = new OpenAIProvider(process.env.OPENAI_API_KEY!);
 
-        // Batch process inputs
-        const results: PromptResult[] = [];
-        for (const input of inputs) {
-            const result = await llmProvider.generateCompletion(input);
-            results.push(result);
-        }
+        // Process inputs concurrently using Promise.all
+        const results: PromptResult[] = await Promise.all(
+            inputs.map(input => llmProvider.generateCompletion(input))
+        );
 
         // Write to output file
         await fs.writeFile(
@@ -40,4 +37,4 @@ export async function POST(req: Request) {
             { status: 500 }
         );
     }
-} 
+}

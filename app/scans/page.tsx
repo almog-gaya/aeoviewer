@@ -172,172 +172,168 @@ export default function ScansPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navigation />
-
-      <main className="flex-grow p-6">
-        <div className="max-w-7xl mx-auto">
-          {/* Header and search */}
-          <div className="mb-6">
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between">
-              <div>
-                <h1 className="text-2xl font-bold text-gray-900 mb-1">Scan History</h1>
-                <p className="text-sm text-gray-500">View and analyze your previous AI scan results</p>
-              </div>
-              <div className="mt-4 md:mt-0 flex items-center">
-                <div className="relative mr-4">
-                  <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                    <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                      <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
-                    </svg>
-                  </div>
-                  <input
-                    type="text"
-                    className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
-                    placeholder="Search scans"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
-                  />
-                </div>
-                <Link
-                  href="/prompt-builder"
-                  className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-                >
-                  New Scan
-                </Link>
-              </div>
-            </div>
+    <main className="flex-grow p-6">
+    <div className="max-w-7xl mx-auto">
+      {/* Header and search */}
+      <div className="mb-6">
+        <div className="flex flex-col md:flex-row md:items-center md:justify-between">
+          <div>
+            <h1 className="text-2xl font-bold text-gray-900 mb-1">Scan History</h1>
+            <p className="text-sm text-gray-500">View and analyze your previous AI scan results</p>
           </div>
-
-          {/* Scan table */}
-          <div className="bg-white shadow-md rounded-lg overflow-hidden">
-            {loading ? (
-              <div className="p-12 text-center">
-                <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
-                <p className="mt-4 text-gray-600">Loading scans...</p>
+          <div className="mt-4 md:mt-0 flex items-center">
+            <div className="relative mr-4">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <svg className="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                  <path fillRule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clipRule="evenodd"></path>
+                </svg>
               </div>
-            ) : (
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-200">
-                  <thead className="bg-gray-50">
-                    <tr>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('date')}
-                      >
-                        <div className="flex items-center">
-                          Date {getSortIcon('date')}
-                        </div>
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Prompt
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        AI Engines
-                      </th>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('brandMentions')}
-                      >
-                        <div className="flex items-center">
-                          Brand Mentions {getSortIcon('brandMentions')}
-                        </div>
-                      </th>
-                      <th 
-                        scope="col" 
-                        className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
-                        onClick={() => handleSort('visibility')}
-                      >
-                        <div className="flex items-center">
-                          Visibility {getSortIcon('visibility')}
-                        </div>
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Sentiment
-                      </th>
-                      <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="bg-white divide-y divide-gray-200">
-                    {filteredScans.length > 0 ? (
-                      filteredScans.map((scan) => (
-                        <tr key={scan.id} className="hover:bg-gray-50">
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {scan.date}
-                          </td>
-                          <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">
-                            {scan.prompt}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                            <div className="flex flex-wrap gap-1">
-                              {scan.engines.map((engine, idx) => (
-                                <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
-                                  {engine}
-                                </span>
-                              ))}
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {scan.brandMentions}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
-                            {scan.visibility}
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm">
-                            <span 
-                              className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
-                                scan.sentiment === 'Positive' ? 'bg-green-100 text-green-800' : 
-                                scan.sentiment === 'Negative' ? 'bg-red-100 text-red-800' :
-                                'bg-gray-100 text-gray-800'
-                              }`}
-                            >
-                              {scan.sentiment}
-                            </span>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
-                            <Link href={`/scans/detail?id=${scan.id}`} className="text-blue-600 hover:text-blue-800 px-2">
-                              View
-                            </Link>
-                            <button className="text-gray-600 hover:text-gray-800 px-2">
-                              Export
-                            </button>
-                          </td>
-                        </tr>
-                      ))
-                    ) : (
-                      <tr>
-                        <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
-                          {searchTerm ? (
-                            <>
-                              <p className="text-lg font-medium">No results found</p>
-                              <p className="text-sm">Try adjusting your search term</p>
-                            </>
-                          ) : (
-                            <>
-                              <p className="text-lg font-medium">No scans yet</p>
-                              <p className="text-sm mb-4">Create your first scan to get started</p>
-                              <Link
-                                href="/prompt-builder"
-                                className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
-                              >
-                                Create Scan
-                              </Link>
-                            </>
-                          )}
-                        </td>
-                      </tr>
-                    )}
-                  </tbody>
-                </table>
-              </div>
-            )}
+              <input
+                type="text"
+                className="focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md"
+                placeholder="Search scans"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+              />
+            </div>
+            <Link
+              href="/prompt-builder"
+              className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+            >
+              New Scan
+            </Link>
           </div>
         </div>
-      </main>
+      </div>
+
+      {/* Scan table */}
+      <div className="bg-white shadow-md rounded-lg overflow-hidden">
+        {loading ? (
+          <div className="p-12 text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-600 mx-auto"></div>
+            <p className="mt-4 text-gray-600">Loading scans...</p>
+          </div>
+        ) : (
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-gray-200">
+              <thead className="bg-gray-50">
+                <tr>
+                  <th 
+                    scope="col" 
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                    onClick={() => handleSort('date')}
+                  >
+                    <div className="flex items-center">
+                      Date {getSortIcon('date')}
+                    </div>
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Prompt
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    AI Engines
+                  </th>
+                  <th 
+                    scope="col" 
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                    onClick={() => handleSort('brandMentions')}
+                  >
+                    <div className="flex items-center">
+                      Brand Mentions {getSortIcon('brandMentions')}
+                    </div>
+                  </th>
+                  <th 
+                    scope="col" 
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                    onClick={() => handleSort('visibility')}
+                  >
+                    <div className="flex items-center">
+                      Visibility {getSortIcon('visibility')}
+                    </div>
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Sentiment
+                  </th>
+                  <th scope="col" className="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider">
+                    Actions
+                  </th>
+                </tr>
+              </thead>
+              <tbody className="bg-white divide-y divide-gray-200">
+                {filteredScans.length > 0 ? (
+                  filteredScans.map((scan) => (
+                    <tr key={scan.id} className="hover:bg-gray-50">
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {scan.date}
+                      </td>
+                      <td className="px-6 py-4 text-sm text-gray-900 max-w-xs truncate">
+                        {scan.prompt}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <div className="flex flex-wrap gap-1">
+                          {scan.engines.map((engine, idx) => (
+                            <span key={idx} className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-800">
+                              {engine}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {scan.brandMentions}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
+                        {scan.visibility}
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm">
+                        <span 
+                          className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
+                            scan.sentiment === 'Positive' ? 'bg-green-100 text-green-800' : 
+                            scan.sentiment === 'Negative' ? 'bg-red-100 text-red-800' :
+                            'bg-gray-100 text-gray-800'
+                          }`}
+                        >
+                          {scan.sentiment}
+                        </span>
+                      </td>
+                      <td className="px-6 py-4 whitespace-nowrap text-sm text-center">
+                        <Link href={`/scans/detail?id=${scan.id}`} className="text-blue-600 hover:text-blue-800 px-2">
+                          View
+                        </Link>
+                        <button className="text-gray-600 hover:text-gray-800 px-2">
+                          Export
+                        </button>
+                      </td>
+                    </tr>
+                  ))
+                ) : (
+                  <tr>
+                    <td colSpan={7} className="px-6 py-12 text-center text-gray-500">
+                      {searchTerm ? (
+                        <>
+                          <p className="text-lg font-medium">No results found</p>
+                          <p className="text-sm">Try adjusting your search term</p>
+                        </>
+                      ) : (
+                        <>
+                          <p className="text-lg font-medium">No scans yet</p>
+                          <p className="text-sm mb-4">Create your first scan to get started</p>
+                          <Link
+                            href="/prompt-builder"
+                            className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700"
+                          >
+                            Create Scan
+                          </Link>
+                        </>
+                      )}
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </div>
     </div>
+  </main>
   );
 } 

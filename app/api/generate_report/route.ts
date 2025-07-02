@@ -1,4 +1,4 @@
-import { OpenAIProvider } from '@/lib/OpenAIProvider';
+import { llmProvider } from '@/lib/OpenAIProvider';
 import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import fs from 'fs/promises';
@@ -16,11 +16,9 @@ export async function POST(req: Request) {
             );
         }
 
-        const llmProvider = new OpenAIProvider(process.env.OPENAI_API_KEY!);
-
         // Process inputs concurrently using Promise.all
         const results: PromptResult[] = await Promise.all(
-            inputs.map(input => llmProvider.generateCompletion(input))
+            inputs.map(input => llmProvider.generateResponseText(input))
         );
 
         // Write to output file

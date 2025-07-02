@@ -1,4 +1,3 @@
-import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';

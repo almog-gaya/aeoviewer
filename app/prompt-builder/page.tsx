@@ -1,9 +1,7 @@
 'use client';
 
 import { useState, FormEvent } from 'react';
-import Link from "next/link";
 import { useRouter } from 'next/navigation';
-import Navigation from "@/components/Navigation";
 
 export default function PromptBuilderPage() {
   const router = useRouter();
@@ -96,10 +94,7 @@ export default function PromptBuilderPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navigation />
-
-      <main className="flex-grow">
+    <main className="flex-grow">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="mb-8">
             <h2 className="text-2xl font-bold text-gray-900 mb-2">Create New Scan</h2>
@@ -266,7 +261,6 @@ export default function PromptBuilderPage() {
           </div>
         </div>
       </main>
-    </div>
   );
 }
 

@@ -38,3 +38,7 @@ firebase-debug.*.log
 
 # VSCode
 .vscode/
+
+# ignore envs
+.env
+.env.*

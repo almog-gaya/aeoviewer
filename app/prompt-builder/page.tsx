@@ -185,6 +185,12 @@ export default function PromptBuilderPage() {
                       checked={formData.ai_engines.includes('perplexity')}
                       onChange={handleCheckboxChange}
                     />
+                    <EngineCheckbox 
+                      id="grok" 
+                      label="Grok" 
+                      checked={formData.ai_engines.includes('grok')}
+                      onChange={handleCheckboxChange}
+                    />
                   </div>
                 </div>
 

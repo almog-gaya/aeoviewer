@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test:engines": "node scripts/test-multi-engines.js",
     "emulator": "node scripts/start-emulator.js",
     "init-firebase": "node scripts/init-firebase.js",
     "deploy:functions": "node scripts/deploy-functions.js",
@@ -14,6 +15,8 @@
     "deploy": "firebase deploy"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^0.24.3",
+    "@google/generative-ai": "^0.15.0",
     "@heroicons/react": "^2.0.18",
     "compromise": "^14.14.4",
     "firebase": "^10.7.1",

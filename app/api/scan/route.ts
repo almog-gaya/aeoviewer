@@ -1,5 +1,7 @@
 import { NextResponse } from 'next/server';
-import { functions, httpsCallable } from '@/lib/firebase-server';
+import { getProvider, mapEngineIdToEnum, getEngineDisplayName, isEngineAvailable } from '@/lib/providers';
+import { CompanyProfile } from '@/types/CompanyProfile';
+import { InsightQuery } from '@/types/InsightQuery';
 
 export async function POST(req: Request) {
   try {
@@ -13,24 +15,91 @@ export async function POST(req: Request) {
         { status: 400 }
       );
     }
-    
-    // Use server-side Firebase functions
-    const processScan = httpsCallable(functions, 'processScan');
-    
-    // Use a temporary user ID since we're not implementing auth
-    const userId = 'temp-user-' + Math.random().toString(36).substring(2, 15);
-    
-    const result = await processScan({
-      userId,
+
+    // Create a mock company profile for the scan
+    const companyProfile: CompanyProfile = {
+      name: brand,
+      companyWebsite: '', // Not provided in scan
+    };
+
+    // Create the query for each engine
+    const query: InsightQuery = {
+      query_text: `What are the best ${keywords} tools for a ${persona}? Please compare features, pricing, and benefits, focusing on ${brand} and its competitors like ${competitors.join(', ')}.`,
+      buyer_persona: persona,
+      buying_journey_stage: 'evaluation', // Default stage for scans
+    };
+
+    // Process each engine in parallel
+    const responses = await Promise.allSettled(
+      engines.map(async (engineId: string) => {
+        try {
+          const engine = mapEngineIdToEnum(engineId);
+          
+          // Check if engine is available
+          if (!isEngineAvailable(engine)) {
+            throw new Error(`Engine ${engineId} is not available - missing API key`);
+          }
+
+          const provider = getProvider(engine);
+          const result = await provider.generateResponseText(query, companyProfile);
+          
+          // Analyze the response
+          const brandMentions = analyzeBrandMentions(result.response_text, brand);
+          const competitorAnalysis = analyzeCompetitors(result.response_text, competitors);
+          
+          return {
+            engineName: getEngineDisplayName(engine),
+            response: result.response_text,
+            brandMentions,
+            competitors: competitorAnalysis,
+            timestamp: new Date().toISOString(),
+          };
+        } catch (error) {
+          console.error(`Error with engine ${engineId}:`, error);
+          // Return a fallback response instead of failing completely
+          return {
+            engineName: getEngineDisplayName(mapEngineIdToEnum(engineId)),
+            response: `Error: Unable to generate response from ${engineId}. ${error instanceof Error ? error.message : 'Unknown error'}`,
+            brandMentions: { count: 0, positions: [], sentiment: 'neutral' as const },
+            competitors: competitors.map((comp: string) => ({ name: comp, count: 0, sentiment: 'neutral' as const })),
+            timestamp: new Date().toISOString(),
+            error: true,
+          };
+        }
+      })
+    );
+
+    // Extract successful responses and errors
+    const processedResponses = responses.map((result, index) => {
+      if (result.status === 'fulfilled') {
+        return result.value;
+      } else {
+        console.error(`Failed to process engine ${engines[index]}:`, result.reason);
+        return {
+          engineName: getEngineDisplayName(mapEngineIdToEnum(engines[index])),
+          response: `Error: Failed to generate response from ${engines[index]}`,
+          brandMentions: { count: 0, positions: [], sentiment: 'neutral' as const },
+          competitors: competitors.map((comp: string) => ({ name: comp, count: 0, sentiment: 'neutral' as const })),
+          timestamp: new Date().toISOString(),
+          error: true,
+        };
+      }
+    });
+
+    // Generate scan summary
+    const scanData = {
+      id: 'scan-' + Math.random().toString(36).substring(2, 15),
       brand,
       competitors,
       keywords,
       persona,
-      engines
-    });
+      engines,
+      responses: processedResponses,
+      timestamp: new Date().toISOString(),
+      summary: generateScanSummary(processedResponses, brand),
+    };
     
-    // Return the complete scan data
-    return NextResponse.json(result.data);
+    return NextResponse.json(scanData);
   } catch (error) {
     console.error('Error processing scan:', error);
     return NextResponse.json(
@@ -41,6 +110,29 @@ export async function POST(req: Request) {
 }
 
 // Helper functions
+function generateScanSummary(responses: any[], brand: string) {
+  const totalResponses = responses.length;
+  const successfulResponses = responses.filter(r => !r.error).length;
+  const totalBrandMentions = responses.reduce((sum, r) => sum + (r.brandMentions?.count || 0), 0);
+  const averageBrandMentions = totalBrandMentions / totalResponses;
+  
+  // Calculate sentiment distribution
+  const sentiments = responses.map(r => r.brandMentions?.sentiment || 'neutral');
+  const sentimentCounts = sentiments.reduce((acc, sentiment) => {
+    acc[sentiment] = (acc[sentiment] || 0) + 1;
+    return acc;
+  }, {} as Record<string, number>);
+
+  return {
+    totalResponses,
+    successfulResponses,
+    totalBrandMentions,
+    averageBrandMentions: Math.round(averageBrandMentions * 100) / 100,
+    sentimentDistribution: sentimentCounts,
+    brandVisibilityScore: Math.round((totalBrandMentions / totalResponses) * 100),
+  };
+}
+
 function getEngineName(engineId: string): string {
   const engineMap: Record<string, string> = {
     'gpt4': 'ChatGPT (GPT-4)',

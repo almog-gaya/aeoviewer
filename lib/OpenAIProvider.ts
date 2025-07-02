@@ -4,7 +4,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import OpenAI from 'openai';
 interface LLMProvider {
-    generateResponseText(input: InsightQuery): Promise<PromptResult>;
+    generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult>;
 }
 
 class OpenAIProvider implements LLMProvider {
@@ -13,7 +13,7 @@ class OpenAIProvider implements LLMProvider {
         this.openai = new OpenAI({ apiKey });
     }
 
-    async generateResponseText(input: InsightQuery): Promise<PromptResult> {
+    async generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult> {
         const systemPrompt = prompt.getResponseTextSystemPrompt(input.buying_journey_stage, input.buyer_persona ?? 'null')
         const completion = await this.openai.chat.completions.create({
             model: 'gpt-4o-mini',
@@ -27,6 +27,8 @@ class OpenAIProvider implements LLMProvider {
         const responseText = completion.choices?.[0]?.message?.content || '';
 
         return {
+             ...company,
+             company_name: company.name,
             query_text: input.query_text,
             response_text: responseText,
             buyer_persona: input.buyer_persona || undefined,

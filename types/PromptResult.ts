@@ -1,4 +1,5 @@
 export interface PromptResult {
+    company_name: string;
     query_text: string;
     response_text: string;
     buyer_persona?: string;

@@ -13,24 +13,9 @@ import {
   Legend
 } from 'recharts';
 import { COMPETITORS } from '../api/generate_report/analyze/route';
+import { PromptResult } from '@/types/PromptResult';
  
-
-// Define the Prompt type based on prompts.json structure
-type Prompt = {
-  query_text: string;
-  response_text: string;
-  buyer_persona?: string;
-  buying_journey_stage?: string;
-  solution_analysis?: any;
-  ranking_position?: number | null;
-  sentiment_score?: number | null;
-  recommended?: boolean;
-  rank_list?: string;
-  answer_engine?: string;
-  company_mentioned?: boolean;
-  mentioned_companies?: string[];
-  competitors_list?: string[];
-};
+ 
 
 // LLMs to show in the chart and metrics
 const LLM_ENGINES = [
@@ -60,7 +45,7 @@ export default function Dashboard() {
   const [chartMode, setChartMode] = useState('Brand Visibility');
   const [autoScale, setAutoScale] = useState(true);
 
-  const [prompts, setPrompts] = useState<Prompt[]>([]);
+  const [prompts, setPrompts] = useState<PromptResult[]>([]);
   const [chartData, setChartData] = useState<any[]>([]);
   const [words, setWords] = useState<any[]>([]);
   const [competitorStats, setCompetitorStats] = useState<any[]>([]);
@@ -82,6 +67,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     if (prompts.length === 0) return;
+    console.log(`[prompts]: ${JSON.stringify(prompts)}`)
     // For each LLM, calculate percent of total responses
     const total = prompts.length;
     const entry: any = { name: 'All Data' };
@@ -116,7 +102,8 @@ export default function Dashboard() {
     setWords(wordArr);
 
     // --- Competitor Stats ---
-    const compStatsArr = COMPETITOR_NAMES.map((comp) => {
+    const companyNames = prompts[0].competitors_list || [];
+    const compStatsArr = companyNames.map((comp) => {
       const compPrompts = prompts.filter((p) => {
         // Check if competitor is mentioned in any relevant field
         const inMentioned = (p.mentioned_companies || []).includes(comp);
@@ -154,7 +141,7 @@ export default function Dashboard() {
       visibility: '0.0',
       visibilityChange: '0.0',
     };  
-    const filtered = prompts.filter((p: Prompt) =>
+    const filtered = prompts.filter((p: PromptResult) =>
       stageKeywords.some((keyword: string) =>
         {
           const isInclude = (p.buying_journey_stage || '').toLowerCase().includes(keyword); 
@@ -165,9 +152,9 @@ export default function Dashboard() {
     
     return {
       questions: filtered.length,
-      responses: filtered.filter((p: Prompt) => p.response_text && p.response_text.trim() !== '').length,
+      responses: filtered.filter((p: PromptResult) => p.response_text && p.response_text.trim() !== '').length,
       visibility: filtered.length > 0
-        ? (filtered.filter((p: Prompt) => p.ranking_position !== null && p.ranking_position !== undefined).length / filtered.length * 100).toFixed(1)
+        ? (filtered.filter((p: PromptResult) => p.ranking_position !== null && p.ranking_position !== undefined).length / filtered.length * 100).toFixed(1)
         : '0.0',
       visibilityChange: '0.0', // Placeholder, as change is not in data
     };
@@ -179,10 +166,10 @@ export default function Dashboard() {
   const topicAnalysisMetrics = getMetricsByStage(['topic', 'problem']);
   // Key Insights: use all prompts for now
   const keyInsightsMetrics = {
-    terms: Array.from(new Set(prompts.flatMap((p: Prompt) => (p.query_text || '').split(' ')))).length,
-    responses: prompts.filter((p: Prompt) => p.response_text && p.response_text.trim() !== '').length,
+    terms: Array.from(new Set(prompts.flatMap((p: PromptResult) => (p.query_text || '').split(' ')))).length,
+    responses: prompts.filter((p: PromptResult) => p.response_text && p.response_text.trim() !== '').length,
     visibility: prompts.length > 0
-      ? (prompts.filter((p: Prompt) => p.ranking_position !== null && p.ranking_position !== undefined).length / prompts.length * 100).toFixed(1)
+      ? (prompts.filter((p: PromptResult) => p.ranking_position !== null && p.ranking_position !== undefined).length / prompts.length * 100).toFixed(1)
       : '0.0',
     visibilityChange: '0.0', // Placeholder
   };

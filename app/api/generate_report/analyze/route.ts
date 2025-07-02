@@ -1,3 +1,4 @@
+import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
@@ -17,8 +18,9 @@ export const COMPETITORS = [
 const YES_NO_REGEX = /^\s*(Yes|No)\s*$/i;
 const RANKING_REGEX = /(?:#+|\*\*)?\s*Forced Ranking.*?\n+([\s\S]*?)(?=(?:\n{1,}(?:#+|\*\*|$)|\n{2,}|$))/i; // Flexible header and end condition
 const RANK_ITEM_REGEX = /^\s*(?:\d+\.|##\s*\d+\.)\s*(?:\*\*(.*?)\*\*(?::|\s*-|\s|$)|(.+?)(?::|\s*-|\s|$))/gm; // Handle numbered or prose items
-const PROSE_COMPANY_REGEX = new RegExp(`\\b(${COMPETITORS.concat(MENTIONED_COMPANY).map(c => c.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')).join('|')})(?::|\\b)`, 'gi'); // Match company names in prose
+// const PROSE_COMPANY_REGEX  = new RegExp(`\\b(${COMPETITORS.concat(MENTIONED_COMPANY).map(c => c.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')).join('|')})(?::|\\b)`, 'gi'); // Match company names in prose
 const SENTIMENTS_REGEX = /###SENTIMENTS:\s*([0-1](?:\.\d+)?)/i; // Match sentiment score
+
 
 export async function POST(req: Request) {
     try {
@@ -28,6 +30,7 @@ export async function POST(req: Request) {
         // Process each item in the JSON array
         const results: PromptResult[] = data.map((item) => {
             const result: PromptResult = {
+                company_name: item.company_name ?? '',
                 query_text: item.query_text ?? '',
                 response_text: item.response_text ?? '',
                 buyer_persona: item.buyer_persona ?? null,
@@ -39,7 +42,7 @@ export async function POST(req: Request) {
                 rank_list: item.rank_list ?? '',
                 ranking_position: item.ranking_position ?? null,
                 solution_analysis: item.solution_analysis ?? null,
-                competitors_list: COMPETITORS,
+                competitors_list: item.competitors_list ?? item.competitors ?? [],
                 answer_engine: 'searchgpt',
             };
 
@@ -96,7 +99,8 @@ export async function POST(req: Request) {
             if (rankItems.length === 0) {
                 const uniqueCompanies = new Set<string>();
                 let companyMatch;
-                while ((companyMatch = PROSE_COMPANY_REGEX.exec(result.response_text)) !== null) {
+                const proseCompanyReg = new RegExp(`\\b(${(result.competitors_list || []).concat(result.company_name).map(c => c.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')).join('|')})(?::|\\b)`, 'gi');
+                while ((companyMatch = proseCompanyReg.exec(result.response_text)) !== null) {
                     const company = companyMatch[1];
                     if (!uniqueCompanies.has(company)) {
                         uniqueCompanies.add(company);

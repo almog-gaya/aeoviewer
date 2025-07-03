@@ -6,7 +6,7 @@ export const llmProviders = {
     claude: getProvider(LLMEngine.CLAUDE),
     gemini: getProvider(LLMEngine.GEMINI),
     perplexity: getProvider(LLMEngine.PERPLEXITY),
-    grok: getProvider(LLMEngine.GROK),
+    // grok: getProvider(LLMEngine.GROK),
 };
 
 // Export types for backward compatibility

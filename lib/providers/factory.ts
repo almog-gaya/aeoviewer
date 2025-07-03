@@ -98,7 +98,7 @@ export class LLMFactory implements LLMProviderFactory {
             [LLMEngine.OPENAI]: 'OPENAI_API_KEY',
             [LLMEngine.CLAUDE]: 'ANTHROPIC_API_KEY',
             [LLMEngine.GEMINI]: 'GEMINI_API_KEY',
-            [LLMEngine.PERPLEXITY]: 'PERPLEXITY_API_KEY',
+            [LLMEngine.PERPLEXITY]: 'PERPLEX_API_KEY',
             [LLMEngine.GROK]: 'GROK_API_KEY',
         };
 

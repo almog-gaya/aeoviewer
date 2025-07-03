@@ -1,4 +1,4 @@
-import { llmProvider } from '@/lib/OpenAIProvider';
+import {  llmProviders } from '@/lib/OpenAIProvider';
 import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
@@ -20,8 +20,9 @@ export async function POST(req: Request) {
 
         // Process inputs concurrently using Promise.all
         const results: PromptResult[] = await Promise.all(
-            inputs.map(input => llmProvider.generateResponseText(input, company))
+            inputs.map(input => llmProviders.searchgpt.generateResponseText(input, company))
         );
+    
 
         // Write to output file
         await fs.writeFile(

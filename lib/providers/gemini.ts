@@ -31,6 +31,7 @@ export class GeminiProvider extends BaseLLMProvider {
 
             return {
                 ...company,
+                answer_engine: 'gemini',
                 company_name: company.name,
                 query_text: input.query_text,
                 response_text: responseText,

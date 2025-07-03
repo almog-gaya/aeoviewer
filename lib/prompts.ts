@@ -1,5 +1,5 @@
 import { CompanyProfile } from "@/types/CompanyProfile";
-const TOTAL_QUERY_COUNT = 10;
+const TOTAL_QUERY_COUNT = process.env.TOTAL_QUERY_GENERATION_LIMIT ? parseInt(process.env.TOTAL_QUERY_GENERATION_LIMIT) : 10;
 
 export const getResponseTextSystemPrompt = (buyerJourneyStage: string, buyerPersona?: string) => `
 You are an expert analyst tasked with responding to a query provided in the user input, with the context of its buying_journey_stage (${buyerJourneyStage}) and buyer_persona (${buyerPersona}). The query may relate to any industry or providers. Deliver accurate, concise responses strictly aligned with the query’s intent, buying journey stage, and requested format, using only reliable data.

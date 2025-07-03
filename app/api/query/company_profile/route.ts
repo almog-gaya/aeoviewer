@@ -1,7 +1,7 @@
 
 
 import { NextResponse } from 'next/server';
-import { llmProvider } from '@/lib/OpenAIProvider';
+import { llmProviders } from '@/lib/OpenAIProvider';
 import fs from 'fs/promises';
 import { CompanyProfile } from '@/types/CompanyProfile';
 
@@ -17,7 +17,7 @@ export async function POST(req: Request) {
             );
         } 
 
-        const responseText = await llmProvider.generateCompanyProfile(companyProfile.name!, companyProfile.companyWebsite!);
+        const responseText = await llmProviders.searchgpt.generateCompanyProfile(companyProfile.name!, companyProfile.companyWebsite!);
 
 
         await fs.writeFile(

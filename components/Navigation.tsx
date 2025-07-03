@@ -17,7 +17,7 @@ const Navigation: React.FC<NavigationProps> = ({ showLogo = true }) => {
   return (
     <div className="flex">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-gray-200 min-h-screen fixed">
+      <div className="sidebar w-64 bg-white border-r border-gray-200 min-h-screen fixed">
         <div className="p-4">
           <div className="flex items-center mb-6">
             <svg className="w-6 h-6 mr-2 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">

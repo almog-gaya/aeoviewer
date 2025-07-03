@@ -1,0 +1,22 @@
+{
+  "name": "Batch",
+  "description": "Batch is a premium CBD wellness brand that offers a range of high-quality hemp-derived products aimed at enhancing well-being and promoting relaxation.",
+  "industry": "Wellness and Supplements",
+  "competitors": [
+    "Charlotte’s Web",
+    "Medterra",
+    "Joy Organics",
+    "CBDistillery",
+    "Green Roads",
+    "NuLeaf Naturals",
+    "Veritas Farms"
+  ],
+  "targetAudience": "Health-conscious consumers, wellness enthusiasts, retail buyers in the health sector",
+  "products": "Full-spectrum CBD gummies, THC gummies, CBD tinctures, topicals, pet CBD products",
+  "benefits": "Stress relief, improved sleep quality, enhanced focus, relaxation, and overall wellness",
+  "values": "Transparency, sustainability, quality sourcing, third-party testing, and customer education",
+  "regulatoryContext": "U.S. hemp regulations, FDA compliance for supplements, state-specific cannabis laws",
+  "personas": "\"Health-Conscious Consumer\", \"Wellness Retail Buyer\", \"Pet Owner Seeking Natural Remedies\", \"Health and Wellness Advocate\"",
+  "geoSpecificity": "Primarily U.S.-based with a focus on quality American-grown hemp",
+  "companyWebsite": "https://hellobatch.com/"
+}

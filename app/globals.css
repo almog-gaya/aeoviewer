@@ -82,6 +82,10 @@ body.report-mode [data-dashboard-root] {
     justify-content: center !important;
 }
 
+body.report-mode main {
+    padding-left: 0 !important;
+}
+
 @media print {
     @page {
         size: auto;

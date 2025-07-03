@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer';
 
 const PDF_PAGE_WIDTH = 1200; // px
+const PDF_PAGE_HEIGHT = 2511; // px
 const DASHBOARD_WIDTH = 1000; // px
 
 export async function POST(req: Request) {
@@ -21,35 +22,27 @@ export async function POST(req: Request) {
     // Wait for .report-mode to be present on body
     await page.waitForFunction(() => document.body.classList.contains('report-mode'));
 
-    // Force body to use flexbox and center dashboard
+    // Set dashboard root width to 1000px and center it, remove flex/centering from body
     await page.evaluate((dashboardWidth) => {
-      document.body.style.margin = '0';
-      document.body.style.padding = '0';
-      document.body.style.width = '100%';
-      document.body.style.display = 'flex';
-      document.body.style.justifyContent = 'center';
       const dashboard = document.querySelector('[data-dashboard-root]');
       if (dashboard) {
         const el = dashboard as HTMLElement;
         el.style.width = dashboardWidth + 'px';
-        el.style.margin = '0';
-        el.style.paddingLeft = '0';
-        el.style.marginLeft = '0';
-        el.style.display = 'flex';
-        el.style.flexDirection = 'column';
-        el.style.alignItems = 'center';
+        el.style.margin = '0 auto';
+        el.style.display = '';
+        el.style.flexDirection = '';
+        el.style.alignItems = '';
       }
+      document.body.style.margin = '0';
+      document.body.style.padding = '0';
+      document.body.style.width = '100%';
+      document.body.style.display = '';
+      document.body.style.justifyContent = '';
     }, DASHBOARD_WIDTH);
-
-    // Get the scrollHeight of the dashboard content
-    const dashboardHeight = await page.evaluate(() => {
-      const dashboard = document.querySelector('[data-dashboard-root]');
-      return dashboard ? dashboard.scrollHeight : document.body.scrollHeight;
-    });
-
+  
     const pdfBuffer = await page.pdf({
       width: PDF_PAGE_WIDTH + 'px',
-      height: (dashboardHeight - 1350) + 'px',
+      height: PDF_PAGE_HEIGHT + 'px',
       printBackground: true,
       margin: { top: '0px', bottom: '0px', left: '0px', right: '0px' },
       pageRanges: '1',

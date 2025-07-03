@@ -43,7 +43,7 @@ export async function POST(req: Request) {
                 ranking_position: item.ranking_position ?? null,
                 solution_analysis: item.solution_analysis ?? null,
                 competitors_list: item.competitors_list ?? item.competitors ?? [],
-                answer_engine: 'searchgpt',
+                answer_engine: item.answer_engine!,
             };
 
             // Analyze sentiment score

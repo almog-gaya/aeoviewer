@@ -34,4 +34,77 @@ body.report-mode .report-only {
 }
 
 
+/* Hide sidebar and make dashboard full width in report mode */
+
+body.report-mode .sidebar,
+body.report-mode nav,
+body.report-mode .Navigation,
+body.report-mode .main-sidebar {
+    display: none !important;
+}
+
+body.report-mode .max-w-7xl,
+body.report-mode .dashboard-content,
+body.report-mode main,
+body.report-mode .bg-gray-50,
+body.report-mode .bg-gray-100 {
+    max-width: 100% !important;
+    margin: 0 !important;
+    background: #fff !important;
+}
+
+body.report-mode {
+    background: #fff !important;
+    font-size: 1.1rem;
+    color: #222;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.report-mode [data-dashboard-root] {
+    margin: 0 auto !important;
+    padding: 0 !important;
+    background: #fff !important;
+    box-shadow: none !important;
+    display: block;
+}
+
+body.report-mode [data-dashboard-root]>* {
+    margin-left: auto !important;
+    margin-right: auto !important;
+}
+
+body.report-mode .max-w-7xl {
+    max-width: 100% !important;
+}
+
+body.report-mode [data-dashboard-root] {
+    justify-content: center !important;
+}
+
+@media print {
+    @page {
+        size: auto;
+        margin: 0;
+    }
+    body.report-mode {
+        background: #fff !important;
+        color: #111;
+        break-after: avoid;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+    }
+    body.report-mode .sidebar {
+        display: none !important;
+    }
+    body.report-mode main,
+    body.report-mode .max-width-7xl,
+    body.report-mode .dashboard-content {
+        max-width: 100% !important;
+        margin: 0 !important;
+        background: #fff !important;
+    }
+}
+
+
 /* PDF Generation END */

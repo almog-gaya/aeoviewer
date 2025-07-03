@@ -50,6 +50,7 @@ export class PerplexityProvider extends BaseLLMProvider {
 
             return {
                 ...company,
+                answer_engine: 'perplexity',
                 company_name: company.name,
                 query_text: input.query_text,
                 response_text: responseText,

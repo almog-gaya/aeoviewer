@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from "next/link";
 import {
   LineChart,
   Line,
@@ -14,8 +13,6 @@ import {
 } from 'recharts';
 import { COMPETITORS } from '../api/generate_report/analyze/route';
 import { PromptResult } from '@/types/PromptResult';
-import html2canvas from 'html2canvas';
-import jsPDF from 'jspdf';
 
 // LLMs to show in the chart and metrics
 const LLM_ENGINES = [
@@ -50,6 +47,7 @@ export default function Dashboard() {
   const [words, setWords] = useState<any[]>([]);
   const [competitorStats, setCompetitorStats] = useState<any[]>([]);
   const [reportDate, setReportDate] = useState('');
+  const [isReportMode, setIsReportMode] = useState(false);
 
   const dashboardRef = React.useRef<HTMLDivElement>(null);
 
@@ -138,6 +136,18 @@ export default function Dashboard() {
     setReportDate(new Date().toLocaleDateString());
   }, []);
 
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('report') === '1') {
+        setIsReportMode(true);
+        document.body.classList.add('report-mode');
+      } else {
+        document.body.classList.remove('report-mode');
+      }
+    }
+  }, []);
+
   // Helper functions to compute metrics from prompts
   function getMetricsByStage(stageKeywords: string[]) {
     if(!prompts || prompts.length === 0 || !stageKeywords || stageKeywords.length === 0) return {
@@ -183,42 +193,110 @@ export default function Dashboard() {
   const companyMentionedCount = prompts.filter((p: any) => p.company_mentioned).length;
   const companyMentionedPercent = prompts.length > 0 ? ((companyMentionedCount / prompts.length) * 100).toFixed(1) : '0.0';
 
-  // Handler for generating PDF report
+  // --- Top Competitor Visibility ---
+  // Assume your company is 'HelloBatch' (case-insensitive match)
+  const allCompetitors = Array.from(new Set(prompts.flatMap((p: PromptResult) => (p.competitors_list || []))));
+  let topCompetitorVisibility = '0.0';
+  if (allCompetitors.length > 0 && prompts.length > 0) {
+    let max = 0;
+    allCompetitors.forEach(comp => {
+      // Count how many prompts mention this competitor
+      const count = prompts.filter(p => (p.mentioned_companies || []).map(c => c.toLowerCase()).includes(comp.toLowerCase())).length;
+      const percent = count / prompts.length * 100;
+      if (percent > max) max = percent;
+    });
+    topCompetitorVisibility = max.toFixed(1);
+  }
+
+  // --- Average Ranking ---
+  // For HelloBatch only
+  const helloBatchRanks = prompts.filter(p => p.company_mentioned && typeof p.ranking_position === 'number').map(p => p.ranking_position as number);
+  let averageRankingText = 'N/A';
+  if (helloBatchRanks.length > 0) {
+    const avg = helloBatchRanks.reduce((a, b) => a + b, 0) / helloBatchRanks.length;
+    // Find number of competitors for 'of N'
+    const nCompetitors = allCompetitors.length > 0 ? allCompetitors.length : 1;
+    averageRankingText = `${avg.toFixed(1)}${nCompetitors ? ` of ${nCompetitors}` : ''}`;
+  }
+
+  // --- Competitive Gap ---
+  // Your visibility minus top competitor visibility
+  const competitiveGap = (parseFloat(companyMentionedPercent) - parseFloat(topCompetitorVisibility)).toFixed(1);
+
+  // --- Top Performing Competitors ---
+  // For each competitor, calculate their visibility and mentions, then sort and take top 3
+  const topCompetitors = allCompetitors
+    .map((name) => {
+      const mentions = prompts.filter(p => (p.mentioned_companies || []).map(c => c.toLowerCase()).includes(name.toLowerCase())).length;
+      const visibility = prompts.length > 0 ? (mentions / prompts.length * 100).toFixed(1) : '0.0';
+      return { name, mentions, visibility };
+    })
+    .sort((a, b) => parseFloat(b.visibility) - parseFloat(a.visibility))
+    .slice(0, 3);
+
+  // --- Main Company Name ---
+  const mainCompanyName = prompts.length > 0 ? prompts[0].company_name : 'Company';
+
+  // --- Journey Stage Analysis Data ---
+  const journeyStages = Array.from(new Set(prompts.map(p => p.buying_journey_stage).filter((s): s is string => !!s && typeof s === 'string')));
+  const journeyStageStats = journeyStages.map(stage => {
+    const stagePrompts = prompts.filter(p => (p.buying_journey_stage || '').toLowerCase() === stage.toLowerCase());
+    const total = stagePrompts.length;
+    const percent = prompts.length > 0 ? (total / prompts.length * 100).toFixed(1) : '0.0';
+    const companyMentions = stagePrompts.filter(p => p.company_mentioned).length;
+    return { stage, total, percent, companyMentions };
+  });
+
+  // --- Competitive Ranking Table Data ---
+  const rankingTableData = allCompetitors.map((name: string) => {
+    const compPrompts = prompts.filter(p => (p.mentioned_companies || []).map((c: string) => c.toLowerCase()).includes(name.toLowerCase()));
+    const visibility = prompts.length > 0 ? (compPrompts.length / prompts.length * 100).toFixed(1) : '0.0';
+    const avgPosition = compPrompts.length > 0 ? (compPrompts.reduce((sum, p) => sum + (typeof p.ranking_position === 'number' ? p.ranking_position : 0), 0) / compPrompts.length).toFixed(1) : 'N/A';
+    return { name, visibility, avgPosition };
+  }).sort((a, b) => parseFloat(b.visibility) - parseFloat(a.visibility));
+
+  // Handler for generating PDF report using Puppeteer API
   const handleGenerateReport = async () => {
-    document.body.classList.add('report-mode');
-    if (!dashboardRef.current) return;
-    // Use html2canvas to capture the dashboard
-    const canvas = await html2canvas(dashboardRef.current, { useCORS: true, scale: 2 });
-    document.body.classList.remove('report-mode');
-    const imgData = canvas.toDataURL('image/png');
-    // Dynamically set PDF size to match canvas aspect ratio
-    // 1 px = 0.75 pt (1 pt = 1.333 px)
-    const pdfWidth = canvas.width * 0.75;
-    const pdfHeight = canvas.height * 0.75;
-    const pdf = new jsPDF({ orientation: pdfWidth > pdfHeight ? 'landscape' : 'portrait', unit: 'pt', format: [pdfWidth, pdfHeight] });
-    pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save('dashboard-report.pdf');
+    // Get the current dashboard URL
+    const url = window.location.origin + window.location.pathname;
+    const response = await fetch('/api/generate_report/puppeteer-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url }),
+    });
+    if (!response.ok) {
+      alert('Failed to generate PDF');
+      return;
+    }
+    const blob = await response.blob();
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'dashboard-report.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Main content area - needs to be positioned to the right of the sidebar */}
+    <div data-dashboard-root className={isReportMode ? 'min-h-screen bg-white report-mode' : 'min-h-screen bg-gray-100'}>
       <div>
-        <main className="p-6 bg-gray-50">
-          <div className="max-w-7xl mx-auto">
+        <main className={isReportMode ? 'p-6 bg-white' : 'p-6 bg-gray-50'}>
+          <div className={isReportMode ? '' : 'max-w-7xl mx-auto'}>
             {/* PDF-only header */}
             <div className="report-only mb-4 text-right text-xs text-gray-500">
               Generated on: {reportDate}
             </div>
             {/* Top bar with Generate Report button */}
-            <div className="flex justify-end mb-4 report-hide">
-              <button
-                onClick={handleGenerateReport}
-                className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 shadow"
-              >
-                Generate Report
-              </button>
-            </div>
+            {!isReportMode && (
+              <div className="flex justify-end mb-4 report-hide">
+                <button
+                  onClick={handleGenerateReport}
+                  className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700 shadow"
+                >
+                  Generate Report
+                </button>
+              </div>
+            )}
             {/* Wrap dashboard content in a ref for snapshot */}
             <div ref={dashboardRef}>
               {/* Company Overview Section */}
@@ -235,9 +313,6 @@ export default function Dashboard() {
                       <option>Monthly</option>
                       <option>Quarterly</option>
                     </select>
-                    <div className="hidden report-mode:block text-sm font-medium text-gray-700 border border-gray-300 rounded-md py-2 pl-3 pr-10 bg-white" style={{position: 'absolute', top: 0, right: 0, minWidth: '100px'}}>
-                      {timeRange}
-                    </div>
                     <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 report-hide">
                       <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
@@ -245,205 +320,293 @@ export default function Dashboard() {
                     </div>
                   </div>
                 </div>
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                  {/* Total Queries */}
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2-2V7a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 002 2h6a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2a2 2 0 00-2-2H9z" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Total Queries</dt>
+                        <dd className="text-lg font-medium text-gray-900">{prompts.length}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  {/* Buyer Personas */}
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Buyer Personas</dt>
+                        <dd className="text-lg font-medium text-gray-900">{Array.from(new Set(prompts.map(p => p.buyer_persona).filter(Boolean))).length}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  {/* Competitors */}
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Competitors</dt>
+                        <dd className="text-lg font-medium text-gray-900">{Array.from(new Set(prompts.flatMap(p => (p.competitors_list || [])))).length}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  {/* Journey Stages */}
+                  <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Journey Stages</dt>
+                        <dd className="text-lg font-medium text-gray-900">{Array.from(new Set(prompts.map(p => p.buying_journey_stage).filter(Boolean))).length}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
-       
-        
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {/* Left side - Metrics */}
-                  <div className="space-y-6">
-                    {/* BUYING JOURNEY */}
-                    <div>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <h3 className="text-sm font-medium text-gray-500 uppercase">Buying Journey</h3>
-                        <div className="w-4 h-4 rounded-full bg-gray-100 flex items-center justify-center report-hide">
-                          <span className="text-xs text-gray-500">i</span>
-                        </div>
+              {/* Market Performance Overview */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                {/* Market Visibility */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 17V7m0 10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2h2a2 2 0 012 2m0 10a2 2 0 002 2h2a2 2 0 002-2M9 7a2 2 0 012-2h2a2 2 0 012 2m0 10V7m0 10a2 2 0 002 2h2a2 2 0 002-2V7a2 2 0 00-2-2h-2a2 2 0 00-2 2" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Market Visibility</dt>
+                        <dd className="text-lg font-medium text-gray-900">{companyMentionedPercent}%</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div className="mt-4 text-xs text-gray-500">vs. Top Competitor: {topCompetitorVisibility}%</div>
+                </div>
+                {/* Average Ranking */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Average Ranking</dt>
+                        <dd className="text-lg font-medium text-gray-900">{averageRankingText}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div className="mt-4 text-xs text-gray-500">Last place position</div>
+                </div>
+                {/* Total Mentions */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Total Mentions</dt>
+                        <dd className="text-lg font-medium text-gray-900">{companyMentionedCount}</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div className="mt-4 text-xs text-gray-500">Mention rate: {companyMentionedPercent}%</div>
+                </div>
+                {/* Competitive Gap */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <div className="flex items-center">
+                    <div className="flex-shrink-0">
+                      <svg className="h-8 w-8 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                      </svg>
+                    </div>
+                    <div className="ml-5 w-0 flex-1">
+                      <dl>
+                        <dt className="text-sm font-medium text-gray-500 truncate">Competitive Gap</dt>
+                        <dd className="text-lg font-medium text-gray-900">{competitiveGap}%</dd>
+                      </dl>
+                    </div>
+                  </div>
+                  <div className="mt-4 text-xs text-gray-500">Behind market leader</div>
+                </div>
+              </div>
+
+              {/* Market Visibility Breakdown */}
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                {/* HelloBatch Performance */}
+                <div className="lg:col-span-2 bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Market Visibility Breakdown</h3>
+                  <div className="bg-gray-50 border border-gray-200 rounded-lg p-4 mb-6">
+                    <div className="flex justify-between items-center mb-3">
+                      <h4 className="text-lg font-medium text-gray-900">{mainCompanyName} Performance</h4>
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                        {averageRankingText !== 'N/A' ? `Rank #${helloBatchRanks.length > 0 ? (Math.round(helloBatchRanks.reduce((a, b) => a + b, 0) / helloBatchRanks.length)) : 'N/A'} of ${allCompetitors.length}` : 'N/A'}
+                      </span>
+                    </div>
+                    <div className="grid grid-cols-3 gap-4 mb-4">
+                      <div className="text-center">
+                        <div className="text-lg font-semibold text-gray-900">{companyMentionedPercent}%</div>
+                        <div className="text-xs text-gray-500">Market Visibility</div>
                       </div>
-                      <div className="rounded-md border border-gray-200">
-                        <div className="grid grid-cols-3 divide-x divide-gray-200">
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Questions</div>
-                            <div className="text-2xl font-bold">{buyingJourneyMetrics.questions}</div>
-                          </div>
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Responses</div>
-                            <div className="text-2xl font-bold">{buyingJourneyMetrics.responses}</div>
-                          </div>
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Visibility</div>
-                            <div className="flex items-center">
-                              <div className="text-2xl font-bold text-red-500">{buyingJourneyMetrics.visibility}%</div>
-                              <div className="ml-2 flex items-center text-green-500 text-sm">
-                                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                  <path fillRule="evenodd" d="M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" clipRule="evenodd"></path>
-                                </svg>
-                                {buyingJourneyMetrics.visibilityChange}%
-                              </div>
-                            </div>
-                          </div>
-                        </div>
+                      <div className="text-center">
+                        <div className="text-lg font-semibold text-gray-900">{companyMentionedCount}</div>
+                        <div className="text-xs text-gray-500">Total Mentions</div>
+                      </div>
+                      <div className="text-center">
+                        <div className="text-lg font-semibold text-gray-900">{helloBatchRanks.length > 0 ? (helloBatchRanks.reduce((a, b) => a + b, 0) / helloBatchRanks.length).toFixed(1) : 'N/A'}</div>
+                        <div className="text-xs text-gray-500">Avg Position</div>
                       </div>
                     </div>
-
-                    {/* TOPIC ANALYSIS */}
-                    <div>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <h3 className="text-sm font-medium text-gray-500 uppercase">Topic Analysis</h3>
-                      </div>
-                      <div className="rounded-md border border-gray-200">
-                        <div className="grid grid-cols-3 divide-x divide-gray-200">
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Questions</div>
-                            <div className="text-2xl font-bold">{topicAnalysisMetrics.questions}</div>
-                          </div>
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Responses</div>
-                            <div className="text-2xl font-bold">{topicAnalysisMetrics.responses}</div>
-                          </div>
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Visibility</div>
-                            <div className="flex items-center">
-                              <div className="text-2xl font-bold text-red-500">{topicAnalysisMetrics.visibility}%</div>
-                              <div className="ml-2 flex items-center text-red-500 text-sm">
-                                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                  <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd"></path>
-                                </svg>
-                                {topicAnalysisMetrics.visibilityChange}%
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                    <div className="w-full bg-gray-200 rounded-full h-2 mb-2">
+                      <div className="bg-gray-400 h-2 rounded-full" style={{ width: `${companyMentionedPercent}%` }}></div>
                     </div>
-
-                    {/* INSIGHTS */}
-                    <div>
-                      <div className="flex items-center space-x-2 mb-2">
-                        <h3 className="text-sm font-medium text-gray-500 uppercase">Key Insights</h3>
-                      </div>
-                      <div className="rounded-md border border-gray-200">
-                        <div className="grid grid-cols-3 divide-x divide-gray-200">
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Terms</div>
-                            <div className="text-2xl font-bold">{keyInsightsMetrics.terms}</div>
+                    <p className="text-xs text-gray-500">Appears in only {companyMentionedCount} out of {prompts.length} queries analyzed</p>
+                  </div>
+                  {/* Market Leaders */}
+                  <div className="space-y-3">
+                    <h4 className="font-semibold text-gray-900">Top Performing Competitors</h4>
+                    <div className="space-y-3">
+                      {topCompetitors.map((comp: { name: string; mentions: number; visibility: string }, idx: number) => (
+                        <div key={comp.name} className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                          <div className="flex items-center">
+                            <span className="inline-flex items-center justify-center w-6 h-6 bg-blue-500 text-white text-xs font-bold rounded-full mr-3">{idx + 1}</span>
+                            <span className="font-medium text-gray-900">{comp.name}</span>
                           </div>
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Responses</div>
-                            <div className="text-2xl font-bold">{keyInsightsMetrics.responses}</div>
-                          </div>
-                          <div className="p-4">
-                            <div className="text-sm text-gray-500">Visibility</div>
-                            <div className="flex items-center">
-                              <div className="text-2xl font-bold text-red-500">{keyInsightsMetrics.visibility}%</div>
-                              <div className="ml-2 flex items-center text-red-500 text-sm">
-                                <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                  <path fillRule="evenodd" d="M14.707 12.707a1 1 0 01-1.414 0L10 9.414l-3.293 3.293a1 1 0 01-1.414-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 010 1.414z" clipRule="evenodd"></path>
-                                </svg>
-                                {keyInsightsMetrics.visibilityChange}%
-                              </div>
-                            </div>
+                          <div className="text-right">
+                            <div className="text-lg font-semibold text-gray-900">{comp.visibility}%</div>
+                            <div className="text-xs text-gray-500">{comp.mentions} mentions</div>
                           </div>
                         </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Placeholder for right column (e.g., Journey Stage Analysis) */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Journey Stage Analysis</h3>
+                  <div className="space-y-4">
+                    {journeyStageStats.map((stat, idx) => (
+                      <div key={stat.stage}>
+                        <div className="flex justify-between items-center mb-2">
+                          <span className="text-sm font-medium text-gray-700">{stat.stage}</span>
+                          <span className="text-lg font-semibold text-gray-900">{stat.total}</span>
+                        </div>
+                        <div className="w-full bg-gray-200 rounded-full h-2 mb-1">
+                          <div className="bg-gray-400 h-2 rounded-full" style={{ width: `${stat.percent}%` }}></div>
+                        </div>
+                        <div className="text-xs text-gray-500">{stat.percent}% of all queries • {mainCompanyName}: {stat.companyMentions} mentions</div>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-gray-200">
+                    <div className="text-center">
+                      <div className="text-2xl font-semibold text-gray-900">{companyMentionedPercent}%</div>
+                      <div className="text-sm text-gray-600">{mainCompanyName} Recommendation Rate</div>
+                      <div className="text-xs text-gray-500 mt-1">{companyMentionedCount} out of {prompts.length} queries resulted in recommendations</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Advanced Analytics Grid */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                {/* Market Keyword Analysis */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Market Keyword Analysis</h3>
+                  <div className="space-y-4">
+                    {words.slice(0, 6).map((word: any, idx: number) => {
+                      const percent = words.length > 0 ? ((word.freq / words[0].freq) * 100).toFixed(1) : '0.0';
+                      return (
+                        <div key={word.word} className="flex items-center justify-between p-3 bg-gray-50 border border-gray-200 rounded-lg">
+                          <div className="flex items-center">
+                            <div className="text-lg font-semibold text-gray-900 mr-4">{word.freq}</div>
+                            <div>
+                              <div className="font-medium text-gray-900">{word.word}</div>
+                              <div className="text-xs text-gray-500">{percent}% of total keywords</div>
+                            </div>
+                          </div>
+                          <div className="w-16 bg-gray-200 rounded-full h-2">
+                            <div className="bg-gray-400 h-2 rounded-full" style={{ width: `${percent}%` }}></div>
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-gray-200">
+                    <div className="grid grid-cols-3 gap-4 text-center">
+                      <div>
+                        <div className="text-lg font-bold text-gray-900">{words.reduce((sum: number, w: any) => sum + w.freq, 0)}</div>
+                        <div className="text-xs text-gray-500">Total Keywords</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-gray-900">{words.length}</div>
+                        <div className="text-xs text-gray-500">Unique Terms</div>
+                      </div>
+                      <div>
+                        <div className="text-lg font-bold text-gray-900">{prompts.length > 0 ? (words.reduce((sum: number, w: any) => sum + w.freq, 0) / prompts.length).toFixed(1) : '0.0'}</div>
+                        <div className="text-xs text-gray-500">Avg per Query</div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Right side - Chart */}
-                  <div className="bg-white rounded-md border border-gray-200">
-                    <div className="p-4 border-b border-gray-200">
-                      <div className="flex justify-between items-center">
-                        <div className="flex items-center space-x-2">
-                          <h3 className="text-sm font-medium text-gray-500 uppercase">Buying Journey</h3>
-                          <div className="w-4 h-4 rounded-full bg-gray-100 flex items-center justify-center report-hide">
-                            <span className="text-xs text-gray-500">i</span>
+                </div>
+                {/* AI Engine Performance Breakdown */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">AI Engine Performance Breakdown</h3>
+                  <div className="space-y-4">
+                    {LLM_ENGINES.map((engine) => {
+                      const enginePrompts = prompts.filter(p => (p.answer_engine || '').toLowerCase() === engine.key);
+                      const mentions = enginePrompts.filter(p => p.company_mentioned).length;
+                      const percent = enginePrompts.length > 0 ? (mentions / enginePrompts.length * 100).toFixed(1) : '0.0';
+                      return (
+                        <div key={engine.key} className="p-4 bg-gray-50 rounded-lg">
+                          <div className="flex justify-between items-center mb-3">
+                            <span className="font-medium text-gray-900">{engine.label}</span>
+                            <span className="text-sm text-gray-600">{enginePrompts.length} queries</span>
+                          </div>
+                          <div className="flex justify-between items-center mb-2">
+                            <span className="text-xs text-gray-500">{mainCompanyName} Mentions</span>
+                            <span className="text-lg font-semibold text-gray-900">{mentions}</span>
+                          </div>
+                          <div className="w-full bg-gray-200 rounded-full h-2">
+                            <div className="bg-gray-400 h-2 rounded-full" style={{ width: `${percent}%` }}></div>
                           </div>
                         </div>
-                        <div className="flex space-x-2">
-                          <button 
-                            className={`px-3 py-1 text-sm rounded-md report-hide ${chartMode === 'Brand Visibility' ? 'bg-gray-100' : 'text-gray-500'}`}
-                            onClick={() => setChartMode('Brand Visibility')}
-                          >
-                            Brand Visibility
-                          </button>
-                          <button 
-                            className={`px-3 py-1 text-sm rounded-md report-hide ${chartMode === 'Avg. Position' ? 'bg-gray-100' : 'text-gray-500'}`}
-                            onClick={() => setChartMode('Avg. Position')}
-                          >
-                            Avg. Position
-                          </button>
-                          <button 
-                            className={`px-3 py-1 text-sm rounded-md report-hide ${chartMode === 'Avg. Sentiment' ? 'bg-gray-100' : 'text-gray-500'}`}
-                            onClick={() => setChartMode('Avg. Sentiment')}
-                          >
-                            Avg. Sentiment
-                          </button>
-                          <button 
-                            className={`px-3 py-1 text-sm rounded-md report-hide ${chartMode === 'Feature Score' ? 'bg-gray-100' : 'text-gray-500'}`}
-                            onClick={() => setChartMode('Feature Score')}
-                          >
-                            Feature Score
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-4">
-                      <div className="text-sm text-gray-500 mb-2">Percentage of responses that mention your company</div>
-                      <div className="flex justify-end mb-4">
-                        <div className="flex items-center">
-                          <span className="text-sm text-gray-500 mr-2">Full Range</span>
-                          <label className="inline-flex items-center cursor-pointer report-hide">
-                            <input 
-                              type="checkbox" 
-                              className="sr-only peer" 
-                              checked={autoScale}
-                              onChange={() => setAutoScale(!autoScale)}
-                            />
-                            <div className="relative w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-600"></div>
-                          </label>
-                        </div>
-                      </div>
-
-                      {/* Recharts Graph */}
-                      <div className="h-64">
-                        <ResponsiveContainer width="100%" height="100%">
-                          <LineChart
-                            data={chartData}
-                            margin={{
-                              top: 5,
-                              right: 30,
-                              left: 20,
-                              bottom: 5,
-                            }}
-                          >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" tick={{ fontSize: 10 }} />
-                            <YAxis
-                              domain={autoScale ? ['auto', 'auto'] : [0, 100]}
-                              tickFormatter={(tick) => `${tick}%`}
-                            />
-                            <Tooltip formatter={(value: any) => [`${value}%`, 'Visibility']} />
-                            {LLM_ENGINES.map(({ key, label, color }) => (
-                              <Line
-                                key={key}
-                                type="monotone"
-                                dataKey={key}
-                                name={label}
-                                stroke={color}
-                                strokeWidth={2}
-                                dot={{ r: 4 }}
-                              />
-                            ))}
-                            <Legend />
-                          </LineChart>
-                        </ResponsiveContainer>
-                      </div>
+                      );
+                    })}
+                  </div>
+                  <div className="mt-6 pt-4 border-t border-gray-200">
+                    <div className="text-center">
+                      <div className="text-2xl font-bold text-red-600">{companyMentionedPercent}%</div>
+                      <div className="text-sm text-gray-600">Overall AI Engine Visibility</div>
+                      <div className="text-xs text-gray-500 mt-1">{companyMentionedCount} mentions across {prompts.length} queries</div>
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Words Analysis */}
-              <div className="bg-white rounded-lg shadow p-6 mb-6">
+              {/* <div className="bg-white rounded-lg shadow p-6 mb-6">
                 <div className="flex justify-between items-center mb-6">
                   <h2 className="text-2xl font-semibold text-gray-900">Words Analysis</h2>
                   <button className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 report-hide">
@@ -495,63 +658,50 @@ export default function Dashboard() {
                     </tbody>
                   </table>
                 </div>
-              </div>
+              </div> */}
 
               {/* Competitor Analysis */}
-              <div className="bg-white rounded-lg shadow p-6">
+              <div className="bg-white rounded-lg shadow p-6 mb-6">
                 <div className="flex justify-between items-center mb-6">
-                  <h2 className="text-2xl font-semibold text-gray-900">Competitor Analysis</h2>
+                  <h2 className="text-2xl font-semibold text-gray-900">Competitive Ranking Analysis</h2>
                 </div>
-                
                 <div className="overflow-x-auto">
                   <table className="min-w-full divide-y divide-gray-200">
                     <thead className="bg-gray-50">
                       <tr>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Competitor
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Visibility
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Change
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Avg. Position
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Sentiment Score
-                        </th>
-                        <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                          Feature Score
-                        </th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rank</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Visibility %</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Avg Position</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
-                      {competitorStats.map((competitor, index) => (
-                        <tr key={index}>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{competitor.name}</td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{competitor.visibility}%</td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className={`flex items-center ${competitor.change > 0 ? 'text-green-600' : 'text-red-600'}`}>
-                              <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" 
-                                  d={competitor.change > 0 ? "M5 10l7-7m0 0l7 7m-7-7v18" : "M19 14l-7 7m0 0l-7-7m7 7V3"} 
-                                />
-                              </svg>
-                              <span>{Math.abs(competitor.change)}%</span>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{competitor.position}</td>
-                          <td className="px-6 py-4 whitespace-nowrap">
-                            <div className="flex items-center">
-                              <div className="h-2 w-16 rounded-full bg-gradient-to-r from-red-500 via-yellow-500 to-green-500"></div>
-                              <span className="ml-2 text-sm text-gray-500">{competitor.sentiment}</span>
-                            </div>
-                          </td>
-                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{competitor.feature}</td>
-                        </tr>
-                      ))}
+                      {rankingTableData.map((row: { name: string; visibility: string; avgPosition: string }, idx: number) => {
+                        // Status logic based on rank
+                        let status = '';
+                        let statusClass = '';
+                        if (idx === 0) { status = 'Leading'; statusClass = 'bg-green-100 text-green-800'; }
+                        else if (idx === 1) { status = 'Strong'; statusClass = 'bg-green-100 text-green-800'; }
+                        else if (idx === 2) { status = 'Competitive'; statusClass = 'bg-blue-100 text-blue-800'; }
+                        else if (idx === 3) { status = 'Competitive'; statusClass = 'bg-blue-100 text-blue-800'; }
+                        else if (idx === 4) { status = 'Moderate'; statusClass = 'bg-yellow-100 text-yellow-800'; }
+                        else if (idx === 5) { status = 'Moderate'; statusClass = 'bg-yellow-100 text-yellow-800'; }
+                        else if (idx === rankingTableData.length - 2) { status = 'Low'; statusClass = 'bg-orange-100 text-orange-800'; }
+                        else { status = 'Critical'; statusClass = 'bg-red-100 text-red-800'; }
+                        const isMain = row.name === mainCompanyName;
+                        return (
+                          <tr key={row.name} className={isMain ? 'bg-red-50' : idx % 2 === 1 ? 'bg-gray-50' : ''}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{idx + 1}</td>
+                            <td className={`px-6 py-4 whitespace-nowrap text-sm ${isMain ? 'font-bold text-red-700' : 'text-gray-900'}`}>{row.name}</td>
+                            <td className={`px-6 py-4 whitespace-nowrap text-sm ${isMain ? 'font-bold text-red-700' : 'text-gray-900'}`}>{row.visibility}%</td>
+                            <td className={`px-6 py-4 whitespace-nowrap text-sm ${isMain ? 'font-bold text-red-700' : 'text-gray-900'}`}>{row.avgPosition}</td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${statusClass}`}>{status}</span>
+                            </td>
+                          </tr>
+                        );
+                      })}
                     </tbody>
                   </table>
                 </div>
@@ -559,32 +709,6 @@ export default function Dashboard() {
             </div>
           </div>
         </main>
-      </div>
-    </div>
-  );
-}
-
-interface StatCardProps {
-  title: string;
-  value: string;
-  change: string;
-  positive: boolean;
-}
-
-function StatCard({ title, value, change, positive }: StatCardProps) {
-  return (
-    <div className="bg-white rounded-lg p-6 border border-gray-200">
-      <h3 className="text-lg font-medium mb-2">{title}</h3>
-      <div className="text-3xl font-bold mb-2">{value}</div>
-      <div className={`flex items-center text-sm ${positive ? 'text-green-500' : 'text-red-500'}`}>
-        <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-          <path fillRule="evenodd" d={positive 
-            ? "M5.293 9.707a1 1 0 010-1.414l4-4a1 1 0 011.414 0l4 4a1 1 0 01-1.414 1.414L11 7.414V15a1 1 0 11-2 0V7.414L6.707 9.707a1 1 0 01-1.414 0z" 
-            : "M14.707 10.293a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 111.414-1.414L9 12.586V5a1 1 0 012 0v7.586l2.293-2.293a1 1 0 011.414 0z"} 
-            clipRule="evenodd">
-          </path>
-        </svg>
-        {change}
       </div>
     </div>
   );

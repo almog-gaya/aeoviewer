@@ -1,0 +1,52 @@
+[
+  {
+    "query_text": "As a Health-Conscious Consumer in the U.S., can full-spectrum CBD gummies help with stress relief and relaxation? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Health-Conscious Consumer"
+  },
+  {
+    "query_text": "As a Wellness Retail Buyer, what are the benefits of offering pet CBD products in my store to health-conscious pet owners?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Wellness Retail Buyer"
+  },
+  {
+    "query_text": "As a Health and Wellness Advocate, I'm struggling with finding effective natural remedies for improved sleep quality. What solutions exist in the CBD industry?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": "Health and Wellness Advocate"
+  },
+  {
+    "query_text": "How do Charlotte’s Web, Medterra, Joy Organics, CBDistillery, Green Roads, NuLeaf Naturals, Veritas Farms, and Batch compare in terms of quality sourcing and third-party testing? Please provide a forced ranking from best to worst.",
+    "buying_journey_stage": "solution_comparison",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a Pet Owner Seeking Natural Remedies, what are the top-rated CBD tinctures for dogs according to Trustpilot and Reddit user reviews? Please rank them from best to worst.",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": "Pet Owner Seeking Natural Remedies"
+  },
+  {
+    "query_text": "How do I ensure compliance with U.S. hemp regulations and FDA guidelines for selling CBD products?",
+    "buying_journey_stage": "general",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a Health-Conscious Consumer, do THC gummies provide enhanced focus and relaxation benefits compared to full-spectrum CBD gummies? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Health-Conscious Consumer"
+  },
+  {
+    "query_text": "As a Wellness Retail Buyer, what educational resources are available for understanding the benefits of topicals in the CBD market?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Wellness Retail Buyer"
+  },
+  {
+    "query_text": "As a Health and Wellness Advocate, what are common misconceptions about CBD products that I should address for my audience?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": "Health and Wellness Advocate"
+  },
+  {
+    "query_text": "In terms of customer satisfaction and product effectiveness, how do Batch and its competitors rank according to consumer reviews?",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": null
+  }
+]

@@ -1,20 +1,37 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-rgb: 243, 244, 246;
+    --foreground-rgb: 0, 0, 0;
+    --background-rgb: 243, 244, 246;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-rgb: 10, 10, 10;
-  }
+     :root {
+        --foreground-rgb: 255, 255, 255;
+        --background-rgb: 10, 10, 10;
+    }
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background-color: rgb(var(--background-rgb));
+    color: rgb(var(--foreground-rgb));
+    background-color: rgb(var(--background-rgb));
 }
+
+
+/* For PDF generation */
+
+body.report-mode .report-hide {
+    display: none !important;
+}
+
+.report-only {
+    display: none !important;
+}
+
+body.report-mode .report-only {
+    display: block !important;
+}
+
+
+/* PDF Generation END */

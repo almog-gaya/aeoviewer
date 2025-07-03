@@ -1,11 +1,13 @@
 import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
+import { DialogueTurn } from '@/types/Planner';
 import { PromptResult } from '@/types/PromptResult';
 
 export interface LLMProvider {
     generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult>;
     generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile>;
     generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]>;
+    generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
 }
 
 export interface LLMConfig {
@@ -46,6 +48,7 @@ export abstract class BaseLLMProvider implements LLMProvider {
     abstract generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult>;
     abstract generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile>;
     abstract generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]>;
+    abstract generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
 
     protected handleError(error: any, operation: string): never {
         console.error(`Error in ${operation}:`, error);

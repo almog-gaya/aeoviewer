@@ -4,6 +4,7 @@ import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig } from './base';
+import { DialogueTurn } from '@/types/Planner';
 
 export class OpenAIProvider extends BaseLLMProvider {
     private openai: OpenAI;
@@ -99,6 +100,52 @@ export class OpenAIProvider extends BaseLLMProvider {
             return queries as InsightQuery[];
         } catch (error) {
             console.error('Error parsing generated queries JSON:', error);
+            return [];
+        }
+    }
+
+    async generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
+        try {
+            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
+            
+            const completion = await this.openai.chat.completions.create({
+                model: this.config.model || 'gpt-4o-mini',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: `Generate a plan for the company profile of ${companyProfile.name}` }
+                ],
+                max_tokens: this.config.maxTokens || 1024,
+                temperature: this.config.temperature || 0.7,
+            });
+            
+            const responseText = completion.choices?.[0]?.message?.content || '';
+            console.info(`Generated plan: ${responseText}`);
+            
+            const plan = this.parseJSONResponse(responseText, {});
+            return plan;
+        } catch (error) {
+            console.error('Error parsing generated plan JSON:', error);
+            return [];
+        }
+    }
+
+    async generateDialogue(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
+        try {
+            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
+            const completion = await this.openai.chat.completions.create({
+                model: this.config.model || 'gpt-4o-mini',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: `Generate a dialogue for the company profile of ${companyProfile.name}` }
+                ],
+                max_tokens: this.config.maxTokens || 1024,
+                temperature: this.config.temperature || 0.7,
+            });
+            const responseText = completion.choices?.[0]?.message?.content || '';
+            const dialogue = this.parseJSONResponse(responseText, []);
+            return dialogue as DialogueTurn[];
+        } catch (error) {
+            console.error('Error parsing generated dialogue JSON:', error);
             return [];
         }
     }

@@ -4,6 +4,7 @@ import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig } from './base';
+import { DialogueTurn } from '@/types/Planner';
 
 export class GeminiProvider extends BaseLLMProvider {
     private genAI: GoogleGenerativeAI;
@@ -88,6 +89,28 @@ export class GeminiProvider extends BaseLLMProvider {
             return queries as InsightQuery[];
         } catch (error) {
             console.error('Error parsing generated queries JSON:', error);
+            return [];
+        }
+    }
+
+    async generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
+        try {
+            const model = this.genAI.getGenerativeModel({ 
+                model: this.config.model || 'gemini-1.5-flash' 
+            });
+            
+            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
+            const fullPrompt = `${systemPrompt}\n\nUser: Generate a plan for the company profile of ${companyProfile.name}`;
+            
+            const result = await model.generateContent(fullPrompt);
+            const responseText = result.response.text() || '';
+                
+            console.info(`Generated plan: ${responseText}`);
+            
+            const plan = this.parseJSONResponse(responseText, {});
+            return plan;
+        } catch (error) {
+            console.error('Error parsing generated plan JSON:', error);
             return [];
         }
     }

@@ -4,6 +4,7 @@ import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig } from './base';
+import { DialogueTurn } from '@/types/Planner';
 
 export class ClaudeProvider extends BaseLLMProvider {
     private anthropic: Anthropic;
@@ -117,6 +118,38 @@ export class ClaudeProvider extends BaseLLMProvider {
             return queries as InsightQuery[];
         } catch (error) {
             console.error('Error parsing generated queries JSON:', error);
+            return [];
+        }
+    }
+
+    async generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
+        try {
+            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
+            
+            const message = await this.anthropic.messages.create({
+                model: this.config.model || 'claude-3-haiku-20240307',
+                max_tokens: this.config.maxTokens || 1024,
+                temperature: this.config.temperature || 0.7,
+                system: systemPrompt,
+                messages: [
+                    {
+                        role: 'user',
+                        content: `Generate a plan for the company profile of ${companyProfile.name}`
+                    }
+                ]
+            });
+            
+            const responseText = this.extractTextContent(message.content);
+                
+            const plan = this.parseJSONResponse(responseText, {
+                userName: 'default_user',
+                content: '',
+                company: companyProfile,
+            });
+            
+            return plan;
+        } catch (error) {
+            console.error('Error generating plan:', error);
             return [];
         }
     }

@@ -4,6 +4,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig } from './base';
 import Groq from 'groq-sdk';
+import { DialogueTurn } from '@/types/Planner';
 export class GrokProvider extends BaseLLMProvider {
     private client: Groq;
     
@@ -89,6 +90,29 @@ export class GrokProvider extends BaseLLMProvider {
             return queries as InsightQuery[];
         } catch (error) {
             console.error('Error parsing generated insight queries JSON:', error);
+            return [];
+        }
+    }
+
+    async generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
+        try {
+            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
+            
+            const completion = await this.client.chat.completions.create({
+                model: this.config.model || 'grok-3-mini',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: `Generate a plan for ${companyProfile.name}` }
+                ]
+            });
+
+            const responseText = completion.choices?.[0]?.message?.content || '';
+            console.info(`Generated plan: ${responseText}`);
+            
+            const plan = this.parseJSONResponse(responseText, {});
+            return plan;
+        } catch (error) {
+            console.error('Error parsing generated plan JSON:', error);
             return [];
         }
     }

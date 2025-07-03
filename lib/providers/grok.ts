@@ -3,36 +3,16 @@ import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig } from './base';
-
+import Groq from 'groq-sdk';
 export class GrokProvider extends BaseLLMProvider {
-    private readonly baseURL = 'https://api.x.ai/v1/chat/completions';
+    private client: Groq;
     
     constructor(config: LLMConfig) {
-        super(config);
-    }
-
-    private async makeRequest(messages: Array<{ role: string; content: string }>): Promise<string> {
-        const response = await fetch(this.baseURL, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${this.config.apiKey}`,
-            },
-            body: JSON.stringify({
-                model: this.config.model || 'grok-beta',
-                messages,
-                max_tokens: this.config.maxTokens || 512,
-                temperature: this.config.temperature || 0.7,
-            }),
+        super(config); 
+        this.client = new Groq({ 
+            apiKey: config.apiKey 
         });
-
-        if (!response.ok) {
-            throw new Error(`Grok API error: ${response.status} ${response.statusText}`);
-        }
-
-        const data = await response.json();
-        return data.choices?.[0]?.message?.content || '';
-    }
+    } 
 
     async generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult> {
         try {
@@ -41,12 +21,17 @@ export class GrokProvider extends BaseLLMProvider {
                 input.buyer_persona ?? 'null'
             );
             
-            const messages = [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: input.query_text }
-            ];
-            
-            const responseText = await this.makeRequest(messages);
+            const completion = await this.client.chat.completions.create({
+                model: this.config.model || 'grok-3-mini',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: input.query_text }
+                ],
+                max_tokens: this.config.maxTokens || 512,
+                temperature: this.config.temperature || 0.7,
+            });
+
+            const responseText = completion.choices?.[0]?.message?.content || '';
 
             return {
                 ...company,
@@ -66,25 +51,22 @@ export class GrokProvider extends BaseLLMProvider {
         try {
             const systemPrompt = prompt.generateCompanyProfilePrompt(companyName, companyWebsite);
             
-            const messages = [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: `Generate a company profile for ${companyName} with website ${companyWebsite}` }
-            ];
-            
-            const responseText = await this.makeRequest(messages);
-                
-            const profile = this.parseJSONResponse(responseText, {
-                name: companyName,
-                companyWebsite: companyWebsite,
+            const completion = await this.client.chat.completions.create({
+                model: this.config.model || 'grok-3-mini',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: `Generate a company profile for ${companyName} with website ${companyWebsite}` }
+                ]
             });
+
+            const responseText = completion.choices?.[0]?.message?.content || '';
+            console.info(`Generated company profile: ${responseText}`);
             
-            return profile;
+            const profile = this.parseJSONResponse(responseText, {});
+            return profile as CompanyProfile;
         } catch (error) {
-            console.error('Error generating company profile:', error);
-            return {
-                name: companyName,
-                companyWebsite: companyWebsite,
-            };
+            console.error('Error parsing generated company profile JSON:', error);
+            return {} as CompanyProfile;
         }
     }
 
@@ -92,19 +74,21 @@ export class GrokProvider extends BaseLLMProvider {
         try {
             const systemPrompt = prompt.generateQueriesSystemPrompt(companyProfile);
             
-            const messages = [
-                { role: 'system', content: systemPrompt },
-                { role: 'user', content: `Generate queries for the company profile of ${companyProfile.name}` }
-            ];
-            
-            const responseText = await this.makeRequest(messages);
-                
-            console.info(`Generated queries: ${responseText}`);
+            const completion = await this.client.chat.completions.create({
+                model: this.config.model || 'grok-3-mini',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: `Generate insight queries for ${companyProfile.name} with website ${companyProfile.companyWebsite}` }
+                ]
+            });
+
+            const responseText = completion.choices?.[0]?.message?.content || '';
+            console.info(`Generated insight queries: ${responseText}`);
             
             const queries = this.parseJSONResponse(responseText, []);
             return queries as InsightQuery[];
         } catch (error) {
-            console.error('Error parsing generated queries JSON:', error);
+            console.error('Error parsing generated insight queries JSON:', error);
             return [];
         }
     }

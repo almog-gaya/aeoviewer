@@ -17,7 +17,7 @@ export async function POST(req: Request) {
             );
         } 
 
-        const responseText = await llmProviders.searchgpt.generateQueries(companyProfile);
+        const responseText = await llmProviders.chatgpt.generateQueries(companyProfile);
 
 
         await fs.writeFile(

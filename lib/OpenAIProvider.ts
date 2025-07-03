@@ -2,10 +2,11 @@
 import { LLMEngine, getProvider } from './providers';
 
 export const llmProviders = {
-    searchgpt: getProvider(LLMEngine.OPENAI),
+    chatgpt: getProvider(LLMEngine.OPENAI),
     claude: getProvider(LLMEngine.CLAUDE),
     gemini: getProvider(LLMEngine.GEMINI),
     perplexity: getProvider(LLMEngine.PERPLEXITY),
+    // searchgpt: getProvider(LLMEngine.SEARCHGPT),
     // grok: getProvider(LLMEngine.GROK),
 };
 

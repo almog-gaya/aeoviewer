@@ -1,7 +1,6 @@
 import './globals.css';
 import { Inter } from 'next/font/google';
-import type { Metadata } from 'next';
-import { FirebaseProvider } from '@/lib/FirebaseContext';
+import type { Metadata } from 'next'; 
 import Navigation from "@/components/Navigation";
 
 const inter = Inter({ subsets: ['latin'] });
@@ -23,13 +22,11 @@ export default function RootLayout({
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
-      <body className={`${inter.className} bg-gray-100`}>
-        <FirebaseProvider>
+      <body className={`${inter.className} bg-gray-100`}> 
           <Navigation />
           <main className="pl-64">
             {children}
-          </main>
-        </FirebaseProvider>
+          </main> 
       </body>
     </html>
   );

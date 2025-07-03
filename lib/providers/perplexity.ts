@@ -2,13 +2,15 @@ import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
-import { BaseLLMProvider, LLMConfig } from './base';
+import { BaseLLMProvider, LLMConfig, TaskType } from './base';
+import { DialogueTurn } from '@/types/Planner';
 
 export class PerplexityProvider extends BaseLLMProvider {
     private readonly baseURL = 'https://api.perplexity.ai/chat/completions';
     
     constructor(config: LLMConfig) {
         super(config);
+        console.log(`Perplexity Provider initialized with ${this.getModelInfo()}`);
     }
 
     private async makeRequest(messages: Array<{ role: string; content: string }>): Promise<string> {
@@ -19,9 +21,9 @@ export class PerplexityProvider extends BaseLLMProvider {
                 'Authorization': `Bearer ${this.config.apiKey}`,
             },
             body: JSON.stringify({
-                model: this.config.model || 'llama-3.1-sonar-small-128k-online',
+                model: this.config.model || 'llama-3.1-sonar-large-128k-online',
                 messages,
-                max_tokens: this.config.maxTokens || 512,
+                max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
             }),
         });
@@ -36,6 +38,8 @@ export class PerplexityProvider extends BaseLLMProvider {
 
     async generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult> {
         try {
+            console.log(`Perplexity: Generating response text using ${this.getModelInfo()}`);
+            
             const systemPrompt = prompt.getResponseTextSystemPrompt(
                 input.buying_journey_stage, 
                 input.buyer_persona ?? 'null'
@@ -64,6 +68,8 @@ export class PerplexityProvider extends BaseLLMProvider {
 
     async generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile> {
         try {
+            console.log(`Perplexity: Generating company profile using ${this.getModelInfo()}`);
+            
             const systemPrompt = prompt.generateCompanyProfilePrompt(companyName, companyWebsite);
             
             const messages = [
@@ -90,6 +96,8 @@ export class PerplexityProvider extends BaseLLMProvider {
 
     async generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]> {
         try {
+            console.log(`Perplexity: Generating queries using ${this.getModelInfo()}`);
+            
             const systemPrompt = prompt.generateQueriesSystemPrompt(companyProfile);
             
             const messages = [
@@ -99,12 +107,35 @@ export class PerplexityProvider extends BaseLLMProvider {
             
             const responseText = await this.makeRequest(messages);
                 
-            console.info(`Generated queries: ${responseText}`);
+            console.info(`Generated queries using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
             
             const queries = this.parseJSONResponse(responseText, []);
             return queries as InsightQuery[];
         } catch (error) {
             console.error('Error parsing generated queries JSON:', error);
+            return [];
+        }
+    }
+
+    async generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
+        try {
+            console.log(`Perplexity: Generating plan using ${this.getModelInfo()}`);
+            
+            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
+            
+            const messages = [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: `Generate a plan for the company profile of ${companyProfile.name}` }
+            ];
+            
+            const responseText = await this.makeRequest(messages);
+                
+            console.info(`Generated plan using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
+            
+            const plan = this.parseJSONResponse(responseText, {});
+            return plan;
+        } catch (error) {
+            console.error('Error parsing generated plan JSON:', error);
             return [];
         }
     }

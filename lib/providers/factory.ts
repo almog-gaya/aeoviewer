@@ -5,6 +5,14 @@ import { GeminiProvider } from './gemini';
 import { PerplexityProvider } from './perplexity';
 import { GrokProvider } from './grok';
 
+export enum TaskType {
+    SCANNING = 'scanning',           // Fast, cost-effective models for basic scanning
+    ANALYSIS = 'analysis',           // Higher quality models for detailed analysis
+    PROFILE_GENERATION = 'profile',  // Best models for company profile generation
+    QUERY_GENERATION = 'query',      // Balanced models for query generation
+    RESPONSE_ANALYSIS = 'response'   // High-quality models for response analysis
+}
+
 export class LLMFactory implements LLMProviderFactory {
     private static instance: LLMFactory;
     private providers: Map<string, LLMProvider> = new Map();
@@ -18,14 +26,14 @@ export class LLMFactory implements LLMProviderFactory {
         return LLMFactory.instance;
     }
 
-    public getProvider(engine: LLMEngine, config?: LLMConfig): LLMProvider {
-        const cacheKey = `${engine}_${config?.apiKey?.substring(0, 8) || 'default'}`;
+    public getProvider(engine: LLMEngine, config?: LLMConfig, taskType?: TaskType): LLMProvider {
+        const cacheKey = `${engine}_${taskType || 'default'}_${config?.apiKey?.substring(0, 8) || 'default'}`;
         
         if (this.providers.has(cacheKey)) {
             return this.providers.get(cacheKey)!;
         }
 
-        const finalConfig = this.getConfigForEngine(engine, config);
+        const finalConfig = this.getConfigForEngine(engine, config, taskType);
         let provider: LLMProvider;
 
         switch (engine) {
@@ -52,32 +60,145 @@ export class LLMFactory implements LLMProviderFactory {
         return provider;
     }
 
-    private getConfigForEngine(engine: LLMEngine, userConfig?: LLMConfig): LLMConfig {
-        const defaultConfigs: Record<LLMEngine, Partial<LLMConfig>> = {
+    private getConfigForEngine(engine: LLMEngine, userConfig?: LLMConfig, taskType?: TaskType): LLMConfig {
+        const task = taskType || TaskType.SCANNING;
+        
+        // Task-specific model configurations
+        const taskConfigs: Record<LLMEngine, Record<TaskType, Partial<LLMConfig>>> = {
             [LLMEngine.OPENAI]: {
-                model: 'gpt-4o-mini',
-                maxTokens: 1024,
-                temperature: 0.7,
+                [TaskType.SCANNING]: {
+                    model: 'gpt-4o-mini',
+                    maxTokens: 1024,
+                    temperature: 0.7,
+                },
+                [TaskType.ANALYSIS]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.5,
+                },
+                [TaskType.PROFILE_GENERATION]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                },
+                [TaskType.QUERY_GENERATION]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.7,
+                },
+                [TaskType.RESPONSE_ANALYSIS]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                }
             },
             [LLMEngine.CLAUDE]: {
-                model: 'claude-3-haiku-20240307',
-                maxTokens: 1024,
-                temperature: 0.7,
+                [TaskType.SCANNING]: {
+                    model: 'claude-3-haiku-20240307',
+                    maxTokens: 1024,
+                    temperature: 0.7,
+                },
+                [TaskType.ANALYSIS]: {
+                    model: 'claude-3-5-sonnet-20241022',
+                    maxTokens: 2048,
+                    temperature: 0.5,
+                },
+                [TaskType.PROFILE_GENERATION]: {
+                    model: 'claude-3-5-sonnet-20241022',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                },
+                [TaskType.QUERY_GENERATION]: {
+                    model: 'claude-3-5-sonnet-20241022',
+                    maxTokens: 2048,
+                    temperature: 0.7,
+                },
+                [TaskType.RESPONSE_ANALYSIS]: {
+                    model: 'claude-3-5-sonnet-20241022',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                }
             },
             [LLMEngine.GEMINI]: {
-                model: 'gemini-1.5-flash',
-                maxTokens: 1024,
-                temperature: 0.7,
+                [TaskType.SCANNING]: {
+                    model: 'gemini-1.5-flash',
+                    maxTokens: 1024,
+                    temperature: 0.7,
+                },
+                [TaskType.ANALYSIS]: {
+                    model: 'gemini-1.5-pro',
+                    maxTokens: 2048,
+                    temperature: 0.5,
+                },
+                [TaskType.PROFILE_GENERATION]: {
+                    model: 'gemini-1.5-pro',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                },
+                [TaskType.QUERY_GENERATION]: {
+                    model: 'gemini-1.5-flash',
+                    maxTokens: 2048,
+                    temperature: 0.7,
+                },
+                [TaskType.RESPONSE_ANALYSIS]: {
+                    model: 'gemini-1.5-pro',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                }
             },
             [LLMEngine.PERPLEXITY]: {
-                model: 'llama-3.1-sonar-small-128k-online',
-                maxTokens: 1024,
-                temperature: 0.7,
+                [TaskType.SCANNING]: {
+                    model: 'llama-3.1-sonar-small-128k-online',
+                    maxTokens: 1024,
+                    temperature: 0.7,
+                },
+                [TaskType.ANALYSIS]: {
+                    model: 'llama-3.1-sonar-large-128k-online',
+                    maxTokens: 2048,
+                    temperature: 0.5,
+                },
+                [TaskType.PROFILE_GENERATION]: {
+                    model: 'llama-3.1-sonar-large-128k-online',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                },
+                [TaskType.QUERY_GENERATION]: {
+                    model: 'llama-3.1-sonar-small-128k-online',
+                    maxTokens: 2048,
+                    temperature: 0.7,
+                },
+                [TaskType.RESPONSE_ANALYSIS]: {
+                    model: 'llama-3.1-sonar-large-128k-online',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                }
             },
             [LLMEngine.GROK]: {
-                model: 'grok-beta',
-                maxTokens: 1024,
-                temperature: 0.7,
+                [TaskType.SCANNING]: {
+                    model: 'grok-beta',
+                    maxTokens: 1024,
+                    temperature: 0.7,
+                },
+                [TaskType.ANALYSIS]: {
+                    model: 'grok-beta',
+                    maxTokens: 2048,
+                    temperature: 0.5,
+                },
+                [TaskType.PROFILE_GENERATION]: {
+                    model: 'grok-beta',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                },
+                [TaskType.QUERY_GENERATION]: {
+                    model: 'grok-beta',
+                    maxTokens: 2048,
+                    temperature: 0.7,
+                },
+                [TaskType.RESPONSE_ANALYSIS]: {
+                    model: 'grok-beta',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                }
             },
         };
 
@@ -88,7 +209,7 @@ export class LLMFactory implements LLMProviderFactory {
 
         return {
             apiKey,
-            ...defaultConfigs[engine],
+            ...taskConfigs[engine][task],
             ...userConfig,
         };
     }
@@ -98,7 +219,7 @@ export class LLMFactory implements LLMProviderFactory {
             [LLMEngine.OPENAI]: 'OPENAI_API_KEY',
             [LLMEngine.CLAUDE]: 'ANTHROPIC_API_KEY',
             [LLMEngine.GEMINI]: 'GEMINI_API_KEY',
-            [LLMEngine.PERPLEXITY]: 'PERPLEX_API_KEY',
+            [LLMEngine.PERPLEXITY]: 'PERPLEXITY_API_KEY',
             [LLMEngine.GROK]: 'GROK_API_KEY',
         };
 
@@ -119,24 +240,49 @@ export class LLMFactory implements LLMProviderFactory {
         return !!this.getAPIKeyForEngine(engine);
     }
 
-    public clearCache(): void {
-        this.providers.clear();
+    // Get the best model for a specific task across all engines
+    public getBestEngineForTask(task: TaskType): LLMEngine {
+        const taskPreferences: Record<TaskType, LLMEngine[]> = {
+            [TaskType.SCANNING]: [LLMEngine.OPENAI, LLMEngine.CLAUDE, LLMEngine.GEMINI],
+            [TaskType.ANALYSIS]: [LLMEngine.CLAUDE, LLMEngine.OPENAI, LLMEngine.GEMINI],
+            [TaskType.PROFILE_GENERATION]: [LLMEngine.CLAUDE, LLMEngine.OPENAI, LLMEngine.GEMINI],
+            [TaskType.QUERY_GENERATION]: [LLMEngine.CLAUDE, LLMEngine.OPENAI, LLMEngine.GEMINI],
+            [TaskType.RESPONSE_ANALYSIS]: [LLMEngine.CLAUDE, LLMEngine.OPENAI, LLMEngine.GEMINI],
+        };
+
+        const preferences = taskPreferences[task];
+        for (const engine of preferences) {
+            if (this.isEngineAvailable(engine)) {
+                return engine;
+            }
+        }
+
+        // Fallback to any available engine
+        const available = this.getAvailableEngines();
+        if (available.length === 0) {
+            throw new Error('No AI engines available. Please check your API keys.');
+        }
+        return available[0];
     }
 }
 
-// Convenience functions for easy access
-export const llmFactory = LLMFactory.getInstance();
+// Convenience functions for backward compatibility and ease of use
+export function getProvider(engine: LLMEngine, config?: LLMConfig, taskType?: TaskType): LLMProvider {
+    return LLMFactory.getInstance().getProvider(engine, config, taskType);
+}
 
-export function getProvider(engine: LLMEngine, config?: LLMConfig): LLMProvider {
-    return llmFactory.getProvider(engine, config);
+export function getProviderForTask(task: TaskType, config?: LLMConfig): LLMProvider {
+    const factory = LLMFactory.getInstance();
+    const bestEngine = factory.getBestEngineForTask(task);
+    return factory.getProvider(bestEngine, config, task);
 }
 
 export function getAvailableEngines(): LLMEngine[] {
-    return llmFactory.getAvailableEngines();
+    return LLMFactory.getInstance().getAvailableEngines();
 }
 
 export function isEngineAvailable(engine: LLMEngine): boolean {
-    return llmFactory.isEngineAvailable(engine);
+    return LLMFactory.getInstance().isEngineAvailable(engine);
 }
 
 // Engine ID mapping for UI compatibility
@@ -163,4 +309,16 @@ export function getEngineDisplayName(engine: LLMEngine): string {
     };
 
     return displayNames[engine] || engine;
+}
+
+export function getTaskDisplayName(task: TaskType): string {
+    const taskNames: Record<TaskType, string> = {
+        [TaskType.SCANNING]: 'Basic Scanning',
+        [TaskType.ANALYSIS]: 'Detailed Analysis',
+        [TaskType.PROFILE_GENERATION]: 'Company Profile Generation',
+        [TaskType.QUERY_GENERATION]: 'Query Generation',
+        [TaskType.RESPONSE_ANALYSIS]: 'Response Analysis',
+    };
+
+    return taskNames[task] || task;
 } 

@@ -11,7 +11,7 @@ import {
   ResponsiveContainer,
   Legend
 } from 'recharts';
-import { COMPETITORS } from '../api/generate_report/analyze/route';
+import { COMPETITORS } from '@/lib/constants';
 import { PromptResult } from '@/types/PromptResult';
 
 // LLMs to show in the chart and metrics

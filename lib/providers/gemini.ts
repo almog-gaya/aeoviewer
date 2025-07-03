@@ -3,7 +3,7 @@ import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
-import { BaseLLMProvider, LLMConfig } from './base';
+import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
 
 export class GeminiProvider extends BaseLLMProvider {
@@ -12,12 +12,19 @@ export class GeminiProvider extends BaseLLMProvider {
     constructor(config: LLMConfig) {
         super(config);
         this.genAI = new GoogleGenerativeAI(config.apiKey);
+        console.log(`Gemini Provider initialized with ${this.getModelInfo()}`);
     }
 
     async generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult> {
         try {
+            console.log(`Gemini: Generating response text using ${this.getModelInfo()}`);
+            
             const model = this.genAI.getGenerativeModel({ 
-                model: this.config.model || 'gemini-1.5-flash' 
+                model: this.config.model || 'gemini-1.5-pro',
+                generationConfig: {
+                    maxOutputTokens: this.config.maxTokens || 2048,
+                    temperature: this.config.temperature || 0.7,
+                }
             });
             
             const systemPrompt = prompt.getResponseTextSystemPrompt(
@@ -46,8 +53,14 @@ export class GeminiProvider extends BaseLLMProvider {
 
     async generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile> {
         try {
+            console.log(`Gemini: Generating company profile using ${this.getModelInfo()}`);
+            
             const model = this.genAI.getGenerativeModel({ 
-                model: this.config.model || 'gemini-1.5-flash' 
+                model: this.config.model || 'gemini-1.5-pro',
+                generationConfig: {
+                    maxOutputTokens: this.config.maxTokens || 2048,
+                    temperature: this.config.temperature || 0.3,
+                }
             });
             
             const systemPrompt = prompt.generateCompanyProfilePrompt(companyName, companyWebsite);
@@ -73,8 +86,14 @@ export class GeminiProvider extends BaseLLMProvider {
 
     async generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]> {
         try {
+            console.log(`Gemini: Generating queries using ${this.getModelInfo()}`);
+            
             const model = this.genAI.getGenerativeModel({ 
-                model: this.config.model || 'gemini-1.5-flash' 
+                model: this.config.model || 'gemini-1.5-flash',
+                generationConfig: {
+                    maxOutputTokens: this.config.maxTokens || 2048,
+                    temperature: this.config.temperature || 0.7,
+                }
             });
             
             const systemPrompt = prompt.generateQueriesSystemPrompt(companyProfile);
@@ -83,7 +102,7 @@ export class GeminiProvider extends BaseLLMProvider {
             const result = await model.generateContent(fullPrompt);
             const responseText = result.response.text() || '';
                 
-            console.info(`Generated queries: ${responseText}`);
+            console.info(`Generated queries using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
             
             const queries = this.parseJSONResponse(responseText, []);
             return queries as InsightQuery[];
@@ -95,8 +114,14 @@ export class GeminiProvider extends BaseLLMProvider {
 
     async generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
         try {
+            console.log(`Gemini: Generating plan using ${this.getModelInfo()}`);
+            
             const model = this.genAI.getGenerativeModel({ 
-                model: this.config.model || 'gemini-1.5-flash' 
+                model: this.config.model || 'gemini-1.5-flash',
+                generationConfig: {
+                    maxOutputTokens: this.config.maxTokens || 2048,
+                    temperature: this.config.temperature || 0.7,
+                }
             });
             
             const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
@@ -105,7 +130,7 @@ export class GeminiProvider extends BaseLLMProvider {
             const result = await model.generateContent(fullPrompt);
             const responseText = result.response.text() || '';
                 
-            console.info(`Generated plan: ${responseText}`);
+            console.info(`Generated plan using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
             
             const plan = this.parseJSONResponse(responseText, {});
             return plan;

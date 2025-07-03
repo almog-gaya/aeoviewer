@@ -15,6 +15,7 @@ export interface LLMConfig {
     model?: string;
     maxTokens?: number;
     temperature?: number;
+    taskType?: string;
 }
 
 export interface LLMResponse {
@@ -34,8 +35,16 @@ export enum LLMEngine {
     GROK = 'grok'
 }
 
+export enum TaskType {
+    SCANNING = 'scanning',
+    ANALYSIS = 'analysis',
+    PROFILE_GENERATION = 'profile',
+    QUERY_GENERATION = 'query',
+    RESPONSE_ANALYSIS = 'response'
+}
+
 export interface LLMProviderFactory {
-    getProvider(engine: LLMEngine, config?: LLMConfig): LLMProvider;
+    getProvider(engine: LLMEngine, config?: LLMConfig, taskType?: TaskType): LLMProvider;
 }
 
 export abstract class BaseLLMProvider implements LLMProvider {
@@ -51,7 +60,7 @@ export abstract class BaseLLMProvider implements LLMProvider {
     abstract generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
 
     protected handleError(error: any, operation: string): never {
-        console.error(`Error in ${operation}:`, error);
+        console.error(`Error in ${operation} using model ${this.config.model}:`, error);
         throw new Error(`Failed to ${operation}: ${error.message}`);
     }
 
@@ -59,8 +68,12 @@ export abstract class BaseLLMProvider implements LLMProvider {
         try {
             return JSON.parse(response);
         } catch (error) {
-            console.warn('Failed to parse JSON response:', error);
+            console.warn(`Failed to parse JSON response from model ${this.config.model}:`, error);
             return fallback;
         }
+    }
+
+    protected getModelInfo(): string {
+        return `${this.config.model} (${this.config.maxTokens} tokens, temp: ${this.config.temperature})`;
     }
 } 

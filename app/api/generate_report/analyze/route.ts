@@ -2,25 +2,14 @@ import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-
-export const MENTIONED_COMPANY = 'BATCH';
-export const COMPETITORS = [
-    'Cornbread Hemp',
-    'CBDistillery',
-    'Lazarus Naturals',
-    'Joy Organics',
-    'Medterra',
-    'CBDfx',
-    'Five CBD',
-];
-
-// Updated regex patterns
-const YES_NO_REGEX = /^\s*(Yes|No)\s*$/i;
-const RANKING_REGEX = /(?:#+|\*\*)?\s*Forced Ranking.*?\n+([\s\S]*?)(?=(?:\n{1,}(?:#+|\*\*|$)|\n{2,}|$))/i; // Flexible header and end condition
-const RANK_ITEM_REGEX = /^\s*(?:\d+\.|##\s*\d+\.)\s*(?:\*\*(.*?)\*\*(?::|\s*-|\s|$)|(.+?)(?::|\s*-|\s|$))/gm; // Handle numbered or prose items
-// const PROSE_COMPANY_REGEX  = new RegExp(`\\b(${COMPETITORS.concat(MENTIONED_COMPANY).map(c => c.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&')).join('|')})(?::|\\b)`, 'gi'); // Match company names in prose
-const SENTIMENTS_REGEX = /###SENTIMENTS:\s*([0-1](?:\.\d+)?)/i; // Match sentiment score
-
+import { 
+    MENTIONED_COMPANY, 
+    COMPETITORS, 
+    YES_NO_REGEX, 
+    RANKING_REGEX, 
+    RANK_ITEM_REGEX, 
+    SENTIMENTS_REGEX 
+} from '@/lib/constants';
 
 export async function POST(req: Request) {
     try {

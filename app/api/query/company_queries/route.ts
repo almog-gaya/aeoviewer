@@ -1,5 +1,3 @@
-
-
 import { NextResponse } from 'next/server';
 import { llmProviders } from '@/lib/OpenAIProvider';
 import fs from 'fs/promises';
@@ -7,18 +5,18 @@ import { CompanyProfile } from '@/types/CompanyProfile';
 
 export async function POST(req: Request) {
     try {
-        const body = await req.json();
-        const companyProfile: CompanyProfile = body;
+        const companyProfile: CompanyProfile = await req.json();
 
-        if (!companyProfile) {
+        if (!companyProfile.name) {
             return NextResponse.json(
-                { error: 'Company profile data is required' },
+                { error: 'Company name is required' },
                 { status: 400 }
             );
-        } 
+        }
 
-        const responseText = await llmProviders.chatgpt.generateQueries(companyProfile);
-
+        console.log(`Generating queries for: ${companyProfile.name}`);
+        
+        const responseText = await llmProviders.searchgpt.generateQueries(companyProfile);
 
         await fs.writeFile(
             'last_company_queries.json',
@@ -33,10 +31,11 @@ export async function POST(req: Request) {
             'utf-8'
         );
 
-        return NextResponse.json({ success: true, data: responseText });
+        return NextResponse.json(responseText, { status: 200 });
     } catch (error) {
+        console.error('Error generating queries:', error);
         return NextResponse.json(
-            { error: 'Invalid request format', details: String(error) },
+            { error: 'Failed to generate queries' },
             { status: 500 }
         );
     }

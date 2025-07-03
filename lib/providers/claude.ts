@@ -3,7 +3,7 @@ import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
-import { BaseLLMProvider, LLMConfig } from './base';
+import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
 
 export class ClaudeProvider extends BaseLLMProvider {
@@ -14,25 +14,31 @@ export class ClaudeProvider extends BaseLLMProvider {
         this.anthropic = new Anthropic({
             apiKey: config.apiKey,
         });
+        console.log(`Claude Provider initialized with ${this.getModelInfo()}`);
     }
 
-    private extractTextContent(content: any[]): string {
-        return content
-            .filter((block): block is { type: 'text'; text: string } => block.type === 'text')
-            .map(block => block.text)
-            .join('') || '';
+    private extractTextContent(content: any): string {
+        if (Array.isArray(content)) {
+            return content
+                .filter(item => item.type === 'text')
+                .map(item => item.text)
+                .join('');
+        }
+        return content?.text || '';
     }
 
     async generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult> {
         try {
+            console.log(`Claude: Generating response text using ${this.getModelInfo()}`);
+            
             const systemPrompt = prompt.getResponseTextSystemPrompt(
                 input.buying_journey_stage, 
                 input.buyer_persona ?? 'null'
             );
             
             const message = await this.anthropic.messages.create({
-                model: this.config.model || 'claude-3-haiku-20240307',
-                max_tokens: this.config.maxTokens || 512,
+                model: this.config.model || 'claude-3-5-sonnet-20241022',
+                max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
                 system: systemPrompt,
                 messages: [
@@ -61,12 +67,14 @@ export class ClaudeProvider extends BaseLLMProvider {
 
     async generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile> {
         try {
+            console.log(`Claude: Generating company profile using ${this.getModelInfo()}`);
+            
             const systemPrompt = prompt.generateCompanyProfilePrompt(companyName, companyWebsite);
             
             const message = await this.anthropic.messages.create({
-                model: this.config.model || 'claude-3-haiku-20240307',
-                max_tokens: this.config.maxTokens || 1024,
-                temperature: this.config.temperature || 0.7,
+                model: this.config.model || 'claude-3-5-sonnet-20241022',
+                max_tokens: this.config.maxTokens || 2048,
+                temperature: this.config.temperature || 0.3,
                 system: systemPrompt,
                 messages: [
                     {
@@ -95,11 +103,13 @@ export class ClaudeProvider extends BaseLLMProvider {
 
     async generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]> {
         try {
+            console.log(`Claude: Generating queries using ${this.getModelInfo()}`);
+            
             const systemPrompt = prompt.generateQueriesSystemPrompt(companyProfile);
             
             const message = await this.anthropic.messages.create({
-                model: this.config.model || 'claude-3-haiku-20240307',
-                max_tokens: this.config.maxTokens || 1024,
+                model: this.config.model || 'claude-3-5-sonnet-20241022',
+                max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
                 system: systemPrompt,
                 messages: [
@@ -112,7 +122,7 @@ export class ClaudeProvider extends BaseLLMProvider {
             
             const responseText = this.extractTextContent(message.content);
                 
-            console.info(`Generated queries: ${responseText}`);
+            console.info(`Generated queries using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
             
             const queries = this.parseJSONResponse(responseText, []);
             return queries as InsightQuery[];

@@ -5,7 +5,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
-
+import fs from 'fs/promises';
 export class OpenAIProvider extends BaseLLMProvider {
     private openai: OpenAI;
     
@@ -96,13 +96,19 @@ export class OpenAIProvider extends BaseLLMProvider {
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: `Generate queries for the company profile of ${companyProfile.name}` }
                 ],
-                max_tokens: this.config.maxTokens || 2048,
+                // max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
             });
             
             const responseText = completion.choices?.[0]?.message?.content || '';
             console.info(`Generated queries using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
             
+            console.info(`Generated queries: ${responseText}`);
+            fs.writeFile(
+                "rawResponseString.txt",
+                responseText,
+                'utf-8'
+            );
             const queries = this.parseJSONResponse(responseText, []);
             return queries as InsightQuery[];
         } catch (error) {

@@ -1,15 +1,15 @@
-import { InsightQuery } from '@/types/InsightQuery';
 import { PromptResult } from '@/types/PromptResult';
 import fs from 'fs/promises';
 import { NextResponse } from 'next/server';
-import { 
-    MENTIONED_COMPANY, 
-    COMPETITORS, 
-    YES_NO_REGEX, 
-    RANKING_REGEX, 
-    RANK_ITEM_REGEX, 
-    SENTIMENTS_REGEX 
+
+import {
+    YES_NO_REGEX,
+    RANKING_REGEX,
+    RANK_ITEM_REGEX,
+    SENTIMENTS_REGEX
 } from '@/lib/constants';
+import Sentiment from 'sentiment';
+const sentiment = new Sentiment();
 
 export async function POST(req: Request) {
     try {
@@ -48,7 +48,7 @@ export async function POST(req: Request) {
             } else {
                 console.warn('No sentiment score found in response_text, using now sentiment library');
                 /// use sentiment library 
-                
+
                 result.sentiment_score = calculateSentiment(result.response_text);
             }
 
@@ -149,12 +149,12 @@ const makeFinalizedBackup = async (results: PromptResult[]) => {
 
 const calculateSentiment = (text: string): number | null | undefined => {
     try {
-        if (!text || typeof text !== 'string') return 0; 
+        if (!text || typeof text !== 'string') return 0;
         const result = sentiment.analyze(text);
         // Normalize score to [-1, 1]
         return Math.max(-1, Math.min(1, result.score / 10));
-    }catch(_) {
+    } catch (_) {
         return null;
     }
- 
-  };
+
+};

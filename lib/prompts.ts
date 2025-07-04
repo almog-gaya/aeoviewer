@@ -210,3 +210,28 @@ Create a realistic Reddit-style dialogue between two users, user_1 and user_2, d
 Generate a JSON array string of ${process.env.daysPlan || 2} * ${process.env.perDay || 3} Reddit-style dialogue comments for ${companyProfile.name}, using the provided company details. Distribute the comments across ${process.env.daysPlan || 2} days, with ${process.env.perDay || 3} comments per day, ensuring each day's dialogue is coherent and contains 3–5 comments (or multiple dialogues if needed). Ensure the dialogue is tailored to ${companyProfile.industry || 'inferred industry'}, focuses on SEO and GEO performance, and subtly promotes ${companyProfile.name} compared to ${companyProfile.competitors?.join(', ') || 'inferred competitors'}. Use only the user handles "user_1" and "user_2". Return only the JSON array string, without any surrounding Markdown, code block markers (e.g., \\"\\"\\"json or \\"\\"\\"), or additional text. Ensure proper JSON formatting with escaped quotes, no trailing commas, and valid syntax.
 `;
 };
+
+
+export const generateRedditThreads = (companyProfile: CompanyProfile) => {
+  return `You are an expert in social media research. Perform a web search to identify active Reddit subreddits and discussions relevant to a company with the following profile: 
+- **Company Name**: ${companyProfile.name || 'unknown company'}
+- **Industry**: ${companyProfile.industry || 'general industry'}
+- **Competitors**: [${companyProfile.competitors?.map(c => c).join(', ') || 'unknown competitors'}]
+- **Description**: ${companyProfile.description || 'provides innovative products/services'}
+- **Target Audience**: ${companyProfile.targetAudience || 'general consumers or businesses'}
+- **Key Product Categories**: ${companyProfile.products || 'various products/services'}
+- **Benefits**: ${companyProfile.benefits || 'high-quality offerings, customer-focused solutions'}
+- **Geographic Specificity**: ${companyProfile.geoSpecificity || 'global markets'}
+- **Regulatory Context**: ${companyProfile.regulatoryContext || 'standard regulations'}
+
+Search for subreddits discussing the company, its industry, competitors, or related topics (e.g., product categories, customer pain points, or industry trends). Ensure subreddits are:
+- **Active**: Have posts from the last 30 days.
+- **Engaged**: At least 100 upvotes or 50 comments on recent relevant posts.
+- **Relevant**: Align with the company’s target audience, products, or industry.
+
+Exclude subreddits with low activity or irrelevant focus. For each subreddit, provide:
+- Subreddit name and URL (e.g., r/technology, https://www.reddit.com/r/technology/).
+- A brief description of its focus and relevance to the company.
+- Examples of recent, relevant discussion threads (if available, with thread titles and URLs).
+Output the results in JSON format for clarity and ease of use.`
+}

@@ -6,6 +6,7 @@ import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
 import fs from 'fs/promises';
+import { RedditThread } from '@/types/RedditThread';
 export class OpenAIProvider extends BaseLLMProvider {
     private openai: OpenAI;
     
@@ -163,6 +164,36 @@ export class OpenAIProvider extends BaseLLMProvider {
             return dialogue as DialogueTurn[];
         } catch (error) {
             console.error('Error parsing generated dialogue JSON:', error);
+            return [];
+        }
+    }
+
+    async generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]> {
+        try {
+            console.log(`OpenAI: Generating Reddit threads using ${this.getModelInfo()}`);
+            
+            const systemPrompt = prompt.generateRedditThreads(companyProfile);
+            
+            const completion = await this.openai.chat.completions.create({
+                model: this.config.model || 'gpt-4o',
+                messages: [
+                    { role: 'system', content: systemPrompt },
+                    { role: 'user', content: `Generate Reddit threads for the company profile of ${companyProfile.name}` }
+                ],
+                max_tokens: this.config.maxTokens || 2048,
+                temperature: this.config.temperature || 0.7,
+            });
+
+            
+            const responseText = completion.choices?.[0]?.message?.content || '';
+            
+            console.info(`🔥🔥🔥🔥🔥`)
+            console.info(`Generated Reddit threads using ${this.getModelInfo()}: ${responseText}`);
+            console.info(`🔥🔥🔥🔥🔥`)
+            const threads = this.parseJSONResponse(responseText, []);
+            return threads as RedditThread[];
+        } catch (error) {
+            console.error('Error parsing generated Reddit threads JSON:', error);
             return [];
         }
     }

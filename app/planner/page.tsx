@@ -35,7 +35,7 @@ export default function PlannerPage() {
   const [addThreadOpen, setAddThreadOpen] = useState(false);
   const [newThread, setNewThread] = useState<RedditThread>({ title: "", subreddit: "", url: "" });
 
-  const [planner, setPlanner] = useState<{ dialogue: { user_handle: string; comment_text: string }[]; company: CompanyProfile } | null>(null);
+  const [planner, setPlanner] = useState< DialogueTurn[]>([]);
   const [dialogueLoading, setDialogueLoading] = useState(false);
   const [dialogueError, setDialogueError] = useState<string | null>(null);
 
@@ -88,8 +88,7 @@ export default function PlannerPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to generate dialogue");
-      setPlanner(data.data);
-      setStep(2);
+      setPlanner(data);
     } catch (e: any) {
       setDialogueError(e.message || "Failed to generate dialogue");
     } finally {
@@ -100,7 +99,7 @@ export default function PlannerPage() {
   // Step 4: Export
   const handleExport = () => {
     if (!planner) return;
-    const lines = planner.dialogue.map(comment => `${comment.user_handle}: ${comment.comment_text}`);
+    const lines = planner.map(comment => `${comment.user_handle}: ${comment.comment_text}`);
     const blob = new Blob([
       lines.join("\n")
     ], { type: "text/plain" });
@@ -120,7 +119,7 @@ export default function PlannerPage() {
   const handleExportXLSX = async () => {
     if (!planner) return;
     const xlsx = await import("xlsx");
-    const ws = xlsx.utils.json_to_sheet(planner.dialogue.map(comment => ({
+    const ws = xlsx.utils.json_to_sheet(planner.map(comment => ({
       user_handle: comment.user_handle,
       comment_text: comment.comment_text
     })));
@@ -195,14 +194,15 @@ export default function PlannerPage() {
       {step === 1 && (
         <div>
           <h1 className="text-2xl font-bold mb-4 text-gray-900">Step 2: Fetch Reddit Threads</h1>
-          <div className="mb-4">
-            <button className="px-4 py-2 bg-gray-200 rounded mr-2" onClick={() => setStep(0)}>Back</button>
-            <button className="px-4 py-2 bg-blue-600 text-white rounded mr-2" onClick={handleFetchRedditThreads} disabled={redditLoading}>
+          <div className="flex gap-2 mb-4">
+            <button className="px-4 py-2 bg-gray-200 rounded" onClick={() => setStep(0)}>Back</button>
+            <button className="px-4 py-2 bg-blue-600 text-white rounded" onClick={handleFetchRedditThreads} disabled={redditLoading}>
               {redditLoading ? "Fetching..." : "Fetch Reddit Threads"}
             </button>
             <button className="px-4 py-2 bg-green-600 text-white rounded" onClick={() => setAddThreadOpen(true)}>
               Add Thread
             </button>
+            <button className="px-4 py-2 bg-gray-200 rounded" onClick={() => setStep(2)} disabled={redditThreads.length === 0}>Next</button>
           </div>
           {redditError && <div className="mb-2 p-2 bg-red-100 text-red-700 rounded">{redditError}</div>}
           {/* Add Thread Modal */}
@@ -241,9 +241,6 @@ export default function PlannerPage() {
                   </div>
                 ))}
               </div>
-              <div className="flex justify-end mt-6">
-                <button className="px-4 py-2 bg-gray-200 rounded" onClick={() => setStep(2)}>Next</button>
-              </div>
             </div>
           )}
         </div>
@@ -252,18 +249,19 @@ export default function PlannerPage() {
       {step === 2 && (
         <div>
           <h1 className="text-2xl font-bold mb-4 text-gray-900">Step 3: Generate Dialogues</h1>
-          <div className="mb-4">
-            <button className="px-4 py-2 bg-gray-200 rounded mr-2" onClick={() => setStep(1)}>Back</button>
+          <div className="flex gap-2 mb-4">
+            <button className="px-4 py-2 bg-gray-200 rounded" onClick={() => setStep(1)}>Back</button>
             <button className="px-4 py-2 bg-blue-600 text-white rounded" onClick={handleGenerateDialogue} disabled={dialogueLoading}>
               {dialogueLoading ? "Generating..." : "Generate Dialogues"}
             </button>
+            <button className="px-4 py-2 bg-gray-200 rounded" onClick={() => setStep(3)} disabled={!planner || planner.length === 0}>Next</button>
           </div>
           {dialogueError && <div className="mb-2 p-2 bg-red-100 text-red-700 rounded">{dialogueError}</div>}
-          {planner && planner.dialogue && (
+          {planner && (
             <div className="mt-6 max-w-2xl mx-auto">
               <div className="font-semibold text-blue-700 mb-4 text-lg">Dialogue</div>
               <div className="flex flex-col gap-5">
-                {planner.dialogue.map((comment, idx) => {
+                {planner.map((comment, idx) => {
                   const isUser1 = comment.user_handle === "user_1";
                   return (
                     <div key={idx} className={`flex w-full ${isUser1 ? "justify-start" : "justify-end"}`}>

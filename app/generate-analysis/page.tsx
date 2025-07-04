@@ -102,7 +102,7 @@ export default function GenerateAnalysisPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to generate queries");
-      setQueries(Array.isArray(data.data) ? data.data : data.data.queries || []);
+      setQueries(Array.isArray(data) ? data : []);
     } catch (e: any) {
       setQueryError(e.message || "Failed to generate queries");
     } finally {

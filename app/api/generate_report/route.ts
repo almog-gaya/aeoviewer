@@ -55,12 +55,8 @@ export async function POST(req: Request) {
             });
         }
 
-        // Write to output file
-        await fs.writeFile(
-            'output_insight_query.json',
-            JSON.stringify(allResults, null, 2),
-            'utf-8'
-        );
+        // Write to output file 
+        makeFinalizedBackup(allResults);
 
         return NextResponse.json({ success: true, results: allResults });
     } catch (error) {
@@ -70,3 +66,19 @@ export async function POST(req: Request) {
         );
     }
 }
+
+const makeFinalizedBackup = async (results: PromptResult[]) => {
+    try {
+        const companyName = results[0].company_name;
+        const dirPath = `./backups/${companyName}`;
+        const fileName = `output_insight_query.json`;
+
+        // Create directory if it doesn't exist
+        await fs.mkdir(dirPath, { recursive: true });
+
+        // Write the file
+        await fs.writeFile(`${dirPath}/${fileName}`, JSON.stringify(results, null, 2), 'utf-8');
+    } catch (error) {
+        console.error('Error creating backup:', error);
+    }
+};

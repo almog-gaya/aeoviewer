@@ -232,7 +232,7 @@ export default function Dashboard() {
       return { name, mentions, visibility };
     })
     .sort((a, b) => parseFloat(b.visibility) - parseFloat(a.visibility))
-    .slice(0, 3);
+    .slice(0, 5);
 
   // --- Main Company Name ---
   const mainCompanyName = prompts.length > 0 ? prompts[0].company_name : 'Company';

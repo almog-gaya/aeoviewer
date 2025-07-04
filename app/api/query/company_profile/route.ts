@@ -25,11 +25,7 @@ export async function POST(req: Request) {
         );
 
         /// as backup
-        await fs.writeFile(
-            companyProfile.name! + '_company_profile.json',
-            JSON.stringify(responseText, null, 2),
-            'utf-8'
-        );
+        makeFinalizedBackup(responseText);
 
         return NextResponse.json(responseText, { status: 200 });
     } catch (error) {
@@ -40,3 +36,19 @@ export async function POST(req: Request) {
         );
     }
 }
+
+const makeFinalizedBackup = async (company: CompanyProfile) => {
+    try {
+        const companyName = company.name;
+        const dirPath = `./backups/${companyName}`;
+        const fileName = `company_profile.json`;
+
+        // Create directory if it doesn't exist
+        await fs.mkdir(dirPath, { recursive: true });
+
+        // Write the company
+        await fs.writeFile(`${dirPath}/${fileName}`, JSON.stringify(company, null, 2), 'utf-8');
+    } catch (error) {
+        console.error('Error creating backup:', error);
+    }
+};

@@ -46,8 +46,10 @@ export async function POST(req: Request) {
                     result.sentiment_score = null; // Reset to null if invalid
                 }
             } else {
-                console.warn('No sentiment score found in response_text');
-                result.sentiment_score = null; // Reset to null if not found
+                console.warn('No sentiment score found in response_text, using now sentiment library');
+                /// use sentiment library 
+                
+                result.sentiment_score = calculateSentiment(result.response_text);
             }
 
             // Analyze response_text for Yes/No answers
@@ -77,7 +79,7 @@ export async function POST(req: Request) {
                         if (!mentionedCompanies.includes(company)) {
                             mentionedCompanies.push(company);
                         }
-                        if (company.toLowerCase() === MENTIONED_COMPANY.toLowerCase()) {
+                        if (company.toLowerCase() === result.company_name.toLowerCase()) {
                             rankingPosition = rankItems.length;
                         }
                     }
@@ -95,7 +97,7 @@ export async function POST(req: Request) {
                         uniqueCompanies.add(company);
                         rankItems.push(`${rankItems.length + 1}. ${company}`);
                         mentionedCompanies.push(company);
-                        if (company.toLowerCase() === MENTIONED_COMPANY.toLowerCase()) {
+                        if (company.toLowerCase() === result.company_name.toLowerCase()) {
                             rankingPosition = rankItems.length;
                         }
                     }
@@ -107,7 +109,7 @@ export async function POST(req: Request) {
                 result.rank_list = rankItems.join('\n');
                 result.mentioned_companies = mentionedCompanies;
                 result.company_mentioned = mentionedCompanies.some(
-                    (c) => c.toLowerCase() === MENTIONED_COMPANY.toLowerCase()
+                    (c) => c.toLowerCase() === result.company_name.toLowerCase()
                 );
                 result.ranking_position = rankingPosition;
             }
@@ -117,7 +119,9 @@ export async function POST(req: Request) {
 
         // Write to json output file: finalized_output.json
         await fs.writeFile('finalized_output.json', JSON.stringify(results, null, 2), 'utf-8');
-
+        /// backup
+        await fs.writeFile(`finalized_output_${results[0].company_name}.json`, JSON.stringify(results, null, 2), 'utf-8');
+        makeFinalizedBackup(results);
         // Return the processed results
         return NextResponse.json(results, { status: 200 });
     } catch (error) {
@@ -125,3 +129,32 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }
+
+const makeFinalizedBackup = async (results: PromptResult[]) => {
+    try {
+        const companyName = results[0].company_name;
+        const dirPath = `./backups/${companyName}`;
+        const fileName = `finalized_output.json`;
+
+        // Create directory if it doesn't exist
+        await fs.mkdir(dirPath, { recursive: true });
+
+        // Write the file
+        await fs.writeFile(`${dirPath}/${fileName}`, JSON.stringify(results, null, 2), 'utf-8');
+    } catch (error) {
+        console.error('Error creating backup:', error);
+    }
+};
+
+
+const calculateSentiment = (text: string): number | null | undefined => {
+    try {
+        if (!text || typeof text !== 'string') return 0; 
+        const result = sentiment.analyze(text);
+        // Normalize score to [-1, 1]
+        return Math.max(-1, Math.min(1, result.score / 10));
+    }catch(_) {
+        return null;
+    }
+ 
+  };

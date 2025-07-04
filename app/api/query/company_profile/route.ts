@@ -5,6 +5,15 @@ import { CompanyProfile } from '@/types/CompanyProfile';
 
 export async function POST(req: Request) {
     try {
+        const isLocal = process.env.PICK_LOCAL == "1";  
+        if(isLocal) {
+            const content = await fs.readFile('last_company_profile.json', 'utf-8');
+            
+            return NextResponse.json(
+                JSON.parse(content),
+                { status: 200 } 
+            );
+        }
         const companyProfile: CompanyProfile = await req.json();
 
         if (!companyProfile.name || !companyProfile.companyWebsite) {

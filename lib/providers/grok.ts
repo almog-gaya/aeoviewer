@@ -4,6 +4,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
+import { RedditThread } from '@/types/RedditThread';
 
 export class GrokProvider extends BaseLLMProvider {
     private readonly baseURL = 'https://api.x.ai/v1/chat/completions';
@@ -138,5 +139,9 @@ export class GrokProvider extends BaseLLMProvider {
             console.error('Error parsing generated plan JSON:', error);
             return [];
         }
+    }
+
+    generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]> {
+        throw new Error('Grok does not support Reddit thread generation yet.');
     }
 } 

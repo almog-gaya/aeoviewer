@@ -5,6 +5,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
+import { RedditThread } from '@/types/RedditThread';
 
 export class ClaudeProvider extends BaseLLMProvider {
     private anthropic: Anthropic;
@@ -160,6 +161,35 @@ export class ClaudeProvider extends BaseLLMProvider {
             return plan;
         } catch (error) {
             console.error('Error generating plan:', error);
+            return [];
+        }
+    }
+
+    async generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]> {
+        try {
+            console.log(`Claude: Generating Reddit threads using ${this.getModelInfo()}`);
+            
+            const systemPrompt = prompt.generateRedditThreads(companyProfile);
+            
+            const message = await this.anthropic.messages.create({
+                model: this.config.model || 'claude-3-5-sonnet-20241022',
+                max_tokens: this.config.maxTokens || 2048,
+                temperature: this.config.temperature || 0.7,
+                system: systemPrompt,
+                messages: [
+                    {
+                        role: 'user',
+                        content: `Generate Reddit threads for the company profile of ${companyProfile.name}`
+                    }
+                ]
+            });
+            
+            const responseText = this.extractTextContent(message.content);
+                
+            const threads = this.parseJSONResponse(responseText, []);
+            return threads as RedditThread[];
+        } catch (error) {
+            console.error('Error generating Reddit threads:', error);
             return [];
         }
     }

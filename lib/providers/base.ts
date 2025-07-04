@@ -2,12 +2,14 @@ import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
 import { DialogueTurn } from '@/types/Planner';
 import { PromptResult } from '@/types/PromptResult';
+import { RedditThread } from '@/types/RedditThread';
 
 export interface LLMProvider {
     generateResponseText(input: InsightQuery, company: CompanyProfile): Promise<PromptResult>;
     generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile>;
     generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]>;
     generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
+    generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]>;
 }
 
 export interface LLMConfig {
@@ -58,6 +60,7 @@ export abstract class BaseLLMProvider implements LLMProvider {
     abstract generateCompanyProfile(companyName: string, companyWebsite: string): Promise<CompanyProfile>;
     abstract generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]>;
     abstract generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
+    abstract generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]>;
 
     protected handleError(error: any, operation: string): never {
         console.error(`Error in ${operation} using model ${this.config.model}:`, error);

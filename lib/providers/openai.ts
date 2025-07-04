@@ -125,16 +125,21 @@ export class OpenAIProvider extends BaseLLMProvider {
             const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
             
             const completion = await this.openai.chat.completions.create({
-                model: this.config.model || 'gpt-4o',
+                model: 'gpt-4o',
                 messages: [
                     { role: 'system', content: systemPrompt },
-                    { role: 'user', content: `Generate a plan for the company profile of ${companyProfile.name}` }
+                    { role: 'user', content: `Generate a plan for the company profile of ${companyProfile.name} that is engaging and more Search Engine Optimized` }
                 ],
-                max_tokens: this.config.maxTokens || 2048,
+                // max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
             });
             
             const responseText = completion.choices?.[0]?.message?.content || '';
+            fs.writeFile(
+                "rawResponseString.txt",
+                responseText,
+                'utf-8'
+            );
             console.info(`Generated plan using ${this.getModelInfo()}: ${responseText.substring(0, 200)}...`);
             
             const plan = this.parseJSONResponse(responseText, {});
@@ -144,29 +149,7 @@ export class OpenAIProvider extends BaseLLMProvider {
             return [];
         }
     }
-
-    async generateDialogue(companyProfile: CompanyProfile): Promise<DialogueTurn[]> {
-        try {
-            console.log(`OpenAI: Generating dialogue using ${this.getModelInfo()}`);
-            
-            const systemPrompt = prompt.generatePlanSystemPrompt(companyProfile);
-            const completion = await this.openai.chat.completions.create({
-                model: this.config.model || 'gpt-4o',
-                messages: [
-                    { role: 'system', content: systemPrompt },
-                    { role: 'user', content: `Generate a dialogue for the company profile of ${companyProfile.name}` }
-                ],
-                max_tokens: this.config.maxTokens || 2048,
-                temperature: this.config.temperature || 0.7,
-            });
-            const responseText = completion.choices?.[0]?.message?.content || '';
-            const dialogue = this.parseJSONResponse(responseText, []);
-            return dialogue as DialogueTurn[];
-        } catch (error) {
-            console.error('Error parsing generated dialogue JSON:', error);
-            return [];
-        }
-    }
+ 
 
     async generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]> {
         try {
@@ -180,7 +163,7 @@ export class OpenAIProvider extends BaseLLMProvider {
                     { role: 'system', content: systemPrompt },
                     { role: 'user', content: `Generate Reddit threads for the company profile of ${companyProfile.name}` }
                 ],
-                max_tokens: this.config.maxTokens || 2048,
+                // max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
             });
 

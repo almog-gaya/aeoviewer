@@ -1,6 +1,6 @@
 import { CompanyProfile } from "@/types/CompanyProfile";
 const TOTAL_QUERY_COUNT = 30; //?? process.env.TOTAL_QUERY_GENERATION_LIMIT ? parseInt(process.env.TOTAL_QUERY_GENERATION_LIMIT) : 10;
-
+const TOTAL_REDDIT_THREADS_COUNT = 10; //?? process.env.TOTAL_REDDIT_THREADS_LIMIT ? parseInt(process.env.TOTAL_REDDIT_THREADS_LIMIT) : 10;
 export const getResponseTextSystemPrompt = (buyerJourneyStage: string, buyerPersona?: string) => `
 You are an expert analyst tasked with responding to a query provided in the user input, with the context of its buying_journey_stage (${buyerJourneyStage}) and buyer_persona (${buyerPersona}). The query may relate to any industry or providers. Deliver accurate, concise responses strictly aligned with the query's intent, buying journey stage, and requested format, using only reliable data.
 
@@ -159,79 +159,86 @@ Return the output as a pure JSON array string, without any surrounding Markdown,
 
 
 export const generatePlanSystemPrompt = (companyProfile: CompanyProfile) => {
-  return `
-Create a realistic Reddit-style dialogue between two users, user_1 and user_2, discussing ${companyProfile.name}'s SEO (Search Engine Optimization) and GEO (Geo-targeted marketing) performance compared to its competitors, over a plan of ${process.env.daysPlan || 2} days with ${process.env.perDay || 3} comments per day. The dialogue should subtly promote ${companyProfile.name} while maintaining authenticity and avoiding overly salesy language. Use the following company details to inform the conversation:
+  const daysPlan = process.env.daysPlan || '2';
+  const perDay = process.env.perDay || '3';
+  const competitors = companyProfile.competitors?.join(', ') || 'unknown competitors';
 
-- **Company**: ${companyProfile.name}
-- **Website**: ${companyProfile.companyWebsite}
-- **Description**: ${companyProfile.description || 'Data unavailable; estimated based on industry trends'}
-- **Industry**: ${companyProfile.industry || 'Data unavailable; estimated based on industry trends'}
-- **Competitors**: [${companyProfile.competitors?.map(c => c).join(', ') || 'Data unavailable; estimated based on industry trends'}]
-- **Target Audience**: ${companyProfile.targetAudience || 'Data unavailable; estimated based on industry trends'}
-- **Key Product Categories**: ${companyProfile.products || 'Data unavailable; estimated based on industry trends'}
-- **Benefits**: ${companyProfile.benefits || 'Data unavailable; estimated based on industry trends'}
-- **Brand Values**: ${companyProfile.values || 'Data unavailable; estimated based on industry trends'}
-- **Regulatory Context**: ${companyProfile.regulatoryContext || 'Data unavailable; estimated based on industry trends'}
-- **Personas**: ${companyProfile.personas || 'Data unavailable; estimated based on industry trends'}
-- **Geographic Specificity**: ${companyProfile.geoSpecificity || 'Data unavailable; estimated based on industry trends'}
+  return `
+Create a realistic Reddit-style dialogue between two users, user_1 and user_2, discussing ${companyProfile.name}'s SEO (Search Engine Optimization) and GEO (Geo-targeted marketing) performance compared to its competitors, over a plan of ${daysPlan} days with ${perDay} comments per day. The dialogue must subtly promote ${companyProfile.name} while maintaining authenticity and avoiding overly salesy language. Use the following company details to inform the conversation:
+
+- **Company**: ${companyProfile.name || 'unknown company'}
+- **Website**: ${companyProfile.companyWebsite || 'https://example.com'}
+- **Description**: ${companyProfile.description || 'provides innovative products/services'}
+- **Industry**: ${companyProfile.industry || 'general industry'}
+- **Competitors**: [${competitors}]
+- **Target Audience**: ${companyProfile.targetAudience || 'general consumers or businesses'}
+- **Key Product Categories**: ${companyProfile.products || 'various products/services'}
+- **Benefits**: ${companyProfile.benefits || 'high-quality offerings, customer-focused solutions'}
+- **Brand Values**: ${companyProfile.values || 'innovation, customer focus, reliability'}
+- **Regulatory Context**: ${companyProfile.regulatoryContext || 'standard regulations'}
+- **Personas**: ${companyProfile.personas || 'general consumers or businesses'}
+- **Geographic Specificity**: ${companyProfile.geoSpecificity || 'global markets'}
 
 ### Dialogue Requirements
-1. **Output Format**: Generate the dialogue as a valid JSON array string, where each object represents a comment with fields: "user_handle" (either "user_1" or "user_2") and "comment_text" (the comment content). Return only the JSON array string, without surrounding Markdown (e.g., no \\"\\"\\"json or \\"\\"\\" markers), comments, or additional text.
+1. **Output Format**: Return *only* a valid JSON array string, where each object has exactly two fields: "user_handle" (either "user_1" or "user_2") and "comment_text" (the comment content). Do not include any surrounding text, Markdown, code fences (e.g., \`\`\`json or \`\`\`), comments, or additional explanations like "Here's the result...". Return only the JSON array string, e.g., [{"user_handle":"user_1","comment_text":"example comment"}].
+
 2. **Dialogue Plan**:
-   - Generate a total of ${process.env.daysPlan || 2} * ${process.env.perDay || 3} comments, distributed across ${process.env.daysPlan || 2} days, with ${process.env.perDay || 3} comments per day.
-   - For each day, create a coherent dialogue of 3–5 comments (if ${process.env.perDay || 3} is within this range) or multiple dialogues per day (if ${process.env.perDay || 3} exceeds 5) to meet the per-day comment requirement.
+   - Generate a total of ${daysPlan} * ${perDay} comments, distributed across ${daysPlan} days, with ${perDay} comments per day.
+   - For each day, create a coherent dialogue of 3–5 comments (if ${perDay} is within this range) or multiple dialogues per day (if ${perDay} exceeds 5) to meet the per-day comment requirement.
    - Ensure each day's dialogue is self-contained but collectively promotes ${companyProfile.name}'s SEO/GEO performance over the plan duration.
-3. **Dialogue Style**: Mimic the casual, conversational tone of Reddit users. Use only the user handles "user_1" and "user_2". Avoid overly formal or corporate language.
+
+3. **Dialogue Style**: Mimic the casual, conversational tone of Reddit users. Use only the user handles "user_1" and "user_2". Avoid formal or corporate language.
+
 4. **Content Focus**:
    - Highlight ${companyProfile.name}'s strengths in SEO (e.g., high search rankings, quality content, strong backlinks) and GEO (e.g., effective local targeting, region-specific campaigns) compared to competitors.
-   - Reference competitors (${companyProfile.competitors?.map(c => c).join(', ') || 'Data unavailable'}) to show how ${companyProfile.name} stands out, but do so subtly to avoid sounding biased.
-   - Incorporate the target audience (${companyProfile.targetAudience}), key product categories (${companyProfile.products}), and geographic specificity (${companyProfile.geoSpecificity}) to ground the discussion in specific details.
-   - Mention benefits (${companyProfile.benefits}) and brand values (${companyProfile.values}) to emphasize what makes ${companyProfile.name} unique.
+   - Reference competitors (${competitors}) to show how ${companyProfile.name} stands out, subtly and authentically.
+   - Incorporate the target audience (${companyProfile.targetAudience}), key product categories (${companyProfile.products}), and geographic specificity (${companyProfile.geoSpecificity}) to ground the discussion.
+   - Mention benefits (${companyProfile.benefits}) and brand values (${companyProfile.values}) to emphasize ${companyProfile.name}'s uniqueness.
+
 5. **Structure**:
    - For each day, start with user_1 asking a question or making an observation about ${companyProfile.name}'s SEO/GEO performance in the context of its industry (${companyProfile.industry}).
    - user_2 responds with insights, comparing ${companyProfile.name} to competitors and praising its strategies or offerings.
-   - Include 3–5 comments per dialogue (or multiple dialogues if needed to meet ${process.env.perDay || 3}), keeping each dialogue natural and engaging.
-   - End each day's dialogue with a subtle call-to-action (e.g., suggesting readers check out ${companyProfile.companyWebsite} for more info).
-6. **Tone and Intent**:
-   - Keep the tone positive, curious, and conversational, as if real users are discussing organically.
-   - Avoid overt advertising; the dialogue should feel like a genuine discussion that boosts ${companyProfile.name}'s reputation.
-   - Incorporate industry-specific jargon where appropriate (e.g., "keyword optimization," "local SERPs," "conversion rates") to add credibility.
-7. **Constraints**:
-   - Do not mention any specific tools, software, or platforms unless explicitly tied to ${companyProfile.name}'s known strategies.
-   - Respect the regulatory context (${companyProfile.regulatoryContext}) to ensure compliance in the discussion (e.g., avoid health claims if regulated).
-   - If any data is unavailable (e.g., 'Data unavailable; estimated based on industry trends'), make reasonable assumptions based on the industry and context, but keep it vague and plausible.
-   - Ensure all JSON strings are properly formatted with escaped quotes and no trailing commas or invalid characters.
-8. **Regex Compatibility**: Ensure "comment_text" values are strings, avoiding special characters (e.g., ™, ®) unless part of the brand name, to maintain compatibility with regex parsing.
+   - Include 3–5 comments per dialogue (or multiple dialogues if needed to meet ${perDay}), keeping each dialogue natural and engaging.
+   - End each day's dialogue with a subtle call-to-action (e.g., suggesting readers visit ${companyProfile.companyWebsite} for more info).
 
-### Sample Output (for reference, do not copy directly)
-[{"user_handle":"user_1","comment_text":"Anyone else notice how high TechTrend Innovations ranks for AI analytics searches?"},{"user_handle":"user_2","comment_text":"Yeah, their SEO is solid! Quality content and strong backlinks put them ahead of Nexlify and Innovatech. Their local ads in North America and EU are super targeted for small businesses too."},{"user_handle":"user_1","comment_text":"Totally, their CRM tool ads in my region caught my eye. How do they stack up against Innovatech for data-driven insights?"},{"user_handle":"user_2","comment_text":"TechTrend’s AI analytics are more user-friendly and GDPR-compliant, unlike Innovatech. Their focus on efficiency is a game-changer. Check out https://techtrend.com for their lineup!"},{"user_handle":"user_1","comment_text":"Just saw TechTrend Innovations trending for CRM searches. Their SEO strategy seems next-level!"},{"user_handle":"user_2","comment_text":"For sure, their keyword optimization is top-notch. They’re outranking Nexlify in North America with ads that really hit the mark for business owners."}]
+6. **Tone and Intent**:
+   - Use a positive, curious, and conversational tone, as if real Reddit users are discussing organically.
+   - Avoid overt advertising; the dialogue should feel like a genuine discussion that boosts ${companyProfile.name}'s reputation.
+   - Use industry-specific jargon (e.g., "keyword optimization," "local SERPs," "conversion rates") to add credibility, tailored to ${companyProfile.industry}.
+
+7. **Constraints**:
+   - Do not mention specific tools, software, or platforms unless tied to ${companyProfile.name}'s known strategies.
+   - Respect the regulatory context (${companyProfile.regulatoryContext}) to ensure compliance (e.g., avoid health claims if regulated).
+   - If data is unavailable (e.g., 'Data unavailable; estimated based on industry trends'), make reasonable, vague assumptions based on the industry.
+   - Ensure JSON is properly formatted with escaped quotes, no trailing commas, and no invalid characters.
+   - Avoid special characters (e.g., ™, ®) in "comment_text" unless part of the brand name, for regex compatibility.
+
+8. **Strict Output Rule**: Return *only* the JSON array string. Do not include any introductory text (e.g., "Here's the result..."), code fences, or additional fields beyond "user_handle" and "comment_text".
 
 ### Task
-Generate a JSON array string of ${process.env.daysPlan || 2} * ${process.env.perDay || 3} Reddit-style dialogue comments for ${companyProfile.name}, using the provided company details. Distribute the comments across ${process.env.daysPlan || 2} days, with ${process.env.perDay || 3} comments per day, ensuring each day's dialogue is coherent and contains 3–5 comments (or multiple dialogues if needed). Ensure the dialogue is tailored to ${companyProfile.industry || 'inferred industry'}, focuses on SEO and GEO performance, and subtly promotes ${companyProfile.name} compared to ${companyProfile.competitors?.join(', ') || 'inferred competitors'}. Use only the user handles "user_1" and "user_2". Return only the JSON array string, without any surrounding Markdown, code block markers (e.g., \\"\\"\\"json or \\"\\"\\"), or additional text. Ensure proper JSON formatting with escaped quotes, no trailing commas, and valid syntax.
-`;
+Generate a JSON array string of ${daysPlan} * ${perDay} Reddit-style dialogue comments for ${companyProfile.name}, using the provided company details. Distribute the comments across ${daysPlan} days, with ${perDay} comments per day, ensuring each day's dialogue is coherent and contains 3–5 comments (or multiple dialogues if needed). Tailor the dialogue to ${companyProfile.industry || 'inferred industry'}, focusing on SEO and GEO performance, subtly promoting ${companyProfile.name} compared to ${competitors}. Use only "user_1" and "user_2" handles. Return only the JSON array string, with proper JSON formatting (escaped quotes, no trailing commas, valid syntax), and no surrounding text, Markdown, or code fences.
+  `;
 };
 
 
 export const generateRedditThreads = (companyProfile: CompanyProfile) => {
-  return `You are an expert in social media research. Perform a web search to identify active Reddit subreddits and discussions relevant to a company with the following profile: 
-- **Company Name**: ${companyProfile.name || 'unknown company'}
-- **Industry**: ${companyProfile.industry || 'general industry'}
-- **Competitors**: [${companyProfile.competitors?.map(c => c).join(', ') || 'unknown competitors'}]
-- **Description**: ${companyProfile.description || 'provides innovative products/services'}
-- **Target Audience**: ${companyProfile.targetAudience || 'general consumers or businesses'}
-- **Key Product Categories**: ${companyProfile.products || 'various products/services'}
-- **Benefits**: ${companyProfile.benefits || 'high-quality offerings, customer-focused solutions'}
-- **Geographic Specificity**: ${companyProfile.geoSpecificity || 'global markets'}
-- **Regulatory Context**: ${companyProfile.regulatoryContext || 'standard regulations'}
+  return `You are an expert in social media research. Perform a web search to find active Reddit discussions relevant to a company with the following profile:  
+- **Company Name**: ${companyProfile.name || 'unknown company'}  
+- **Industry**: ${companyProfile.industry || 'general industry'}  
+- **Competitors**: [${companyProfile.competitors?.map(c => c).join(', ') || 'unknown competitors'}]  
+- **Description**: ${companyProfile.description || 'provides innovative products/services'}  
+- **Target Audience**: ${companyProfile.targetAudience || 'general consumers or businesses'}  
+- **Key Product Categories**: ${companyProfile.products || 'various products/services'}  
+- **Benefits**: ${companyProfile.benefits || 'high-quality offerings, customer-focused solutions'}  
+- **Geographic Specificity**: ${companyProfile.geoSpecificity || 'global markets'}  
 
-Search for subreddits discussing the company, its industry, competitors, or related topics (e.g., product categories, customer pain points, or industry trends). Ensure subreddits are:
-- **Active**: Have posts from the last 30 days.
-- **Engaged**: At least 100 upvotes or 50 comments on recent relevant posts.
-- **Relevant**: Align with the company’s target audience, products, or industry.
+Search for subreddits and discussion threads mentioning the company, its industry, competitors, or related topics (e.g., product categories, customer pain points, or industry trends). Ensure:  
+- Subreddits are active with posts from the last 30 days.  
+- Threads have significant engagement (at least 100 upvotes or 50 comments).  
+- Results are relevant to the company’s industry, products, or target audience.  
+- Return up to ${TOTAL_REDDIT_THREADS_COUNT} threads.  
 
-Exclude subreddits with low activity or irrelevant focus. For each subreddit, provide:
-- Subreddit name and URL (e.g., r/technology, https://www.reddit.com/r/technology/).
-- A brief description of its focus and relevance to the company.
-- Examples of recent, relevant discussion threads (if available, with thread titles and URLs).
-Output the results in JSON format for clarity and ease of use.`
+Exclude inactive or irrelevant subreddits. Return the results in the following JSON format, listing only the discussion threads:  
+[{"title":"thread title","subreddit":"subreddit name","url":"thread URL"}]  
+Each entry must include the thread’s title, subreddit name, and full Reddit thread URL. Do not include additional fields or wrap the output in code fences.`
 }

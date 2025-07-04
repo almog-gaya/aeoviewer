@@ -5,6 +5,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
+import { RedditThread } from '@/types/RedditThread';
 
 export class GeminiProvider extends BaseLLMProvider {
     private genAI: GoogleGenerativeAI;
@@ -136,6 +137,32 @@ export class GeminiProvider extends BaseLLMProvider {
             return plan;
         } catch (error) {
             console.error('Error parsing generated plan JSON:', error);
+            return [];
+        }
+    }
+
+    async generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]> {
+        try {
+            console.log(`Gemini: Generating Reddit threads using ${this.getModelInfo()}`);
+            
+            const model = this.genAI.getGenerativeModel({ 
+                model: this.config.model || 'gemini-1.5-flash',
+                generationConfig: {
+                    maxOutputTokens: this.config.maxTokens || 2048,
+                    temperature: this.config.temperature || 0.7,
+                }
+            });
+            
+            const systemPrompt = prompt.generateRedditThreads(companyProfile);
+            const fullPrompt = `${systemPrompt}\n\nUser: Generate Reddit threads for the company profile of ${companyProfile.name}`;
+            
+            const result = await model.generateContent(fullPrompt);
+            const responseText = result.response.text() || '';
+                
+            const threads = this.parseJSONResponse(responseText, []);
+            return threads as RedditThread[];
+        } catch (error) {
+            console.error('Error parsing generated Reddit threads JSON:', error);
             return [];
         }
     }

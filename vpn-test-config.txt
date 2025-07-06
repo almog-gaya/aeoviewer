@@ -1,0 +1,28 @@
+# VPN System - Test Mode Configuration
+# Copy these lines to your .env file to test immediately
+
+# Enable VPN system in test mode
+ENABLE_VPN=true
+VPN_REGION_STRATEGY=round_robin
+
+# Add your AI API keys (replace with your actual keys)
+OPENAI_API_KEY=sk-your-openai-key-here
+ANTHROPIC_API_KEY=sk-ant-your-claude-key-here
+GEMINI_API_KEY=your-gemini-key-here
+PERPLEXITY_API_KEY=pplx-your-perplexity-key-here
+GROK_API_KEY=your-grok-key-here
+
+# That's it! Test mode is now hardcoded in the system
+# No VPN credentials needed - the system uses direct connections
+# but simulates VPN routing across different regions
+
+# When ready for real VPNs, add lines like:
+# VPN_US_EAST_1_HOST=your-proxy-host.com
+# VPN_US_EAST_1_PORT=8080
+# VPN_US_EAST_1_USERNAME=your-username
+# VPN_US_EAST_1_PASSWORD=your-password
+
+# Test your setup:
+# 1. Copy the above to .env
+# 2. npm run dev
+# 3. Visit: http://localhost:3000/api/vpn/status 

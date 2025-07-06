@@ -29,7 +29,10 @@
         "react-dom": "^18",
         "recharts": "^2.10.3",
         "sentiment": "^5.0.2",
-        "xlsx": "^0.18.5"
+        "xlsx": "^0.18.5",
+        "https-proxy-agent": "^7.0.5",
+        "socks-proxy-agent": "^8.0.4",
+        "tunnel": "^0.0.6"
     },
     "devDependencies": {
         "@types/node": "^20",

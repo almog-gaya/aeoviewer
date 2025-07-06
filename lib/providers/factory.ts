@@ -4,6 +4,7 @@ import { ClaudeProvider } from './claude';
 import { GeminiProvider } from './gemini';
 import { PerplexityProvider } from './perplexity';
 import { GrokProvider } from './grok';
+import { RegionDistributionStrategy } from '@/lib/vpn/region-manager';
 
 export enum TaskType {
     SCANNING = 'scanning',           // Fast, cost-effective models for basic scanning
@@ -62,6 +63,14 @@ export class LLMFactory implements LLMProviderFactory {
 
     private getConfigForEngine(engine: LLMEngine, userConfig?: LLMConfig, taskType?: TaskType): LLMConfig {
         const task = taskType || TaskType.SCANNING;
+        
+        // VPN configuration - enable VPN if environment variable is set
+        const vpnConfig = {
+            useVPN: process.env.ENABLE_VPN === 'true',
+            regionStrategy: (process.env.VPN_REGION_STRATEGY as RegionDistributionStrategy) || 'round_robin',
+            preferredRegion: process.env.VPN_PREFERRED_REGION,
+            vpnTimeout: parseInt(process.env.VPN_TIMEOUT || '30000'),
+        };
         
         // Task-specific model configurations
         const taskConfigs: Record<LLMEngine, Record<TaskType, Partial<LLMConfig>>> = {
@@ -210,6 +219,7 @@ export class LLMFactory implements LLMProviderFactory {
         return {
             apiKey,
             ...taskConfigs[engine][task],
+            ...vpnConfig,
             ...userConfig,
         };
     }
@@ -263,6 +273,57 @@ export class LLMFactory implements LLMProviderFactory {
             throw new Error('No AI engines available. Please check your API keys.');
         }
         return available[0];
+    }
+
+    // VPN-specific methods
+    public getVPNProvider(engine: LLMEngine, config?: Partial<LLMConfig>, taskType?: TaskType): LLMProvider {
+        const vpnConfig = {
+            useVPN: true,
+            regionStrategy: 'round_robin' as RegionDistributionStrategy,
+            ...config,
+        };
+        return this.getProvider(engine, vpnConfig as LLMConfig, taskType);
+    }
+
+    public getProviderWithRegion(engine: LLMEngine, region: string, config?: Partial<LLMConfig>, taskType?: TaskType): LLMProvider {
+        const vpnConfig = {
+            useVPN: true,
+            preferredRegion: region,
+            ...config,
+        };
+        return this.getProvider(engine, vpnConfig as LLMConfig, taskType);
+    }
+
+    public getMultiRegionProviders(engine: LLMEngine, regions: string[], config?: Partial<LLMConfig>, taskType?: TaskType): LLMProvider[] {
+        return regions.map(region => this.getProviderWithRegion(engine, region, config, taskType));
+    }
+
+    public async testVPNConnectivity(): Promise<Record<string, boolean>> {
+        const { vpnHttpClient } = await import('@/lib/vpn/http-client');
+        return await vpnHttpClient.healthCheckAll();
+    }
+
+    public async getVPNStatus(): Promise<{
+        enabled: boolean;
+        availableRegions: string[];
+        healthyVPNs: Record<string, boolean>;
+        regionStats: any;
+    }> {
+        const { vpnConfigManager } = await import('@/lib/vpn/config');
+        const { regionManager } = await import('@/lib/vpn/region-manager');
+        const { vpnHttpClient } = await import('@/lib/vpn/http-client');
+
+        const enabled = process.env.ENABLE_VPN === 'true';
+        const availableRegions = vpnConfigManager.getAvailableRegions();
+        const healthyVPNs = enabled ? await vpnHttpClient.healthCheckAll() : {};
+        const regionStats = regionManager.getRegionStats();
+
+        return {
+            enabled,
+            availableRegions,
+            healthyVPNs,
+            regionStats,
+        };
     }
 }
 
@@ -321,4 +382,30 @@ export function getTaskDisplayName(task: TaskType): string {
     };
 
     return taskNames[task] || task;
+}
+
+// VPN-specific convenience functions
+export function getVPNProvider(engine: LLMEngine, config?: Partial<LLMConfig>, taskType?: TaskType): LLMProvider {
+    return LLMFactory.getInstance().getVPNProvider(engine, config, taskType);
+}
+
+export function getProviderWithRegion(engine: LLMEngine, region: string, config?: Partial<LLMConfig>, taskType?: TaskType): LLMProvider {
+    return LLMFactory.getInstance().getProviderWithRegion(engine, region, config, taskType);
+}
+
+export function getMultiRegionProviders(engine: LLMEngine, regions: string[], config?: Partial<LLMConfig>, taskType?: TaskType): LLMProvider[] {
+    return LLMFactory.getInstance().getMultiRegionProviders(engine, regions, config, taskType);
+}
+
+export async function testVPNConnectivity(): Promise<Record<string, boolean>> {
+    return LLMFactory.getInstance().testVPNConnectivity();
+}
+
+export async function getVPNStatus(): Promise<{
+    enabled: boolean;
+    availableRegions: string[];
+    healthyVPNs: Record<string, boolean>;
+    regionStats: any;
+}> {
+    return LLMFactory.getInstance().getVPNStatus();
 } 

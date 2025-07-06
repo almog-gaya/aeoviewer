@@ -14,25 +14,21 @@ export class PerplexityProvider extends BaseLLMProvider {
     }
 
     private async makeRequest(messages: Array<{ role: string; content: string }>): Promise<string> {
-        const response = await fetch(this.baseURL, {
-            method: 'POST',
-            headers: {
+        const data = await this.makeVPNRequest(
+            this.baseURL,
+            'POST',
+            {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.config.apiKey}`,
             },
-            body: JSON.stringify({
+            JSON.stringify({
                 model: this.config.model || 'llama-3.1-sonar-large-128k-online',
                 messages,
                 max_tokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
-            }),
-        });
+            })
+        );
 
-        if (!response.ok) {
-            throw new Error(`Perplexity API error: ${response.status} ${response.statusText}`);
-        }
-
-        const data = await response.json();
         return data.choices?.[0]?.message?.content || '';
     }
 

@@ -25,7 +25,8 @@ const LLMCheckerPage: React.FC = () => {
     try {
       const llmUrl = normalizeUrl("/llm.txt", url);
       const res = await fetch(`/api/llm-checker?url=${encodeURIComponent(llmUrl)}`);
-      setStatus(res.ok ? "found" : "not_found");
+      const data = await res.json();
+      setStatus(data.exists ? "found" : "not_found");
     } catch (e: any) {
       setStatus("error");
       setError(e.message || "Unknown error");
@@ -58,9 +59,7 @@ const LLMCheckerPage: React.FC = () => {
 
   // Copy text to clipboard
   const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      alert("Template copied to clipboard!");
-    });
+    navigator.clipboard.writeText(text);
   };
 
   const defaultLlmTemplate = `# llm.txt
@@ -162,7 +161,7 @@ Allow: /
         {/* Generated llm.txt Display */}
         {llmContent && (
           <div className="mt-6 p-6 bg-gray-50 rounded-xl border border-gray-200">
-            <h2 className="text-xl font-semibold text-gray-900 mb-3">Generated <code className="font-mono bg-gray-100 px-1 rounded">llm.txt</code></h2>
+            <h2 className="text-xl font-semibold text-gray-900 mb-3">Generated <code className="font-mono bg-gray-100 px-1 rounded">llm.txt from robot.txt</code></h2>
             <div className="relative">
               <textarea
                 className="w-full font-mono text-sm bg-gray-100 border border-gray-200 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
@@ -180,33 +179,7 @@ Allow: /
             </div>
           </div>
         )}
-
-        {/* LLM.txt Generator Template */}
-        <div className="mt-8 p-6 bg-gray-50 rounded-xl border border-gray-200">
-          <h2 className="text-xl font-semibold text-gray-900 mb-3">Generate your <code className="font-mono bg-gray-100 px-1 rounded">llm.txt</code></h2>
-          <p className="mb-4 text-gray-600 text-sm leading-relaxed">
-            If your site doesn't have an <code className="font-mono bg-gray-100 px-1 rounded">llm.txt</code>, use this template to declare your AI/LLM crawling policy. Customize it to suit your needs.
-          </p>
-          <div className="relative mb-4">
-            <textarea
-              className="w-full font-mono text-sm bg-gray-100 border border-gray-200 rounded-lg p-4 resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-200"
-              rows={10}
-              readOnly
-              value={defaultLlmTemplate}
-              id="llm-txt-template"
-            />
-            <button
-              className="absolute top-3 right-3 bg-blue-500 text-white px-4 py-1.5 rounded-lg hover:bg-blue-600 text-sm font-medium transition-all duration-200"
-              onClick={() => handleCopy(defaultLlmTemplate)}
-              type="button"
-            >
-              Copy
-            </button>
-          </div>
-          <p className="text-xs text-gray-500">
-            Place this file at your website's root (e.g., <code className="font-mono bg-gray-100 px-1 rounded">https://yourdomain.com/llm.txt</code>).
-          </p>
-        </div>
+ 
       </div>
     </div>
   );

@@ -9,10 +9,17 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
     }
 
-    const res = await fetch(llmURL, { method: "HEAD" });
+    const res = await fetch(llmURL);
     console.log(`LLM URL Response: ${res.status} ${res.statusText} for ${llmURL}`);
-
-    return NextResponse.json({ exists: res.ok });
+    if (!res.ok) {
+        return NextResponse.json(
+            { error: `Failed to fetch LLM URL: ${res.statusText}` },
+            { status: res.status }
+        );
+    }
+    const robotsContent = await res.text();
+    const exists = robotsContent.trim().length > 0;
+    return NextResponse.json({ exists: exists, content: robotsContent });
 }
 
 export async function POST(req: Request) {
@@ -23,11 +30,9 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
     }
 
-    try { 
-        
-
+    try {  
         // Fetch robots.txt
-        const robotsResponse = await fetch(robotsURL, { method: 'HEAD' });
+        const robotsResponse = await fetch(robotsURL);
         
         if (!robotsResponse.ok) {
             return NextResponse.json(
@@ -35,6 +40,8 @@ export async function POST(req: Request) {
                 { status: robotsResponse.status }
             );
         }
+
+        console.log(`URL : ${JSON.stringify(robotsResponse)}`)
 
         // Get the robots.txt content
         const robotsContent = await robotsResponse.text();

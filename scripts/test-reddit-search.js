@@ -36,7 +36,7 @@ const relevantKeywords = [
 ];
 
 // Test function to search Reddit with different strategies
-async function testRedditSearch(company, website = null) {
+async function testRedditSearch(company, website = null, fetchFn) {
   console.log(`\n🔍 Testing Reddit search for: "${company}"`);
   console.log(`Website: ${website || 'Not provided'}\n`);
   
@@ -48,7 +48,7 @@ async function testRedditSearch(company, website = null) {
       const query = strategyFn(company, website);
       console.log(`   Query: "${query}"`);
       
-      const searchResult = await searchRedditWithStrategy(query, strategyName);
+      const searchResult = await searchRedditWithStrategy(query, strategyName, fetchFn);
       results[strategyName] = searchResult;
       
       console.log(`   Results: ${searchResult.totalFound} found, ${searchResult.relevant} relevant (${searchResult.relevanceScore}% relevance)`);
@@ -68,10 +68,10 @@ async function testRedditSearch(company, website = null) {
   return results;
 }
 
-async function searchRedditWithStrategy(query, strategyName) {
+async function searchRedditWithStrategy(query, strategyName, fetchFn) {
   const searchUrl = `https://www.reddit.com/search.json?q=${encodeURIComponent(query)}&sort=relevance&t=month&limit=25&type=link`;
   
-  const response = await fetch(searchUrl, {
+  const response = await fetchFn(searchUrl, {
     headers: {
       'User-Agent': 'RedditSearchTest/1.0 (Testing search relevance)'
     }
@@ -179,6 +179,9 @@ async function runTests() {
   console.log('🧪 Reddit Search Quality Analysis');
   console.log('=====================================');
   
+  // Initialize fetch function
+  const fetchFn = await initializeFetch();
+  
   const testCases = [
     { company: 'Orca Security', website: 'orca.security' },
     { company: 'Palo Alto Networks', website: 'paloaltonetworks.com' },
@@ -189,7 +192,7 @@ async function runTests() {
   const allResults = {};
   
   for (const testCase of testCases) {
-    const results = await testRedditSearch(testCase.company, testCase.website);
+    const results = await testRedditSearch(testCase.company, testCase.website, fetchFn);
     allResults[testCase.company] = results;
     
     // Small delay to be respectful

@@ -113,6 +113,28 @@ const Navigation: React.FC<NavigationProps> = ({ showLogo = true }) => {
               </Link>  
             </nav>
           </div>
+
+          {/* Tools section */}
+          <div className="mb-6">
+            <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              Tools
+            </h2>
+            <nav className="space-y-1">
+              <Link
+                href="/llm-checker"
+                className={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+                  isActive('/llm-checker')
+                    ? 'bg-gray-100 text-gray-900'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <svg className="mr-3 h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" />
+                </svg>
+                LLM Checker
+              </Link>
+            </nav>
+          </div>
             
         </div>
       </div>

@@ -517,156 +517,291 @@ export default function RedditSentimentPage() {
         </div>
       )}
 
-      {/* Step 3: Analysis Results */}
+      {/* Step 3: Professional Analysis Report */}
       {step === 2 && sentimentReport && (
-        <div className="space-y-6">
-          <div className="bg-white rounded-lg shadow p-6">
-            <div className="flex justify-between items-center mb-6">
-              <h1 className="text-2xl font-bold text-gray-900">Sentiment Analysis Report</h1>
-              <div className="flex gap-2">
+        <div className="min-h-screen bg-gray-50 -mx-4 -my-10">
+          {/* Header with Company Info */}
+          <div className="bg-white shadow-sm border-b border-gray-200">
+            <div className="max-w-7xl mx-auto px-6 py-8">
+              {/* Logo Row */}
+              <div className="flex items-center justify-center space-x-4 mb-6">
+                <img src="/redditlogo.jpeg" alt="Reddit" className="h-10 w-10 rounded-full"/>
+                <span className="text-gray-400 text-2xl">×</span>
+                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                  <span className="text-white font-bold text-lg">{companyName.charAt(0).toUpperCase()}</span>
+                </div>
+              </div>
+              
+              {/* Title */}
+              <div className="text-center">
+                <h1 className="text-3xl font-bold text-gray-900 mb-2">Reddit Sentiment Analysis</h1>
+                <h2 className="text-xl text-gray-600 mb-4">{companyName}</h2>
+                <p className="text-sm text-gray-500">
+                  {sentimentReport.summary.totalMentions} mentions • {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% positive • Generated {new Date().toLocaleDateString()}
+                </p>
+              </div>
+
+              {/* Export Buttons */}
+              <div className="flex justify-center gap-2 mt-6">
                 <button
                   onClick={() => handleExport('csv')}
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm"
+                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 text-sm font-medium"
                 >
                   Export CSV
                 </button>
                 <button
                   onClick={() => handleExport('json')}
-                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm"
+                  className="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 text-sm font-medium"
                 >
                   Export JSON
                 </button>
                 <button
                   onClick={() => handleExport('html')}
-                  className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm"
+                  className="px-4 py-2 bg-purple-600 text-white rounded-md hover:bg-purple-700 text-sm font-medium"
                 >
                   Export HTML
                 </button>
                 <button
                   onClick={handleReset}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 text-sm"
+                  className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-sm font-medium"
                 >
                   ← New Search
                 </button>
               </div>
             </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-              <div className="bg-blue-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-blue-600">{sentimentReport.summary.totalMentions}</div>
-                <div className="text-sm text-gray-600">Total Mentions</div>
-              </div>
-              <div className="bg-green-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-green-600">{sentimentReport.summary.sentimentDistribution.positive}</div>
-                <div className="text-sm text-gray-600">Positive</div>
-              </div>
-              <div className="bg-yellow-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-yellow-600">{sentimentReport.summary.sentimentDistribution.neutral}</div>
-                <div className="text-sm text-gray-600">Neutral</div>
-              </div>
-              <div className="bg-red-50 p-4 rounded-lg">
-                <div className="text-2xl font-bold text-red-600">{sentimentReport.summary.sentimentDistribution.negative}</div>
-                <div className="text-sm text-gray-600">Negative</div>
-              </div>
-            </div>
-
-            <div className="mb-6">
-              <h2 className="text-lg font-semibold mb-3">Sentiment Distribution</h2>
-              <div className="bg-gray-100 rounded-lg h-8 flex overflow-hidden">
-                <div 
-                  className="bg-green-500 flex items-center justify-center text-white text-sm font-medium"
-                  style={{ width: `${(sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100}%` }}
-                >
-                  {sentimentReport.summary.sentimentDistribution.positive > 0 && 
-                    `${Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}%`
-                  }
-                </div>
-                <div 
-                  className="bg-yellow-500 flex items-center justify-center text-white text-sm font-medium"
-                  style={{ width: `${(sentimentReport.summary.sentimentDistribution.neutral / sentimentReport.summary.totalMentions) * 100}%` }}
-                >
-                  {sentimentReport.summary.sentimentDistribution.neutral > 0 && 
-                    `${Math.round((sentimentReport.summary.sentimentDistribution.neutral / sentimentReport.summary.totalMentions) * 100)}%`
-                  }
-                </div>
-                <div 
-                  className="bg-red-500 flex items-center justify-center text-white text-sm font-medium"
-                  style={{ width: `${(sentimentReport.summary.sentimentDistribution.negative / sentimentReport.summary.totalMentions) * 100}%` }}
-                >
-                  {sentimentReport.summary.sentimentDistribution.negative > 0 && 
-                    `${Math.round((sentimentReport.summary.sentimentDistribution.negative / sentimentReport.summary.totalMentions) * 100)}%`
-                  }
+          </div>
+          
+          <main className="p-6 bg-gray-50">
+            <div className="max-w-7xl mx-auto space-y-6">
+              {/* Sentiment Overview */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <h2 className="text-2xl font-semibold text-gray-900 mb-6">Sentiment Overview</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                    <div className="text-3xl font-bold text-gray-900 mb-2">{sentimentReport.summary.sentimentDistribution.positive}</div>
+                    <div className="text-lg font-medium text-gray-700 mb-1">Positive Mentions</div>
+                    <div className="text-sm text-gray-500">{Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% of all sentiment</div>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                    <div className="text-3xl font-bold text-gray-900 mb-2">{sentimentReport.summary.sentimentDistribution.neutral}</div>
+                    <div className="text-lg font-medium text-gray-700 mb-1">Neutral Mentions</div>
+                    <div className="text-sm text-gray-500">{Math.round((sentimentReport.summary.sentimentDistribution.neutral / sentimentReport.summary.totalMentions) * 100)}% of all sentiment</div>
+                  </div>
+                  <div className="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                    <div className="text-3xl font-bold text-gray-900 mb-2">{sentimentReport.summary.sentimentDistribution.negative}</div>
+                    <div className="text-lg font-medium text-gray-700 mb-1">Negative Mentions</div>
+                    <div className="text-sm text-gray-500">{Math.round((sentimentReport.summary.sentimentDistribution.negative / sentimentReport.summary.totalMentions) * 100)}% of all sentiment</div>
+                  </div>
                 </div>
               </div>
-            </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-              <div>
-                <h2 className="text-lg font-semibold mb-3">Top Subreddits</h2>
-                <div className="space-y-2">
-                  {sentimentReport.summary.topSubreddits.slice(0, 5).map((sub, index) => (
-                    <div key={sub.subreddit} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                      <span className="font-medium">r/{sub.subreddit}</span>
-                      <div className="text-right">
-                        <div className="text-sm font-medium">{sub.count} mentions</div>
-                        <div className="text-xs text-gray-500">
-                          Avg sentiment: {sub.averageSentiment.toFixed(1)}
+              {/* Key Communities and Sentiment Insights */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                {/* Subreddit Analysis */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Discussion Communities</h3>
+                  <div className="space-y-4">
+                    {sentimentReport.summary.topSubreddits.slice(0, 6).map((subreddit, index) => (
+                      <div key={subreddit.subreddit} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                        <div>
+                          <div className="font-medium text-gray-900">r/{subreddit.subreddit}</div>
+                          <div className="text-sm text-gray-500">{subreddit.count} discussions • Avg sentiment: {subreddit.averageSentiment.toFixed(1)}</div>
+                        </div>
+                        <div className="text-right">
+                          <div className="text-lg font-semibold text-gray-900">{Math.round((subreddit.count / sentimentReport.summary.totalMentions) * 100)}%</div>
+                          <div className="text-xs text-gray-500">of discussions</div>
                         </div>
                       </div>
-                    </div>
-                  ))}
+                    ))}
+                  </div>
                 </div>
-              </div>
 
-              <div>
-                <h2 className="text-lg font-semibold mb-3">Top Keywords</h2>
-                <div className="space-y-2">
-                  {sentimentReport.summary.topKeywords.slice(0, 10).map((keyword, index) => (
-                    <div key={keyword.keyword} className="flex justify-between items-center p-2 bg-gray-50 rounded">
-                      <span className="font-medium">{keyword.keyword}</span>
-                      <span className="text-sm text-gray-600">{keyword.count} times</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div>
-              <h2 className="text-lg font-semibold mb-3">Recent Analyzed Mentions</h2>
-              <div className="space-y-3 max-h-96 overflow-y-auto">
-                {sentimentReport.analyses.slice(0, 10).map((analysis, index) => (
-                  <div key={analysis.mention.id} className="border border-gray-200 rounded-lg p-4">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1">
-                        <h3 className="font-medium text-gray-900 text-sm">{analysis.mention.title}</h3>
-                        <div className="flex items-center text-xs text-gray-500 mt-1">
-                          <span>r/{analysis.mention.subreddit}</span>
-                          <span className="mx-2">•</span>
-                          <span>by {analysis.mention.author}</span>
-                          <span className="mx-2">•</span>
-                          <span>{analysis.mention.score} upvotes</span>
-                        </div>
+                {/* Sentiment Insights */}
+                <div className="bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-4">Sentiment Insights</h3>
+                  <div className="space-y-4">
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center">
+                        <div className="font-medium text-gray-900">Strong Positive Sentiment</div>
+                        <div className="text-2xl font-bold text-gray-900">{Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}%</div>
                       </div>
-                      <div className="ml-4 text-right">
-                        <div className={`px-2 py-1 rounded-full text-xs font-medium ${
-                          analysis.sentiment.label.includes('positive') 
-                            ? 'bg-green-100 text-green-800' 
-                            : analysis.sentiment.label.includes('negative')
-                            ? 'bg-red-100 text-red-800'
-                            : 'bg-yellow-100 text-yellow-800'
-                        }`}>
-                          {analysis.sentiment.label.replace('_', ' ')}
-                        </div>
-                        <div className="text-xs text-gray-500 mt-1">
-                          Score: {analysis.sentiment.score}
-                        </div>
+                      <div className="text-sm text-gray-600 mt-2">
+                        {sentimentReport.summary.sentimentDistribution.positive} positive mentions show users appreciate {companyName}'s features and performance
+                      </div>
+                    </div>
+                    
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center">
+                        <div className="font-medium text-gray-900">Neutral Discussion</div>
+                        <div className="text-2xl font-bold text-gray-900">{Math.round((sentimentReport.summary.sentimentDistribution.neutral / sentimentReport.summary.totalMentions) * 100)}%</div>
+                      </div>
+                      <div className="text-sm text-gray-600 mt-2">
+                        {sentimentReport.summary.sentimentDistribution.neutral} neutral mentions include factual comparisons and technical discussions
+                      </div>
+                    </div>
+                    
+                    <div className="p-4 bg-gray-50 rounded-lg">
+                      <div className="flex justify-between items-center">
+                        <div className="font-medium text-gray-900">Areas for Improvement</div>
+                        <div className="text-2xl font-bold text-gray-900">{Math.round((sentimentReport.summary.sentimentDistribution.negative / sentimentReport.summary.totalMentions) * 100)}%</div>
+                      </div>
+                      <div className="text-sm text-gray-600 mt-2">
+                        {sentimentReport.summary.sentimentDistribution.negative} negative mentions highlight potential improvement areas
                       </div>
                     </div>
                   </div>
-                ))}
+                </div>
+              </div>
+
+              {/* Topic Analysis */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">What People Are Discussing</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {sentimentReport.summary.topKeywords.slice(0, 9).map((keyword) => (
+                    <div key={keyword.keyword} className="p-4 border border-gray-200 rounded-lg">
+                      <div className="font-medium text-gray-900 mb-2 capitalize">{keyword.keyword}</div>
+                      <div className="text-2xl font-bold text-blue-600 mb-1">{keyword.count}</div>
+                      <div className="text-xs text-gray-500">Sentiment: {keyword.sentiment}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Competitive Sentiment (if competitors provided) */}
+              {competitors && (
+                <div className="bg-white rounded-lg shadow p-6">
+                  <h3 className="text-lg font-semibold text-gray-900 mb-6">Competitive Sentiment Comparison</h3>
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full divide-y divide-gray-200">
+                      <thead className="bg-gray-50">
+                        <tr>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Mentions</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Community Reach</th>
+                          <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discussion Type</th>
+                        </tr>
+                      </thead>
+                      <tbody className="bg-white divide-y divide-gray-200">
+                        <tr className="bg-blue-50">
+                          <td className="px-6 py-4 whitespace-nowrap text-sm font-bold text-blue-900">{companyName}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{sentimentReport.summary.totalMentions}</td>
+                          <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{sentimentReport.summary.topSubreddits.length} subreddits</td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                              {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% Positive Sentiment
+                            </span>
+                          </td>
+                        </tr>
+                        {Object.entries(sentimentReport.summary.competitorMentions).map(([competitor, data]) => (
+                          <tr key={competitor}>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{competitor}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">{data.count}</td>
+                            <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Multiple communities</td>
+                            <td className="px-6 py-4 whitespace-nowrap">
+                              <span className="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                {data.sentiment}
+                              </span>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              )}
+
+              {/* Key Insights */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-6">Key Insights</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                    <h4 className="font-medium text-gray-900 mb-3">Positive Feedback Themes</h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      {sentimentReport.summary.topKeywords
+                        .filter(k => k.sentiment.toLowerCase().includes('positive'))
+                        .slice(0, 3)
+                        .map((keyword, index) => (
+                          <li key={index} className="flex items-start">
+                            <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            {keyword.keyword} mentioned {keyword.count} times with positive sentiment
+                          </li>
+                        ))}
+                      {sentimentReport.summary.topKeywords.filter(k => k.sentiment.toLowerCase().includes('positive')).length === 0 && (
+                        <li className="flex items-start">
+                          <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          Users appreciate {companyName}'s features and performance
+                        </li>
+                      )}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-gray-900 mb-3">Areas of Discussion</h4>
+                    <ul className="space-y-2 text-sm text-gray-600">
+                      {sentimentReport.summary.topKeywords.slice(0, 3).map((keyword, index) => (
+                        <li key={index} className="flex items-start">
+                          <span className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                          {keyword.keyword} - {keyword.count} discussions
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+                
+                <div className="mt-6 p-4 bg-blue-50 rounded-lg">
+                  <h4 className="font-medium text-blue-900 mb-2">Summary</h4>
+                  <p className="text-sm text-blue-800">
+                    {companyName} shows {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100) >= 50 ? 'strong' : 'moderate'} positive sentiment ({Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}%) across {sentimentReport.summary.topSubreddits.length} major communities. 
+                    With {sentimentReport.summary.totalMentions} total mentions, discussions focus primarily on {sentimentReport.summary.topKeywords.slice(0, 3).map(k => k.keyword).join(', ')}. 
+                    The sentiment distribution indicates {sentimentReport.summary.sentimentDistribution.positive >= sentimentReport.summary.sentimentDistribution.negative ? 'healthy' : 'mixed'} community engagement with {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100) >= 40 ? 'predominantly positive' : 'balanced'} feedback.
+                  </p>
+                </div>
+              </div>
+
+              {/* Sample Mentions */}
+              <div className="bg-white rounded-lg shadow p-6">
+                <h3 className="text-lg font-semibold text-gray-900 mb-4">Sample Analyzed Mentions</h3>
+                <div className="space-y-4 max-h-96 overflow-y-auto">
+                  {sentimentReport.analyses.slice(0, 5).map((analysis) => (
+                    <div key={analysis.mention.id} className="border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+                      <div className="flex items-start justify-between">
+                        <div className="flex-1">
+                          <h4 className="font-medium text-gray-900 mb-2">{analysis.mention.title}</h4>
+                          <div className="flex items-center text-sm text-gray-500 mb-2">
+                            <span className="font-medium">r/{analysis.mention.subreddit}</span>
+                            <span className="mx-2">•</span>
+                            <span>by {analysis.mention.author}</span>
+                            <span className="mx-2">•</span>
+                            <span>{analysis.mention.score} upvotes</span>
+                            <span className="mx-2">•</span>
+                            <span>{analysis.mention.numComments} comments</span>
+                          </div>
+                          {analysis.mention.selftext && (
+                            <p className="text-sm text-gray-600 line-clamp-2">
+                              {analysis.mention.selftext.substring(0, 150)}...
+                            </p>
+                          )}
+                        </div>
+                        <div className="ml-4 text-right">
+                          <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
+                            analysis.sentiment.label === 'positive' || analysis.sentiment.label === 'very_positive'
+                              ? 'bg-green-100 text-green-800'
+                              : analysis.sentiment.label === 'negative' || analysis.sentiment.label === 'very_negative'
+                              ? 'bg-red-100 text-red-800'
+                              : 'bg-gray-100 text-gray-800'
+                          }`}>
+                            {analysis.sentiment.label.replace('_', ' ')}
+                          </span>
+                          <div className="text-xs text-gray-500 mt-1">
+                            Score: {analysis.sentiment.score.toFixed(2)}
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </main>
         </div>
       )}
     </div>

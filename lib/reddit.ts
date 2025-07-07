@@ -1,21 +1,66 @@
-export const handleRedditLogin = async () => {
+export async function getRedditUser() {
+  try {
+    // Check if we have an access token in cookies
+    const token = getCookie('reddit_access_token');
+    if (!token) return null;
 
-    window.location.href = "/api/auth/reddit/login";
+    // Try to get user info from Reddit API
+    const response = await fetch('https://oauth.reddit.com/api/v1/me', {
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'User-Agent': 'web:AEO-Viewer-Bot:1.0 (by /u/your_reddit_username)'
+      }
+    });
 
-};
-export const getRedditUser = async () => {
-    try {
-        const response = await fetch("/api/reddit-user", {
-            credentials: "include",
-        });
-        return await response.json();
-    } catch (err) {
-        console.error("Failed to fetch Reddit user:", err);
+    if (!response.ok) {
+      // Token might be expired, remove it
+      document.cookie = 'reddit_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+      return null;
     }
-};
 
-export const handleRedditLogout = async () => {
-    await fetch("/api/auth/reddit/logout", { method: "POST", credentials: "include" });
-    window.location.reload();
-};
+    const user = await response.json();
+    return user;
+  } catch (error) {
+    console.error('Error getting Reddit user:', error);
+    return null;
+  }
+}
+
+export function handleRedditLogin() {
+  const clientId = process.env.NEXT_PUBLIC_REDDIT_CLIENT_ID;
+  const redirectUri = `${window.location.origin}/reddit-auth`;
+  const scope = 'read';
+  const state = Math.random().toString(36).substring(7);
+  
+  // Store state in localStorage for verification
+  localStorage.setItem('reddit_oauth_state', state);
+  
+  const authUrl = `https://www.reddit.com/api/v1/authorize?` +
+    `client_id=${clientId}&` +
+    `response_type=code&` +
+    `state=${state}&` +
+    `redirect_uri=${encodeURIComponent(redirectUri)}&` +
+    `duration=temporary&` +
+    `scope=${scope}`;
+  
+  window.location.href = authUrl;
+}
+
+export function handleRedditLogout() {
+  // Clear the access token cookie
+  document.cookie = 'reddit_access_token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  // Reload the page to update UI
+  window.location.reload();
+}
+
+function getCookie(name: string): string | null {
+  if (typeof document === 'undefined') return null;
+  
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) {
+    return parts.pop()?.split(';').shift() || null;
+  }
+  return null;
+}
 

@@ -150,6 +150,7 @@ async function analyzeRedditMentions(
   console.log(`📊 Sentiment distribution:`, sentimentDistribution);
 
   return {
+    companyName,
     searchResult: {
       mentions,
       totalFound: mentions.length,

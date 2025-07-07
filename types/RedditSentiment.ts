@@ -74,6 +74,7 @@ export interface RedditSearchResult {
 }
 
 export interface RedditSentimentReport {
+  companyName: string;
   searchResult: RedditSearchResult;
   analyses: RedditMentionAnalysis[];
   summary: {

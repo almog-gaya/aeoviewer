@@ -8,6 +8,7 @@ interface RedditSearchBody {
   limit?: number;
   sort?: 'relevance' | 'top' | 'new' | 'comments';
   searchStrategy?: 'basic' | 'withContext' | 'quoted' | 'quotedWithContext' | 'businessContext';
+  industryContext?: string;
 }
 
 export async function POST(req: NextRequest) {
@@ -23,22 +24,36 @@ export async function POST(req: NextRequest) {
 
     // Enhance query based on strategy for better relevance
     const originalQuery = body.query.trim();
-    const searchStrategy = body.searchStrategy || 'withContext'; // Default to best performing strategy
+    const searchStrategy = body.searchStrategy || 'withContext';
+    const industryContext = body.industryContext?.trim() || '';
     let enhancedQuery = originalQuery;
+    
+    // Build context terms
+    let contextTerms = '';
+    const baseBusinessTerms = 'company OR business OR brand OR product OR service';
+    const enterpriseTerms = 'company OR business OR enterprise OR brand OR startup OR corporation';
     
     switch (searchStrategy) {
       case 'withContext':
-        // Best performing strategy: 95% average relevance
-        enhancedQuery = `${originalQuery} cybersecurity security software technology`;
+        contextTerms = industryContext 
+          ? `(${baseBusinessTerms} OR ${industryContext})`
+          : `(${baseBusinessTerms})`;
+        enhancedQuery = `${originalQuery} ${contextTerms}`;
         break;
       case 'businessContext':
-        enhancedQuery = `${originalQuery} (cybersecurity OR security OR software OR technology OR business OR enterprise)`;
+        contextTerms = industryContext 
+          ? `(${enterpriseTerms} OR ${industryContext})`
+          : `(${enterpriseTerms})`;
+        enhancedQuery = `${originalQuery} ${contextTerms}`;
         break;
       case 'quoted':
         enhancedQuery = `"${originalQuery}"`;
         break;
       case 'quotedWithContext':
-        enhancedQuery = `"${originalQuery}" cybersecurity OR security OR software OR technology`;
+        contextTerms = industryContext 
+          ? `(company OR business OR brand OR product OR ${industryContext})`
+          : '(company OR business OR brand OR product)';
+        enhancedQuery = `"${originalQuery}" ${contextTerms}`;
         break;
       case 'basic':
       default:
@@ -56,6 +71,9 @@ export async function POST(req: NextRequest) {
     };
 
     console.log(`🔍 Searching Reddit for: "${originalQuery}"`);
+    if (industryContext) {
+      console.log(`🏭 Industry context: "${industryContext}"`);
+    }
     console.log(`🎯 Enhanced query (${searchStrategy}): "${enhancedQuery}"`);
     console.log(`📊 Parameters:`, searchParams);
 
@@ -128,15 +146,24 @@ async function searchRedditMentions(params: RedditSearchParams): Promise<RedditS
 
     console.log(`✅ Successfully fetched ${successfullyFetched} threads, ${failedFetches} failed`);
 
+    // Apply relevance filtering to improve quality
+    const filteredMentions = filterRelevantMentions(mentions, params.query);
+    const filteredCount = mentions.length - filteredMentions.length;
+    
+    if (filteredCount > 0) {
+      console.log(`🔍 Filtered out ${filteredCount} irrelevant mentions`);
+    }
+
     return {
-      mentions,
+      mentions: filteredMentions,
       totalFound,
       searchParams: params,
       searchDate: new Date(),
       processingStats: {
         successfullyFetched,
         failedFetches,
-        totalAnalyzed: mentions.length
+        totalAnalyzed: filteredMentions.length,
+        filteredOut: filteredCount
       }
     };
 
@@ -245,4 +272,63 @@ function extractComments(comments: any[], depth: number = 0, maxDepth: number = 
   }
   
   return result;
+}
+
+function filterRelevantMentions(mentions: RedditMention[], originalQuery: string): RedditMention[] {
+  // Generic business/commercial keywords that work across industries
+  const relevantKeywords = [
+    'company', 'business', 'brand', 'product', 'service', 'startup', 'enterprise',
+    'corporation', 'vendor', 'client', 'customer', 'market', 'industry', 'sales',
+    'marketing', 'review', 'experience', 'quality', 'price', 'cost', 'buy', 'purchase'
+  ];
+
+  // General business/commercial subreddits (not industry-specific)
+  const relevantSubreddits = [
+    'business', 'entrepreneur', 'startup', 'smallbusiness', 'marketing', 'sales',
+    'reviews', 'buyitforlife', 'frugal', 'personalfinance', 'investing'
+  ];
+
+  // Only filter out clearly irrelevant content that's definitely not business-related
+  const definitelyIrrelevantKeywords = [
+    'whale', 'ocean', 'marine', 'animal', 'species', 'wildlife', 'sea', 'mammal', 
+    'pod', 'killer whale', 'dolphin', 'shark'  // Only keep animal-specific terms
+  ];
+
+  return mentions.filter(mention => {
+    const combinedText = `${mention.title} ${mention.selftext} ${mention.comments.map(c => c.body).join(' ')}`.toLowerCase();
+    const subreddit = mention.subreddit.toLowerCase();
+    
+    // If it's in a relevant subreddit, likely relevant
+    const isRelevantSubreddit = relevantSubreddits.some(rel => 
+      subreddit.includes(rel)
+    );
+    
+    // Check for relevant keywords
+    const hasRelevantKeywords = relevantKeywords.some(keyword => 
+      combinedText.includes(keyword.toLowerCase())
+    );
+    
+    // Check for definitely irrelevant keywords (only clear non-business content)
+    const hasDefinitelyIrrelevantKeywords = definitelyIrrelevantKeywords.some((keyword: string) => 
+      combinedText.includes(keyword.toLowerCase())
+    );
+    
+    // Only filter out if it's definitely irrelevant AND has no business context
+    if (hasDefinitelyIrrelevantKeywords && !hasRelevantKeywords && !isRelevantSubreddit) {
+      return false;
+    }
+    
+    // If it's in a relevant subreddit or has relevant keywords, keep it
+    if (isRelevantSubreddit || hasRelevantKeywords) {
+      return true;
+    }
+    
+    // For short content that might not have many keywords, be more lenient
+    if (combinedText.length < 200) {
+      return true;
+    }
+    
+    // Default: keep it (err on the side of inclusion)
+    return true;
+  });
 } 

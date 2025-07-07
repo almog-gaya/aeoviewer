@@ -14,12 +14,14 @@ export default function RedditSentimentPage() {
   const [step, setStep] = useState(0);
   
   // Search parameters
-  const [searchParams, setSearchParams] = useState<RedditSearchParams>({
+  const [searchParams, setSearchParams] = useState<RedditSearchParams & { searchStrategy?: string; industryContext?: string }>({
     query: "",
     subreddit: "",
     timeFilter: "week",
     limit: 500,
-    sort: "relevance"
+    sort: "relevance",
+    searchStrategy: "withContext",
+    industryContext: ""
   });
   
   // Loading and error states
@@ -215,6 +217,36 @@ export default function RedditSentimentPage() {
                 onChange={e => setSearchParams(prev => ({ ...prev, subreddit: e.target.value }))}
               />
               <p className="text-xs text-gray-500 mt-1">Leave empty to search all of Reddit</p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Search Strategy</label>
+              <select
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={searchParams.searchStrategy}
+                onChange={e => setSearchParams(prev => ({ ...prev, searchStrategy: e.target.value }))}
+              >
+                <option value="withContext">Smart Context (Recommended)</option>
+                <option value="businessContext">Business Context (Enterprise focus)</option>
+                <option value="quoted">Exact Match (Very specific)</option>
+                <option value="quotedWithContext">Exact + Context (Balanced)</option>
+                <option value="basic">Basic Search (Broadest results)</option>
+              </select>
+              <p className="text-xs text-gray-500 mt-1">Smart Context adds business terms to improve relevance across all industries</p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
+                Industry Context (Optional)
+              </label>
+              <input
+                type="text"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="e.g., healthcare, food, fashion, technology"
+                value={searchParams.industryContext}
+                onChange={e => setSearchParams(prev => ({ ...prev, industryContext: e.target.value }))}
+              />
+              <p className="text-xs text-gray-500 mt-1">Add specific industry terms to further refine search context</p>
             </div>
             
             <div>

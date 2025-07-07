@@ -69,6 +69,7 @@ export interface RedditSearchResult {
     successfullyFetched: number;
     failedFetches: number;
     totalAnalyzed: number;
+    filteredOut?: number;
   };
 }
 

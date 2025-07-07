@@ -15,14 +15,15 @@ export default function RedditSentimentPage() {
   const [step, setStep] = useState(0);
   
   // Search parameters
-  const [searchParams, setSearchParams] = useState<RedditSearchParams & { searchStrategy?: string; industryContext?: string }>({
+  const [searchParams, setSearchParams] = useState<RedditSearchParams & { searchStrategy?: string; industryContext?: string; websiteUrl?: string }>({
     query: "",
     subreddit: "",
     timeFilter: "week",
     limit: 500,
     sort: "relevance",
     searchStrategy: "withContext",
-    industryContext: ""
+    industryContext: "",
+    websiteUrl: ""
   });
   
   // Loading and error states
@@ -65,9 +66,12 @@ export default function RedditSentimentPage() {
   }, []);
 
   // Search for Reddit mentions
+  // Website analysis state
+  const [websiteAnalysis, setWebsiteAnalysis] = useState<any>(null);
+
   const handleSearch = async () => {
-    if (!searchParams.query.trim()) {
-      setSearchError("Please enter a search query");
+    if (!searchParams.query.trim() || !searchParams.websiteUrl?.trim()) {
+      setSearchError("Search query and website URL are required");
       return;
     }
 
@@ -75,12 +79,41 @@ export default function RedditSentimentPage() {
     setSearchError(null);
     
     try {
+      // First, analyze the website
+      console.log("🌐 Analyzing website...", searchParams.websiteUrl);
+      
+      const websiteResponse = await fetch("/api/website-analysis", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          websiteUrl: searchParams.websiteUrl,
+          companyName: searchParams.query
+        })
+      });
+
+      let websiteData = null;
+      if (websiteResponse.ok) {
+        websiteData = await websiteResponse.json();
+        setWebsiteAnalysis(websiteData.analysis);
+        console.log(`✅ Website analysis complete for ${websiteData.analysis.companyName}`);
+        
+        // Update company name from website analysis
+        if (websiteData.analysis.companyName && !companyName) {
+          setCompanyName(websiteData.analysis.companyName);
+        }
+      } else {
+        console.warn("Website analysis failed, continuing with Reddit search...");
+      }
+
       console.log("🔍 Starting Reddit search...");
       const response = await fetch("/api/reddit-sentiment/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         credentials: "include",
-        body: JSON.stringify(searchParams)
+        body: JSON.stringify({
+          ...searchParams,
+          industryContext: websiteData?.analysis?.industry || searchParams.industryContext
+        })
       });
 
       if (!response.ok) {
@@ -122,7 +155,8 @@ export default function RedditSentimentPage() {
         body: JSON.stringify({
           mentions: searchResult.mentions,
           companyName: companyName.trim(),
-          competitors: competitorList
+          competitors: competitorList,
+          websiteAnalysis: websiteAnalysis
         })
       });
 
@@ -270,6 +304,20 @@ export default function RedditSentimentPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <label className="block text-sm font-medium text-gray-700 mb-2">
+                Company Website URL <span className="text-red-500">*</span>
+              </label>
+              <input
+                type="url"
+                className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="https://yourcompany.com"
+                value={searchParams.websiteUrl}
+                onChange={e => setSearchParams(prev => ({ ...prev, websiteUrl: e.target.value }))}
+              />
+              <p className="text-xs text-gray-500 mt-1">Your company's website URL (required for analysis)</p>
+            </div>
+            
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">
                 Search Query <span className="text-red-500">*</span>
               </label>
               <input
@@ -377,19 +425,19 @@ export default function RedditSentimentPage() {
           <div className="mt-6">
             <button
               onClick={handleSearch}
-              disabled={searchLoading || !searchParams.query.trim()}
+              disabled={searchLoading || !searchParams.query.trim() || !searchParams.websiteUrl?.trim()}
               className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed flex items-center"
             >
               {searchLoading ? (
                 <>
                   <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" fill="none" viewBox="0 0 24 24">
                     <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 714 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                   </svg>
-                  Searching Reddit...
+                  Analyzing website & searching Reddit...
                 </>
               ) : (
-                "Search Reddit Mentions"
+                "Analyze Website & Search Reddit"
               )}
             </button>
           </div>
@@ -424,6 +472,37 @@ export default function RedditSentimentPage() {
             </div>
           </div>
 
+          {/* Website Analysis Results */}
+          {websiteAnalysis && (
+            <div className="border-t pt-6 mb-6">
+              <h2 className="text-lg font-semibold mb-4">Website Analysis Results</h2>
+              <div className="bg-blue-50 p-4 rounded-lg mb-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                  <div>
+                    <strong>Company:</strong> {websiteAnalysis.companyName}
+                  </div>
+                  <div>
+                    <strong>Industry:</strong> {websiteAnalysis.industry}
+                  </div>
+                  <div>
+                    <strong>Target Market:</strong> {websiteAnalysis.targetMarket}
+                  </div>
+                  <div>
+                    <strong>Analysis Score:</strong> {websiteAnalysis.analysisScore}%
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <strong>Description:</strong> {websiteAnalysis.description}
+                </div>
+                {websiteAnalysis.competitors.length > 0 && (
+                  <div className="mt-3">
+                    <strong>Detected Competitors:</strong> {websiteAnalysis.competitors.join(", ")}
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="border-t pt-6 mb-6">
             <h2 className="text-lg font-semibold mb-4">Analysis Setup</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -446,7 +525,7 @@ export default function RedditSentimentPage() {
                 <input
                   type="text"
                   className="w-full border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  placeholder="competitor1, competitor2, competitor3"
+                  placeholder={websiteAnalysis?.competitors?.join(", ") || "competitor1, competitor2, competitor3"}
                   value={competitors}
                   onChange={e => setCompetitors(e.target.value)}
                 />
@@ -523,19 +602,16 @@ export default function RedditSentimentPage() {
           {/* Header with Company Info */}
           <div className="bg-white shadow-sm border-b border-gray-200">
             <div className="max-w-7xl mx-auto px-6 py-8">
-              {/* Logo Row */}
-              <div className="flex items-center justify-center space-x-4 mb-6">
-                <img src="/redditlogo.jpeg" alt="Reddit" className="h-10 w-10 rounded-full"/>
-                <span className="text-gray-400 text-2xl">×</span>
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                  <span className="text-white font-bold text-lg">{companyName.charAt(0).toUpperCase()}</span>
-                </div>
+              {/* Brand Text */}
+              <div className="flex items-center justify-center mb-6">
+                <h1 className="text-2xl font-bold text-gray-900">
+                  Reddit <span className="text-orange-500">×</span> {companyName}
+                </h1>
               </div>
               
               {/* Title */}
               <div className="text-center">
-                <h1 className="text-3xl font-bold text-gray-900 mb-2">Reddit Sentiment Analysis</h1>
-                <h2 className="text-xl text-gray-600 mb-4">{companyName}</h2>
+                <h2 className="text-xl font-semibold text-gray-700 mb-4">Sentiment Analysis Report</h2>
                 <p className="text-sm text-gray-500">
                   {sentimentReport.summary.totalMentions} mentions • {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% positive • Generated {new Date().toLocaleDateString()}
                 </p>

@@ -3,7 +3,8 @@ import {
   RedditMention, 
   RedditMentionAnalysis, 
   RedditSentimentReport, 
-  SentimentAnalysis 
+  SentimentAnalysis,
+  WebsiteAnalysis
 } from "@/types/RedditSentiment";
 
 // Import sentiment analysis (same as existing scripts)
@@ -14,6 +15,7 @@ interface AnalyzeRequestBody {
   mentions: RedditMention[];
   companyName: string;
   competitors?: string[];
+  websiteAnalysis?: WebsiteAnalysis;
 }
 
 export async function POST(req: NextRequest) {
@@ -39,7 +41,8 @@ export async function POST(req: NextRequest) {
     const report = await analyzeRedditMentions(
       body.mentions, 
       body.companyName.trim(), 
-      body.competitors || []
+      body.competitors || [],
+      body.websiteAnalysis
     );
 
     return NextResponse.json(report);
@@ -56,7 +59,8 @@ export async function POST(req: NextRequest) {
 async function analyzeRedditMentions(
   mentions: RedditMention[], 
   companyName: string, 
-  competitors: string[]
+  competitors: string[],
+  websiteAnalysis?: WebsiteAnalysis
 ): Promise<RedditSentimentReport> {
   
   const analyses: RedditMentionAnalysis[] = [];
@@ -168,6 +172,7 @@ async function analyzeRedditMentions(
       }
     },
     analyses,
+    websiteAnalysis,
     summary: {
       totalMentions,
       sentimentDistribution,

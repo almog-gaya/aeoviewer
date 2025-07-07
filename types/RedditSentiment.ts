@@ -73,10 +73,22 @@ export interface RedditSearchResult {
   };
 }
 
+export interface WebsiteAnalysis {
+  companyName: string;
+  industry: string;
+  products: string[];
+  keyFeatures: string[];
+  targetMarket: string;
+  competitors: string[];
+  description: string;
+  analysisScore: number;
+}
+
 export interface RedditSentimentReport {
   companyName: string;
   searchResult: RedditSearchResult;
   analyses: RedditMentionAnalysis[];
+  websiteAnalysis?: WebsiteAnalysis;
   summary: {
     totalMentions: number;
     sentimentDistribution: {

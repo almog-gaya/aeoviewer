@@ -78,40 +78,7 @@ export function generateHTMLReport(report: RedditSentimentReport): string {
             padding: 48px 24px;
         }
         
-        .logo-row {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin-bottom: 24px;
-        }
-        
-        .reddit-logo {
-            width: 40px;
-            height: 40px;
-            background: #ff4500;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 16px;
-        }
-        
-        .separator {
-            color: #9ca3af;
-            font-size: 24px;
-        }
-        
-        .company-logo {
-            background: #374151;
-            color: white;
-            padding: 8px 16px;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 18px;
-        }
+
         
         .title-section {
             text-align: center;
@@ -410,17 +377,10 @@ export function generateHTMLReport(report: RedditSentimentReport): string {
     <!-- Header with Logos -->
     <div class="header">
         <div class="header-content">
-            <!-- Simple Logo Row -->
-            <div class="logo-row">
-                <div class="reddit-logo">r</div>
-                <span class="separator">×</span>
-                <div class="company-logo">${report.companyName.charAt(0).toUpperCase()}</div>
-            </div>
-            
-            <!-- Simple Title -->
+            <!-- Brand Text -->
             <div class="title-section">
-                <h1 class="main-title">Reddit Sentiment Analysis</h1>
-                <h2 class="company-title">${report.companyName}</h2>
+                <h1 class="main-title">Reddit <span style="color: #ff4500;">×</span> ${report.companyName}</h1>
+                <h2 class="company-title">Sentiment Analysis Report</h2>
                 <p class="header-stats">${report.summary.totalMentions} mentions • ${positivePercent}% positive • Generated ${new Date(report.generatedAt).toLocaleDateString()}</p>
             </div>
         </div>
@@ -510,6 +470,58 @@ export function generateHTMLReport(report: RedditSentimentReport): string {
                     </div>
                 </div>
             </div>
+
+            <!-- Website Analysis (if available) -->
+            ${report.websiteAnalysis ? `
+            <div class="card">
+                <h3 class="subsection-title">Company Analysis</h3>
+                <div class="grid-2">
+                    <div>
+                        <div class="insight-box">
+                            <div class="insight-header">
+                                <div class="insight-title">Industry</div>
+                                <div class="insight-value" style="font-size: 18px;">${report.websiteAnalysis.industry}</div>
+                            </div>
+                            <div class="insight-description">
+                                ${report.websiteAnalysis.description}
+                            </div>
+                        </div>
+                        
+                        <div class="insight-box">
+                            <div class="insight-header">
+                                <div class="insight-title">Target Market</div>
+                                <div class="insight-value" style="font-size: 18px;">${report.websiteAnalysis.targetMarket}</div>
+                            </div>
+                            <div class="insight-description">
+                                Primary customer segment and market focus
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <div class="insight-box">
+                            <div class="insight-header">
+                                <div class="insight-title">Key Products</div>
+                            </div>
+                            <div class="insight-description">
+                                ${report.websiteAnalysis.products.slice(0, 3).join(", ")}
+                            </div>
+                        </div>
+                        
+                        ${report.websiteAnalysis.competitors.length > 0 ? `
+                        <div class="insight-box">
+                            <div class="insight-header">
+                                <div class="insight-title">Market Competitors</div>
+                            </div>
+                            <div class="insight-description">
+                                ${report.websiteAnalysis.competitors.slice(0, 3).join(", ")}
+                            </div>
+                        </div>
+                        ` : ''}
+                    </div>
+                </div>
+            </div>
+            ` : ''}
 
             <!-- Topic Analysis -->
             ${topTopics.length > 0 ? `

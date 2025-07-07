@@ -1,21 +1,21 @@
 {
-  "name": "Roverpass",
-  "description": "Roverpass is a digital platform designed to simplify the process of booking and managing RV parks and campgrounds, connecting outdoor enthusiasts with a wide range of camping options across the United States.",
-  "industry": "Travel and Hospitality",
+  "name": "cato",
+  "description": "Cato is a leading provider of cloud-based networking solutions, focused on delivering secure and efficient connectivity for enterprises across the globe.",
+  "industry": "Cloud Networking and Security",
   "competitors": [
-    "Campendium",
-    "Hipcamp",
-    "ReserveAmerica",
-    "Campspot",
-    "Allstays",
-    "KOA"
+    "Cisco",
+    "Palo Alto Networks",
+    "Zscaler",
+    "Cloudflare",
+    "Akamai",
+    "Fortinet"
   ],
-  "targetAudience": "Outdoor enthusiasts, RV travelers, campground owners, and park managers",
-  "products": "Online booking platform for RV parks, campground management tools, reservation systems",
-  "benefits": "Streamlined booking process, increased visibility for campgrounds, convenience for travelers, enhanced management capabilities for park owners",
-  "values": "Community engagement, outdoor adventure, user-friendly technology, customer service excellence",
-  "regulatoryContext": "Compliance with local camping regulations, hospitality industry standards",
-  "personas": "\"RV Traveler\", \"Campground Owner\", \"Outdoor Adventure Enthusiast\", \"Park Manager\"",
-  "geoSpecificity": "United States-focused, with a growing database of campgrounds nationwide",
-  "companyWebsite": "https://www.roverpass.com/"
+  "targetAudience": "IT decision-makers, network engineers, cybersecurity professionals",
+  "products": "Cato SASE Cloud, SD-WAN services, secure access service edge solutions, network security services",
+  "benefits": "Enhanced security, simplified network management, improved performance, cost savings, seamless scalability",
+  "values": "Innovation, security, customer-centricity, transparency, reliability",
+  "regulatoryContext": "Data privacy regulations, GDPR compliance, industry-specific compliance standards",
+  "personas": "\"IT Manager\", \"Network Architect\", \"CISO\", \"Cloud Engineer\"",
+  "geoSpecificity": "Global presence with a focus on North America and Europe",
+  "companyWebsite": "www.cato.com"
 }

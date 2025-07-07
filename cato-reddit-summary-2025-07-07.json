@@ -1,0 +1,52 @@
+{
+  "reportDate": "2025-07-07T09:49:54.857Z",
+  "summary": {
+    "totalQueries": 372,
+    "successfulAnalyses": 130,
+    "successRate": "34.9%",
+    "totalMentions": 257,
+    "sentimentBreakdown": {
+      "positive": {
+        "count": 181,
+        "percentage": "45.1%"
+      },
+      "neutral": {
+        "count": 178,
+        "percentage": "44.4%"
+      },
+      "negative": {
+        "count": 42,
+        "percentage": "10.5%"
+      }
+    },
+    "topSubreddits": [
+      {
+        "subreddit": "networking",
+        "count": 73
+      },
+      {
+        "subreddit": "fortinet",
+        "count": 40
+      },
+      {
+        "subreddit": "sysadmin",
+        "count": 39
+      },
+      {
+        "subreddit": "paloaltonetworks",
+        "count": 36
+      },
+      {
+        "subreddit": "cybersecurity",
+        "count": 28
+      }
+    ],
+    "competitorComparisons": 10
+  },
+  "keyInsights": [
+    "Analyzed 372 Reddit threads across 10 subreddits",
+    "Found 257 Cato Networks mentions with 45.1% positive sentiment",
+    "Top communities: r/networking, r/fortinet, r/sysadmin",
+    "Analysis success rate: 34.9%"
+  ]
+}

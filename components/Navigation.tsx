@@ -91,6 +91,28 @@ const Navigation: React.FC<NavigationProps> = ({ showLogo = true }) => {
               </Link>  
             </nav>
           </div>
+
+          {/* Reddit Sentiment section */}
+          <div className="mb-6">
+            <h2 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">
+              Reddit Analysis
+            </h2>
+            <nav className="space-y-1">
+              <Link
+                href="/reddit-sentiment"
+                className={`flex items-center px-3 py-2 text-sm font-medium rounded-md ${
+                  isActive('/reddit-sentiment')
+                    ? 'bg-gray-100 text-gray-900'
+                    : 'text-gray-700 hover:bg-gray-50'
+                }`}
+              >
+                <svg className="mr-3 h-5 w-5 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                </svg>
+                Sentiment Analysis
+              </Link>  
+            </nav>
+          </div>
             
         </div>
       </div>

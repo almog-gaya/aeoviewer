@@ -4,6 +4,7 @@ import { PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
+import { RedditThread } from '@/types/RedditSentiment';
 
 export class PerplexityProvider extends BaseLLMProvider {
     private readonly baseURL = 'https://api.perplexity.ai/chat/completions';
@@ -132,6 +133,27 @@ export class PerplexityProvider extends BaseLLMProvider {
             return plan;
         } catch (error) {
             console.error('Error parsing generated plan JSON:', error);
+            return [];
+        }
+    }
+
+    async generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]> {
+        try {
+            console.log(`Perplexity: Generating Reddit threads using ${this.getModelInfo()}`);
+            
+            const systemPrompt = prompt.generateRedditThreads(companyProfile);
+            
+            const messages = [
+                { role: 'system', content: systemPrompt },
+                { role: 'user', content: `Generate Reddit threads for the company profile of ${companyProfile.name}` }
+            ];
+            
+            const responseText = await this.makeRequest(messages);
+                
+            const threads = this.parseJSONResponse(responseText, []);
+            return threads as RedditThread[];
+        } catch (error) {
+            console.error('Error generating Reddit threads:', error);
             return [];
         }
     }

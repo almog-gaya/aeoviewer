@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cato Networks Reddit Sentiment Analysis Report</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        :root {
+            --foreground-rgb: 0, 0, 0;
+            --background-rgb: 243, 244, 246;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --foreground-rgb: 255, 255, 255;
+                --background-rgb: 10, 10, 10;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gray-100">
+    <div>
+        <!-- Header with Logos -->
+        <div class="bg-white shadow-sm border-b border-gray-200">
+            <div class="max-w-7xl mx-auto px-6 py-8">
+                <!-- Simple Logo Row -->
+                <div class="flex items-center justify-center space-x-4 mb-6">
+                    <img src="https://img.favpng.com/1/2/24/reddit-logo-youtube-png-favpng-Rukc5hsDFfci1sNk1LkFBccvW.jpg" alt="Reddit" class="h-10 w-10 rounded-full"/>
+                    <span class="text-gray-400 text-2xl">×</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="21" viewBox="0 0 75 32" fill="none">
+                        <path d="M30.1914 1.52734H29.3779L20.8828 22.7982H23.8891L25.3311 18.8981H33.9973L35.4393 22.7982H38.4456L30.1914 1.52734ZM33.051 16.2898H26.2913L29.7899 7.56432L33.0476 16.2898H33.051Z" fill="#158864"></path>
+                        <path d="M36.8281 1.53772V2.07543V2.34777V4.14595H42.9454V22.7946H44.9112H45.1626H45.7701V4.14595H51.8874V2.34777V1.94973V1.53772H36.8281Z" fill="#158864"></path>
+                        <path d="M63.1682 1C57.1557 1 52.25 5.80445 52.25 11.9532C52.25 18.1019 57.0544 22.7946 63.0565 22.7946C69.0586 22.7946 73.9782 17.9901 73.9782 11.8414C73.9782 5.69271 69.1738 1 63.1682 1ZM63.1682 20.0502C58.6641 20.0502 55.1864 16.5865 55.1864 11.8414C55.1864 7.09634 58.5942 3.7444 63.053 3.7444C67.5118 3.7444 71.0348 7.20807 71.0348 11.9532C71.0243 16.4922 67.6165 20.0502 63.1682 20.0502Z" fill="#158864"></path>
+                        <path d="M17.648 17.5816C16.2304 19.1144 14.2157 20.0502 11.9287 20.0502C7.42455 20.0502 3.94691 16.5865 3.94691 11.8414C3.94691 7.09634 7.35821 3.7444 11.817 3.7444C14.1494 3.7444 16.2094 4.66967 17.648 6.22693L19.6486 4.21577C17.6968 2.22206 14.9629 1 11.9217 1C5.9057 1 1 5.80445 1 11.9532C1 18.1019 5.80445 22.7946 11.8065 22.7946C14.8582 22.7946 17.627 21.5586 19.6068 19.5369L17.6515 17.5816H17.648Z" fill="#158864"></path>
+                    </svg>
+                </div>
+                
+                <!-- Simple Title -->
+                <div class="text-center">
+                    <h1 class="text-3xl font-bold text-gray-900 mb-2">Reddit Sentiment Analysis</h1>
+                    <h2 class="text-xl text-gray-600 mb-4">Cato Networks</h2>
+                    <p class="text-sm text-gray-500">257 mentions • 45.1% positive • Generated 7/7/2025</p>
+                </div>
+            </div>
+        </div>
+        
+        <main class="p-6 bg-gray-50">
+            <div class="max-w-7xl mx-auto">
+                <!-- Sentiment Overview -->
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h2 class="text-2xl font-semibold text-gray-900 mb-6">Sentiment Overview</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Positive -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="text-3xl font-bold text-gray-900 mb-2">181</div>
+                            <div class="text-lg font-medium text-gray-700 mb-1">Positive Mentions</div>
+                            <div class="text-sm text-gray-500">45.1% of all sentiment</div>
+                        </div>
+                        <!-- Neutral -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="text-3xl font-bold text-gray-900 mb-2">178</div>
+                            <div class="text-lg font-medium text-gray-700 mb-1">Neutral Mentions</div>
+                            <div class="text-sm text-gray-500">44.4% of all sentiment</div>
+                        </div>
+                        <!-- Negative -->
+                        <div class="bg-white border border-gray-200 rounded-lg p-6 text-center">
+                            <div class="text-3xl font-bold text-gray-900 mb-2">42</div>
+                            <div class="text-lg font-medium text-gray-700 mb-1">Negative Mentions</div>
+                            <div class="text-sm text-gray-500">10.5% of all sentiment</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Key Communities -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                    <!-- Subreddit Analysis -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Discussion Communities</h3>
+                        <div class="space-y-4">
+                            
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <div>
+                                        <div class="font-medium text-gray-900">r/networking</div>
+                                        <div class="text-sm text-gray-500">73 discussions • 10 Cato mentions</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-gray-900">19.6%</div>
+                                        <div class="text-xs text-gray-500">of discussions</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <div>
+                                        <div class="font-medium text-gray-900">r/fortinet</div>
+                                        <div class="text-sm text-gray-500">40 discussions • 6 Cato mentions</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-gray-900">10.8%</div>
+                                        <div class="text-xs text-gray-500">of discussions</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <div>
+                                        <div class="font-medium text-gray-900">r/sysadmin</div>
+                                        <div class="text-sm text-gray-500">39 discussions • 5 Cato mentions</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-gray-900">10.5%</div>
+                                        <div class="text-xs text-gray-500">of discussions</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <div>
+                                        <div class="font-medium text-gray-900">r/paloaltonetworks</div>
+                                        <div class="text-sm text-gray-500">36 discussions • 5 Cato mentions</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-gray-900">9.7%</div>
+                                        <div class="text-xs text-gray-500">of discussions</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <div>
+                                        <div class="font-medium text-gray-900">r/cybersecurity</div>
+                                        <div class="text-sm text-gray-500">28 discussions • 4 Cato mentions</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-gray-900">7.5%</div>
+                                        <div class="text-xs text-gray-500">of discussions</div>
+                                    </div>
+                                </div>
+                                
+                                <div class="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
+                                    <div>
+                                        <div class="font-medium text-gray-900">r/vmware</div>
+                                        <div class="text-sm text-gray-500">27 discussions • 4 Cato mentions</div>
+                                    </div>
+                                    <div class="text-right">
+                                        <div class="text-lg font-semibold text-gray-900">7.3%</div>
+                                        <div class="text-xs text-gray-500">of discussions</div>
+                                    </div>
+                                </div>
+                                
+                        </div>
+                    </div>
+
+                    <!-- Sentiment Trends -->
+                    <div class="bg-white rounded-lg shadow p-6">
+                        <h3 class="text-lg font-semibold text-gray-900 mb-4">Sentiment Insights</h3>
+                        <div class="space-y-4">
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex justify-between items-center">
+                                    <div class="font-medium text-gray-900">Strong Positive Sentiment</div>
+                                    <div class="text-2xl font-bold text-gray-900">45.1%</div>
+                                </div>
+                                <div class="text-sm text-gray-600 mt-2">
+                                    181 positive mentions show users appreciate Cato's performance and features
+                                </div>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex justify-between items-center">
+                                    <div class="font-medium text-gray-900">Neutral Discussion</div>
+                                    <div class="text-2xl font-bold text-gray-900">44.4%</div>
+                                </div>
+                                <div class="text-sm text-gray-600 mt-2">
+                                    178 neutral mentions include factual comparisons and technical discussions
+                                </div>
+                            </div>
+                            
+                            <div class="p-4 bg-gray-50 rounded-lg">
+                                <div class="flex justify-between items-center">
+                                    <div class="font-medium text-gray-900">Areas for Improvement</div>
+                                    <div class="text-2xl font-bold text-gray-900">10.5%</div>
+                                </div>
+                                <div class="text-sm text-gray-600 mt-2">
+                                    42 negative mentions highlight potential improvement areas
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Topic Analysis -->
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-6">What People Are Discussing</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                        
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-medium text-gray-900 mb-2">Networking</div>
+                                <div class="text-2xl font-bold text-blue-600 mb-1">102</div>
+                                <div class="text-xs text-gray-500">Network performance and reliability discussions</div>
+                            </div>
+                            
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-medium text-gray-900 mb-2">Security</div>
+                                <div class="text-2xl font-bold text-blue-600 mb-1">89</div>
+                                <div class="text-xs text-gray-500">Security features and implementation feedback</div>
+                            </div>
+                            
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-medium text-gray-900 mb-2">Vpn</div>
+                                <div class="text-2xl font-bold text-blue-600 mb-1">77</div>
+                                <div class="text-xs text-gray-500">VPN capabilities and user experience</div>
+                            </div>
+                            
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-medium text-gray-900 mb-2">Firewall</div>
+                                <div class="text-2xl font-bold text-blue-600 mb-1">64</div>
+                                <div class="text-xs text-gray-500">Firewall functionality and configuration</div>
+                            </div>
+                            
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-medium text-gray-900 mb-2">Cloud</div>
+                                <div class="text-2xl font-bold text-blue-600 mb-1">51</div>
+                                <div class="text-xs text-gray-500">Cloud migration and deployment experiences</div>
+                            </div>
+                            
+                            <div class="p-4 border border-gray-200 rounded-lg">
+                                <div class="font-medium text-gray-900 mb-2">Enterprise</div>
+                                <div class="text-2xl font-bold text-blue-600 mb-1">38</div>
+                                <div class="text-xs text-gray-500">Enterprise solutions and scalability</div>
+                            </div>
+                            
+                    </div>
+                </div>
+
+                <!-- Competitive Sentiment -->
+                <div class="bg-white rounded-lg shadow p-6 mb-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-6">Competitive Sentiment Comparison</h3>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y divide-gray-200">
+                            <thead class="bg-gray-50">
+                                <tr>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Company</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Total Mentions</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Community Reach</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discussion Type</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white divide-y divide-gray-200">
+                                <!-- Cato Networks Row -->
+                                <tr class="bg-blue-50">
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm font-bold text-blue-900">Cato Networks</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">257</td>
+                                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">6 subreddits</td>
+                                    <td class="px-6 py-4 whitespace-nowrap">
+                                        <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-blue-100 text-blue-800">
+                                            45.1% Positive Sentiment
+                                        </span>
+                                    </td>
+                                </tr>
+                                
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Fortinet</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">677</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Multiple communities</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                                High Discussion
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Cisco</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">596</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Multiple communities</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-800">
+                                                High Discussion
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Zscaler</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">374</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Multiple communities</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-600">
+                                                Moderate Discussion
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">VMware</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">181</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Multiple communities</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-600">
+                                                Moderate Discussion
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Netskope</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">174</td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">Multiple communities</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="inline-flex px-2 py-1 text-xs font-semibold rounded-full bg-gray-100 text-gray-600">
+                                                Moderate Discussion
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Key Insights -->
+                <div class="bg-white rounded-lg shadow p-6">
+                    <h3 class="text-lg font-semibold text-gray-900 mb-6">Key Insights</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h4 class="font-medium text-gray-900 mb-3">Positive Feedback Themes</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Network performance and reliability praised by users
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Security features well-received in enterprise environments
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-blue-500 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Cloud migration capabilities appreciated by IT teams
+                                </li>
+                            </ul>
+                        </div>
+                        <div>
+                            <h4 class="font-medium text-gray-900 mb-3">Areas of Discussion</h4>
+                            <ul class="space-y-2 text-sm text-gray-600">
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Technical comparisons with competitors
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Implementation experiences and best practices
+                                </li>
+                                <li class="flex items-start">
+                                    <span class="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                                    Integration challenges and solutions
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6 p-4 bg-blue-50 rounded-lg">
+                        <h4 class="font-medium text-blue-900 mb-2">Summary</h4>
+                        <p class="text-sm text-blue-800">
+                            Cato Networks shows strong positive sentiment (45.1%) across 6 major tech communities. 
+                            With 257 total mentions, discussions focus primarily on networking performance, 
+                            security capabilities, and enterprise deployment experiences. The sentiment distribution indicates 
+                            healthy community engagement with predominantly positive feedback.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
+    

@@ -1,0 +1,2650 @@
+{
+  "extractedAt": "2025-07-07T09:43:34.255Z",
+  "totalThreads": 372,
+  "subredditCounts": {
+    "https://www.reddit.com/r/cybersecurity": 28,
+    "https://www.reddit.com/r/networking": 73,
+    "https://www.reddit.com/r/paloaltonetworks": 36,
+    "https://www.reddit.com/r/Zscaler": 14,
+    "https://www.reddit.com/r/CloudFlare": 20,
+    "https://www.reddit.com/r/vmware": 27,
+    "https://www.reddit.com/r/fortinet": 40,
+    "https://www.reddit.com/r/sysadmin": 39,
+    "https://www.reddit.com/r/Cisco": 14,
+    "https://www.reddit.com/r/checkpoint": 5,
+    "https://www.reddit.com/r/msp": 16,
+    "https://www.reddit.com/r/catonetworks": 2,
+    "https://www.reddit.com/r/salesengineers": 2,
+    "https://www.reddit.com/r/WGU": 2,
+    "https://www.reddit.com/r/ccna": 2,
+    "https://www.reddit.com/r/SysAdminBlogs": 2,
+    "https://www.reddit.com/r/devops": 3,
+    "https://www.reddit.com/r/AZURE": 3,
+    "https://www.reddit.com/r/cloudcomputing": 2,
+    "https://www.reddit.com/r/StockMarket": 2,
+    "https://www.reddit.com/r/Hacking_Tutorials": 2,
+    "https://www.reddit.com/r/it": 2,
+    "https://www.reddit.com/r/SolveForce": 2,
+    "https://www.reddit.com/r/CompTIA": 2,
+    "https://www.reddit.com/r/ITManagers": 3,
+    "https://www.reddit.com/r/wallstreetbets": 2,
+    "https://www.reddit.com/r/AskNetsec": 3,
+    "https://www.reddit.com/r/nutanix": 2,
+    "https://www.reddit.com/r/patentexaminer": 3,
+    "https://www.reddit.com/r/macsysadmin": 2,
+    "https://www.reddit.com/r/techsupport": 2,
+    "https://www.reddit.com/r/Cloud": 2,
+    "https://www.reddit.com/r/HomeNetworking": 2,
+    "https://www.reddit.com/r/VPN": 3,
+    "https://www.reddit.com/r/ccnp": 2,
+    "https://www.reddit.com/r/buildapc": 2,
+    "https://www.reddit.com/r/smallbusiness": 2,
+    "https://www.reddit.com/r/privacy": 2
+  },
+  "threads": [
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1koz9gj/netskope_vs_zscaler_vs_palo_alto_vs_cato",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 2
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1i3qrr8",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 3
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/103917p",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 4
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/mqzrb4",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 5
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1jm084e",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 6
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1gissir",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 7
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1ieg0lm",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 8
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1icikwy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 9
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/13vffon",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 10
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1dz49h6",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 11
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1fuko12",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 12
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/qohg4z",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 13
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1hy8wb7",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 14
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1jkfb0e",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 15
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/13269sy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 16
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1j2aoh1",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 17
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/10edg1g",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 18
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/14icuzk",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 19
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1goq330",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 20
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1iinsm3",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 21
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1jzq6bc/sase_vendors_shortlist",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 22
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/qq6uwq",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 23
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1agarvq/cato_networks_review",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 24
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1enbz1g/sasesse_palo_alto_prima_access_netskope_or_zscaler",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 25
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1i75b7q/palo_alto_sase",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 26
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1g2tyrx",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 27
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/y24y60",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 28
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1agarvq",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 29
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1hig3se",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 30
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/17d3opq",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 31
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1dz49h6/fortinet_sdwan_vs_cato_networks",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 32
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/14jzs19/palo_alto_zt_vs_zscaler",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 33
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1enbz1g",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 34
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/18s85yx",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 35
+    },
+    {
+      "url": "https://www.reddit.com/r/checkpoint/comments/1inmv8p",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/checkpoint",
+      "sheet": "Threads",
+      "row": 36
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1e7svca",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 37
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/10f4rw9",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 38
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/yk9r9p",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 39
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/wggsdn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 40
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/14yswso",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 41
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/15ur87x",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 42
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1jkfb0e/sase_vendor_comparism",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 43
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1fgy7zu",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 44
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1hy8wb7/my_org_wants_to_switch_firewalls_and_aryaka_is_a",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 45
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/v83erw",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 46
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/zg7ibn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 47
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/13b3jwi",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 48
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/1f1trhd",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 49
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1f43ir4",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 50
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1fkhht7",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 51
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/14m9t96/fortigate_versus_checkpoint_firewall_pros_and_cons",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 52
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1b1apfk",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 53
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1gw130r/enterprise_firewalls_fortinet_vs_palo_alto",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 54
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1j9npqo/whats_the_sdwan_vendor_of_choice_these_days",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 55
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1fh037k",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 56
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1dlw7yo",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 57
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/qru263",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 58
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1fuko12/which_zero_trust_vendor_do_you_use_and_why",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 59
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1183clm",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 60
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1h0e99e",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 61
+    },
+    {
+      "url": "https://www.reddit.com/r/catonetworks/comments/111csad",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/catonetworks",
+      "sheet": "Threads",
+      "row": 62
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/15ur87x/prisma_sdwan_vs_aryaka",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 63
+    },
+    {
+      "url": "https://www.reddit.com/r/salesengineers/comments/1i9d6h9",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/salesengineers",
+      "sheet": "Threads",
+      "row": 64
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1jm0a6r",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 65
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/p2bibe",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 66
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1g9ii77",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 67
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/14yswso/sase_my_general_ideas_looking_for_discussion_and",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 68
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1hv06tl",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 69
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1bd99e5",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 70
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1gb6cnd/choosing_a_new_firewall",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 71
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/uqi2t8",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 72
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/15an610",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 73
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/5iosmx/ngfw_comparison_ciscopalo_altofortinetcheckpoint",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 74
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1ctidtv/thinking_out_loud_in_view_of_recent_events_im",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 75
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1dx0rdt",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 76
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1hy6ve7",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 77
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1j8szvg/what_remote_access_solution",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 78
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1kn8p6i/zscaler_zpaziazdx_vs_cato_sse_360_dem",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 79
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/hb8wp3",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 80
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/mhj8ye",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 81
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1f1uzcv",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 82
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1f5v4fy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 83
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/11mws8c",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 84
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/mqzrb4/cato_networks",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 85
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/sh4zrh",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 86
+    },
+    {
+      "url": "https://www.reddit.com/r/WGU/comments/17epnxd/i_cant_decide_between_cybersecurity_and_cloud",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/WGU",
+      "sheet": "Threads",
+      "row": 87
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1765qs2/sase",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 88
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1ah90xs",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 89
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/13tooqx",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 90
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/tzurah",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 91
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1d2g846/sse_architectures_network_centric_vs_cloud_native",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 92
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1jrggf4/whats_one_tool_you_hope_you_never_use_again",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 93
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1ho0d6t/looking_back_at_2024_which_tac_support_teams_do",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 94
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/199exjx",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 95
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1izcrak",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 96
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/v47jez",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 97
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1ekmih1",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 98
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/18ytaol/sase_ztna_vs_traditional_firewall",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 99
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1j2aoh1/zscaler",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 100
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/yuar8h",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 101
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/pnjzog/firewall_comparisonstestimony_checkpointpalo",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 102
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/13qir5e",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 103
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1gfrlhu",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 104
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1aqmrq5",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 105
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/zpp2fp",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 106
+    },
+    {
+      "url": "https://www.reddit.com/r/ccna/comments/1jfyaw5",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/ccna",
+      "sheet": "Threads",
+      "row": 107
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1fh037k/zscaler_alternatives",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 108
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/18kur36",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 109
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/xwkpsp/cato_networks",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 110
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1dimxd3",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 111
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/16mtb2o/how_much_of_a_performance_hit_will_i_incur",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 112
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/gwu4uj",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 113
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/17kuqny",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 114
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/147k9ap",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 115
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1f2al1j/vpn_vs_zero_trust",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 116
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/162vrui/which_sdwan_vendor_you_are_using",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 117
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1b8jpad",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 118
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/sve87r",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 119
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1koic1q/sase_solutions",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 120
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1gxoqfg/aduc_delay_over_zpa",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 121
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1e9jql2/looking_into_a_sase_solution",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 122
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/pr2ajc/management_interface_or_management_vlan",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 123
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/bpvwsy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 124
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/osubau",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 125
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1b7d00d",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 126
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/drx9gv",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 127
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1biuhvg",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 128
+    },
+    {
+      "url": "https://www.reddit.com/r/SysAdminBlogs/comments/1i3kt14/what_are_the_best_sdwan_solutions_in_2025",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/SysAdminBlogs",
+      "sheet": "Threads",
+      "row": 129
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/11yiyph",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 130
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1ctidtv",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 131
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/152fuaq",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 132
+    },
+    {
+      "url": "https://www.reddit.com/r/checkpoint/comments/s0na6f",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/checkpoint",
+      "sheet": "Threads",
+      "row": 133
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1eqrd9s",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 134
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/103917p/top_complaint_regarding_palo_alto_networks_on_the",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 135
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1akr818",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 136
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/118d414",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 137
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/anhqmy/fortinet_deployment_costs",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 138
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1ah90xs/are_you_happy_with_vmware",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 139
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/18fg2x0/what_dlp_are_you_using",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 140
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/dezf4r/are_you_doing_eastwest_traffic_security_or",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 141
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1gkxbj9",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 142
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/fms75b",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 143
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1kfh09i/thinking_of_scrapping_current_firewalls_and",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 144
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/wlqu4g",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 145
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/stknsq/mpls_vs_sdwan",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 146
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1bu2ijf",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 147
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1d4yx1d/aws_vs_palo_alto",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 148
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1gr1kd9",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 149
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1523wf2",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 150
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1c1t38d",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 151
+    },
+    {
+      "url": "https://www.reddit.com/r/checkpoint/comments/1inmv8p/what_is_the_advantage_of_check_point_against_its",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/checkpoint",
+      "sheet": "Threads",
+      "row": 152
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/oytrs3/fortigate_ips_vs_palo_alto_and_cisco",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 153
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/11nddm3/palo_alto_vs_fortinet",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 154
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/atw7l4/palo_alto_vs_fortinet_cisco_vs_aruba",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 155
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1ft2bbz",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 156
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1hxhnp3",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 157
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/18m1mo8/what_zerotrust_solutions_do_you_use",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 158
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1hck9g9",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 159
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1j9npqo",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 160
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/17029zy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 161
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1b3beel",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 162
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/10rqriy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 163
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/qru8xc",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 164
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/15ekoka",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 165
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/148wbm4",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 166
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/11x0b1o",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 167
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/x1am1d",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 168
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1gasaua",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 169
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1d3ouja/new_virtual_machines_outperformed_by_old_physical",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 170
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/tp5dul",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 172
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1i75b7q",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 173
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1gxbopm",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 174
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/zyrvqe/what_is_the_consensus_on_fortinet_sdwan_70_onwards",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 175
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1cqkl3e",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 176
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/yviete/most_secure_remote_access_solution",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 177
+    },
+    {
+      "url": "https://www.reddit.com/r/devops/comments/1dnvs6b/cloudflare_vs_aws_which_is_better_for_vm_and",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/devops",
+      "sheet": "Threads",
+      "row": 178
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1g6gl6l",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 179
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/15eklr6/sase_architectural_topic_hybrid_sdwan_solution",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 180
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/ucx0wm",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 181
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1d2g846",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 182
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1h9qiam",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 183
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1d3kk1f/ssl_inspection_more_trouble_than_its_worth",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 184
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1cf1zd1/whats_everyone_using_for_sdwan",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 185
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/137csr0/why_the_hate_for_cisco",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 186
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/w226m7",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 187
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/hh0xut/enterprise_users_can_you_share_your_approximate",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 188
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/13h6zw4/real_world_1gb_throughput_routers",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 189
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1cwfyz8/actual_throughput_on_the_cisco_c921931_series",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 190
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/7qro5u/what_is_the_real_world_throughput_of_cisco_1100",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 191
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/14lz1ov/catalyst_9120axi_real_world_performance",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 192
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/mzv3sx/have_you_had_good_experience_with_cisco_tac",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 193
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/10pwry7/is_cisco_in_a_slow_decline_or_not",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 194
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/973es3/anyone_have_cisco_firepower_realworld_experience",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 195
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1fms3xy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 196
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/11xq353",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 197
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/m8n0wq/fortinet_versus_palo_alto_main_differences",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 198
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/ef2l2h",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 199
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1kbajc0/full_sase_solution_advice_sdwan_sse",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 200
+    },
+    {
+      "url": "https://www.reddit.com/r/AZURE/comments/15guyij/azure_service_comparable_to_cloudflare_services",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/AZURE",
+      "sheet": "Threads",
+      "row": 201
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1788nn9/what_is_the_real_differences_between_fortinet",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 202
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1ibhaqt",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 203
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1j0enwq",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 204
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/157hx41",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 205
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1iah488/im_a_ciso_who_has_built_a_successful_security",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 206
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/199l7sj/thoughts_about_checkpoint",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 207
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1gnnzsk/cisco_firewall_outperforms_competition_in",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 208
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1id450b",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 209
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/wl8eit",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 210
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/14z3yrv",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 211
+    },
+    {
+      "url": "https://www.reddit.com/r/devops/comments/18wxumv",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/devops",
+      "sheet": "Threads",
+      "row": 213
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1bboudo",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 214
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/188nnzn/best_enterprise_vpn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 215
+    },
+    {
+      "url": "https://www.reddit.com/r/cloudcomputing/comments/1770u9f/optimizing_cloud_infrastructure_what_strategies",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cloudcomputing",
+      "sheet": "Threads",
+      "row": 216
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/135g3tn/last_cyberratings_independant_testing_is_out",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 217
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/186908a",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 218
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1fdaxmg",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 219
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/14gv22k",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 220
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/yuvoqk",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 221
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/10rrpl8",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 222
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1be92eb",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 223
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1ga4rry",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 224
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/135g3tn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 225
+    },
+    {
+      "url": "https://www.reddit.com/r/StockMarket/comments/1alyl33",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/StockMarket",
+      "sheet": "Threads",
+      "row": 226
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1jo8oa1",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 227
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1hxk2km",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 228
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1gl07gt",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 229
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1jf5ajm",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 230
+    },
+    {
+      "url": "https://www.reddit.com/r/Hacking_Tutorials/comments/15ealis",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Hacking_Tutorials",
+      "sheet": "Threads",
+      "row": 231
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/mzv3sx",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 232
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1fp4zgl",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 233
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1hxgnc6",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 234
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1crtijx",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 235
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/18w8i86/if_vmware_workstation_is_mostly_faster_than",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 236
+    },
+    {
+      "url": "https://www.reddit.com/r/it/comments/188nne0",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/it",
+      "sheet": "Threads",
+      "row": 237
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1fiw73q/best_settings_to_maximize_performance",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 238
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/t2hxi5/vms_are_often_insanley_slow_and_laggy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 239
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/193aiqz/improving_vm_performance",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 240
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/17w68hw/slow_virtualization_on_windows_11_vmware",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 241
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/17g55i4",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 242
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/10vjxpm",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 243
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/15p10kf/how_do_i_increase_performance_in_vmware_when",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 244
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1fsx5ur/performance_problem_with_vmware_on_windows_11",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 245
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1e8i4gw/low_performance_vmware_workstation_17_new_highend",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 246
+    },
+    {
+      "url": "https://www.reddit.com/r/SolveForce/comments/1fujceh/sase_secure_access_service_edge_the_future_of",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/SolveForce",
+      "sheet": "Threads",
+      "row": 247
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/17l1vom/lets_talk_versa_sdwan_who_has_the_review",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 248
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1d1f148/just_curious_what_are_similarities_between_palo",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 249
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/nfzyce",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 250
+    },
+    {
+      "url": "https://www.reddit.com/r/CompTIA/comments/1etq1q0/help_me_understand_what_a_gateway_is_please",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CompTIA",
+      "sheet": "Threads",
+      "row": 251
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1afr50l",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 252
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1gjvrsx/what_are_the_biggest_shortcomings_in_the",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 253
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/18zvncq/firewall_recommendation_for_mediumsized_company",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 254
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/1e72mvk",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 255
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1c9qike/pros_and_cons_of_going_allin_with_fortinet",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 256
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/16lx28i",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 257
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1d9ibyl/tool_consolidation_or_best_of_breed",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 258
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1hzulka",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 259
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/10vbvqb/huge_impact_changing_to_fortinet_from_palo_alto",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 260
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1dsal6v/i_have_started_a_new_job_that_uses_palo_alto",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 261
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/192brcd",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 262
+    },
+    {
+      "url": "https://www.reddit.com/r/ITManagers/comments/1l4or3u/whats_the_best_integration_platform_for",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/ITManagers",
+      "sheet": "Threads",
+      "row": 263
+    },
+    {
+      "url": "https://www.reddit.com/r/wallstreetbets/comments/17kuqny",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/wallstreetbets",
+      "sheet": "Threads",
+      "row": 264
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1efie97/performance_problem_with_computers_on_vcenter",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 265
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1f47c4w/wrap_up_thoughts_on_vmware_explore_2024_is_this",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 266
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/o4tei8",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 267
+    },
+    {
+      "url": "https://www.reddit.com/r/AskNetsec/comments/wky7wn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/AskNetsec",
+      "sheet": "Threads",
+      "row": 268
+    },
+    {
+      "url": "https://www.reddit.com/r/ITManagers/comments/sylgpp",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/ITManagers",
+      "sheet": "Threads",
+      "row": 269
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1cig3rm/those_who_have_migrated_onprem_vpn_to_sase",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 270
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1eqz5bt",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 271
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/ux5ub6",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 272
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/18p6in6",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 273
+    },
+    {
+      "url": "https://www.reddit.com/r/nutanix/comments/1h5s2it/moving_to_nutanix_from_vmware_whats_the_good_bad",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/nutanix",
+      "sheet": "Threads",
+      "row": 274
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/b6qazx/aweful_vm_performance",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 275
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1dx0rdt/looking_to_modernize_our_network_does_sase_make",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 276
+    },
+    {
+      "url": "https://www.reddit.com/r/AskNetsec/comments/1kkvimp/zscaler_users_is_it_as_cumbersome_to_manage_as_i",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/AskNetsec",
+      "sheet": "Threads",
+      "row": 277
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1fkhht7/is_cisco_still_the_industry_standard_in",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 278
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/fk7g50",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 279
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/hsbw3m/cisco_management_interface",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 280
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/16mtb2o",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 281
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/fy0nci/sell_me_on_palo_being_the_best_firewall",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 282
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/qgsork/real_life_fortigate_perofrmace_and_everyday_usage",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 283
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/767flg/pa220_real_world_throughput",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 284
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1bzc3q7/real_world_throughput_of_pa440",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 285
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1194dt6",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 286
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/b9r01x/fortigate_300e_real_world_performance",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 287
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/tqzqc7/security_fabric_overheadperformance_impact_on",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 288
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/sd8b7u",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 289
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/1crngy6",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 290
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/11muq3m",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 291
+    },
+    {
+      "url": "https://www.reddit.com/r/patentexaminer/comments/1gi1eq8/netskope_sucks_slowdowns_on_search",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/patentexaminer",
+      "sheet": "Threads",
+      "row": 292
+    },
+    {
+      "url": "https://www.reddit.com/r/macsysadmin/comments/1jumzld/netskope_causing_network_slowdown_on_google",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/macsysadmin",
+      "sheet": "Threads",
+      "row": 293
+    },
+    {
+      "url": "https://www.reddit.com/r/techsupport/comments/1ezokbh/my_employer_is_using_netskope_to_see_my_work",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/techsupport",
+      "sheet": "Threads",
+      "row": 294
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/xwkpsp",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 295
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/fcim9i",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 296
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco/comments/13rk92x",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Threads",
+      "row": 297
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1hir9qx/how_many_employees_per_it_staff_does_your",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 298
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1dz49h6/fortinet_sdwan_vs_cato_networks?tl=fil",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 299
+    },
+    {
+      "url": "https://www.reddit.com/r/Cloud/comments/1gq9j3o",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Cloud",
+      "sheet": "Threads",
+      "row": 300
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/1i2i7rp/how_much_performance_impact_do_the_are_the",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 301
+    },
+    {
+      "url": "https://www.reddit.com/r/patentexaminer/comments/1gi1eq8",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/patentexaminer",
+      "sheet": "Threads",
+      "row": 302
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/11x0b1o/sase_solution",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 303
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/oan5ps",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 304
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1an1ncx/how_are_you_calculating_a_risk_scorerisk_rating",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 305
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/6728qi/wan_optimization_still_worth_it",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 306
+    },
+    {
+      "url": "https://www.reddit.com/r/HomeNetworking/comments/1g6osb1/what_are_gateway_exactly",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/HomeNetworking",
+      "sheet": "Threads",
+      "row": 307
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/14yk7jh/sdwan_pricing_poll",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 308
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/13l2yke/low_cost_branch_wan_routersdwan_options",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 309
+    },
+    {
+      "url": "https://www.reddit.com/r/VPN/comments/6ic06j/have_any_vpns_been_proven_to_be_truly_zero_logs",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/VPN",
+      "sheet": "Threads",
+      "row": 310
+    },
+    {
+      "url": "https://www.reddit.com/r/ccnp/comments/8wyz6s/mpls_vs_vpn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/ccnp",
+      "sheet": "Threads",
+      "row": 311
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/z3mwt0",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 312
+    },
+    {
+      "url": "https://www.reddit.com/r/AZURE/comments/1gyp9fh/what_are_the_best_zero_trust_network_access_tools",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/AZURE",
+      "sheet": "Threads",
+      "row": 313
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/1fpy3d4",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 314
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet/comments/tkxfhk",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Threads",
+      "row": 315
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks/comments/gqs9hg",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Threads",
+      "row": 316
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/s5lisy",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 317
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler/comments/187gpj1",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Threads",
+      "row": 318
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/1glw6e2",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 319
+    },
+    {
+      "url": "https://www.reddit.com/r/buildapc/comments/119ionk/performance_using_remote_login_via_citrix",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/buildapc",
+      "sheet": "Threads",
+      "row": 320
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1hgho6q",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 321
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/k0157v",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 322
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/1fdlfef",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 323
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin/comments/qv08u2",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Threads",
+      "row": 324
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/1cypbr7",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 325
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware/comments/18uq7tg",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Threads",
+      "row": 326
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/17k5e1j",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 327
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/brelz5/sdwan_or_site_to_site_vpn",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 328
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/q8we98/zscaler_vs_palo_alto_prisma_access_vs_cloudflare",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 329
+    },
+    {
+      "url": "https://www.reddit.com/r/networking/comments/115iev4/checkpoint_claim_of_no_cve_in_last_8_years",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Threads",
+      "row": 330
+    },
+    {
+      "url": "https://www.reddit.com/r/checkpoint/comments/1djwppx/resources_for_checkpoint_training",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/checkpoint",
+      "sheet": "Threads",
+      "row": 331
+    },
+    {
+      "url": "https://www.reddit.com/r/msp/comments/1akr818/vmware_pricing_in_the_broadcom_era",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Threads",
+      "row": 332
+    },
+    {
+      "url": "https://www.reddit.com/r/VPN/comments/15nmoca/what_are_some_alternatives_that_replaces_using_a",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/VPN",
+      "sheet": "Threads",
+      "row": 333
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare/comments/11ds14b",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Threads",
+      "row": 334
+    },
+    {
+      "url": "https://www.reddit.com/r/smallbusiness/comments/1ay0dng/cyber_security_suggestions_for_small_businesses",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/smallbusiness",
+      "sheet": "Threads",
+      "row": 335
+    },
+    {
+      "url": "https://www.reddit.com/r/privacy/comments/17qdt1b/what_is_the_best_way_to_monitor_network_traffic",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/privacy",
+      "sheet": "Threads",
+      "row": 336
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity/comments/1bf1qd9/ids_vs_ips_vs_firewall_vs_ngfws",
+      "title": "",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Threads",
+      "row": 337
+    },
+    {
+      "url": "https://www.reddit.com/r/networking",
+      "title": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t",
+      "subreddit": "https://www.reddit.com/r/networking",
+      "sheet": "Summary",
+      "row": 2
+    },
+    {
+      "url": "https://www.reddit.com/r/fortinet",
+      "title": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/fortinet",
+      "sheet": "Summary",
+      "row": 3
+    },
+    {
+      "url": "https://www.reddit.com/r/sysadmin",
+      "title": "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/sysadmin",
+      "sheet": "Summary",
+      "row": 4
+    },
+    {
+      "url": "https://www.reddit.com/r/paloaltonetworks",
+      "title": "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t",
+      "subreddit": "https://www.reddit.com/r/paloaltonetworks",
+      "sheet": "Summary",
+      "row": 5
+    },
+    {
+      "url": "https://www.reddit.com/r/cybersecurity",
+      "title": "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/cybersecurity",
+      "sheet": "Summary",
+      "row": 6
+    },
+    {
+      "url": "https://www.reddit.com/r/vmware",
+      "title": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/vmware",
+      "sheet": "Summary",
+      "row": 7
+    },
+    {
+      "url": "https://www.reddit.com/r/CloudFlare",
+      "title": "\u0000S\u0000i\u0000t\u0000e\u0000 \u0000R\u0000e\u0000l\u0000i\u0000a\u0000b\u0000i\u0000l\u0000i\u0000t\u0000y\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000 \u0000(\u0000S\u0000R\u0000E\u0000)",
+      "subreddit": "https://www.reddit.com/r/CloudFlare",
+      "sheet": "Summary",
+      "row": 8
+    },
+    {
+      "url": "https://www.reddit.com/r/msp",
+      "title": "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000r\u0000v\u0000i\u0000c\u0000e\u0000s\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/msp",
+      "sheet": "Summary",
+      "row": 9
+    },
+    {
+      "url": "https://www.reddit.com/r/Cisco",
+      "title": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/Cisco",
+      "sheet": "Summary",
+      "row": 10
+    },
+    {
+      "url": "https://www.reddit.com/r/Zscaler",
+      "title": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/Zscaler",
+      "sheet": "Summary",
+      "row": 11
+    },
+    {
+      "url": "https://www.reddit.com/r/checkpoint",
+      "title": "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000C\u0000o\u0000n\u0000s\u0000u\u0000l\u0000t\u0000a\u0000n\u0000t",
+      "subreddit": "https://www.reddit.com/r/checkpoint",
+      "sheet": "Summary",
+      "row": 12
+    },
+    {
+      "url": "https://www.reddit.com/r/AskNetsec",
+      "title": "\u0000I\u0000n\u0000f\u0000o\u0000r\u0000m\u0000a\u0000t\u0000i\u0000o\u0000n\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t",
+      "subreddit": "https://www.reddit.com/r/AskNetsec",
+      "sheet": "Summary",
+      "row": 13
+    },
+    {
+      "url": "https://www.reddit.com/r/AZURE",
+      "title": "\u0000D\u0000e\u0000v\u0000O\u0000p\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/AZURE",
+      "sheet": "Summary",
+      "row": 14
+    },
+    {
+      "url": "https://www.reddit.com/r/devops",
+      "title": "\u0000P\u0000l\u0000a\u0000t\u0000f\u0000o\u0000r\u0000m\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/devops",
+      "sheet": "Summary",
+      "row": 15
+    },
+    {
+      "url": "https://www.reddit.com/r/ITManagers",
+      "title": "\u0000I\u0000T\u0000 \u0000D\u0000i\u0000r\u0000e\u0000c\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/ITManagers",
+      "sheet": "Summary",
+      "row": 16
+    },
+    {
+      "url": "https://www.reddit.com/r/patentexaminer",
+      "title": "\u0000P\u0000a\u0000t\u0000e\u0000n\u0000t\u0000 \u0000A\u0000t\u0000t\u0000o\u0000r\u0000n\u0000e\u0000y\u0000/\u0000A\u0000g\u0000e\u0000n\u0000t",
+      "subreddit": "https://www.reddit.com/r/patentexaminer",
+      "sheet": "Summary",
+      "row": 17
+    },
+    {
+      "url": "https://www.reddit.com/r/VPN",
+      "title": "\u0000I\u0000T\u0000 \u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/VPN",
+      "sheet": "Summary",
+      "row": 18
+    },
+    {
+      "url": "https://www.reddit.com/r/buildapc",
+      "title": "\u0000S\u0000o\u0000f\u0000t\u0000w\u0000a\u0000r\u0000e\u0000 \u0000D\u0000e\u0000v\u0000e\u0000l\u0000o\u0000p\u0000e\u0000r\u0000/\u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/buildapc",
+      "sheet": "Summary",
+      "row": 19
+    },
+    {
+      "url": "https://www.reddit.com/r/catonetworks",
+      "title": "\u0000S\u0000o\u0000l\u0000u\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000A\u0000r\u0000c\u0000h\u0000i\u0000t\u0000e\u0000c\u0000t",
+      "subreddit": "https://www.reddit.com/r/catonetworks",
+      "sheet": "Summary",
+      "row": 20
+    },
+    {
+      "url": "https://www.reddit.com/r/ccna",
+      "title": "\u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000 \u0000(\u0000J\u0000u\u0000n\u0000i\u0000o\u0000r\u0000)",
+      "subreddit": "https://www.reddit.com/r/ccna",
+      "sheet": "Summary",
+      "row": 21
+    },
+    {
+      "url": "https://www.reddit.com/r/ccnp",
+      "title": "\u0000S\u0000e\u0000n\u0000i\u0000o\u0000r\u0000 \u0000N\u0000e\u0000t\u0000w\u0000o\u0000r\u0000k\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/ccnp",
+      "sheet": "Summary",
+      "row": 22
+    },
+    {
+      "url": "https://www.reddit.com/r/Cloud",
+      "title": "\u0000I\u0000T\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r\u0000/\u0000D\u0000i\u0000r\u0000e\u0000c\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/Cloud",
+      "sheet": "Summary",
+      "row": 23
+    },
+    {
+      "url": "https://www.reddit.com/r/cloudcomputing",
+      "title": "\u0000C\u0000l\u0000o\u0000u\u0000d\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/cloudcomputing",
+      "sheet": "Summary",
+      "row": 24
+    },
+    {
+      "url": "https://www.reddit.com/r/CompTIA",
+      "title": "\u0000C\u0000y\u0000b\u0000e\u0000r\u0000s\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t",
+      "subreddit": "https://www.reddit.com/r/CompTIA",
+      "sheet": "Summary",
+      "row": 25
+    },
+    {
+      "url": "https://www.reddit.com/r/Hacking_Tutorials",
+      "title": "\u0000S\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000R\u0000e\u0000s\u0000e\u0000a\u0000r\u0000c\u0000h\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/Hacking_Tutorials",
+      "sheet": "Summary",
+      "row": 26
+    },
+    {
+      "url": "https://www.reddit.com/r/HomeNetworking",
+      "title": "\u0000I\u0000T\u0000 \u0000S\u0000u\u0000p\u0000p\u0000o\u0000r\u0000t\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t",
+      "subreddit": "https://www.reddit.com/r/HomeNetworking",
+      "sheet": "Summary",
+      "row": 27
+    },
+    {
+      "url": "https://www.reddit.com/r/it",
+      "title": "\u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000A\u0000d\u0000m\u0000i\u0000n\u0000i\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/it",
+      "sheet": "Summary",
+      "row": 28
+    },
+    {
+      "url": "https://www.reddit.com/r/macsysadmin",
+      "title": "\u0000C\u0000l\u0000i\u0000e\u0000n\u0000t\u0000 \u0000S\u0000y\u0000s\u0000t\u0000e\u0000m\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/macsysadmin",
+      "sheet": "Summary",
+      "row": 29
+    },
+    {
+      "url": "https://www.reddit.com/r/nutanix",
+      "title": "\u0000V\u0000i\u0000r\u0000t\u0000u\u0000a\u0000l\u0000i\u0000z\u0000a\u0000t\u0000i\u0000o\u0000n\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/nutanix",
+      "sheet": "Summary",
+      "row": 30
+    },
+    {
+      "url": "https://www.reddit.com/r/privacy",
+      "title": "\u0000C\u0000y\u0000b\u0000e\u0000r\u0000s\u0000e\u0000c\u0000u\u0000r\u0000i\u0000t\u0000y\u0000 \u0000A\u0000n\u0000a\u0000l\u0000y\u0000s\u0000t",
+      "subreddit": "https://www.reddit.com/r/privacy",
+      "sheet": "Summary",
+      "row": 31
+    },
+    {
+      "url": "https://www.reddit.com/r/salesengineers",
+      "title": "\u0000F\u0000i\u0000e\u0000l\u0000d\u0000 \u0000A\u0000p\u0000p\u0000l\u0000i\u0000c\u0000a\u0000t\u0000i\u0000o\u0000n\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/salesengineers",
+      "sheet": "Summary",
+      "row": 32
+    },
+    {
+      "url": "https://www.reddit.com/r/smallbusiness",
+      "title": "\u0000B\u0000u\u0000s\u0000i\u0000n\u0000e\u0000s\u0000s\u0000 \u0000C\u0000o\u0000n\u0000s\u0000u\u0000l\u0000t\u0000a\u0000n\u0000t\u0000/\u0000A\u0000d\u0000v\u0000i\u0000s\u0000o\u0000r",
+      "subreddit": "https://www.reddit.com/r/smallbusiness",
+      "sheet": "Summary",
+      "row": 33
+    },
+    {
+      "url": "https://www.reddit.com/r/SolveForce",
+      "title": "\u0000I\u0000T\u0000 \u0000I\u0000n\u0000f\u0000r\u0000a\u0000s\u0000t\u0000r\u0000u\u0000c\u0000t\u0000u\u0000r\u0000e\u0000 \u0000M\u0000a\u0000n\u0000a\u0000g\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/SolveForce",
+      "sheet": "Summary",
+      "row": 34
+    },
+    {
+      "url": "https://www.reddit.com/r/StockMarket",
+      "title": "\u0000S\u0000o\u0000f\u0000t\u0000w\u0000a\u0000r\u0000e\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r\u0000/\u0000Q\u0000u\u0000a\u0000n\u0000t\u0000i\u0000t\u0000a\u0000t\u0000i\u0000v\u0000e\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l",
+      "subreddit": "https://www.reddit.com/r/StockMarket",
+      "sheet": "Summary",
+      "row": 35
+    },
+    {
+      "url": "https://www.reddit.com/r/SysAdminBlogs",
+      "title": "\u0000D\u0000e\u0000v\u0000O\u0000p\u0000s\u0000 \u0000E\u0000n\u0000g\u0000i\u0000n\u0000e\u0000e\u0000r",
+      "subreddit": "https://www.reddit.com/r/SysAdminBlogs",
+      "sheet": "Summary",
+      "row": 36
+    },
+    {
+      "url": "https://www.reddit.com/r/techsupport",
+      "title": "\u0000H\u0000e\u0000l\u0000p\u0000 \u0000D\u0000e\u0000s\u0000k\u0000 \u0000S\u0000p\u0000e\u0000c\u0000i\u0000a\u0000l\u0000i\u0000s\u0000t",
+      "subreddit": "https://www.reddit.com/r/techsupport",
+      "sheet": "Summary",
+      "row": 37
+    },
+    {
+      "url": "https://www.reddit.com/r/wallstreetbets",
+      "title": "\u0000T\u0000e\u0000c\u0000h\u0000n\u0000o\u0000l\u0000o\u0000g\u0000y\u0000/\u0000S\u0000o\u0000f\u0000t\u0000w\u0000a\u0000r\u0000e\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l",
+      "subreddit": "https://www.reddit.com/r/wallstreetbets",
+      "sheet": "Summary",
+      "row": 38
+    },
+    {
+      "url": "https://www.reddit.com/r/WGU",
+      "title": "\u0000H\u0000e\u0000a\u0000l\u0000t\u0000h\u0000c\u0000a\u0000r\u0000e\u0000/\u0000N\u0000u\u0000r\u0000s\u0000i\u0000n\u0000g\u0000 \u0000P\u0000r\u0000o\u0000f\u0000e\u0000s\u0000s\u0000i\u0000o\u0000n\u0000a\u0000l",
+      "subreddit": "https://www.reddit.com/r/WGU",
+      "sheet": "Summary",
+      "row": 39
+    }
+  ]
+}

@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { RedditSearchParams, RedditSearchResult, RedditMention, RedditAPIResponse } from "@/types/RedditSentiment";
+import { cookies } from "next/headers";
 
 interface RedditSearchBody {
   query: string;
@@ -13,6 +14,7 @@ interface RedditSearchBody {
 
 export async function POST(req: NextRequest) {
   try {
+    const accessToken = cookies().get("reddit_access_token")?.value;
     const body: RedditSearchBody = await req.json();
     
     if (!body.query || body.query.trim() === '') {
@@ -77,7 +79,7 @@ export async function POST(req: NextRequest) {
     console.log(`🎯 Enhanced query (${searchStrategy}): "${enhancedQuery}"`);
     console.log(`📊 Parameters:`, searchParams);
 
-    const searchResult = await searchRedditMentions(searchParams);
+    const searchResult = await searchRedditMentions(searchParams, accessToken);
 
     return NextResponse.json(searchResult);
     
@@ -90,22 +92,25 @@ export async function POST(req: NextRequest) {
   }
 }
 
-async function searchRedditMentions(params: RedditSearchParams): Promise<RedditSearchResult> {
+async function searchRedditMentions(params: RedditSearchParams, accessToken?: string): Promise<RedditSearchResult> {
   const mentions: RedditMention[] = [];
   let totalFound = 0;
   let successfullyFetched = 0;
   let failedFetches = 0;
-  
+
   try {
-    // Build Reddit search URL
-    const searchUrl = buildRedditSearchUrl(params);
+    const searchUrl = buildRedditSearchUrl(params, !!accessToken);
     console.log(`🌐 Fetching from: ${searchUrl}`);
     
     const response = await fetch(searchUrl, {
       headers: {
-        'User-Agent': 'AEO-Viewer-Bot/1.0 (Reddit Sentiment Analysis Tool)'
+        'User-Agent': 'web:AEO-Viewer-Bot:1.0 (by /u/your_reddit_username)',
+        ...(accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {}),
       }
     });
+
+    console.log("Rate limit remaining:", response.headers.get("x-ratelimit-remaining"));
+    console.log("Rate limit reset:", response.headers.get("x-ratelimit-reset"));
 
     if (!response.ok) {
       throw new Error(`Reddit API returned ${response.status}: ${response.statusText}`);
@@ -116,16 +121,24 @@ async function searchRedditMentions(params: RedditSearchParams): Promise<RedditS
 
     console.log(`📊 Found ${totalFound} posts, processing up to ${params.limit}...`);
 
-    // Process each search result
     const posts = data.data.children.slice(0, params.limit);
     
     for (const child of posts) {
+      const postData = child.data;
       try {
-        const postData = child.data;
         
-        // Fetch detailed thread content including comments
+        console.log(`📝 Fetching thread: https://www.reddit.com${postData.permalink}`);
+        
+        // Skip private or restricted subreddits
+        if (postData.subreddit_type === 'private' || postData.subreddit_type === 'restricted') {
+          console.log(`⏭️ Skipping private/restricted subreddit: ${postData.subreddit}`);
+          failedFetches++;
+          continue;
+        }
+
         const threadContent = await fetchRedditThreadContent(
-          `https://reddit.com${postData.permalink}`
+          postData.permalink,
+          accessToken
         );
         
         if (threadContent) {
@@ -135,18 +148,15 @@ async function searchRedditMentions(params: RedditSearchParams): Promise<RedditS
           failedFetches++;
         }
         
-        // Add small delay to be respectful to Reddit's servers
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
+        await new Promise(resolve => setTimeout(resolve, 500)); // Increased delay
       } catch (error) {
-        console.error(`❌ Failed to fetch thread:`, error);
+        console.error(`❌ Failed to fetch thread: https://www.reddit.com${postData.permalink}`, error);
         failedFetches++;
       }
     }
 
     console.log(`✅ Successfully fetched ${successfullyFetched} threads, ${failedFetches} failed`);
 
-    // Apply relevance filtering to improve quality
     const filteredMentions = filterRelevantMentions(mentions, params.query);
     const filteredCount = mentions.length - filteredMentions.length;
     
@@ -166,15 +176,14 @@ async function searchRedditMentions(params: RedditSearchParams): Promise<RedditS
         filteredOut: filteredCount
       }
     };
-
   } catch (error: any) {
     console.error('❌ Reddit search failed:', error);
     throw new Error(`Reddit search failed: ${error.message}`);
   }
 }
 
-function buildRedditSearchUrl(params: RedditSearchParams): string {
-  const baseUrl = 'https://www.reddit.com';
+function buildRedditSearchUrl(params: RedditSearchParams, useOAuth: boolean): string {
+  const baseUrl = useOAuth ? 'https://oauth.reddit.com' : 'https://www.reddit.com';
   const searchPath = params.subreddit ? `/r/${params.subreddit}/search` : '/search';
   
   const urlParams = new URLSearchParams({
@@ -189,11 +198,13 @@ function buildRedditSearchUrl(params: RedditSearchParams): string {
   return `${baseUrl}${searchPath}.json?${urlParams.toString()}`;
 }
 
-async function fetchRedditThreadContent(url: string): Promise<RedditMention | null> {
+async function fetchRedditThreadContent(permalink: string, accessToken?: string): Promise<RedditMention | null> {
   try {
-    const response = await fetch(`${url}.json`, {
+    const baseUrl = accessToken ? 'https://oauth.reddit.com' : 'https://www.reddit.com';
+    const response = await fetch(`${baseUrl}${permalink}.json`, {
       headers: {
-        'User-Agent': 'AEO-Viewer-Bot/1.0 (Reddit Sentiment Analysis Tool)'
+        'User-Agent': 'web:AEO-Viewer-Bot:1.0 (by /u/your_reddit_username)',
+        ...(accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {})
       }
     });
 
@@ -228,7 +239,7 @@ async function fetchRedditThreadContent(url: string): Promise<RedditMention | nu
       title: post.title || '',
       selftext: post.selftext || '',
       subreddit: post.subreddit || '',
-      url: url,
+      url: `https://www.reddit.com${permalink}`,
       author: post.author || '[deleted]',
       score: post.ups || 0,
       numComments: post.num_comments || 0,
@@ -240,7 +251,7 @@ async function fetchRedditThreadContent(url: string): Promise<RedditMention | nu
     return mention;
     
   } catch (error) {
-    console.error(`❌ Failed to fetch thread content from ${url}:`, error);
+    console.error(`❌ Failed to fetch thread content from ${permalink}:`, error);
     return null;
   }
 }
@@ -275,60 +286,50 @@ function extractComments(comments: any[], depth: number = 0, maxDepth: number = 
 }
 
 function filterRelevantMentions(mentions: RedditMention[], originalQuery: string): RedditMention[] {
-  // Generic business/commercial keywords that work across industries
   const relevantKeywords = [
     'company', 'business', 'brand', 'product', 'service', 'startup', 'enterprise',
     'corporation', 'vendor', 'client', 'customer', 'market', 'industry', 'sales',
     'marketing', 'review', 'experience', 'quality', 'price', 'cost', 'buy', 'purchase'
   ];
 
-  // General business/commercial subreddits (not industry-specific)
   const relevantSubreddits = [
     'business', 'entrepreneur', 'startup', 'smallbusiness', 'marketing', 'sales',
     'reviews', 'buyitforlife', 'frugal', 'personalfinance', 'investing'
   ];
 
-  // Only filter out clearly irrelevant content that's definitely not business-related
   const definitelyIrrelevantKeywords = [
     'whale', 'ocean', 'marine', 'animal', 'species', 'wildlife', 'sea', 'mammal', 
-    'pod', 'killer whale', 'dolphin', 'shark'  // Only keep animal-specific terms
+    'pod', 'killer whale', 'dolphin', 'shark'
   ];
 
   return mentions.filter(mention => {
     const combinedText = `${mention.title} ${mention.selftext} ${mention.comments.map(c => c.body).join(' ')}`.toLowerCase();
     const subreddit = mention.subreddit.toLowerCase();
     
-    // If it's in a relevant subreddit, likely relevant
     const isRelevantSubreddit = relevantSubreddits.some(rel => 
       subreddit.includes(rel)
     );
     
-    // Check for relevant keywords
     const hasRelevantKeywords = relevantKeywords.some(keyword => 
       combinedText.includes(keyword.toLowerCase())
     );
     
-    // Check for definitely irrelevant keywords (only clear non-business content)
-    const hasDefinitelyIrrelevantKeywords = definitelyIrrelevantKeywords.some((keyword: string) => 
+    const hasDefinitelyIrrelevantKeywords = definitelyIrrelevantKeywords.some(keyword => 
       combinedText.includes(keyword.toLowerCase())
     );
     
-    // Only filter out if it's definitely irrelevant AND has no business context
     if (hasDefinitelyIrrelevantKeywords && !hasRelevantKeywords && !isRelevantSubreddit) {
       return false;
     }
     
-    // If it's in a relevant subreddit or has relevant keywords, keep it
     if (isRelevantSubreddit || hasRelevantKeywords) {
       return true;
     }
     
-    // For short content that might not have many keywords, be more lenient
     if (combinedText.length < 200) {
       return true;
     }
     
-    // Default: keep it (err on the side of inclusion)
     return true;
   });
-} 
+}

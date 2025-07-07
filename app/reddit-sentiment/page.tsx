@@ -1,13 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   RedditSearchParams, 
   RedditSearchResult, 
-  RedditSentimentReport, 
-  RedditMention,
-  RedditExportOptions 
+  RedditSentimentReport,
+  RedditOAuthToken
 } from "@/types/RedditSentiment";
+import { generateCSV, generateHTMLReport } from "@/utils";
+import { getRedditUser, handleRedditLogin, handleRedditLogout } from "@/lib/reddit";
 
 export default function RedditSentimentPage() {
   // Step state: 0: search, 1: results, 2: analysis
@@ -38,6 +39,31 @@ export default function RedditSentimentPage() {
   const [companyName, setCompanyName] = useState("");
   const [competitors, setCompetitors] = useState("");
 
+  // OAuth state
+  const [redditUser, setRedditUser] = useState<string | null | false>(null); // null: loading, string: user, false: not logged in
+  const [oauthError, setOauthError] = useState<string | null>(null);
+  const [userMenuOpen, setUserMenuOpen] = useState(false);
+
+  // Check for OAuth error in URL and fetch user data if authenticated
+  useEffect(() => { 
+    const urlParams = new URLSearchParams(window.location.search);
+    const error = urlParams.get("error");
+    if (error) {
+      setOauthError(error);
+      // Clear URL params
+      window.history.replaceState({}, document.title, window.location.pathname);
+    }
+
+    // Check for access token in cookies
+    getRedditUser().then(user => {
+      if (user && user.name) {
+        setRedditUser(user.name);
+      } else {
+        setRedditUser(false);
+      }
+    })
+  }, []);
+
   // Search for Reddit mentions
   const handleSearch = async () => {
     if (!searchParams.query.trim()) {
@@ -53,6 +79,7 @@ export default function RedditSentimentPage() {
       const response = await fetch("/api/reddit-sentiment/search", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        credentials: "include",
         body: JSON.stringify(searchParams)
       });
 
@@ -63,7 +90,7 @@ export default function RedditSentimentPage() {
 
       const result = await response.json();
       setSearchResult(result);
-      setCompanyName(searchParams.query); // Default company name to search query
+      setCompanyName(searchParams.query);
       setStep(1);
       
       console.log(`✅ Found ${result.mentions.length} mentions`);
@@ -169,6 +196,56 @@ export default function RedditSentimentPage() {
 
   return (
     <div className="max-w-6xl mx-auto py-10 px-4 relative min-h-screen">
+      {/* OAuth Button and User Info */}
+      <div className="absolute top-4 right-4 z-50">
+        {/* Loading state: show nothing */}
+        {redditUser === null ? null : redditUser === false ? (
+          <button
+            onClick={handleRedditLogin}
+            className="px-5 py-2 bg-gradient-to-r from-orange-500 to-red-600 text-white rounded-full shadow-lg hover:from-orange-600 hover:to-red-700 text-base font-semibold flex items-center gap-2 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-red-400"
+            style={{ minWidth: 30 }}
+          >
+            <img src="/redditlogo.jpeg" alt="Reddit" className="w-6 h-6 rounded-full bg-white mr-2" />
+            
+          </button>
+        ) : (
+          <div className="relative">
+            <button
+              onClick={() => setUserMenuOpen(v => !v)}
+              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-full shadow hover:shadow-md transition-all duration-150 focus:outline-none"
+            >
+              <img src="/redditlogo.jpeg" alt="Reddit" className="w-7 h-7 rounded-full border border-gray-300" />
+              <span className="font-medium text-gray-800">{redditUser}</span>
+              <svg className="w-4 h-4 text-gray-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+              </svg>
+            </button>
+            {userMenuOpen && (
+              <div className="absolute right-0 mt-2 w-44 bg-white border border-gray-200 rounded-lg shadow-lg py-2 z-50 animate-fade-in">
+                <div className="px-4 py-2 text-gray-700 text-sm border-b">Logged in as <span className="font-semibold">{redditUser}</span></div>
+                <button
+                  onClick={() => { setUserMenuOpen(false); handleRedditLogout(); }}
+                  className="w-full text-left px-4 py-2 text-red-600 hover:bg-red-50 text-sm font-medium"
+                >
+                  Logout
+                </button>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+
+      {/* Extra space */}
+      <div className="h-12" />
+
+      {/* OAuth Error */}
+
+      {oauthError && (
+        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+          {oauthError}
+        </div>
+      )}
+
       {/* Progress Steps */}
       <div className="flex items-center mb-8">
         {["Search Reddit", "Review Results", "Sentiment Analysis"].map((label, i) => (
@@ -347,7 +424,6 @@ export default function RedditSentimentPage() {
             </div>
           </div>
 
-          {/* Company and Competitor Setup */}
           <div className="border-t pt-6 mb-6">
             <h2 className="text-lg font-semibold mb-4">Analysis Setup</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -379,7 +455,6 @@ export default function RedditSentimentPage() {
             </div>
           </div>
 
-          {/* Sample of found mentions */}
           <div className="mb-6">
             <h2 className="text-lg font-semibold mb-4">Preview of Found Mentions</h2>
             <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -476,7 +551,6 @@ export default function RedditSentimentPage() {
               </div>
             </div>
 
-            {/* Summary Stats */}
             <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
               <div className="bg-blue-50 p-4 rounded-lg">
                 <div className="text-2xl font-bold text-blue-600">{sentimentReport.summary.totalMentions}</div>
@@ -496,7 +570,6 @@ export default function RedditSentimentPage() {
               </div>
             </div>
 
-            {/* Sentiment Distribution Chart */}
             <div className="mb-6">
               <h2 className="text-lg font-semibold mb-3">Sentiment Distribution</h2>
               <div className="bg-gray-100 rounded-lg h-8 flex overflow-hidden">
@@ -527,7 +600,6 @@ export default function RedditSentimentPage() {
               </div>
             </div>
 
-            {/* Top Subreddits */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
               <div>
                 <h2 className="text-lg font-semibold mb-3">Top Subreddits</h2>
@@ -559,7 +631,6 @@ export default function RedditSentimentPage() {
               </div>
             </div>
 
-            {/* Recent Mentions */}
             <div>
               <h2 className="text-lg font-semibold mb-3">Recent Analyzed Mentions</h2>
               <div className="space-y-3 max-h-96 overflow-y-auto">
@@ -601,100 +672,3 @@ export default function RedditSentimentPage() {
     </div>
   );
 }
-
-// Helper functions for export
-function generateCSV(report: RedditSentimentReport): string {
-  const headers = [
-    "Title",
-    "Subreddit", 
-    "Author",
-    "Score",
-    "Comments",
-    "Sentiment Label",
-    "Sentiment Score",
-    "URL",
-    "Created"
-  ];
-  
-  const rows = report.analyses.map(analysis => [
-    `"${analysis.mention.title.replace(/"/g, '""')}"`,
-    analysis.mention.subreddit,
-    analysis.mention.author,
-    analysis.mention.score,
-    analysis.mention.numComments,
-    analysis.sentiment.label,
-    analysis.sentiment.score,
-    analysis.mention.url,
-    analysis.mention.created
-  ]);
-  
-  return [headers.join(","), ...rows.map(row => row.join(","))].join("\n");
-}
-
-function generateHTMLReport(report: RedditSentimentReport): string {
-  const positivePercent = Math.round((report.summary.sentimentDistribution.positive / report.summary.totalMentions) * 100);
-  const neutralPercent = Math.round((report.summary.sentimentDistribution.neutral / report.summary.totalMentions) * 100);
-  const negativePercent = Math.round((report.summary.sentimentDistribution.negative / report.summary.totalMentions) * 100);
-  
-  return `
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Reddit Sentiment Analysis Report</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .header { text-align: center; margin-bottom: 30px; }
-        .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 30px; }
-        .stat-card { border: 1px solid #ddd; padding: 15px; border-radius: 8px; text-align: center; }
-        .positive { background-color: #f0f9ff; }
-        .negative { background-color: #fef2f2; }
-        .neutral { background-color: #fffbeb; }
-        .mention { border: 1px solid #ddd; padding: 15px; margin-bottom: 10px; border-radius: 8px; }
-    </style>
-</head>
-<body>
-    <div class="header">
-        <h1>Reddit Sentiment Analysis Report</h1>
-        <p>Generated on ${new Date(report.generatedAt).toLocaleDateString()}</p>
-        <p>Total Mentions Analyzed: ${report.summary.totalMentions}</p>
-    </div>
-    
-    <div class="stats">
-        <div class="stat-card positive">
-            <h3>${report.summary.sentimentDistribution.positive}</h3>
-            <p>Positive (${positivePercent}%)</p>
-        </div>
-        <div class="stat-card neutral">
-            <h3>${report.summary.sentimentDistribution.neutral}</h3>
-            <p>Neutral (${neutralPercent}%)</p>
-        </div>
-        <div class="stat-card negative">
-            <h3>${report.summary.sentimentDistribution.negative}</h3>
-            <p>Negative (${negativePercent}%)</p>
-        </div>
-        <div class="stat-card">
-            <h3>${report.summary.averageSentiment.toFixed(2)}</h3>
-            <p>Avg Sentiment</p>
-        </div>
-    </div>
-    
-    <h2>Top Subreddits</h2>
-    <ul>
-        ${report.summary.topSubreddits.slice(0, 5).map(sub => 
-          `<li>r/${sub.subreddit}: ${sub.count} mentions (avg sentiment: ${sub.averageSentiment.toFixed(1)})</li>`
-        ).join('')}
-    </ul>
-    
-    <h2>Sample Mentions</h2>
-    ${report.analyses.slice(0, 10).map(analysis => `
-        <div class="mention">
-            <h4>${analysis.mention.title}</h4>
-            <p><strong>r/${analysis.mention.subreddit}</strong> by ${analysis.mention.author}</p>
-            <p>Sentiment: <strong>${analysis.sentiment.label}</strong> (Score: ${analysis.sentiment.score})</p>
-            <p>Score: ${analysis.mention.score} | Comments: ${analysis.mention.numComments}</p>
-        </div>
-    `).join('')}
-</body>
-</html>
-  `;
-} 

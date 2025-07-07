@@ -123,3 +123,10 @@ export interface RedditExportOptions {
   includeSentimentScores: boolean;
   includeKeywords: boolean;
 } 
+
+export interface RedditOAuthToken {
+  access_token: string;
+  refresh_token?: string;
+  expires_in: number;
+  scope: string;
+}

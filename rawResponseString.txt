@@ -1,1 +1,122 @@
-I'm sorry, I can't assist with that request.
+[
+  {
+    "query_text": "As a campground manager in North America, does a booking platform simplify the reservation process for guests? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Campground Manager"
+  },
+  {
+    "query_text": "As a campground owner, what are the best practices for increasing occupancy rates during off-peak seasons?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Campground Owner"
+  },
+  {
+    "query_text": "As a campground operator, I am facing challenges with managing customer bookings and payments effectively. What solutions exist to streamline these operations?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": "Campground Operator"
+  },
+  {
+    "query_text": "How do Roverpass, Campendium, Hipcamp, and ReserveAmerica compare in terms of user-friendly booking interfaces? Please provide a forced ranking from best to worst.",
+    "buying_journey_stage": "solution_comparison",
+    "buyer_persona": "Campground Manager"
+  },
+  {
+    "query_text": "On Reddit and various camping forums, which platform between Roverpass, Campendium, Hipcamp, and ReserveAmerica offers the best customer support? You MUST rank these solutions from best to worst.",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": "Campground Owner"
+  },
+  {
+    "query_text": "What features should I look for in a campground reservation system to meet seasonal demand fluctuations?",
+    "buying_journey_stage": "general",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a camper, can I easily find and book campsites that accommodate large groups through an online platform? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "What are the advantages of using an online platform for booking RV parks and campgrounds?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "As a traveler, I'm struggling to find campgrounds that fit my specific needs and preferences. What resources can help with this?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": "Traveler"
+  },
+  {
+    "query_text": "How do Roverpass, Airbnb for Camping, Hipcamp, and Campendium compare for availability of pet-friendly sites? Please provide a forced ranking from best to worst.",
+    "buying_journey_stage": "solution_comparison",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "What do reviews on Trustpilot say about the booking experiences with Roverpass compared to other camping platforms?",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "What compliance regulations exist for campground booking platforms to ensure consumer protection?",
+    "buying_journey_stage": "general",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "Does an online booking system help campground managers reduce no-shows? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Campground Manager"
+  },
+  {
+    "query_text": "What features can enhance the user experience for campers using a reservation platform?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "As a campground owner, I want to improve my marketing efforts to attract more guests. What strategies are effective?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": "Campground Owner"
+  },
+  {
+    "query_text": "How do Roverpass, Campendium, RVshare, and Hipcamp rank in terms of ease of use for managing campground listings? Please provide a forced ranking from best to worst.",
+    "buying_journey_stage": "solution_comparison",
+    "buyer_persona": "Campground Owner"
+  },
+  {
+    "query_text": "On G2, how do users rate their experiences with Roverpass compared to other campground booking services for reliability?",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": "Campground Manager"
+  },
+  {
+    "query_text": "What are the emerging trends in online campground reservations that I should be aware of?",
+    "buying_journey_stage": "general",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a camper, can I view real-time availability for campgrounds through an online platform? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "What benefits do campground reservation systems provide to enhance customer satisfaction?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Campground Owner"
+  },
+  {
+    "query_text": "As a campground manager, what challenges do I face in managing online bookings effectively? What solutions can help?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": "Campground Manager"
+  },
+  {
+    "query_text": "How do Roverpass, Hipcamp, Campendium, and ReserveAmerica rank for integration with payment processing systems? Please provide a forced ranking from best to worst.",
+    "buying_journey_stage": "solution_comparison",
+    "buyer_persona": "Campground Manager"
+  },
+  {
+    "query_text": "What feedback do users provide on Reddit about the ease of use of Roverpass compared to other booking platforms?",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": "Camper"
+  },
+  {
+    "query_text": "How do I ensure my campground complies with local regulations when using an online booking platform?",
+    "buying_journey_stage": "general",
+    "buyer_persona": null
+  }
+]

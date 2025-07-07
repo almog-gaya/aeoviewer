@@ -316,6 +316,9 @@ export class LLMFactory implements LLMProviderFactory {
         const enabled = process.env.ENABLE_VPN === 'true';
         const availableRegions = vpnConfigManager.getAvailableRegions();
         const healthyVPNs = enabled ? await vpnHttpClient.healthCheckAll() : {};
+        
+        // Update region stats with current VPN health status
+        regionManager.updateRegionVPNCounts();
         const regionStats = regionManager.getRegionStats();
 
         return {

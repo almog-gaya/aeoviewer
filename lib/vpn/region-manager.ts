@@ -97,6 +97,21 @@ export class RegionManager {
     }
   }
 
+  public updateRegionVPNCounts() {
+    // Update VPN counts for all regions without adding to request history
+    const availableRegions = vpnConfigManager.getAvailableRegions();
+    
+    availableRegions.forEach(region => {
+      const stats = this.regionStats.get(region);
+      if (stats) {
+        const healthyVPNs = vpnConfigManager.getHealthyVPNsInRegion(region);
+        const allVPNs = vpnConfigManager.getRegionConfig(region)?.vpnConfigs || [];
+        stats.healthyVPNs = healthyVPNs.length;
+        stats.totalVPNs = allVPNs.length;
+      }
+    });
+  }
+
   public selectRegion(strategy: RegionDistributionStrategy = 'round_robin'): RegionSelection {
     const availableRegions = vpnConfigManager.getAvailableRegions();
     

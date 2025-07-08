@@ -6,7 +6,9 @@ import {
   SentimentAnalysis,
   WebsiteAnalysis
 } from "@/types/RedditSentiment";
-
+import { STOP_WORDS } from "@/lib/constants";
+import fs from 'fs';
+import { getLLMTxt } from "../../llm-checker/route";
 // Import sentiment analysis (same as existing scripts)
 const Sentiment = require('sentiment');
 const sentiment = new Sentiment();
@@ -42,8 +44,23 @@ export async function POST(req: NextRequest) {
       body.mentions, 
       body.companyName.trim(), 
       body.competitors || [],
-      body.websiteAnalysis
+      body.websiteAnalysis,
+      
     );
+
+    // write to file
+    console.log(`✅ Analysis complete for ${body.companyName}`);
+    console.log(`📊 Total mentions analyzed: ${report.searchResult.totalFound}`)
+    console.log(`📈 Average sentiment score: ${report.summary.averageSentiment.toFixed(2)}`)
+    console.log(`📅 Report generated at: ${report.generatedAt}`)
+    ;
+
+    await fs.writeFileSync(
+      'finalized_output_reddit_sentiment_report.json',
+      JSON.stringify(report, null, 2),
+      'utf-8'
+    )
+    
 
     return NextResponse.json(report);
     
@@ -153,8 +170,10 @@ async function analyzeRedditMentions(
   console.log(`✅ Analysis complete: ${totalMentions} mentions analyzed`);
   console.log(`📊 Sentiment distribution:`, sentimentDistribution);
 
+  const isLLMTextExist = await getLLMTxt(websiteAnalysis?.websiteUrl!)
   return {
     companyName,
+    'llmtxt': isLLMTextExist?.exists || false, 
     searchResult: {
       mentions,
       totalFound: mentions.length,
@@ -245,7 +264,8 @@ function extractKeywords(text: string, minFreq: number = 2): Array<{ keyword: st
     'after', 'other', 'right', 'where', 'would', 'could', 'should', 'more', 'most', 
     'what', 'said', 'each', 'which', 'their', 'about', 'there', 'people', 'into', 
     'through', 'during', 'before', 'under', 'around', 'because', 'however', 'something', 
-    'someone', 'different'
+    'someone', 'different', "https", "http", "www", "com", "org", "amp", "&amp;", "amp;", "your", "reddit", "r", "u",
+...STOP_WORDS,
   ]);
   
   const wordCount: { [key: string]: number } = {};
@@ -339,3 +359,5 @@ function updateCompetitorStats(
     }
   });
 } 
+
+

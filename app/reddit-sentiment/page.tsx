@@ -7,7 +7,7 @@ import {
   RedditSentimentReport,
   RedditOAuthToken
 } from "@/types/RedditSentiment";
-import { generateCSV, generateHTMLReport } from "@/utils";
+import { generateCSV } from "@/utils";
 import { getRedditUser, handleRedditLogin, handleRedditLogout } from "@/lib/reddit";
 
 export default function RedditSentimentPage() {
@@ -112,7 +112,8 @@ export default function RedditSentimentPage() {
         credentials: "include",
         body: JSON.stringify({
           ...searchParams,
-          industryContext: websiteData?.analysis?.industry || searchParams.industryContext
+          industryContext: websiteData?.analysis?.industry || searchParams.industryContext,
+          websiteUrl: searchParams.websiteUrl,
         })
       });
 
@@ -156,7 +157,8 @@ export default function RedditSentimentPage() {
           mentions: searchResult.mentions,
           companyName: companyName.trim(),
           competitors: competitorList,
-          websiteAnalysis: websiteAnalysis
+          websiteAnalysis: websiteAnalysis,
+          websiteUrl: searchParams.websiteUrl,
         })
       });
 
@@ -178,8 +180,29 @@ export default function RedditSentimentPage() {
     }
   };
 
+  const handleGenerateReport = async () => {
+    // Get the current dashboard URL
+    const url = 'http://localhost:3000/reddit-sentiment/view-result';
+    const response = await fetch('/api/generate_report/puppeteer-pdf', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ url, "type" : "reddit" }),
+    });
+    if (!response.ok) {
+      alert('Failed to generate PDF');
+      return;
+    }
+    const blob = await response.blob();
+    const link = document.createElement('a');
+    link.href = window.URL.createObjectURL(blob);
+    link.download = 'reddit-sentiment-report.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
   // Export functionality
   const handleExport = (format: 'csv' | 'json' | 'html') => {
+
     if (!sentimentReport) return;
 
     let content = "";
@@ -196,14 +219,12 @@ export default function RedditSentimentPage() {
         content = JSON.stringify(sentimentReport, null, 2);
         filename = `reddit-sentiment-analysis-${new Date().toISOString().split('T')[0]}.json`;
         mimeType = "application/json";
-        break;
-      case 'html':
-        content = generateHTMLReport(sentimentReport);
-        filename = `reddit-sentiment-analysis-${new Date().toISOString().split('T')[0]}.html`;
-        mimeType = "text/html";
-        break;
+        break;  
     }
 
+    if(format == "html"){
+      return handleGenerateReport();
+    }
     const blob = new Blob([content], { type: mimeType });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
@@ -226,6 +247,24 @@ export default function RedditSentimentPage() {
     setAnalyzeError(null);
     setCompanyName("");
     setCompetitors("");
+  };
+
+  // Load saved report from JSON file
+  const loadSavedReport = async () => {
+    try {
+      const res = await fetch("/api/reddit-sentiment/last-report", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+      if (!res.ok) throw new Error('No saved report found');
+      const report = await res.json();
+      setSentimentReport(report);
+      setStep(2); // Go directly to the report view
+    } catch (err) {
+      alert('No saved report found or failed to load.');
+    }
   };
 
   return (
@@ -280,6 +319,16 @@ export default function RedditSentimentPage() {
         </div>
       )}
 
+      {/* Load Saved Report Button */}
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={loadSavedReport}
+          className="px-4 py-2 bg-gray-600 text-white rounded-md hover:bg-gray-700 text-sm font-medium"
+        >
+          View Last report
+        </button>
+      </div>
+
       {/* Progress Steps */}
       <div className="flex items-center mb-8">
         {["Search Reddit", "Review Results", "Sentiment Analysis"].map((label, i) => (
@@ -291,7 +340,7 @@ export default function RedditSentimentPage() {
           </React.Fragment>
         ))}
       </div>
-
+      <div className="h-12" />
       {/* Step 1: Search */}
       {step === 0 && (
         <div className="bg-white rounded-lg shadow p-6">
@@ -859,6 +908,7 @@ export default function RedditSentimentPage() {
                         </div>
                         <div className="ml-4 text-right">
                           <span className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${
+                            
                             analysis.sentiment.label === 'positive' || analysis.sentiment.label === 'very_positive'
                               ? 'bg-green-100 text-green-800'
                               : analysis.sentiment.label === 'negative' || analysis.sentiment.label === 'very_negative'

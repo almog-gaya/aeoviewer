@@ -93,10 +93,10 @@ export async function POST(req: NextRequest) {
 }
 
 async function searchRedditMentions(params: RedditSearchParams, accessToken?: string): Promise<RedditSearchResult> {
-  const mentions: RedditMention[] = [];
   let totalFound = 0;
   let successfullyFetched = 0;
   let failedFetches = 0;
+  const mentions: RedditMention[] = [];
 
   try {
     const searchUrl = buildRedditSearchUrl(params, !!accessToken);
@@ -122,37 +122,49 @@ async function searchRedditMentions(params: RedditSearchParams, accessToken?: st
     console.log(`📊 Found ${totalFound} posts, processing up to ${params.limit}...`);
 
     const posts = data.data.children.slice(0, params.limit);
-    
-    for (const child of posts) {
-      const postData = child.data;
-      try {
-        
-        console.log(`📝 Fetching thread: https://www.reddit.com${postData.permalink}`);
-        
-        // Skip private or restricted subreddits
-        if (postData.subreddit_type === 'private' || postData.subreddit_type === 'restricted') {
-          console.log(`⏭️ Skipping private/restricted subreddit: ${postData.subreddit}`);
-          failedFetches++;
-          continue;
-        }
 
-        const threadContent = await fetchRedditThreadContent(
-          postData.permalink,
-          accessToken
-        );
-        
-        if (threadContent) {
-          mentions.push(threadContent);
-          successfullyFetched++;
-        } else {
+    // Concurrent fetch with 100 per minute (600ms stagger, batches)
+    const MAX_PER_MINUTE = 100;
+    const STAGGER_MS = 600;
+    const fetchPromises = posts.map((child, i) => {
+      const postData = child.data;
+      // Calculate batch offset: every 100 requests, wait an extra minute
+      /**
+       * Read more: https://www.reddit.com/r/redditdev/comments/14nbw6g/updated_rate_limits_going_into_effect_over_the/
+      */
+      const batch = Math.floor(i / MAX_PER_MINUTE);
+      const indexInBatch = i % MAX_PER_MINUTE;
+      const delay = batch * 60000 + indexInBatch * STAGGER_MS;
+      return new Promise<RedditMention | null>(async (resolve) => {
+        await new Promise(r => setTimeout(r, delay));
+        try {
+          console.log(`📝 Fetching thread: https://www.reddit.com${postData.permalink}`);
+          // Skip private or restricted subreddits
+          if (postData.subreddit_type === 'private' || postData.subreddit_type === 'restricted') {
+            console.log(`⏭️ Skipping private/restricted subreddit: ${postData.subreddit}`);
+            failedFetches++;
+            resolve(null);
+            return;
+          }
+          const threadContent = await fetchRedditThreadContent(postData.permalink, accessToken);
+          if (threadContent) {
+            successfullyFetched++;
+            resolve(threadContent);
+          } else {
+            failedFetches++;
+            resolve(null);
+          }
+        } catch (error) {
+          console.error(`❌ Failed to fetch thread: https://www.reddit.com${postData.permalink}`, error);
           failedFetches++;
+          resolve(null);
         }
-        
-        await new Promise(resolve => setTimeout(resolve, 500)); // Increased delay
-      } catch (error) {
-        console.error(`❌ Failed to fetch thread: https://www.reddit.com${postData.permalink}`, error);
-        failedFetches++;
-      }
+      });
+    });
+
+    const results = await Promise.all(fetchPromises);
+    for (const mention of results) {
+      if (mention) mentions.push(mention);
     }
 
     console.log(`✅ Successfully fetched ${successfullyFetched} threads, ${failedFetches} failed`);

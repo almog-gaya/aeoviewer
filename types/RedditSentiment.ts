@@ -82,10 +82,12 @@ export interface WebsiteAnalysis {
   competitors: string[];
   description: string;
   analysisScore: number;
+  websiteUrl: string;
 }
 
 export interface RedditSentimentReport {
   companyName: string;
+  llmtxt: boolean;
   searchResult: RedditSearchResult;
   analyses: RedditMentionAnalysis[];
   websiteAnalysis?: WebsiteAnalysis;

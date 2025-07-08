@@ -9,16 +9,12 @@ export async function GET(req: Request) {
         return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
     }
 
-    const res = await fetch(llmURL);
-    console.log(`LLM URL Response: ${res.status} ${res.statusText} for ${llmURL}`);
-    if (!res.ok) {
-        return NextResponse.json(
-            { error: `Failed to fetch LLM URL: ${res.statusText}` },
-            { status: res.status }
-        );
+    const res = await getLLMTxt(llmURL);
+    if (!res) {
+        return NextResponse.json({ exists: false, content: '' });
     }
-    const robotsContent = await res.text();
-    const exists = robotsContent.trim().length > 0;
+    const exists = res.exists;
+    const robotsContent = res.content;
     return NextResponse.json({ exists: exists, content: robotsContent });
 }
 
@@ -30,10 +26,10 @@ export async function POST(req: Request) {
         return NextResponse.json({ error: 'URL parameter is required' }, { status: 400 });
     }
 
-    try {  
+    try {
         // Fetch robots.txt
         const robotsResponse = await fetch(robotsURL);
-        
+
         if (!robotsResponse.ok) {
             return NextResponse.json(
                 { error: `Failed to fetch robots.txt: ${robotsResponse.statusText}` },
@@ -57,5 +53,31 @@ export async function POST(req: Request) {
     } catch (error) {
         console.error(`Error fetching LLM URL: ${error}`);
         return NextResponse.json({ error: 'Failed to check LLM URL' }, { status: 500 });
+    }
+}
+
+
+
+export const getLLMTxt = async (url: string) => {
+    try {
+        const response = await fetch(url);
+        if (!response.ok) {
+            console.error(`Failed to fetch LLM URL: ${response.statusText}`);
+            return {
+                exists: false,
+                content: ''
+            }
+        }
+        const content = await response.text();
+        return {
+            exists: content.trim().length > 0,
+            content: content
+        }
+    } catch (error) {
+        console.error(`Error checking LLM URL: ${error}`);
+        return {
+            exists: false,
+            content: ''
+        }
     }
 }

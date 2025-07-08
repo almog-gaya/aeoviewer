@@ -8,6 +8,7 @@ export default function ViewRedditSentimentResult() {
   const [companyName, setCompanyName] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [llmFileExists, setLlmFileExists] = useState<boolean | null>(null);
 
   useEffect(() => {
     document.body.classList.add('report-mode');
@@ -20,10 +21,10 @@ export default function ViewRedditSentimentResult() {
     const fetchReport = async () => {
       try {
         const res = await fetch("/api/reddit-sentiment/last-report", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
         });
         if (!res.ok) throw new Error("No saved report found");
         const report = await res.json();
@@ -36,7 +37,21 @@ export default function ViewRedditSentimentResult() {
         setLoading(false);
       }
     };
+
+    const checkLlmFile = async () => {
+      try {
+        const res = await fetch("/api/check-llm-file");
+        if (!res.ok) throw new Error("Failed to check llm.txt");
+        const { exists } = await res.json();
+        setLlmFileExists(exists);
+      } catch (err) {
+        console.error("Error checking llm.txt:", err);
+        setLlmFileExists(false);
+      }
+    };
+
     fetchReport();
+    checkLlmFile();
   }, []);
 
   if (loading) {
@@ -51,7 +66,6 @@ export default function ViewRedditSentimentResult() {
     );
   }
 
-  // Render the report view (read-only, no export/new search)
   return (
     <div className="min-h-screen bg-gray-50 py-10 px-4">
       <div className="bg-white shadow-sm border-b border-gray-200 mb-8">
@@ -63,8 +77,17 @@ export default function ViewRedditSentimentResult() {
           </div>
           <div className="text-center">
             <h2 className="text-xl font-semibold text-gray-700 mb-4">Sentiment Analysis Report</h2>
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-gray-500 flex items-center flex-wrap gap-x-2 justify-center text-center">
               {sentimentReport.summary.totalMentions} mentions • {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% positive • Generated {new Date().toLocaleDateString()}
+              <span className="mx-2 text-gray-300">•</span>
+              <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ml-0 ${llmFileExists === null ? 'bg-gray-100 text-gray-500' : llmFileExists ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
+                style={{ minWidth: '110px' }}>
+                <span className={`mr-1 text-base ${llmFileExists === null ? 'text-gray-400' : llmFileExists ? 'text-green-500' : 'text-red-500'}`}>{llmFileExists === null ? '…' : llmFileExists ? '✓' : '✗'}</span>
+                llm.txt
+                <span className="ml-1">
+                  {llmFileExists === null ? 'Checking' : llmFileExists ? 'Ready' : 'Missing'}
+                </span>
+              </span>
             </p>
           </div>
         </div>

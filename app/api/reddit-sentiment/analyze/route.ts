@@ -173,7 +173,7 @@ async function analyzeRedditMentions(
   const isLLMTextExist = await getLLMTxt(websiteAnalysis?.websiteUrl!)
   return {
     companyName,
-    'llmtxt': isLLMTextExist?.exists || false, 
+    llmtxt: isLLMTextExist?.exists || false, 
     searchResult: {
       mentions,
       totalFound: mentions.length,

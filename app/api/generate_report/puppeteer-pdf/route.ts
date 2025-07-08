@@ -20,7 +20,7 @@ export async function POST(req: Request) {
     });
     const page = await browser.newPage();
     await page.setViewport({ width: PDF_PAGE_WIDTH, height: 1000 }); // Initial viewport
-    await page.goto(url, { waitUntil: 'networkidle0' });
+    await page.goto(url, { waitUntil: 'networkidle0', timeout: 0 });
     // Wait for .report-mode to be present on body
     await page.waitForFunction(() => document.body.classList.contains('report-mode'));
 

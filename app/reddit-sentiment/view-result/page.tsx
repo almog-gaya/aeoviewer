@@ -78,8 +78,7 @@ export default function ViewRedditSentimentResult() {
           <div className="text-center">
             <h2 className="text-xl font-semibold text-gray-700 mb-4">Sentiment Analysis Report</h2>
             <p className="text-sm text-gray-500 flex items-center flex-wrap gap-x-2 justify-center text-center">
-              {sentimentReport.summary.totalMentions} mentions • {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% positive • Generated {new Date().toLocaleDateString()}
-              <span className="mx-2 text-gray-300">•</span>
+              {sentimentReport.summary.totalMentions} mentions • {Math.round((sentimentReport.summary.sentimentDistribution.positive / sentimentReport.summary.totalMentions) * 100)}% positive • Generated {new Date().toLocaleDateString()}    •  
               <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-semibold ml-0 ${llmFileExists === null ? 'bg-gray-100 text-gray-500' : llmFileExists ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}
                 style={{ minWidth: '110px' }}>
                 <span className={`mr-1 text-base ${llmFileExists === null ? 'text-gray-400' : llmFileExists ? 'text-green-500' : 'text-red-500'}`}>{llmFileExists === null ? '…' : llmFileExists ? '✓' : '✗'}</span>
@@ -126,7 +125,7 @@ export default function ViewRedditSentimentResult() {
                   <div key={subreddit.subreddit} className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                     <div>
                       <div className="font-medium text-gray-900">r/{subreddit.subreddit}</div>
-                      <div className="text-sm text-gray-500">{subreddit.count} discussions • Avg sentiment: {subreddit.averageSentiment.toFixed(1)}</div>
+                      <div className="text-sm text-gray-500">{subreddit.count} discussions • Avg sentiment: {subreddit.averageSentiment.toFixed(1)} </div>
                     </div>
                     <div className="text-right">
                       <div className="text-lg font-semibold text-gray-900">{Math.round((subreddit.count / sentimentReport.summary.totalMentions) * 100)}%</div>

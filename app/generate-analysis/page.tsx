@@ -83,7 +83,7 @@ export default function GenerateAnalysisPage() {
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Failed to generate profile");
-      setCompanyProfile((prev) => ({ ...prev, ...data.data }));
+      setCompanyProfile((prev) => ({ ...prev, ...data }));
     } catch (e: any) {
       setProfileError(e.message || "Failed to generate profile");
     } finally {

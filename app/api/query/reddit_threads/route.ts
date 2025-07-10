@@ -35,7 +35,7 @@ export async function POST(req: NextRequest) {
   // ];
 
   const promptSample = generateRedditThreads(companyProfile);
-  const resp = await llmProviders.searchgpt.generateRedditThreads(companyProfile);
+  const resp = await llmProviders.chatgpt.generateRedditThreads(companyProfile);
   if (!resp || !Array.isArray(resp)) {
     return NextResponse.json(
       { error: 'Failed to generate Reddit threads' },

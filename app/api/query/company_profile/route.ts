@@ -25,7 +25,7 @@ export async function POST(req: Request) {
 
         console.log(`Generating company profile for: ${companyProfile.name}`);
         
-        const responseText = await llmProviders.searchgpt.generateCompanyProfile(companyProfile.name!, companyProfile.companyWebsite!);
+        const responseText = await llmProviders.chatgpt.generateCompanyProfile(companyProfile.name!, companyProfile.companyWebsite!);
 
         await fs.writeFile(
             'last_company_profile.json',

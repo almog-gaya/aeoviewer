@@ -18,7 +18,7 @@ export class LLMFactory implements LLMProviderFactory {
     private static instance: LLMFactory;
     private providers: Map<string, LLMProvider> = new Map();
 
-    private constructor() {}
+    private constructor() { }
 
     public static getInstance(): LLMFactory {
         if (!LLMFactory.instance) {
@@ -29,7 +29,7 @@ export class LLMFactory implements LLMProviderFactory {
 
     public getProvider(engine: LLMEngine, config?: LLMConfig, taskType?: TaskType): LLMProvider {
         const cacheKey = `${engine}_${taskType || 'default'}_${config?.apiKey?.substring(0, 8) || 'default'}`;
-        
+
         if (this.providers.has(cacheKey)) {
             return this.providers.get(cacheKey)!;
         }
@@ -39,6 +39,9 @@ export class LLMFactory implements LLMProviderFactory {
 
         switch (engine) {
             case LLMEngine.OPENAI:
+                provider = new OpenAIProvider(finalConfig);
+                break;
+            case LLMEngine.SEARCHGPT:
                 provider = new OpenAIProvider(finalConfig);
                 break;
             case LLMEngine.CLAUDE:
@@ -63,7 +66,7 @@ export class LLMFactory implements LLMProviderFactory {
 
     private getConfigForEngine(engine: LLMEngine, userConfig?: LLMConfig, taskType?: TaskType): LLMConfig {
         const task = taskType || TaskType.SCANNING;
-        
+
         // VPN configuration - enable VPN if environment variable is set
         const vpnConfig = {
             useVPN: process.env.ENABLE_VPN === 'true',
@@ -71,7 +74,7 @@ export class LLMFactory implements LLMProviderFactory {
             preferredRegion: process.env.VPN_PREFERRED_REGION,
             vpnTimeout: parseInt(process.env.VPN_TIMEOUT || '30000'),
         };
-        
+
         // Task-specific model configurations
         const taskConfigs: Record<LLMEngine, Record<TaskType, Partial<LLMConfig>>> = {
             [LLMEngine.OPENAI]: {
@@ -99,7 +102,30 @@ export class LLMFactory implements LLMProviderFactory {
                     model: 'gpt-4o',
                     maxTokens: 2048,
                     temperature: 0.3,
-                }
+                },
+            },
+            [LLMEngine.SEARCHGPT]: {
+                [TaskType.SCANNING]: {
+                    model: 'gpt-4o-search-preview-2025-03-11',
+                },
+                [TaskType.ANALYSIS]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.5,
+                },
+                [TaskType.PROFILE_GENERATION]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.3,
+                },
+                [TaskType.QUERY_GENERATION]: {
+                    model: 'gpt-4o',
+                    maxTokens: 2048,
+                    temperature: 0.7,
+                },
+                [TaskType.RESPONSE_ANALYSIS]: {
+                    model: 'gpt-4o-search-preview-2025-03-11',
+                },
             },
             [LLMEngine.CLAUDE]: {
                 [TaskType.SCANNING]: {
@@ -227,6 +253,7 @@ export class LLMFactory implements LLMProviderFactory {
     private getAPIKeyForEngine(engine: LLMEngine): string | undefined {
         const keyMap: Record<LLMEngine, string> = {
             [LLMEngine.OPENAI]: 'OPENAI_API_KEY',
+            [LLMEngine.SEARCHGPT]: 'OPENAI_API_KEY',
             [LLMEngine.CLAUDE]: 'ANTHROPIC_API_KEY',
             [LLMEngine.GEMINI]: 'GEMINI_API_KEY',
             [LLMEngine.PERPLEXITY]: 'PERPLEXITY_API_KEY',
@@ -316,7 +343,7 @@ export class LLMFactory implements LLMProviderFactory {
         const enabled = process.env.ENABLE_VPN === 'true';
         const availableRegions = vpnConfigManager.getAvailableRegions();
         const healthyVPNs = enabled ? await vpnHttpClient.healthCheckAll() : {};
-        
+
         // Update region stats with current VPN health status
         regionManager.updateRegionVPNCounts();
         const regionStats = regionManager.getRegionStats();
@@ -366,10 +393,12 @@ export function mapEngineIdToEnum(engineId: string): LLMEngine {
 export function getEngineDisplayName(engine: LLMEngine): string {
     const displayNames: Record<LLMEngine, string> = {
         [LLMEngine.OPENAI]: 'ChatGPT (GPT-4)',
+        [LLMEngine.SEARCHGPT]: 'SearchGPT (GPT-4o Search Preview)',
         [LLMEngine.CLAUDE]: 'Claude',
         [LLMEngine.GEMINI]: 'Google Gemini',
         [LLMEngine.PERPLEXITY]: 'Perplexity AI',
         [LLMEngine.GROK]: 'Grok',
+
     };
 
     return displayNames[engine] || engine;

@@ -17,7 +17,7 @@ export async function POST(req: Request) {
 
         console.log(`Generating queries for: ${companyProfile.name}`);
         
-        const responseText = await llmProviders.searchgpt.generateQueries(companyProfile);
+        const responseText = await llmProviders.chatgpt.generateQueries(companyProfile);
 
         await fs.writeFile(
             'last_company_queries.json',

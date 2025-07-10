@@ -40,7 +40,8 @@ export enum LLMEngine {
     CLAUDE = 'claude', 
     GEMINI = 'gemini',
     PERPLEXITY = 'perplexity',
-    GROK = 'grok'
+    GROK = 'grok',
+    SEARCHGPT = 'searchgpt',
 }
 
 export enum TaskType {

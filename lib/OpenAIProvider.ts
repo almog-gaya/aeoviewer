@@ -3,11 +3,12 @@ import { LLMEngine, getProvider, TaskType, getProviderForTask } from './provider
 
 // Legacy provider exports for backward compatibility
 export const llmProviders = {
-    searchgpt: getProvider(LLMEngine.OPENAI, undefined, TaskType.SCANNING),
+    searchgpt: getProvider(LLMEngine.SEARCHGPT, undefined, TaskType.SCANNING),
     claude: getProvider(LLMEngine.CLAUDE, undefined, TaskType.SCANNING),
     gemini: getProvider(LLMEngine.GEMINI, undefined, TaskType.SCANNING),
     perplexity: getProvider(LLMEngine.PERPLEXITY, undefined, TaskType.SCANNING),
     grok: getProvider(LLMEngine.GROK, undefined, TaskType.SCANNING),
+    chatgpt: getProvider(LLMEngine.OPENAI, undefined, TaskType.SCANNING),
 };
 
 // Task-specific provider access for better performance
@@ -17,7 +18,8 @@ export const taskProviders = {
         claude: getProvider(LLMEngine.CLAUDE, undefined, TaskType.ANALYSIS),
         openai: getProvider(LLMEngine.OPENAI, undefined, TaskType.ANALYSIS),
         gemini: getProvider(LLMEngine.GEMINI, undefined, TaskType.ANALYSIS),
-        perplexity: getProvider(LLMEngine.PERPLEXITY, undefined, TaskType.ANALYSIS),
+        perplexity: getProvider(LLMEngine.PERPLEXITY, undefined, TaskType.ANALYSIS), 
+        searchgpt: getProvider(LLMEngine.SEARCHGPT, undefined, TaskType.ANALYSIS),
     },
     
     // Best models for company profile generation
@@ -42,6 +44,7 @@ export const taskProviders = {
         openai: getProvider(LLMEngine.OPENAI, undefined, TaskType.RESPONSE_ANALYSIS),
         gemini: getProvider(LLMEngine.GEMINI, undefined, TaskType.RESPONSE_ANALYSIS),
         perplexity: getProvider(LLMEngine.PERPLEXITY, undefined, TaskType.RESPONSE_ANALYSIS),
+        searchgpt: getProvider(LLMEngine.SEARCHGPT, undefined, TaskType.RESPONSE_ANALYSIS),
     },
     
     // Fast scanning models (cost-effective)
@@ -51,6 +54,7 @@ export const taskProviders = {
         gemini: getProvider(LLMEngine.GEMINI, undefined, TaskType.SCANNING),
         perplexity: getProvider(LLMEngine.PERPLEXITY, undefined, TaskType.SCANNING),
         grok: getProvider(LLMEngine.GROK, undefined, TaskType.SCANNING),
+        searchgpt: getProvider(LLMEngine.SEARCHGPT, undefined, TaskType.SCANNING),
     }
 };
 

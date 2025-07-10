@@ -1,21 +1,21 @@
 {
-  "name": "cato",
-  "description": "Cato is a leading provider of cloud-based networking solutions, focused on delivering secure and efficient connectivity for enterprises across the globe.",
-  "industry": "Cloud Networking and Security",
+  "name": "Orca Security",
+  "description": "Orca Security provides comprehensive cloud-native security solutions, enabling organizations to secure their entire cloud environment with ease and efficiency.",
+  "industry": "Cybersecurity",
   "competitors": [
-    "Cisco",
     "Palo Alto Networks",
-    "Zscaler",
-    "Cloudflare",
-    "Akamai",
-    "Fortinet"
+    "Check Point Software",
+    "Snyk",
+    "CloudGuard",
+    "Tenable",
+    "Rapid7"
   ],
-  "targetAudience": "IT decision-makers, network engineers, cybersecurity professionals",
-  "products": "Cato SASE Cloud, SD-WAN services, secure access service edge solutions, network security services",
-  "benefits": "Enhanced security, simplified network management, improved performance, cost savings, seamless scalability",
-  "values": "Innovation, security, customer-centricity, transparency, reliability",
-  "regulatoryContext": "Data privacy regulations, GDPR compliance, industry-specific compliance standards",
-  "personas": "\"IT Manager\", \"Network Architect\", \"CISO\", \"Cloud Engineer\"",
-  "geoSpecificity": "Global presence with a focus on North America and Europe",
-  "companyWebsite": "www.cato.com"
+  "targetAudience": "CIOs, security teams, IT managers, compliance officers",
+  "products": "Cloud security platform, vulnerability management, compliance monitoring, runtime protection, cloud workload protection",
+  "benefits": "Holistic visibility across cloud environments, reduced risk of breaches, streamlined compliance processes, improved incident response times",
+  "values": "Innovation, security-first approach, transparency, customer-centricity",
+  "regulatoryContext": "GDPR, HIPAA, PCI DSS, SOC 2",
+  "personas": "\"CIO (Chief Information Officer)\", \"Security Analyst\", \"Compliance Officer\", \"IT Manager\"",
+  "geoSpecificity": "Global, with a focus on North America and Europe",
+  "companyWebsite": "https://orca.security/"
 }

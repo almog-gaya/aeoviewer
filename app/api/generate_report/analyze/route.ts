@@ -6,7 +6,8 @@ import {
     YES_NO_REGEX,
     RANKING_REGEX,
     RANK_ITEM_REGEX,
-    SENTIMENTS_REGEX
+    SENTIMENTS_REGEX,
+    BUYER_JOURNEY_STAGES
 } from '@/lib/constants';
 import Sentiment from 'sentiment';
 const sentiment = new Sentiment();
@@ -113,6 +114,12 @@ export async function POST(req: Request) {
                 );
                 result.ranking_position = rankingPosition;
             }
+
+
+            if (result.buying_journey_stage == "general") {
+                /// check if company name is being mentioned in general question (xfunnel is doing same so)
+                result.recommended = result.company_mentioned;
+                }
 
             return result;
         });

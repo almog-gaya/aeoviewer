@@ -42,3 +42,6 @@ firebase-debug.*.log
 # ignore envs
 .env
 .env.*
+
+backups/ 
+*.json

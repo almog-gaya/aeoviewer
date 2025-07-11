@@ -32,7 +32,10 @@ const BuyingJourney: React.FC<BuyingJourneyProps> = ({ prompts }) => {
 
   return (
     <div className="bg-white rounded-lg shadow p-6 mb-6">
-      <h3 className="text-lg font-semibold text-gray-900 mb-6">Buying Journey: Top of Funnel</h3>
+      <h3 className="text-lg font-semibold text-gray-900 mb-2">Buying Journey: Top of Funnel</h3>
+      <div className="mb-4 text-sm text-gray-600">
+        This section summarizes your brand’s performance at the earliest stages of the buyer’s journey, where potential customers are exploring problems and learning about solutions. High visibility here means your brand is top-of-mind early in the decision process.
+      </div>
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
         <div className="bg-white border border-gray-200 rounded-lg p-4 flex items-center">
           <div className="flex-shrink-0">
@@ -45,6 +48,7 @@ const BuyingJourney: React.FC<BuyingJourneyProps> = ({ prompts }) => {
               <dt className="text-sm font-medium text-gray-500 truncate">Brand Visibility</dt>
               <dd className="text-lg font-medium text-gray-900">{brandVisibility}%</dd>
               <dd className="text-xs text-gray-500">In {topFunnelPrompts.length} queries</dd>
+              <dd className="text-xs text-gray-500 mt-1">% of top-of-funnel queries where your company is mentioned.</dd>
             </dl>
           </div>
         </div>
@@ -59,6 +63,7 @@ const BuyingJourney: React.FC<BuyingJourneyProps> = ({ prompts }) => {
               <dt className="text-sm font-medium text-gray-500 truncate">Avg. Position</dt>
               <dd className="text-lg font-medium text-gray-900">{avgPosition}</dd>
               <dd className="text-xs text-gray-500">Across mentions</dd>
+              <dd className="text-xs text-gray-500 mt-1">Average ranking position in these queries (lower is better).</dd>
             </dl>
           </div>
         </div>
@@ -73,6 +78,7 @@ const BuyingJourney: React.FC<BuyingJourneyProps> = ({ prompts }) => {
               <dt className="text-sm font-medium text-gray-500 truncate">Avg. Sentiment</dt>
               <dd className="text-lg font-medium text-gray-900">{avgSentiment}%</dd>
               <dd className="text-xs text-gray-500">Across mentions</dd>
+              <dd className="text-xs text-gray-500 mt-1">Average sentiment score for your brand in these queries.</dd>
             </dl>
           </div>
         </div>
@@ -87,6 +93,7 @@ const BuyingJourney: React.FC<BuyingJourneyProps> = ({ prompts }) => {
               <dt className="text-sm font-medium text-gray-500 truncate">Feature Score</dt>
               <dd className="text-lg font-medium text-gray-900">{featureScore}%</dd>
               <dd className="text-xs text-gray-500">Feature mentions</dd>
+              <dd className="text-xs text-gray-500 mt-1">% of queries where your brand’s features are recommended.</dd>
             </dl>
           </div>
         </div>

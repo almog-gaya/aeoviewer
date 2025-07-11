@@ -114,7 +114,7 @@ export default function RedditSentimentPage() {
           ...searchParams,
           industryContext: websiteData?.analysis?.industry || searchParams.industryContext,
           websiteUrl: searchParams.websiteUrl,
-          // 'useFileURLs': true
+          'useFileURLs': true
         })
       });
 

@@ -1,6 +1,6 @@
 import { getResponseTextSystemPrompt } from "@/lib/prompts";
 import { NextRequest, NextResponse } from "next/server";
-
+import {  llmProviders } from '@/lib/OpenAIProvider';
 export async function POST(request: NextRequest) {
     try {
         const query  =   {
@@ -8,43 +8,15 @@ export async function POST(request: NextRequest) {
             "buying_journey_stage": "solution_education",
             "buyer_persona": "Network Administrator (IT Networking)"
           };
+        const prompt=   getResponseTextSystemPrompt(query.buying_journey_stage, query.buyer_persona)
  
       // Analyze with LLM
       const analysisPrompt = ''
       try {
-        // Use OpenAI for analysis
-        const openaiResponse = await fetch('https://api.openai.com/v1/chat/completions', {
-          method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${process.env.OPENAI_API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            model: 'gpt-4o-search-preview-2025-03-11',
-            messages: [
-              {
-                role: 'system',
-                content: getResponseTextSystemPrompt(query.buying_journey_stage, query.buyer_persona)
-              },
-              {
-                role: 'user',
-                content: query.query_text
-              }
-            ],  
-          }),
-        });
-  
-        if (!openaiResponse.ok) {
-          throw new Error(`OpenAI API error: ${openaiResponse.status}`);
-        }
-  
-        const openaiData = await openaiResponse.json();
-        const analysisText = openaiData.choices[0]?.message?.content;
-  
- 
+        // llmProviders.gemini.generateCustom();
+       
         return NextResponse.json({
-          success: true,
-          openaiData
+          success: true, 
         });
   
       } catch (error: any) {

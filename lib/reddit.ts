@@ -26,25 +26,11 @@ export async function getRedditUser() {
   }
 }
 
-export function handleRedditLogin() {
-  const clientId = process.env.NEXT_PUBLIC_REDDIT_CLIENT_ID;
-  const redirectUri = `${window.location.origin}/reddit-auth`;
-  const scope = 'read';
-  const state = Math.random().toString(36).substring(7);
-  
-  // Store state in localStorage for verification
-  localStorage.setItem('reddit_oauth_state', state);
-  
-  const authUrl = `https://www.reddit.com/api/v1/authorize?` +
-    `client_id=${clientId}&` +
-    `response_type=code&` +
-    `state=${state}&` +
-    `redirect_uri=${encodeURIComponent(redirectUri)}&` +
-    `duration=temporary&` +
-    `scope=${scope}`;
-  
-  window.location.href = authUrl;
-}
+export const handleRedditLogin = async () => {
+
+  window.location.href = "/api/auth/reddit/login";
+
+};
 
 export function handleRedditLogout() {
   // Clear the access token cookie

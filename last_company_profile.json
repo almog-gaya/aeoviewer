@@ -1,21 +1,21 @@
 {
-  "name": "Orca Security",
-  "description": "Orca Security provides comprehensive cloud-native security solutions, enabling organizations to secure their entire cloud environment with ease and efficiency.",
-  "industry": "Cybersecurity",
+  "name": "ScholarshipOwl",
+  "description": "ScholarshipOwl is an online platform designed to simplify the scholarship application process for students, helping them find and apply for scholarships efficiently.",
+  "industry": "Education Technology",
   "competitors": [
-    "Palo Alto Networks",
-    "Check Point Software",
-    "Snyk",
-    "CloudGuard",
-    "Tenable",
-    "Rapid7"
+    "Fastweb",
+    "Cappex",
+    "Niche",
+    "Chegg Scholarships",
+    "Unigo",
+    "College Board Scholarship Search"
   ],
-  "targetAudience": "CIOs, security teams, IT managers, compliance officers",
-  "products": "Cloud security platform, vulnerability management, compliance monitoring, runtime protection, cloud workload protection",
-  "benefits": "Holistic visibility across cloud environments, reduced risk of breaches, streamlined compliance processes, improved incident response times",
-  "values": "Innovation, security-first approach, transparency, customer-centricity",
-  "regulatoryContext": "GDPR, HIPAA, PCI DSS, SOC 2",
-  "personas": "\"CIO (Chief Information Officer)\", \"Security Analyst\", \"Compliance Officer\", \"IT Manager\"",
-  "geoSpecificity": "Global, with a focus on North America and Europe",
-  "companyWebsite": "https://orca.security/"
+  "targetAudience": "High school students, college students, parents of students, educational institutions",
+  "products": "Scholarship matching service, application management tools, personalized recommendations, essay writing assistance",
+  "benefits": "Increased chances of securing scholarships, streamlined application process, access to a wide range of scholarships, expert guidance on applications",
+  "values": "Accessibility, empowerment, transparency, dedication to student success",
+  "regulatoryContext": "Data unavailable; estimated based on industry trends",
+  "personas": "\"High School Student (College-bound)\", \"College Student (Undergraduate)\", \"Parent (of College-bound Student)\", \"Educational Advisor\"",
+  "geoSpecificity": "Primarily targeting the United States, with a focus on high school and college students nationwide",
+  "companyWebsite": "https://scholarshipowl.com/"
 }

@@ -13,10 +13,11 @@ export async function POST(request: NextRequest) {
       // Analyze with LLM
       const analysisPrompt = ''
       try {
-        // llmProviders.gemini.generateCustom();
+      const reply =  await llmProviders.chatgpt.generateRawResponse(query.query_text, prompt);
        
         return NextResponse.json({
           success: true, 
+          reply
         });
   
       } catch (error: any) {

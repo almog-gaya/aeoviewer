@@ -1,21 +1,21 @@
 {
-  "name": "ScholarshipOwl",
-  "description": "ScholarshipOwl is an online platform designed to simplify the scholarship application process for students, helping them find and apply for scholarships efficiently.",
-  "industry": "Education Technology",
+  "name": "Superlegal: AI Legal Contract Review Software",
+  "description": "Superlegal provides advanced AI-driven legal contract review software designed to streamline the contract management process, ensuring efficiency and accuracy for legal professionals.",
+  "industry": "Legal Technology",
   "competitors": [
-    "Fastweb",
-    "Cappex",
-    "Niche",
-    "Chegg Scholarships",
-    "Unigo",
-    "College Board Scholarship Search"
+    "LawGeex",
+    "Kira Systems",
+    "Luminance",
+    "ContractPodAI",
+    "ThoughtSpot",
+    "Evisort"
   ],
-  "targetAudience": "High school students, college students, parents of students, educational institutions",
-  "products": "Scholarship matching service, application management tools, personalized recommendations, essay writing assistance",
-  "benefits": "Increased chances of securing scholarships, streamlined application process, access to a wide range of scholarships, expert guidance on applications",
-  "values": "Accessibility, empowerment, transparency, dedication to student success",
-  "regulatoryContext": "Data unavailable; estimated based on industry trends",
-  "personas": "\"High School Student (College-bound)\", \"College Student (Undergraduate)\", \"Parent (of College-bound Student)\", \"Educational Advisor\"",
-  "geoSpecificity": "Primarily targeting the United States, with a focus on high school and college students nationwide",
-  "companyWebsite": "https://scholarshipowl.com/"
+  "targetAudience": "Legal teams, corporate counsel, law firms, contract managers",
+  "products": "AI contract review software, contract management tools, compliance monitoring solutions",
+  "benefits": "Increased efficiency in contract review, reduced legal risks, enhanced compliance, cost savings, time savings",
+  "values": "Innovation, reliability, customer-centricity, transparency, accuracy",
+  "regulatoryContext": "Compliance with data protection regulations such as GDPR, industry standards for legal technology",
+  "personas": "\"Corporate Counsel\", \"Contract Manager\", \"Legal Operations Professional\", \"Law Firm Partner\"",
+  "geoSpecificity": "Primarily focused on the United States, with potential expansion into international markets",
+  "companyWebsite": "https://www.superlegal.ai/"
 }

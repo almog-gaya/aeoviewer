@@ -7,7 +7,7 @@ export const llmProviders = {
     claude: getProvider(LLMEngine.CLAUDE, undefined, TaskType.SCANNING),
     gemini: getProvider(LLMEngine.GEMINI, undefined, TaskType.SCANNING),
     perplexity: getProvider(LLMEngine.PERPLEXITY, undefined, TaskType.SCANNING),
-    grok: getProvider(LLMEngine.GROK, undefined, TaskType.SCANNING),
+    // grok: getProvider(LLMEngine.GROK, undefined, TaskType.SCANNING),
     chatgpt: getProvider(LLMEngine.OPENAI, undefined, TaskType.SCANNING),
 };
 

@@ -106,7 +106,7 @@ export class LLMFactory implements LLMProviderFactory {
             },
             [LLMEngine.SEARCHGPT]: {
                 [TaskType.SCANNING]: {
-                    model: 'gpt-4o-search-preview-2025-03-11',
+                    model: 'gpt-4o',
                 },
                 [TaskType.ANALYSIS]: {
                     model: 'gpt-4o',
@@ -124,7 +124,7 @@ export class LLMFactory implements LLMProviderFactory {
                     temperature: 0.7,
                 },
                 [TaskType.RESPONSE_ANALYSIS]: {
-                    model: 'gpt-4o-search-preview-2025-03-11',
+                    model:'gpt-4o',
                 },
             },
             [LLMEngine.CLAUDE]: {

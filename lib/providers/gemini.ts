@@ -18,10 +18,7 @@ export class GeminiProvider extends BaseLLMProvider {
 
     async generateCustom(input: InsightQuery) {
         const model = this.genAI.getGenerativeModel({
-            model: this.config.model || 'gemini-1.5-pro',
-            tools: [{
-                'googleSearch': {}
-            } as any],
+            model: this.config.model || 'gemini-1.5-pro', 
             generationConfig: {
                 maxOutputTokens: this.config.maxTokens || 2048,
                 temperature: this.config.temperature || 0.7,
@@ -186,6 +183,34 @@ export class GeminiProvider extends BaseLLMProvider {
 
             const threads = this.parseJSONResponse(responseText, []);
             return threads as RedditThread[];
+        } catch (error) {
+            console.error('Error parsing generated Reddit threads JSON:', error);
+            return [];
+        }
+    }
+    async generateRawResponse(prompt: any, systemPrompt: string): Promise<any> {
+        try {
+            console.log(`Gemini: Generating Reddit threads using ${this.getModelInfo()}`);
+
+            const model = this.genAI.getGenerativeModel({
+                model: this.config.model || 'gemini-1.5-flash',
+                // tools: [
+                //     {
+                //         'googleSearch': {}
+                //     } as any
+                // ],
+                generationConfig: {
+                    maxOutputTokens: this.config.maxTokens || 2048,
+                    temperature: this.config.temperature || 0.7,
+                }
+            });
+ 
+
+            const result = await model.generateContent(`User: ${prompt}, \n\nSystem Prompt: ${systemPrompt}`);
+            
+            const responseText = result.response;
+            console.log({responseText})
+            return responseText;
         } catch (error) {
             console.error('Error parsing generated Reddit threads JSON:', error);
             return [];

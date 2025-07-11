@@ -1,7 +1,7 @@
 import OpenAI from 'openai';
 import { CompanyProfile } from '@/types/CompanyProfile';
 import { InsightQuery } from '@/types/InsightQuery';
-import { PromptResult } from '@/types/PromptResult';
+import { Citation, PromptResult } from '@/types/PromptResult';
 import * as prompt from '@/lib/prompts';
 import { BaseLLMProvider, LLMConfig, TaskType } from './base';
 import { DialogueTurn } from '@/types/Planner';
@@ -23,28 +23,31 @@ export class SearchGPTProvider extends BaseLLMProvider {
             console.log(`OpenAI: Generating response text using ${this.getModelInfo()}`);
             
             const systemPrompt = prompt.getResponseTextSystemPrompt(
-                input.buying_journey_stage, 
+                input.buying_journey_stage,
                 input.buyer_persona ?? 'null'
             );
-            
-            const completion = await this.openai.chat.completions.create({
-                model: 'gpt-4o-mini-search-preview-2025-03-11',
-                messages: [
-                    { role: 'system', content: systemPrompt },
-                    { role: 'user', content: input.query_text }
-                ], 
+
+            const response = await this.openai.responses.create({
+                model: this.config.model || 'gpt-4o',
+                tools: [{
+                    type: "web_search_preview",
+                }],
+                tool_choice: "required",
+                temperature: this.config.temperature || 0.7,
+                input: `###User: ${input.query_text}, \n\n\ ###System Prompt: ${systemPrompt}`,
             });
 
-            const responseText = completion.choices?.[0]?.message?.content || '';
+
 
             return {
                 ...company,
                 answer_engine: 'searchgpt',
                 company_name: company.name,
                 query_text: input.query_text,
-                response_text: responseText,
+                response_text: response.output_text,
                 buyer_persona: input.buyer_persona || undefined,
                 buying_journey_stage: input.buying_journey_stage || undefined,
+                citation: this._getCitations(response),
             };
         } catch (error) {
             this.handleError(error, 'generate response text');
@@ -175,6 +178,36 @@ export class SearchGPTProvider extends BaseLLMProvider {
             return threads as RedditThread[];
         } catch (error) {
             console.error('Error parsing generated Reddit threads JSON:', error);
+            return [];
+        }
+    }
+    async generateRawResponse(prompt: any, systemPrompt: string): Promise<any> {
+        try {
+            console.log(`Gemini: Generating Reddit threads using ${this.getModelInfo()}`);
+
+            const response = await this.openai.responses.create({
+                model: "o4-mini",
+                tools: [{ type: "web_search_preview" }],
+                tool_choice: "auto",
+                input: `###User: ${prompt}, \n\n\ ###System Prompt: ${systemPrompt}`,
+            });
+
+            return this._getCitations(response);
+        } catch (error) {
+            console.error('Error extracting citations:', error);
+            return [];
+        }
+    }
+    _getCitations(response: OpenAI.Responses.Response): Citation[] {
+        try {
+            const messageOutput = response.output.find((o: any) => o.type === "message");
+            if (!messageOutput) return [];
+
+            const content = ((messageOutput as any).content)?.find((c: any) => c.type === "output_text");
+            if (!content?.annotations) return [];
+
+            return content.annotations;
+        } catch (_) {
             return [];
         }
     }

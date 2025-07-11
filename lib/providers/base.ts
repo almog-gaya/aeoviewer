@@ -11,6 +11,7 @@ export interface LLMProvider {
     generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]>;
     generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
     generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]>;
+    generateRawResponse(prompt: any, systemPrompt: string): Promise<any>;
 }
 
 export interface LLMConfig {
@@ -68,6 +69,7 @@ export abstract class BaseLLMProvider implements LLMProvider {
     abstract generateQueries(companyProfile: CompanyProfile): Promise<InsightQuery[]>;
     abstract generatePlan(companyProfile: CompanyProfile): Promise<DialogueTurn[]>;
     abstract generateRedditThreads(companyProfile: CompanyProfile): Promise<RedditThread[]>;
+    abstract generateRawResponse(prompt: any, systemPrompt: string): Promise<any>;
 
     protected handleError(error: any, operation: string): never {
         console.error(`Error in ${operation} using model ${this.config.model}:`, error);

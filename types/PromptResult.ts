@@ -13,4 +13,13 @@ export interface PromptResult {
     company_mentioned?: boolean;
     mentioned_companies?: string[];
     competitors_list?: string[];
+    citation?: Citation[]
 };
+
+export interface Citation {
+    title: string,
+    url: string,
+    start_index: number,
+    end_index: number,
+    type: string,
+}

@@ -193,4 +193,29 @@ export class ClaudeProvider extends BaseLLMProvider {
             return [];
         }
     }
+    
+    async generateRawResponse(prompt: any): Promise<any> {
+        try {
+            console.log(`Claude: Generating Reddit threads using ${this.getModelInfo()}`);
+         
+            
+            // const message = await this.anthropic.messages.create({
+            //     model: this.config.model || 'claude-3-5-sonnet-20241022',
+            //     max_tokens: this.config.maxTokens || 2048,
+            //     temperature: this.config.temperature || 0.7,
+            //     system: systemPrompt,
+            //     messages: [
+            //         {
+            //             role: 'user',
+            //             content: `Generate Reddit threads for the company profile of ${companyProfile.name}`
+            //         }
+            //     ]
+            // });
+            
+         
+        } catch (error) {
+            console.error('Error generating Reddit threads:', error);
+            return [];
+        }
+    }
 } 

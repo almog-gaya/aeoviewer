@@ -1,21 +1,21 @@
 {
   "name": "Superlegal: AI Legal Contract Review Software",
-  "description": "Superlegal provides advanced AI-driven legal contract review software designed to streamline the contract management process, ensuring efficiency and accuracy for legal professionals.",
+  "description": "Superlegal offers AI-powered legal contract review software designed to streamline the contract analysis process, helping legal professionals and businesses enhance efficiency and reduce risks associated with contract management.",
   "industry": "Legal Technology",
   "competitors": [
     "LawGeex",
-    "Kira Systems",
     "Luminance",
-    "ContractPodAI",
-    "ThoughtSpot",
-    "Evisort"
+    "Kira Systems",
+    "ContractPodAi",
+    "Evisort",
+    "DocuSign Insight"
   ],
-  "targetAudience": "Legal teams, corporate counsel, law firms, contract managers",
-  "products": "AI contract review software, contract management tools, compliance monitoring solutions",
-  "benefits": "Increased efficiency in contract review, reduced legal risks, enhanced compliance, cost savings, time savings",
-  "values": "Innovation, reliability, customer-centricity, transparency, accuracy",
-  "regulatoryContext": "Compliance with data protection regulations such as GDPR, industry standards for legal technology",
-  "personas": "\"Corporate Counsel\", \"Contract Manager\", \"Legal Operations Professional\", \"Law Firm Partner\"",
-  "geoSpecificity": "Primarily focused on the United States, with potential expansion into international markets",
+  "targetAudience": "Corporate legal teams, law firms, compliance officers, contract managers",
+  "products": "AI contract review software, contract management solutions, compliance tracking tools",
+  "benefits": "Increased accuracy in contract analysis, reduced review times, enhanced compliance, cost savings, improved risk management",
+  "values": "Innovation, efficiency, reliability, transparency, user-centric design",
+  "regulatoryContext": "Data privacy laws (e.g., GDPR), compliance with legal industry standards",
+  "personas": "\"Corporate Counsel (Legal Department)\", \"Contract Manager (Procurement)\", \"Compliance Officer (Risk Management)\", \"Small Business Owner (Entrepreneur)\"",
+  "geoSpecificity": "Primarily serving clients in North America and Europe, with a focus on English-speaking markets",
   "companyWebsite": "https://www.superlegal.ai/"
 }

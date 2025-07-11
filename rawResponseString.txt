@@ -1,122 +1,112 @@
 [
   {
-    "query_text": "As a Corporate Counsel at a Fortune 500 company in the United States, can AI contract review software significantly reduce the time needed for contract analysis? Answer yes/no or 'I don't have the answer'.",
-    "buying_journey_stage": "solution_evaluation",
-    "buyer_persona": "Corporate Counsel"
-  },
-  {
-    "query_text": "What solutions exist for enhancing compliance monitoring in legal operations?",
-    "buying_journey_stage": "solution_education",
-    "buyer_persona": "Legal Operations Professional"
-  },
-  {
-    "query_text": "As a Law Firm Partner, I'm facing challenges in ensuring contract compliance with GDPR. What strategies can I implement?",
+    "query_text": "As a Corporate Counsel in North America, how can AI-powered legal contract review software enhance compliance with data privacy laws like GDPR?",
     "buying_journey_stage": "problem_exploration",
-    "buyer_persona": "Law Firm Partner"
+    "buyer_persona": "Corporate Counsel (Legal Department)"
   },
   {
-    "query_text": "How do AI contract review solutions from LawGeex, Kira Systems, Luminance, ContractPodAI, Superlegal, and Evisort compare in terms of reducing legal risks?",
+    "query_text": "As a Contract Manager, what are the key benefits of using AI contract review software for contract analysis?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Contract Manager (Procurement)"
+  },
+  {
+    "query_text": "Does AI contract review software reduce the time needed for contract analysis compared to traditional methods? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Corporate Counsel (Legal Department)"
+  },
+  {
+    "query_text": "How do LawGeex, Luminance, Kira Systems, ContractPodAi, Evisort, and Superlegal compare in terms of accuracy in contract analysis? Please provide a forced ranking from best to worst.",
     "buying_journey_stage": "solution_comparison",
-    "buyer_persona": "Contract Manager"
+    "buyer_persona": null
   },
   {
-    "query_text": "On G2 and Trustpilot, which AI contract review software offers the best customer support among LawGeex, Kira Systems, Luminance, Superlegal, and Evisort? Please provide a forced ranking from best to worst.",
+    "query_text": "As a Compliance Officer, what tools are available for tracking compliance in contract management?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Compliance Officer (Risk Management)"
+  },
+  {
+    "query_text": "What operational inefficiencies do corporate legal teams face when managing contracts without technology?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "How do AI contract review solutions help in mitigating risks associated with contract management?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a Small Business Owner, can AI solutions help streamline contract management? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Small Business Owner (Entrepreneur)"
+  },
+  {
+    "query_text": "As a Corporate Counsel, what are the best practices for ensuring legal compliance in contract reviews?",
+    "buying_journey_stage": "general",
+    "buyer_persona": "Corporate Counsel (Legal Department)"
+  },
+  {
+    "query_text": "How do compliance tracking tools enhance the efficiency of contract managers?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "Can AI contract review software assist in identifying non-compliance issues in contracts? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Compliance Officer (Risk Management)"
+  },
+  {
+    "query_text": "How do Evisort, DocuSign Insight, Kira Systems, and Superlegal compare in terms of cost savings for contract management? Please provide a forced ranking from best to worst.",
     "buying_journey_stage": "final_research",
-    "buyer_persona": "Contract Manager"
+    "buyer_persona": null
   },
   {
-    "query_text": "What are the best practices for implementing contract management tools in a corporate environment?",
+    "query_text": "What challenges do legal departments face when implementing new contract management software?",
+    "buying_journey_stage": "problem_exploration",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a Contract Manager, how can I ensure accuracy in contract analysis using AI tools?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Contract Manager (Procurement)"
+  },
+  {
+    "query_text": "Does the implementation of AI-driven compliance tracking tools improve risk management in contracts? Answer yes/no or 'I don't have the answer'.",
+    "buying_journey_stage": "solution_evaluation",
+    "buyer_persona": "Compliance Officer (Risk Management)"
+  },
+  {
+    "query_text": "As a Small Business Owner, what features should I look for in contract management solutions?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": "Small Business Owner (Entrepreneur)"
+  },
+  {
+    "query_text": "How do the contract review technologies of Superlegal and its competitors ensure reliability and transparency in legal processes? Please provide a comparison.",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "What are the benefits of using AI-powered solutions for reducing review times in contract management?",
+    "buying_journey_stage": "solution_education",
+    "buyer_persona": null
+  },
+  {
+    "query_text": "As a Corporate Counsel, how do I assess the effectiveness of AI contract review software in my organization?",
+    "buying_journey_stage": "final_research",
+    "buyer_persona": "Corporate Counsel (Legal Department)"
+  },
+  {
+    "query_text": "What are the current trends in legal technology that impact contract management?",
     "buying_journey_stage": "general",
     "buyer_persona": null
   },
   {
-    "query_text": "As a Contract Manager, can compliance monitoring tools help streamline the review process for contracts? Answer yes/no or 'I don't have the answer'.",
+    "query_text": "How can AI contract review software help small businesses avoid common legal pitfalls? Answer yes/no or 'I don't have the answer'.",
     "buying_journey_stage": "solution_evaluation",
-    "buyer_persona": "Contract Manager"
+    "buyer_persona": "Small Business Owner (Entrepreneur)"
   },
   {
-    "query_text": "What benefits do AI-driven contract management tools provide for legal teams?",
-    "buying_journey_stage": "solution_education",
-    "buyer_persona": "Legal Operations Professional"
-  },
-  {
-    "query_text": "As a Corporate Counsel, I'm struggling with operational inefficiencies in contract review. What solutions are available?",
-    "buying_journey_stage": "problem_exploration",
-    "buyer_persona": "Corporate Counsel"
-  },
-  {
-    "query_text": "How does Superlegal compare to competitors like ContractPodAI and Luminance in terms of cost savings for contract management?",
+    "query_text": "How does Superlegal's AI technology compare with Luminance and Kira Systems in terms of user-centric design?",
     "buying_journey_stage": "solution_comparison",
-    "buyer_persona": "Corporate Counsel"
-  },
-  {
-    "query_text": "On industry forums, which AI contract review solution is recommended for enhancing compliance? Please rank the following: LawGeex, Kira Systems, Evisort, Superlegal, and ContractPodAI.",
-    "buying_journey_stage": "final_research",
-    "buyer_persona": "Legal Operations Professional"
-  },
-  {
-    "query_text": "What are common challenges faced by legal teams when adopting AI contract review software?",
-    "buying_journey_stage": "general",
-    "buyer_persona": null
-  },
-  {
-    "query_text": "As a Law Firm Partner, does investing in AI contract review software lead to measurable increases in client satisfaction? Answer yes/no or 'I don't have the answer'.",
-    "buying_journey_stage": "solution_evaluation",
-    "buyer_persona": "Law Firm Partner"
-  },
-  {
-    "query_text": "What tools can assist in ensuring contracts meet industry compliance standards?",
-    "buying_journey_stage": "solution_education",
-    "buyer_persona": "Corporate Counsel"
-  },
-  {
-    "query_text": "As a Contract Manager, I want to know how to mitigate legal risks during contract review. What strategies can I employ?",
-    "buying_journey_stage": "problem_exploration",
-    "buyer_persona": "Contract Manager"
-  },
-  {
-    "query_text": "How do the contract review features of Superlegal stack up against those of Kira Systems and Luminance?",
-    "buying_journey_stage": "solution_comparison",
-    "buyer_persona": "Contract Manager"
-  },
-  {
-    "query_text": "According to user reviews, which among LawGeex, Kira Systems, Evisort, Superlegal, and ContractPodAI provides the best user experience? Please rank these solutions.",
-    "buying_journey_stage": "final_research",
-    "buyer_persona": "Legal Operations Professional"
-  },
-  {
-    "query_text": "What are the latest trends in AI technology for legal contract management?",
-    "buying_journey_stage": "general",
-    "buyer_persona": null
-  },
-  {
-    "query_text": "As a Corporate Counsel, can contract management tools help in maintaining data protection compliance? Answer yes/no or 'I don't have the answer'.",
-    "buying_journey_stage": "solution_evaluation",
-    "buyer_persona": "Corporate Counsel"
-  },
-  {
-    "query_text": "What features should I look for in a compliance monitoring solution for legal contracts?",
-    "buying_journey_stage": "solution_education",
-    "buyer_persona": "Legal Operations Professional"
-  },
-  {
-    "query_text": "As a Law Firm Partner, what common pitfalls should I avoid when using AI for contract reviews?",
-    "buying_journey_stage": "problem_exploration",
-    "buyer_persona": "Law Firm Partner"
-  },
-  {
-    "query_text": "How do Superlegal and ContractPodAI compare regarding customer satisfaction in the legal tech industry?",
-    "buying_journey_stage": "solution_comparison",
-    "buyer_persona": "Corporate Counsel"
-  },
-  {
-    "query_text": "On social media platforms, which AI contract review software is considered the most reliable? Rank the following: LawGeex, Kira Systems, Superlegal, Evisort, and Luminance.",
-    "buying_journey_stage": "final_research",
-    "buyer_persona": "Contract Manager"
-  },
-  {
-    "query_text": "What are the key metrics to evaluate when assessing the effectiveness of AI contract review tools?",
-    "buying_journey_stage": "general",
     "buyer_persona": null
   }
 ]

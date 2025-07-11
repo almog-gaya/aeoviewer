@@ -5,6 +5,7 @@ import { PromptResult } from "@/types/PromptResult";
 import { LLM_ENGINES, STOP_WORDS } from "@/lib/constants";
 import nlp from "compromise";
 import BuyingJourney from "@/components/dashboard/BuyingJourney";
+import Citations from "@/components/dashboard/Citations";
 
 interface Topic {
   word: string;
@@ -834,6 +835,8 @@ const Dashboard: React.FC = () => {
                   </table>
                 </div>
               </div>
+              {/* Citations Section */}
+              <Citations prompts={prompts} />
             </div>
           </div>
         </main>

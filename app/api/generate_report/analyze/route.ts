@@ -34,6 +34,7 @@ export async function POST(req: Request) {
                 solution_analysis: item.solution_analysis ?? null,
                 competitors_list: item.competitors_list ?? item.competitors ?? [],
                 answer_engine: item.answer_engine!,
+                citation: item.citation ?? [],
             };
 
             // Analyze sentiment score
